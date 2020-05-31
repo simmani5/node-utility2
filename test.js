@@ -85,9 +85,32 @@
         }
         return arg;
     };
-    local.fsRmrfSync = function (dir) {
+    local.fsReadFileOrDefaultSync = function (pathname, type, dflt) {
     /*
-     * this function will sync "rm -rf" <dir>
+     * this function will sync-read <pathname> with given <type> and <dflt>
+     */
+        let fs;
+        // do nothing if module does not exist
+        try {
+            fs = require("fs");
+        } catch (ignore) {
+            return dflt;
+        }
+        pathname = require("path").resolve(pathname);
+        // try to read <pathname>
+        try {
+            return (
+                type === "json"
+                ? JSON.parse(fs.readFileSync(pathname, "utf8"))
+                : fs.readFileSync(pathname, type)
+            );
+        } catch (ignore) {
+            return dflt;
+        }
+    };
+    local.fsRmrfSync = function (pathname) {
+    /*
+     * this function will sync "rm -rf" <pathname>
      */
         let child_process;
         // do nothing if module does not exist
@@ -96,17 +119,30 @@
         } catch (ignore) {
             return;
         }
-        child_process.spawnSync("rm", [
-            "-rf", dir
-        ], {
-            stdio: [
-                "ignore", 1, 2
-            ]
-        });
+        pathname = require("path").resolve(pathname);
+        if (process.platform !== "win32") {
+            child_process.spawnSync("rm", [
+                "-rf", pathname
+            ], {
+                stdio: [
+                    "ignore", 1, 2
+                ]
+            });
+            return;
+        }
+        try {
+            child_process.spawnSync("rd", [
+                "/s", "/q", pathname
+            ], {
+                stdio: [
+                    "ignore", 1, "ignore"
+                ]
+            });
+        } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (file, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
     /*
-     * this function will sync write <data> to <file> with "mkdir -p"
+     * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
         // do nothing if module does not exist
@@ -115,18 +151,18 @@
         } catch (ignore) {
             return;
         }
-        file = require("path").resolve(file);
-        // try to write file
+        pathname = require("path").resolve(pathname);
+        // try to write <pathname>
         try {
-            fs.writeFileSync(file, data);
+            fs.writeFileSync(pathname, data);
             return true;
         } catch (ignore) {
             // mkdir -p
-            fs.mkdirSync(require("path").dirname(file), {
+            fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // rewrite file
-            fs.writeFileSync(file, data);
+            // re-write <pathname>
+            fs.writeFileSync(pathname, data);
             return true;
         }
     };
@@ -166,26 +202,6 @@
             }
         });
         return target;
-    };
-    local.querySelector = function (selectors) {
-    /*
-     * this function will return first dom-elem that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelector === "function"
-            && document.querySelector(selectors)
-        ) || {};
-    };
-    local.querySelectorAll = function (selectors) {
-    /*
-     * this function will return dom-elem-list that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelectorAll === "function"
-            && Array.from(document.querySelectorAll(selectors))
-        ) || [];
     };
     // require builtin
     if (!local.isBrowser) {
@@ -884,8 +900,18 @@ local.testCase_buildLib_default = function (opt, onError) {
     local.testMock([
         [
             local, {
+                templateRenderMyApp: function () {
+                    return local.assetsDict["/assets.my_app.template.js"];
+                }
+            }
+        ], [
+            local.fs, {
+                // test customize-local handling-behavior
+                existsSync: function () {
+                    return true;
+                },
                 // test duplicate local function handling-behavior
-                fsReadFileOrEmptyStringSync: function () {
+                readFileSync: function () {
                     return (
                         "local.nop = function () {\n"
                         + "/*\n"
@@ -900,16 +926,6 @@ local.testCase_buildLib_default = function (opt, onError) {
                         + "    return;\n"
                         + "};\n"
                     );
-                },
-                templateRenderMyApp: function () {
-                    return local.assetsDict["/assets.my_app.template.js"];
-                }
-            }
-        ], [
-            local.fs, {
-                // test customize-local handling-behavior
-                existsSync: function () {
-                    return true;
                 },
                 writeFileSync: local.nop
             }
@@ -984,14 +1000,14 @@ local.testCase_buildXxx_default = function (opt, onError) {
             }
         ]
     ], function (onError) {
-        local._testCase_buildApidoc_default(null, local.nop);
-        local._testCase_buildApp_default(null, local.nop);
-        local._testCase_buildLib_default(null, local.nop);
-        local._testCase_buildReadme_default(null, local.nop);
-        local._testCase_buildTest_default(null, local.nop);
-        local._testCase_webpage_default(null, local.nop);
+        local._testCase_buildApidoc_default({}, local.nop);
+        local._testCase_buildApp_default({}, local.nop);
+        local._testCase_buildLib_default({}, local.nop);
+        local._testCase_buildReadme_default({}, local.nop);
+        local._testCase_buildTest_default({}, local.nop);
+        local._testCase_webpage_default({}, local.nop);
         local.assetsDict["/"] = "<script src=\"assets.test.js\"></script>";
-        local._testCase_webpage_default(null, local.nop);
+        local._testCase_webpage_default({}, local.nop);
         onError(undefined, opt);
     }, onError);
 };
@@ -1920,11 +1936,11 @@ local.testCase_onErrorDefault_default = function (opt, onError) {
         // test no err handling-behavior
         local.onErrorDefault();
         // validate opt
-        local.assertOrThrow(!opt, opt);
+        local.assertOrThrow(opt !== local.errorDefault, opt);
         // test err handling-behavior
         local.onErrorDefault(local.errorDefault);
         // validate opt
-        local.assertOrThrow(opt, opt);
+        local.assertOrThrow(opt === local.errorDefault, opt);
         onError(undefined, opt);
     }, onError);
 };
@@ -2792,12 +2808,6 @@ local.utility2.serverLocalUrlTest = function (url) {
 
 // run shared js-env code - init-after
 (function () {
-// init assets
-local.assetsDict["/assets.swgg.swagger.json"] = (
-    local.fsReadFileOrEmptyStringSync("assets.swgg.swagger.json")
-    || local.assetsDict["/assets.swgg.swagger.json"]
-    || local.assetsDict["/assets.swgg.swagger.petstore.json"]
-);
 // hack-coverage - test testRunServer's multiple-call handling-behavior
 local.testRunServer(local);
 // hack-coverage - stateInit

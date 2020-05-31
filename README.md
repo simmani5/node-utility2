@@ -57,12 +57,18 @@ this zero-dependency package will provide high-level functions to to build, test
 
 #### changelog 2020.5.31
 - npm publish 2020.5.31
+- remove functions local.querySelector, local.querySelectorAll
+- replace function fsReadFileOrEmptyStringSync with fsReadFileOrDefaultSync
+- remove dependency to file lib.swgg.js
+- inline object local.contentTypeDict
 - istanbul - inline function templateRender
 - none
 
 #### todo
+- remove file lib.swgg.js
+- replace process.cwd() with path.resolve()
+- remove sloppy-cases where npm-test falsely pass
 - deprecate dependent github-crud
-- deprecate dependent swgg
 - istanbul - remove filesUnderRoot subroutine
 - jslint - add nullish-coalescing support
 - jslint - add optional-chaining support
@@ -217,9 +223,32 @@ instruction
         }
         return arg;
     };
-    local.fsRmrfSync = function (dir) {
+    local.fsReadFileOrDefaultSync = function (pathname, type, dflt) {
     /*
-     * this function will sync "rm -rf" <dir>
+     * this function will sync-read <pathname> with given <type> and <dflt>
+     */
+        let fs;
+        // do nothing if module does not exist
+        try {
+            fs = require("fs");
+        } catch (ignore) {
+            return dflt;
+        }
+        pathname = require("path").resolve(pathname);
+        // try to read <pathname>
+        try {
+            return (
+                type === "json"
+                ? JSON.parse(fs.readFileSync(pathname, "utf8"))
+                : fs.readFileSync(pathname, type)
+            );
+        } catch (ignore) {
+            return dflt;
+        }
+    };
+    local.fsRmrfSync = function (pathname) {
+    /*
+     * this function will sync "rm -rf" <pathname>
      */
         let child_process;
         // do nothing if module does not exist
@@ -228,17 +257,30 @@ instruction
         } catch (ignore) {
             return;
         }
-        child_process.spawnSync("rm", [
-            "-rf", dir
-        ], {
-            stdio: [
-                "ignore", 1, 2
-            ]
-        });
+        pathname = require("path").resolve(pathname);
+        if (process.platform !== "win32") {
+            child_process.spawnSync("rm", [
+                "-rf", pathname
+            ], {
+                stdio: [
+                    "ignore", 1, 2
+                ]
+            });
+            return;
+        }
+        try {
+            child_process.spawnSync("rd", [
+                "/s", "/q", pathname
+            ], {
+                stdio: [
+                    "ignore", 1, "ignore"
+                ]
+            });
+        } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (file, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
     /*
-     * this function will sync write <data> to <file> with "mkdir -p"
+     * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
         // do nothing if module does not exist
@@ -247,18 +289,18 @@ instruction
         } catch (ignore) {
             return;
         }
-        file = require("path").resolve(file);
-        // try to write file
+        pathname = require("path").resolve(pathname);
+        // try to write <pathname>
         try {
-            fs.writeFileSync(file, data);
+            fs.writeFileSync(pathname, data);
             return true;
         } catch (ignore) {
             // mkdir -p
-            fs.mkdirSync(require("path").dirname(file), {
+            fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // rewrite file
-            fs.writeFileSync(file, data);
+            // re-write <pathname>
+            fs.writeFileSync(pathname, data);
             return true;
         }
     };
@@ -298,26 +340,6 @@ instruction
             }
         });
         return target;
-    };
-    local.querySelector = function (selectors) {
-    /*
-     * this function will return first dom-elem that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelector === "function"
-            && document.querySelector(selectors)
-        ) || {};
-    };
-    local.querySelectorAll = function (selectors) {
-    /*
-     * this function will return dom-elem-list that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelectorAll === "function"
-            && Array.from(document.querySelectorAll(selectors))
-        ) || [];
     };
     // require builtin
     if (!local.isBrowser) {
@@ -459,7 +481,7 @@ if (!local.isBrowser) {
 ["error", "log"].forEach(function (key) {
     let elem;
     let fnc;
-    elem = local.querySelector("#outputStdout1");
+    elem = document.querySelector("#outputStdout1");
     if (!elem) {
         return;
     }
@@ -495,19 +517,6 @@ if (local.isBrowser) {
 module.exports = local;
 // init assetsDict
 local.assetsDict = local.assetsDict || {};
-[
-    "assets.swgg.swagger.json",
-    "assets.swgg.swagger.server.json"
-].forEach(function (file) {
-    file = "/" + file;
-    local.assetsDict[file] = local.assetsDict[file] || "";
-    if (local.fs.existsSync(local.__dirname + file)) {
-        local.assetsDict[file] = local.fs.readFileSync(
-            local.__dirname + file,
-            "utf8"
-        );
-    }
-});
 /* jslint ignore:start */
 local.assetsDict["/assets.index.template.html"] = '\
 <!doctype html>\n\
@@ -1003,7 +1012,7 @@ utility2-comment -->\n\
 window.addEventListener("load", function (local) {\n\
 "use strict";\n\
 local = window.utility2;\n\
-local.querySelectorAll(\n\
+document.querySelectorAll(\n\
     "#buttonTestRun1, #htmlTestReport1"\n\
 ).forEach(function (elem) {\n\
     elem.style.display = "none";\n\
@@ -1013,18 +1022,18 @@ local.domOnEventInputChange = function (evt) {\n\
     case "click.buttonJslintAutofix1":\n\
     case "keyup.inputTextarea1":\n\
         // jslint #inputTextarea1\n\
-        local.jslintAndPrint(local.querySelector(\n\
+        local.jslintAndPrint(document.querySelector(\n\
             "#inputTextarea1"\n\
         ).value, "inputTextarea1.js", {\n\
             autofix: evt.target.id === "buttonJslintAutofix1",\n\
             conditional: evt.target.id !== "buttonJslintAutofix1"\n\
         });\n\
         if (local.jslint.jslintResult.autofix) {\n\
-            local.querySelector(\n\
+            document.querySelector(\n\
                 "#inputTextarea1"\n\
             ).value = local.jslint.jslintResult.code;\n\
         }\n\
-        local.querySelector(\n\
+        document.querySelector(\n\
             "#outputJslintPre1"\n\
         ).textContent = local.jslint.jslintResult.errMsg.replace((\n\
             /\\u001b\\[\\d*m/g\n\
@@ -1035,14 +1044,14 @@ local.domOnEventInputChange = function (evt) {\n\
         } catch (ignore) {}\n\
         // try to cover and eval #inputTextarea1\n\
         try {\n\
-            local.querySelector(\n\
+            document.querySelector(\n\
                 "#outputTextarea1"\n\
             ).value = local.istanbul.instrumentSync(\n\
-                local.querySelector("#inputTextarea1").value,\n\
+                document.querySelector("#inputTextarea1").value,\n\
                 "/inputTextarea1.js"\n\
             );\n\
             eval( // jslint ignore:line\n\
-                local.querySelector("#outputTextarea1").value\n\
+                document.querySelector("#outputTextarea1").value\n\
             );\n\
         } catch (errCaught) {\n\
             console.error(errCaught);\n\
@@ -1052,14 +1061,14 @@ local.domOnEventInputChange = function (evt) {\n\
 };\n\
 // handle evt\n\
 local.on("utility2.testRunEnd", function () {\n\
-    local.querySelector(\n\
+    document.querySelector(\n\
         "#htmlCoverageReport1"\n\
     ).innerHTML = local.istanbul.coverageReportCreate({\n\
         coverage: globalThis.__coverage__\n\
     });\n\
 });\n\
 local.on("utility2.testRunProgressUpdate", function (testReport) {\n\
-    local.querySelector(\n\
+    document.querySelector(\n\
         "#htmlTestReport2"\n\
     ).innerHTML = local.testReportMerge(testReport, {});\n\
 });\n\
@@ -1111,7 +1120,7 @@ utility2-comment -->\n\
 local.assetsDict["/assets.utility2.js"] = (
     local.assetsDict["/assets.utility2.js"]
     || local.fs.readFileSync(
-        local.__dirname + "/lib.utility2.js",
+        local.path.resolve(local.__dirname + "/lib.utility2.js"),
         "utf8"
     ).replace((
         /^#!\//
@@ -1189,17 +1198,11 @@ local.http.createServer(function (req, res) {
 1. [https://kaizhu256.github.io/node-utility2/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png](https://kaizhu256.github.io/node-utility2/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)
 [![screenshot](https://kaizhu256.github.io/node-utility2/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://kaizhu256.github.io/node-utility2/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)
 
-1. [https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithub.browser.%252Fnode-utility2%252Fbuild%252Fapp%252Fassets.swgg.html.png](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithub.browser.%252Fnode-utility2%252Fbuild%252Fapp%252Fassets.swgg.html.png)
-[![screenshot](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithub.browser.%252Fnode-utility2%252Fbuild%252Fapp%252Fassets.swgg.html.png)](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithub.browser.%252Fnode-utility2%252Fbuild%252Fapp%252Fassets.swgg.html.png)
-
 1. [https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithub.browser.%252Fnode-utility2%252Fbuild%252Fapp.png](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithub.browser.%252Fnode-utility2%252Fbuild%252Fapp.png)
 [![screenshot](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithub.browser.%252Fnode-utility2%252Fbuild%252Fapp.png)](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithub.browser.%252Fnode-utility2%252Fbuild%252Fapp.png)
 
 1. [https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithubTest.browser.%252Fnode-utility2%252Fbuild%252Fapp.png](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithubTest.browser.%252Fnode-utility2%252Fbuild%252Fapp.png)
 [![screenshot](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithubTest.browser.%252Fnode-utility2%252Fbuild%252Fapp.png)](https://kaizhu256.github.io/node-utility2/build/screenshot.deployGithubTest.browser.%252Fnode-utility2%252Fbuild%252Fapp.png)
-
-1. [https://kaizhu256.github.io/node-utility2/build/screenshot.deployHeroku.browser.%252Fassets.swgg.html.png](https://kaizhu256.github.io/node-utility2/build/screenshot.deployHeroku.browser.%252Fassets.swgg.html.png)
-[![screenshot](https://kaizhu256.github.io/node-utility2/build/screenshot.deployHeroku.browser.%252Fassets.swgg.html.png)](https://kaizhu256.github.io/node-utility2/build/screenshot.deployHeroku.browser.%252Fassets.swgg.html.png)
 
 1. [https://kaizhu256.github.io/node-utility2/build/screenshot.deployHeroku.browser.%252F.png](https://kaizhu256.github.io/node-utility2/build/screenshot.deployHeroku.browser.%252F.png)
 [![screenshot](https://kaizhu256.github.io/node-utility2/build/screenshot.deployHeroku.browser.%252F.png)](https://kaizhu256.github.io/node-utility2/build/screenshot.deployHeroku.browser.%252F.png)

@@ -95,9 +95,32 @@
         }
         return arg;
     };
-    local.fsRmrfSync = function (dir) {
+    local.fsReadFileOrDefaultSync = function (pathname, type, dflt) {
     /*
-     * this function will sync "rm -rf" <dir>
+     * this function will sync-read <pathname> with given <type> and <dflt>
+     */
+        let fs;
+        // do nothing if module does not exist
+        try {
+            fs = require("fs");
+        } catch (ignore) {
+            return dflt;
+        }
+        pathname = require("path").resolve(pathname);
+        // try to read <pathname>
+        try {
+            return (
+                type === "json"
+                ? JSON.parse(fs.readFileSync(pathname, "utf8"))
+                : fs.readFileSync(pathname, type)
+            );
+        } catch (ignore) {
+            return dflt;
+        }
+    };
+    local.fsRmrfSync = function (pathname) {
+    /*
+     * this function will sync "rm -rf" <pathname>
      */
         let child_process;
         // do nothing if module does not exist
@@ -106,17 +129,30 @@
         } catch (ignore) {
             return;
         }
-        child_process.spawnSync("rm", [
-            "-rf", dir
-        ], {
-            stdio: [
-                "ignore", 1, 2
-            ]
-        });
+        pathname = require("path").resolve(pathname);
+        if (process.platform !== "win32") {
+            child_process.spawnSync("rm", [
+                "-rf", pathname
+            ], {
+                stdio: [
+                    "ignore", 1, 2
+                ]
+            });
+            return;
+        }
+        try {
+            child_process.spawnSync("rd", [
+                "/s", "/q", pathname
+            ], {
+                stdio: [
+                    "ignore", 1, "ignore"
+                ]
+            });
+        } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (file, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
     /*
-     * this function will sync write <data> to <file> with "mkdir -p"
+     * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
         // do nothing if module does not exist
@@ -125,18 +161,18 @@
         } catch (ignore) {
             return;
         }
-        file = require("path").resolve(file);
-        // try to write file
+        pathname = require("path").resolve(pathname);
+        // try to write <pathname>
         try {
-            fs.writeFileSync(file, data);
+            fs.writeFileSync(pathname, data);
             return true;
         } catch (ignore) {
             // mkdir -p
-            fs.mkdirSync(require("path").dirname(file), {
+            fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // rewrite file
-            fs.writeFileSync(file, data);
+            // re-write <pathname>
+            fs.writeFileSync(pathname, data);
             return true;
         }
     };
@@ -176,26 +212,6 @@
             }
         });
         return target;
-    };
-    local.querySelector = function (selectors) {
-    /*
-     * this function will return first dom-elem that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelector === "function"
-            && document.querySelector(selectors)
-        ) || {};
-    };
-    local.querySelectorAll = function (selectors) {
-    /*
-     * this function will return dom-elem-list that match <selectors>
-     */
-        return (
-            typeof document === "object" && document
-            && typeof document.querySelectorAll === "function"
-            && Array.from(document.querySelectorAll(selectors))
-        ) || [];
     };
     // require builtin
     if (!local.isBrowser) {
@@ -378,9 +394,32 @@ local.assetsDict["/assets.utility2.header.js"] = '\
         }\n\
         return arg;\n\
     };\n\
-    local.fsRmrfSync = function (dir) {\n\
+    local.fsReadFileOrDefaultSync = function (pathname, type, dflt) {\n\
     /*\n\
-     * this function will sync "rm -rf" <dir>\n\
+     * this function will sync-read <pathname> with given <type> and <dflt>\n\
+     */\n\
+        let fs;\n\
+        // do nothing if module does not exist\n\
+        try {\n\
+            fs = require("fs");\n\
+        } catch (ignore) {\n\
+            return dflt;\n\
+        }\n\
+        pathname = require("path").resolve(pathname);\n\
+        // try to read <pathname>\n\
+        try {\n\
+            return (\n\
+                type === "json"\n\
+                ? JSON.parse(fs.readFileSync(pathname, "utf8"))\n\
+                : fs.readFileSync(pathname, type)\n\
+            );\n\
+        } catch (ignore) {\n\
+            return dflt;\n\
+        }\n\
+    };\n\
+    local.fsRmrfSync = function (pathname) {\n\
+    /*\n\
+     * this function will sync "rm -rf" <pathname>\n\
      */\n\
         let child_process;\n\
         // do nothing if module does not exist\n\
@@ -389,17 +428,30 @@ local.assetsDict["/assets.utility2.header.js"] = '\
         } catch (ignore) {\n\
             return;\n\
         }\n\
-        child_process.spawnSync("rm", [\n\
-            "-rf", dir\n\
-        ], {\n\
-            stdio: [\n\
-                "ignore", 1, 2\n\
-            ]\n\
-        });\n\
+        pathname = require("path").resolve(pathname);\n\
+        if (process.platform !== "win32") {\n\
+            child_process.spawnSync("rm", [\n\
+                "-rf", pathname\n\
+            ], {\n\
+                stdio: [\n\
+                    "ignore", 1, 2\n\
+                ]\n\
+            });\n\
+            return;\n\
+        }\n\
+        try {\n\
+            child_process.spawnSync("rd", [\n\
+                "/s", "/q", pathname\n\
+            ], {\n\
+                stdio: [\n\
+                    "ignore", 1, "ignore"\n\
+                ]\n\
+            });\n\
+        } catch (ignore) {}\n\
     };\n\
-    local.fsWriteFileWithMkdirpSync = function (file, data) {\n\
+    local.fsWriteFileWithMkdirpSync = function (pathname, data) {\n\
     /*\n\
-     * this function will sync write <data> to <file> with "mkdir -p"\n\
+     * this function will sync write <data> to <pathname> with "mkdir -p"\n\
      */\n\
         let fs;\n\
         // do nothing if module does not exist\n\
@@ -408,18 +460,18 @@ local.assetsDict["/assets.utility2.header.js"] = '\
         } catch (ignore) {\n\
             return;\n\
         }\n\
-        file = require("path").resolve(file);\n\
-        // try to write file\n\
+        pathname = require("path").resolve(pathname);\n\
+        // try to write <pathname>\n\
         try {\n\
-            fs.writeFileSync(file, data);\n\
+            fs.writeFileSync(pathname, data);\n\
             return true;\n\
         } catch (ignore) {\n\
             // mkdir -p\n\
-            fs.mkdirSync(require("path").dirname(file), {\n\
+            fs.mkdirSync(require("path").dirname(pathname), {\n\
                 recursive: true\n\
             });\n\
-            // rewrite file\n\
-            fs.writeFileSync(file, data);\n\
+            // re-write <pathname>\n\
+            fs.writeFileSync(pathname, data);\n\
             return true;\n\
         }\n\
     };\n\
@@ -459,26 +511,6 @@ local.assetsDict["/assets.utility2.header.js"] = '\
             }\n\
         });\n\
         return target;\n\
-    };\n\
-    local.querySelector = function (selectors) {\n\
-    /*\n\
-     * this function will return first dom-elem that match <selectors>\n\
-     */\n\
-        return (\n\
-            typeof document === "object" && document\n\
-            && typeof document.querySelector === "function"\n\
-            && document.querySelector(selectors)\n\
-        ) || {};\n\
-    };\n\
-    local.querySelectorAll = function (selectors) {\n\
-    /*\n\
-     * this function will return dom-elem-list that match <selectors>\n\
-     */\n\
-        return (\n\
-            typeof document === "object" && document\n\
-            && typeof document.querySelectorAll === "function"\n\
-            && Array.from(document.querySelectorAll(selectors))\n\
-        ) || [];\n\
     };\n\
     // require builtin\n\
     if (!local.isBrowser) {\n\
@@ -1050,7 +1082,7 @@ if (!local.isBrowser) {\n\
 ["error", "log"].forEach(function (key) {\n\
     let elem;\n\
     let fnc;\n\
-    elem = local.querySelector("#outputStdout1");\n\
+    elem = document.querySelector("#outputStdout1");\n\
     if (!elem) {\n\
         return;\n\
     }\n\
@@ -1086,19 +1118,6 @@ if (local.isBrowser) {\n\
 module.exports = local;\n\
 // init assetsDict\n\
 local.assetsDict = local.assetsDict || {};\n\
-[\n\
-    "assets.swgg.swagger.json",\n\
-    "assets.swgg.swagger.server.json"\n\
-].forEach(function (file) {\n\
-    file = "/" + file;\n\
-    local.assetsDict[file] = local.assetsDict[file] || "";\n\
-    if (local.fs.existsSync(local.__dirname + file)) {\n\
-        local.assetsDict[file] = local.fs.readFileSync(\n\
-            local.__dirname + file,\n\
-            "utf8"\n\
-        );\n\
-    }\n\
-});\n\
 /* jslint ignore:start */\n\
 local.assetsDict["/assets.index.template.html"] = \'\\\n\
 '
@@ -1108,7 +1127,7 @@ local.assetsDict["/assets.index.template.html"] = \'\\\n\
 local.assetsDict["/assets.my_app.js"] = (\n\
     local.assetsDict["/assets.my_app.js"]\n\
     || local.fs.readFileSync(\n\
-        local.__dirname + "/lib.my_app.js",\n\
+        local.path.resolve(local.__dirname + "/lib.my_app.js"),\n\
         "utf8"\n\
     ).replace((\n\
         /^#!\\//\n\
@@ -1270,11 +1289,6 @@ the greatest app in the world!\n\
 #### cli help\n\
 ![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.npmPackageCliHelp.svg)\n\
 \n\
-#### swagger doc\n\
-- [https://kaizhu256.github.io/node-my-app-lite/build..beta..travis-ci.org/app/assets.swgg.html](https://kaizhu256.github.io/node-my-app-lite/build..beta..travis-ci.org/app/assets.swgg.html)\n\
-\n\
-[![swaggerdoc](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png)](https://kaizhu256.github.io/node-my-app-lite/build..beta..travis-ci.org/app/assets.swgg.html)\n\
-\n\
 #### changelog 0.0.1\n\
 - npm publish 0.0.1\n\
 - update build\n\
@@ -1337,17 +1351,11 @@ PORT=8081 node ./assets.app.js\n\
 1. [https://kaizhu256.github.io/node-my-app-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)\n\
 [![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.buildCi.browser.%252Ftmp%252Fbuild%252Ftest-report.html.png)\n\
 \n\
-1. [https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png)\n\
-[![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png)](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp%252Fassets.swgg.html.png)\n\
-\n\
 1. [https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp.png](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp.png)\n\
 [![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp.png)](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithub.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp.png)\n\
 \n\
 1. [https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithubTest.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp.png](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithubTest.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp.png)\n\
 [![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithubTest.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp.png)](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployGithubTest.browser.%252Fnode-my-app-lite%252Fbuild%252Fapp.png)\n\
-\n\
-1. [https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployHeroku.browser.%252Fassets.swgg.html.png](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployHeroku.browser.%252Fassets.swgg.html.png)\n\
-[![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployHeroku.browser.%252Fassets.swgg.html.png)](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployHeroku.browser.%252Fassets.swgg.html.png)\n\
 \n\
 1. [https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployHeroku.browser.%252F.png](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployHeroku.browser.%252F.png)\n\
 [![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployHeroku.browser.%252F.png)](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.deployHeroku.browser.%252F.png)\n\
@@ -1795,30 +1803,21 @@ local.cliDict["utility2.start"] = function () {
     local.testRunServer({});
 };
 
-local.cliDict["utility2.swaggerValidateFile"] = function () {
-/*
- * <file/url>
- * will swagger-validate file/url
- */
-    setTimeout(function () {
-        local.swgg.swaggerValidateFile({
-            file: process.argv[3]
-        }, function (err, data) {
-            console.error(data);
-            process.exit(err);
-        });
-    });
-};
-
 local.cliDict["utility2.testReportCreate"] = function () {
 /*
  *
  * will create test-report
  */
-    process.exit(local.testReportCreate(local.fsReadFileOrEmptyStringSync(
-        local.env.npm_config_dir_build + "/test-report.json",
-        "json"
-    )).testsFailed);
+    process.exit(
+        local.testReportCreate(
+            JSON.parse(local.fs.readFileSync(
+                local.path.resolve(
+                    local.env.npm_config_dir_build + "/test-report.json"
+                ),
+                "utf8"
+            ))
+        ).testsFailed !== 0
+    );
 };
 }());
 
@@ -3164,18 +3163,6 @@ local.buildApp = function (opt, onError) {
                 file: "/assets.example.js",
                 url: "/assets.example.js"
             }, {
-                file: "/assets.swgg.html",
-                url: "/assets.swgg.html"
-            }, {
-                file: "/assets.swgg.swagger.json",
-                url: "/assets.swgg.swagger.json"
-            }, {
-                file: "/assets.swgg.swagger.petstore.json",
-                url: "/assets.swgg.swagger.petstore.json"
-            }, {
-                file: "/assets.swgg.swagger.server.json",
-                url: "/assets.swgg.swagger.server.json"
-            }, {
                 file: "/assets.test.js",
                 url: "/assets.test.js"
             }, {
@@ -3255,7 +3242,7 @@ local.buildLib = function (opt, onError) {
     let result;
     local.objectSetDefault(opt, {
         customize: local.nop,
-        dataFrom: local.fsReadFileOrEmptyStringSync(
+        dataFrom: local.fs.readFileSync(
             "lib." + local.env.npm_package_nameLib + ".js",
             "utf8"
         ),
@@ -3279,7 +3266,6 @@ local.buildLib = function (opt, onError) {
     // customize assets.utility2.rollup.js
     if (
         local.fs.existsSync("./assets.utility2.rollup.js")
-        && local.env.npm_package_nameLib !== "swgg"
     ) {
         opt.dataTo = opt.dataTo.replace(
             "    // || globalThis.utility2_rollup_old",
@@ -3310,7 +3296,7 @@ local.buildReadme = function (opt, onError) {
     local.objectSetDefault(opt, {
         customize: local.nop,
         // reset toc
-        dataFrom: local.fsReadFileOrEmptyStringSync(
+        dataFrom: local.fs.readFileSync(
             "README.md",
             "utf8"
         ).replace((
@@ -3331,14 +3317,11 @@ local.buildReadme = function (opt, onError) {
             /\u0020{4}".*?":\u0020null,?$/gm
         ), ""));
         opt.packageJson.description = opt.dataFrom.split("\n")[1];
-        local.tryCatchOnError(function () {
-            local.objectSetDefault(opt.packageJson, {
-                nameLib: local.fsReadFileOrEmptyStringSync(
-                    "./package.json",
-                    "json"
-                ).nameLib
-            });
-        }, local.nop);
+        local.objectSetDefault(opt.packageJson, {
+            nameLib: JSON.parse(
+                local.fs.readFileSync("package.json", "utf8")
+            ).nameLib
+        });
         opt.packageJson = local.objectSetDefault(opt.packageJson, {
             nameLib: opt.packageJson.name.replace((
                 /\W/g
@@ -3440,18 +3423,6 @@ local.buildReadme = function (opt, onError) {
             /\n(####\u0020changelog\u0020|-\u0020npm\u0020publish\u0020)\d+?\.\d+?\.\d+?.*?\n/g
         ), "\n$1" + opt.packageJson.version + "\n");
     });
-    // customize swaggerdoc
-    if (
-        !local.assetsDict["/assets.swgg.swagger.json"]
-        || (
-            /\bswggUiContainer\b/
-        ).test(local.assetsDict["/index.html"])
-        || local.env.npm_package_name === "utility2"
-    ) {
-        opt.dataTo = opt.dataTo.replace((
-            /\n####\u0020swagger\u0020doc\n[\S\s]*?\n####\u0020/
-        ), "\n#### ");
-    }
     // customize example.js
     if (
         local.assetsDict["/index.html"].indexOf(
@@ -3579,29 +3550,6 @@ local.buildReadme = function (opt, onError) {
     // save README.md
     result = opt.dataTo;
     local.fs.writeFileSync("README.md", result);
-    // customize assets.swgg.swagger.json
-    opt.swaggerJson = local.swgg.normalizeSwaggerJson(
-        local.fsReadFileOrEmptyStringSync("assets.swgg.swagger.json", "json")
-    );
-    opt.swaggerJson.info = Object.assign(opt.swaggerJson.info || {}, {
-        title: opt.packageJson.name,
-        version: opt.packageJson.version,
-        "x-swgg-description": opt.packageJson.description,
-        "x-swgg-homepage": opt.packageJson.homepage
-    });
-    opt.dataTo.replace((
-        /\bhttps:\/\/.*?\/assets\.app\.js/
-    ), function (match0) {
-        opt.swaggerJson["x-swgg-downloadStandaloneApp"] = (
-            !local.env.npm_package_private && match0
-        );
-    });
-    if (opt.swaggerJson.swagger) {
-        local.fs.writeFileSync(
-            "assets.swgg.swagger.json",
-            local.jsonStringifyOrdered(opt.swaggerJson, undefined, 4) + "\n"
-        );
-    }
     onError();
     return result;
 };
@@ -3613,7 +3561,7 @@ local.buildTest = function (opt, onError) {
     let result;
     local.objectSetDefault(opt, {
         customize: local.nop,
-        dataFrom: local.fsReadFileOrEmptyStringSync("test.js", "utf8"),
+        dataFrom: local.fs.readFileSync("test.js", "utf8"),
         dataTo: local.templateRenderMyApp(
             local.assetsDict["/assets.test.template.js"]
         )
@@ -4168,7 +4116,7 @@ local.domQuerySelectorAllTagName = function (selector) {
  */
     let set;
     set = new Set();
-    local.querySelectorAll(selector).forEach(function (elem) {
+    document.querySelectorAll(selector).forEach(function (elem) {
         set.add(elem.tagName);
     });
     return Array.from(set).sort();
@@ -4303,26 +4251,6 @@ local.eventEmitterCreate = function (that = {}) {
 };
 
 local.eventEmitterCreate(local);
-
-local.fsReadFileOrEmptyStringSync = function (file, opt) {
-/*
- * this function will try to read file or return empty-string, or
- * if <opt> === "json", then try to JSON.parse file or return {}
- */
-    try {
-        return (
-            opt === "json"
-            ? JSON.parse(local.fs.readFileSync(file, "utf8"))
-            : local.fs.readFileSync(file, opt)
-        );
-    } catch (ignore) {
-        return (
-            opt === "json"
-            ? {}
-            : ""
-        );
-    }
-};
 
 local.gotoNext = function (opt, onError) {
 /*
@@ -4581,7 +4509,6 @@ local.jslintAutofixLocalFunction = function (code, file) {
     case "lib.jslint.js":
     case "lib.marked.js":
     case "lib.puppeteer.js":
-    case "lib.swgg.js":
     case "npm_scripts.sh":
     case "test.js":
         break;
@@ -4606,7 +4533,6 @@ local.jslintAutofixLocalFunction = function (code, file) {
     if (
         file === "lib." + process.env.npm_package_nameLib + ".js"
         && local.fs.existsSync("./assets.utility2.rollup.js")
-        && local.env.npm_package_nameLib !== "swgg"
     ) {
         code = code.replace(
             "    // || globalThis.utility2_rollup_old",
@@ -4619,9 +4545,9 @@ local.jslintAutofixLocalFunction = function (code, file) {
     // init functionAllDict and functionBaseDict
     [
         [
-            "utility2", "swgg"
+            "utility2"
         ], [
-            "utility2", "apidoc", "github_crud", "swgg"
+            "utility2", "apidoc", "github_crud"
         ]
     ].forEach(function (dictList, ii) {
         tmp = (
@@ -4712,6 +4638,7 @@ local.jslintAutofixLocalFunction = function (code, file) {
     [
         "assertOrThrow",
         "coalesce",
+        "fsReadFileOrDefaultSync",
         "fsRmrfSync",
         "fsWriteFileWithMkdirpSync",
         "functionOrNop",
@@ -4727,7 +4654,6 @@ local.jslintAutofixLocalFunction = function (code, file) {
     // local-function - missing
     switch (local.fs.existsSync("assets.utility2.rollup.js") || file) {
     case "README.md":
-    case "lib.swgg.js":
     case "lib.utility2.js":
     case "test.js":
     case true:
@@ -4743,7 +4669,6 @@ local.jslintAutofixLocalFunction = function (code, file) {
     }
     // local-function - unused
     switch (file) {
-    case "lib.swgg.js":
     case "lib.utility2.js":
     case "lib.utility2.sh":
         break;
@@ -4941,10 +4866,6 @@ local.middlewareError = function (err, req, res) {
         local.serverRespondDefault(req, res, 404);
         return;
     }
-    // http://jsonapi.org/format/#errors
-    if (local.swgg && typeof local.swgg.serverRespondJsonapi === "function") {
-        local.swgg.serverRespondJsonapi(req, res, err);
-    }
     // statusCode [400, 600)
     local.serverRespondDefault(req, res, (
         (err.statusCode >= 400 && err.statusCode < 600)
@@ -4962,30 +4883,25 @@ local.middlewareFileServer = function (req, res, next) {
         next();
         return;
     }
+    // resolve <file>
+    file = require("path").resolve(
+        // replace trailing "/" with "/index.html"
+        require("url").parse(req.url).pathname.slice(1).replace((
+            /\/$/
+        ), "/index.html")
+    );
     // security - disable parent-directory lookup
-    file = local.path.resolve(
-        "/",
-        // preserve trailing "/"
-        req.urlParsed.pathname + "\u0000"
-    ).slice(0, -1).replace((
-        /^\/|^\w+?:\\+/m
-    ), "");
-    // replace trailing "/" with "/index.html"
-    file = file.replace((
-        /[\/\\]$/
-    ), "/index.html");
-    local.fs.readFile(file, function (err, data) {
+    if (file.indexOf(process.cwd() + require("path").sep) !== 0) {
+        next();
+        return;
+    }
+    require("fs").readFile(file, function (err, data) {
         // default to next
         if (err) {
             next();
             return;
         }
         // respond with data
-        local.serverRespondHeadSet(req, res, undefined, {
-            "Content-Type": local.contentTypeDict[(
-                /\.[^.]*?$|$/m
-            ).exec(file)[0]]
-        });
         res.end(data);
     });
 };
@@ -5078,6 +4994,7 @@ local.middlewareInit = function (req, res, next) {
 /*
  * this function will run middleware to init <req> and <res>
  */
+    let contentType;
     // debug req and res
     local._debugServerReqRes4 = local._debugServerReqRes3;
     local._debugServerReqRes3 = local._debugServerReqRes2;
@@ -5090,12 +5007,35 @@ local.middlewareInit = function (req, res, next) {
     local.serverRespondTimeoutDefault(req, res, local.timeoutDefault);
     // init req.urlParsed
     req.urlParsed = local.urlParse(req.url);
-    // init res-header content-type
-    local.serverRespondHeadSet(req, res, undefined, {
-        "Content-Type": local.contentTypeDict[(
-            /\.[^.]*?$|$/m
-        ).exec(req.urlParsed.pathname)[0]]
-    });
+    // set reponse-header "content-type"
+    contentType = {
+        // application
+        ".js": "application/javascript; charset=utf-8",
+        ".json": "application/json; charset=utf-8",
+        ".pdf": "application/pdf",
+        ".wasm": "application/wasm",
+        ".xml": "application/xml; charset=utf-8",
+        // image
+        ".bmp": "image/bmp",
+        ".gif": "image/gif",
+        ".jpe": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".jpg": "image/jpeg",
+        ".png": "image/png",
+        ".svg": "image/svg+xml; charset=utf-8",
+        // text
+        ".css": "text/css; charset=utf-8",
+        ".htm": "text/html; charset=utf-8",
+        ".html": "text/html; charset=utf-8",
+        ".md": "text/markdown; charset=utf-8",
+        ".txt": "text/plain; charset=utf-8"
+    };
+    contentType = contentType[(
+        /\.[^.]*?$|$/m
+    ).exec(req.urlParsed.pathname)[0]];
+    if (contentType) {
+        res.setHeader("content-type", contentType);
+    }
     // set main-page content-type to text/html
     if (req.urlParsed.pathname === "/") {
         local.serverRespondHeadSet(req, res, undefined, {
@@ -5125,8 +5065,6 @@ local.middlewareJsonpStateInit = function (req, res, next) {
                 "/assets.example.html":
                 local.assetsDict["/assets.example.html"],
                 "/assets.example.js": local.assetsDict["/assets.example.js"],
-                "/assets.swgg.swagger.json":
-                local.assetsDict["/assets.swgg.swagger.json"],
                 "/assets.test.js": local.assetsDict["/assets.test.js"],
                 "/index.rollup.html": local.assetsDict["/index.rollup.html"]
             },
@@ -5714,18 +5652,6 @@ local.requireReadme = function () {
         file = process.cwd() + "/" + file;
         // if <file> is modified, then restart process
         local.onFileModifiedRestart(file);
-        switch (local.path.basename(file)) {
-        // swagger-validate assets.swgg.swagger.json
-        case "assets.swgg.swagger.json":
-            local.fs.readFile(file, "utf8", function (err, data) {
-                local.tryCatchOnError(function () {
-                    // handle err
-                    local.assertOrThrow(!err, err);
-                    local.swgg.swaggerValidate(JSON.parse(data));
-                }, local.onErrorDefault);
-            });
-            break;
-        }
     });
     // jslint process.cwd()
     if (!local.env.npm_config_mode_library) {
@@ -5749,7 +5675,7 @@ local.requireReadme = function () {
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
         local.assetsDict["/index.html"] = (
-            local.fsReadFileOrEmptyStringSync("index.html")
+            local.fsReadFileOrDefaultSync("index.html", "utf8", "")
             || local.assetsDict["/index.rollup.html"] || ""
         );
         local.assetsDict["/"] = local.assetsDict["/index.html"];
@@ -5773,16 +5699,15 @@ local.requireReadme = function () {
     code = local.templateRenderMyApp(
         local.assetsDict["/assets.example.template.js"]
     );
-    local.tryCatchOnError(function () {
-        tmp = (
-            /```\w*?(\n[\W\s]*?example\.js[\n"][\S\s]*?)\n```/
-        ).exec(
-            local.fs.readFileSync("README.md", "utf8")
-        );
-        code = tmp.input.slice(0, tmp.index).replace((
+    local.fsReadFileOrDefaultSync("README.md", "utf8", "").replace((
+        /\n```javascript(\n\/\*\nexample\.js\n[\S\s]*?\n)```\n/
+    ), function (ignore, match1, index, input) {
+        // preserve lineno
+        code = input.slice(0, index).replace((
             /.+/g
-        ), "") + tmp[1];
-    }, local.nop);
+        ), "") + match1;
+        return "";
+    });
     // alias require($npm_package_name) to utility2_moduleExports;
     code = code.replace(
         new RegExp("require\\(." + local.env.npm_package_name + ".\\)"),
@@ -5807,15 +5732,14 @@ local.requireReadme = function () {
         globalThis.utility2_moduleExports
     );
     // init assets lib.xxx.js
-    tmp = process.cwd() + "/" + local.env.npm_package_main;
     [
         "css", "js"
     ].forEach(function (extname) {
         local.assetsDict[
             "/assets." + local.env.npm_package_nameLib + "." + extname
-        ] = local.fsReadFileOrEmptyStringSync(tmp.replace((
+        ] = local.fsReadFileOrDefaultSync(local.env.npm_package_main.replace((
             /\.[^.]*?$/
-        ), "." + extname), "utf8").replace((
+        ), "." + extname), "utf8", "").replace((
             /^#!\//
         ), "// ");
     });
@@ -5848,13 +5772,14 @@ local.requireReadme = function () {
     ]) {
         tmp = "assets." + file + ".template.html";
         local.assetsDict["/" + tmp] = (
-            local.fsReadFileOrEmptyStringSync(tmp, "utf8")
+            local.fsReadFileOrDefaultSync(tmp, "utf8", "")
             || local.assetsDict["/" + tmp]
         );
         file = file + isRollup + ".html";
-        local.assetsDict["/" + file] = local.fsReadFileOrEmptyStringSync(
+        local.assetsDict["/" + file] = local.fsReadFileOrDefaultSync(
             file,
-            "utf8"
+            "utf8",
+            ""
         ) || local.templateRender(
             // uncomment utility2-comment
             local.assetsDict["/" + tmp].replace((
@@ -5961,7 +5886,7 @@ instruction\n\
                     local.assetsDict[file]
                     && local.assetsDict[file].length <= 0x100000
                     && String(local.assetsDict[file])
-                    === local.fsReadFileOrEmptyStringSync("." + file, "utf8")
+                    === local.fsReadFileOrDefaultSync("." + file, "utf8", "")
                 ) {
                     tmp.utility2.assetsDict[file] = local.assetsDict[file];
                 }
@@ -6212,8 +6137,6 @@ local.stateInit = function (opt) {
  * this function will init state <opt>
  */
     local.objectAssignRecurse(local, opt, 10);
-    // init swgg
-    local.swgg.apiUpdate(local.swgg.swaggerJson);
 };
 
 local.streamCleanup = function (stream) {
@@ -6531,11 +6454,7 @@ local.templateRenderMyApp = function (template) {
  */
     let githubRepo;
     let packageJson;
-    try {
-        packageJson = JSON.parse(local.fs.readFileSync("package.json", "utf8"));
-    } catch (ignore) {
-        packageJson = {};
-    }
+    packageJson = JSON.parse(local.fs.readFileSync("package.json", "utf8"));
     local.objectSetDefault(packageJson, {
         nameLib: packageJson.name.replace((
             /\W/g
@@ -6947,20 +6866,22 @@ local.testRunBrowser = function () {
  * this function will run browser-tests
  */
     // hide browser-tests
-    if (local.querySelector("#htmlTestReport1").style.maxHeight !== "0px") {
-        local.uiAnimateSlideUp(local.querySelector("#htmlTestReport1"));
-        local.querySelector(
+    if (document.querySelector("#htmlTestReport1").style.maxHeight !== "0px") {
+        local.uiAnimateSlideUp(document.querySelector("#htmlTestReport1"));
+        document.querySelector(
             "#buttonTestRun1"
         ).textContent = "run browser-tests";
         return;
     }
     // show browser-tests
-    local.uiAnimateSlideDown(local.querySelector("#htmlTestReport1"));
-    local.querySelector("#buttonTestRun1").textContent = "hide browser-tests";
+    local.uiAnimateSlideDown(document.querySelector("#htmlTestReport1"));
+    document.querySelector(
+        "#buttonTestRun1"
+    ).textContent = "hide browser-tests";
     local.modeTest = 1;
     local.testRunDefault(globalThis.local);
     // reset output
-    local.querySelectorAll(".onevent-reset-output").forEach(function (elem) {
+    document.querySelectorAll(".onevent-reset-output").forEach(function (elem) {
         elem.textContent = "";
     });
 };
@@ -7066,18 +6987,22 @@ local.testRunDefault = function (opt) {
         }
     });
     local.testReportMerge(testReport);
-    local.querySelectorAll("#htmlTestReport1").forEach(function (elem) {
-        local.uiAnimateSlideDown(elem);
-        elem.innerHTML = local.testReportMerge(testReport);
-    });
+    if (local.isBrowser) {
+        document.querySelectorAll("#htmlTestReport1").forEach(function (elem) {
+            local.uiAnimateSlideDown(elem);
+            elem.innerHTML = local.testReportMerge(testReport);
+        });
+    }
     local.emit("utility2.testRunStart", testReport);
     // testRunProgressUpdate every 2000 ms until isDone
     timerInterval = setInterval(function () {
         // update testPlatform.timeElapsed
         local.timeElapsedPoll(testPlatform);
-        local.querySelector(
-            "#htmlTestReport1"
-        ).innerHTML = local.testReportMerge(testReport);
+        if (local.isBrowser) {
+            document.querySelector(
+                "#htmlTestReport1"
+            ).innerHTML = local.testReportMerge(testReport);
+        }
         local.emit("utility2.testRunProgressUpdate", testReport);
         // cleanup timerInterval
         if (!testReport.testsPending) {
@@ -7173,7 +7098,7 @@ local.testRunDefault = function (opt) {
         local.tryCatchOnError(function () {
             // start testCase timer
             local.timeElapsedStart(testCase);
-            testCase.onTestCase(undefined, onError);
+            testCase.onTestCase({}, onError);
         }, onError);
     }, function () {
     /*
@@ -7543,28 +7468,6 @@ local.browserTest({
     modeTestReportCreate: true
 });
 local.cacheDict = {};
-local.contentTypeDict = {
-    // application
-    ".js": "application/javascript; charset=utf-8",
-    ".json": "application/json; charset=utf-8",
-    ".pdf": "application/pdf",
-    ".wasm": "application/wasm",
-    ".xml": "application/xml; charset=utf-8",
-    // image
-    ".bmp": "image/bmp",
-    ".gif": "image/gif",
-    ".jpe": "image/jpeg",
-    ".jpeg": "image/jpeg",
-    ".jpg": "image/jpeg",
-    ".png": "image/png",
-    ".svg": "image/svg+xml; charset=utf-8",
-    // text
-    ".css": "text/css; charset=utf-8",
-    ".htm": "text/html; charset=utf-8",
-    ".html": "text/html; charset=utf-8",
-    ".md": "text/markdown; charset=utf-8",
-    ".txt": "text/plain; charset=utf-8"
-};
 local.env = (
     local.isBrowser
     ? {}
@@ -7635,12 +7538,6 @@ local.stringCharsetEncodeUriComponent = (
     + "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
 );
 local.stringHelloEmoji = "hello \ud83d\ude01\n";
-// mock swgg
-local.swgg = local.swgg || {
-    apiUpdate: local.nop,
-    normalizeSwaggerJson: local.nop,
-    swaggerValidate: local.nop
-};
 local.taskOnTaskDict = {};
 // init serverLocalHost
 local.urlParse("");
@@ -7724,9 +7621,10 @@ local.objectAssignDefault(local.env, {
 if (local.env.npm_config_file_test_report_merge) {
     local.testReportMerge(
         globalThis.utility2_testReport,
-        local.fsReadFileOrEmptyStringSync(
+        local.fsReadFileOrDefaultSync(
             local.env.npm_config_file_test_report_merge,
-            "json"
+            "json",
+            {}
         )
     );
     if (process.argv[2] !== "--help") {
@@ -7757,20 +7655,6 @@ if (module === require.main && (!globalThis.utility2_rollup || (
     }
 }
 // override assets
-[
-    "/assets.index.template.html",
-    "/assets.swgg.swagger.json",
-    "/assets.swgg.swagger.server.json"
-].forEach(function (file) {
-    local.assetsDict[file] = local.assetsDict[file] || "";
-    if (process.argv[2] !== "--help" && local.fs.existsSync(__dirname + file)) {
-        console.error("override assets " + __dirname + file);
-        local.assetsDict[file] = local.fs.readFileSync(
-            __dirname + file,
-            "utf8"
-        );
-    }
-});
 if (globalThis.utility2_rollup) {
     local.assetsDict["/assets.utility2.rollup.js"] = (
         local.fs.readFileSync(
@@ -7792,88 +7676,92 @@ if (globalThis.utility2_rollup) {
     "lib.jslint.js",
     "lib.marked.js",
     "lib.puppeteer.js",
-    "lib.swgg.js",
     "lib.utility2.js",
     "test.js"
 ].forEach(function (key) {
     switch (key) {
     case "/assets.utility2.example.js":
         local.assetsDict[key] = "";
-        local.tryCatchOnError(function () {
-            local.fs.readFileSync(
-                __dirname + "/README.md",
-                "utf8"
-            ).replace((
-                /```javascript([\S\s]*?)```/
-            ), function (ignore, match1) {
-                local.assetsDict[key] = match1.trim() + "\n";
-            });
-        }, local.nop);
+        local.fsReadFileOrDefaultSync(
+            __dirname + "/README.md",
+            "utf8",
+            ""
+        ).replace((
+            /```javascript([\S\s]*?)```/
+        ), function (ignore, match1) {
+            local.assetsDict[key] = match1.trim() + "\n";
+            return "";
+        });
         break;
     case "/assets.utility2.html":
         local.assetsDict[key] = "";
-        local.tryCatchOnError(function () {
-            local.fs.readFileSync(__dirname + "/README.md", "utf8").replace((
-                /<!doctype\u0020html>[\S\s]*?<\/html>\\n\\\n/
-            ), function (match0) {
-                match0 = match0.replace((
-                    /\\n\\$/gm
-                ), "");
-                match0 = match0.replace(
-                    "<script src=\"assets.app.js\"></script>\n",
-                    (
-                        "<script "
-                        + "src=\"assets.utility2.rollup.js\"></script>\n"
-                        + "<script "
-                        + "src=\"assets.utility2.example.js\"></script>\n"
-                        + "<script "
-                        + "src=\"assets.utility2.test.js\"></script>\n"
-                    )
-                );
-                match0 = match0.replace(
-                    "assets.example.js",
-                    "assets.utility2.example.js"
-                );
-                match0 = match0.replace(
-                    "assets.test.js",
-                    "assets.utility2.test.js"
-                );
-                match0 = match0.replace((
-                    /npm_package_/g
-                ), "");
-                match0 = match0.replace((
-                    /<!--\u0020utility2-comment\b([\S\s]*?)\butility2-comment\u0020-->/g
-                ), "$1");
-                local.assetsDict[key] = local.templateRender(match0, {
-                    env: local.objectSetDefault({
-                        version: "0.0.1"
-                    }, require(__dirname + "/package.json")),
-                    isRollup: true
-                });
+        local.fsReadFileOrDefaultSync(
+            __dirname + "/README.md",
+            "utf8",
+            ""
+        ).replace((
+            /<!doctype\u0020html>[\S\s]*?<\/html>\\n\\\n/
+        ), function (match0) {
+            match0 = match0.replace((
+                /\\n\\$/gm
+            ), "");
+            match0 = match0.replace(
+                "<script src=\"assets.app.js\"></script>\n",
+                (
+                    "<script "
+                    + "src=\"assets.utility2.rollup.js\"></script>\n"
+                    + "<script "
+                    + "src=\"assets.utility2.example.js\"></script>\n"
+                    + "<script "
+                    + "src=\"assets.utility2.test.js\"></script>\n"
+                )
+            );
+            match0 = match0.replace(
+                "assets.example.js",
+                "assets.utility2.example.js"
+            );
+            match0 = match0.replace(
+                "assets.test.js",
+                "assets.utility2.test.js"
+            );
+            match0 = match0.replace((
+                /npm_package_/g
+            ), "");
+            match0 = match0.replace((
+                /<!--\u0020utility2-comment\b([\S\s]*?)\butility2-comment\u0020-->/g
+            ), "$1");
+            local.assetsDict[key] = local.templateRender(match0, {
+                env: local.objectSetDefault({
+                    version: "0.0.1"
+                }, require(__dirname + "/package.json")),
+                isRollup: true
             });
-        }, local.nop);
+            return "";
+        });
         break;
     case "/assets.utility2.test.js":
-        local.assetsDict[key] = local.fsReadFileOrEmptyStringSync(
+        local.assetsDict[key] = local.fsReadFileOrDefaultSync(
             __dirname + "/test.js",
-            "utf8"
+            "utf8",
+            ""
         );
         break;
-    case "lib.swgg.js":
     case "lib.utility2.js":
         key = key.replace("lib.", "");
-        local.assetsDict["/assets." + key] = local.fsReadFileOrEmptyStringSync(
+        local.assetsDict["/assets." + key] = local.fsReadFileOrDefaultSync(
             __dirname + "/lib." + key,
-            "utf8"
+            "utf8",
+            ""
         ).replace((
             /^#!\//
         ), "// ");
         break;
     default:
         local.assetsDict["/assets.utility2." + key] = (
-            local.fsReadFileOrEmptyStringSync(
+            local.fsReadFileOrDefaultSync(
                 __dirname + "/" + key,
-                "utf8"
+                "utf8",
+                ""
             ).replace((
                 /^#!\//
             ), "// ")
@@ -7890,7 +7778,6 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     "lib.marked.js",
     "lib.puppeteer.js",
     "lib.utility2.js",
-    "lib.swgg.js",
     "/assets.utility2.example.js",
     "/assets.utility2.html",
     "/assets.utility2.test.js",
@@ -7928,7 +7815,6 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
             + " * https://github.com/kaizhu256/node-utility2\n"
             + " */\n"
         );
-    case "lib.swgg.js":
     case "lib.utility2.js":
         key = "/assets." + key.replace("lib.", "");
         script = local.assetsDict[key];
@@ -7943,15 +7829,5 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
         + "\n/* script-end " + key + " */\n"
     );
 }).join("\n\n\n");
-// init lib dependents
-[
-    "swgg"
-].forEach(function (lib) {
-    let file;
-    file = __dirname + "/lib." + lib + ".js";
-    if (local.fs.existsSync(file)) {
-        local[lib] = require(file);
-    }
-});
 }());
 }());
