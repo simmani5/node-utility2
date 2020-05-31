@@ -125,6 +125,7 @@
         } catch (ignore) {
             return;
         }
+        file = require("path").resolve(file);
         // try to write file
         try {
             fs.writeFileSync(file, data);
@@ -428,7 +429,7 @@ local.moduleDirname = function (module, pathList) {
     let result;
     // search process.cwd()
     if (!module || module === "." || module.indexOf("/") >= 0) {
-        return require("path").resolve(process.cwd(), module || "");
+        return require("path").resolve(module || "");
     }
     // search pathList
     Array.from([
@@ -439,10 +440,7 @@ local.moduleDirname = function (module, pathList) {
         ]
     ]).flat().some(function (path) {
         try {
-            result = require("path").resolve(
-                process.cwd(),
-                path + "/" + module
-            );
+            result = require("path").resolve(path + "/" + module);
             result = require("fs").statSync(result).isDirectory() && result;
             return result;
         } catch (ignore) {
@@ -677,7 +675,7 @@ local.templateRender = function (template, dict, opt, ii) {
             partial = (
                 getVal(key)
                 ? partial[0]
-                // handle 'unless' case
+                // handle "unless" case
                 : partial.slice(1).join("{{#unless " + key + "}}")
             );
             // recurse with partial

@@ -670,7 +670,7 @@ shBuildCiInternal () {(set -e
         [ "$CI_BRANCH" = beta ] ||
         [ "$CI_BRANCH" = master ]
     then
-        COMMIT_LIMIT=20 shBuildGithubUpload
+        COMMIT_LIMIT=100 shBuildGithubUpload
     fi
     shGitInfo | head -n 4096 || true
     # validate http-links embedded in README.md
@@ -3637,6 +3637,7 @@ export UTILITY2_MACRO_JS='
         } catch (ignore) {
             return;
         }
+        file = require("path").resolve(file);
         // try to write file
         try {
             fs.writeFileSync(file, data);
@@ -4217,7 +4218,7 @@ local.moduleDirname = function (module, pathList) {
     let result;
     // search process.cwd()
     if (!module || module === "." || module.indexOf("/") >= 0) {
-        return require("path").resolve(process.cwd(), module || "");
+        return require("path").resolve(module || "");
     }
     // search pathList
     Array.from([
@@ -4228,10 +4229,7 @@ local.moduleDirname = function (module, pathList) {
         ]
     ]).flat().some(function (path) {
         try {
-            result = require("path").resolve(
-                process.cwd(),
-                path + "/" + module
-            );
+            result = require("path").resolve(path + "/" + module);
             result = require("fs").statSync(result).isDirectory() && result;
             return result;
         } catch (ignore) {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * lib.istanbul.js (2020.5.25)
+ * lib.istanbul.js (2020.5.31)
  * https://github.com/kaizhu256/node-istanbul-lite
  * this zero-dependency package will provide a browser-compatible version of the istanbul (v0.4.5) coverage-tool, with a working web-demo
  *
@@ -125,6 +125,7 @@
         } catch (ignore) {
             return;
         }
+        file = require("path").resolve(file);
         // try to write file
         try {
             fs.writeFileSync(file, data);
@@ -426,6 +427,217 @@ local.cliRun = function (opt) {
         return;
     }
     local.cliDict._default();
+};
+
+local.templateRender = function (template, dict, opt, ii) {
+/*
+ * this function will render <template> with given <dict>
+ */
+    let argList;
+    let getVal;
+    let match;
+    let renderPartial;
+    let rgx;
+    let skip;
+    let val;
+    if (dict === null || dict === undefined) {
+        dict = {};
+    }
+    opt = opt || {};
+    getVal = function (key) {
+        argList = key.split(" ");
+        val = dict;
+        if (argList[0] === "#this/") {
+            return val;
+        }
+        if (argList[0] === "#ii/") {
+            return ii;
+        }
+        // iteratively lookup nested val in dict
+        argList[0].split(".").forEach(function (key) {
+            val = val && val[key];
+        });
+        return val;
+    };
+    renderPartial = function (match0, helper, key, partial) {
+        switch (helper) {
+        case "each":
+        case "eachTrimEndComma":
+            val = getVal(key);
+            val = (
+                Array.isArray(val)
+                ? val.map(function (dict, ii) {
+                    // recurse with partial
+                    return local.templateRender(partial, dict, opt, ii);
+                }).join("")
+                : ""
+            );
+            // remove trailing-comma from last elem
+            if (helper === "eachTrimEndComma") {
+                val = val.trimEnd().replace((
+                    /,$/
+                ), "");
+            }
+            return val;
+        case "if":
+            partial = partial.split("{{#unless " + key + "}}");
+            partial = (
+                getVal(key)
+                ? partial[0]
+                // handle "unless" case
+                : partial.slice(1).join("{{#unless " + key + "}}")
+            );
+            // recurse with partial
+            return local.templateRender(partial, dict, opt);
+        case "unless":
+            return (
+                getVal(key)
+                ? ""
+                // recurse with partial
+                : local.templateRender(partial, dict, opt)
+            );
+        default:
+            // recurse with partial
+            return match0[0] + local.templateRender(match0.slice(1), dict, opt);
+        }
+    };
+    // render partials
+    rgx = (
+        /\{\{#(\w+)\u0020([^}]+?)\}\}/g
+    );
+    template = template || "";
+    match = rgx.exec(template);
+    while (match) {
+        rgx.lastIndex += 1 - match[0].length;
+        template = template.replace(
+            new RegExp(
+                "\\{\\{#(" + match[1] + ") (" + match[2]
+                + ")\\}\\}([\\S\\s]*?)\\{\\{/" + match[1] + " " + match[2]
+                + "\\}\\}"
+            ),
+            renderPartial
+        );
+        match = rgx.exec(template);
+    }
+    // search for keys in the template
+    return template.replace((
+        /\{\{[^}]+?\}\}/g
+    ), function (match0) {
+        let markdownToHtml;
+        let notHtmlSafe;
+        notHtmlSafe = opt.notHtmlSafe;
+        try {
+            val = getVal(match0.slice(2, -2));
+            if (val === undefined) {
+                return match0;
+            }
+            argList.slice(1).forEach(function (fmt, ii, list) {
+                switch (fmt) {
+                case "*":
+                case "+":
+                case "-":
+                case "/":
+                    skip = ii + 1;
+                    val = String(
+                        fmt === "*"
+                        ? Number(val) * Number(list[skip])
+                        : fmt === "+"
+                        ? Number(val) + Number(list[skip])
+                        : fmt === "-"
+                        ? Number(val) - Number(list[skip])
+                        : Number(val) / Number(list[skip])
+                    );
+                    break;
+                case "alphanumeric":
+                    val = val.replace((
+                        /\W/g
+                    ), "_");
+                    break;
+                case "decodeURIComponent":
+                    val = decodeURIComponent(val);
+                    break;
+                case "encodeURIComponent":
+                    val = encodeURIComponent(val);
+                    break;
+                case "jsonStringify":
+                    val = JSON.stringify(val);
+                    break;
+                case "jsonStringify4":
+                    val = JSON.stringify(val, undefined, 4);
+                    break;
+                case "markdownSafe":
+                    val = val.replace((
+                        /`/g
+                    ), "'");
+                    break;
+                case "markdownToHtml":
+                    markdownToHtml = true;
+                    break;
+                case "notHtmlSafe":
+                    notHtmlSafe = true;
+                    break;
+                case "padEnd":
+                case "padStart":
+                case "replace":
+                case "slice":
+                    skip = ii + 2;
+                    val = String(val)[fmt](
+                        list[skip - 1],
+                        list[skip].replace("\"\"", "").replace("\"_\"", " ")
+                    );
+                    break;
+                case "truncate":
+                    skip = ii + 1;
+                    if (val.length > list[skip]) {
+                        val = val.slice(
+                            0,
+                            Math.max(list[skip] - 3, 0)
+                        ).trimEnd() + "...";
+                    }
+                    break;
+                // default to String.prototype[fmt]()
+                default:
+                    if (ii <= skip) {
+                        break;
+                    }
+                    val = val[fmt]();
+                }
+            });
+            val = String(val);
+            // default to htmlSafe
+            if (!notHtmlSafe) {
+                val = val.replace((
+                    /&/gu
+                ), "&amp;").replace((
+                    /"/gu
+                ), "&quot;").replace((
+                    /'/gu
+                ), "&apos;").replace((
+                    /</gu
+                ), "&lt;").replace((
+                    />/gu
+                ), "&gt;").replace((
+                    /&amp;(amp;|apos;|gt;|lt;|quot;)/igu
+                ), "&$1");
+            }
+            markdownToHtml = (
+                markdownToHtml
+                && (typeof local.marked === "function" && local.marked)
+            );
+            if (markdownToHtml) {
+                val = markdownToHtml(val).replace((
+                    /&amp;(amp;|apos;|gt;|lt;|quot;)/igu
+                ), "&$1");
+            }
+            return val;
+        } catch (errCaught) {
+            errCaught.message = (
+                "templateRender could not render expression "
+                + JSON.stringify(match0) + "\n"
+            ) + errCaught.message;
+            local.assertOrThrow(undefined, errCaught);
+        }
+    });
 };
 }());
 
@@ -10180,9 +10392,13 @@ file https://github.com/gotwarlost/istanbul/blob/v0.4.5/lib/instrumenter.js
 /*
 file https://github.com/gotwarlost/istanbul/blob/v0.2.16/lib/report/templates/head.txt
 */
-local.templateCoverageHead = '\
+local.templateCoverageReport = '\
+{{#if isBrowser}}\n\
+<div>\n\
+{{#unless isBrowser}}\n\
 <!doctype html>\n\
 <html lang="en" class="x-istanbul">\n\
+{{/if isBrowser}}\n\
 <head>\n\
     <title>Code coverage report for {{nameOrAllFiles}}</title>\n\
     <meta charset="utf-8">\n\
@@ -10191,7 +10407,6 @@ local.templateCoverageHead = '\
 /*csslint\n\
     box-model: false,\n\
     important: false,\n\
-    qualified-headings: false,\n\
 */\n\
 /* csslint ignore:start */\n\
 *,\n\
@@ -10201,13 +10416,10 @@ local.templateCoverageHead = '\
 }\n\
 /* csslint ignore:end */\n\
 .x-istanbul {\n\
-    font-family: Helvetica Neue, Helvetica,Arial;\n\
+    font-family: Helvetica Neue, Helvetica, Arial;\n\
     font-size: 10pt;\n\
     margin: 0;\n\
     padding: 0;\n\
-}\n\
-.x-istanbul h1 {\n\
-    font-size: large;\n\
 }\n\
 .x-istanbul pre {\n\
     font-family: Consolas, Menlo, Monaco, monospace;\n\
@@ -10420,7 +10632,11 @@ local.templateCoverageHead = '\
 }\n\
 </style>\n\
 </head>\n\
+{{#if isBrowser}}\n\
+<div class="x-istanbul">\n\
+{{#unless isBrowser}}\n\
 <body class="x-istanbul">\n\
+{{/if isBrowser}}\n\
 <script>\n\
 // init domOnEventSelectAllWithinPre\n\
 (function () {\n\
@@ -10461,9 +10677,11 @@ local.templateCoverageHead = '\
 }());\n\
 </script>\n\
 <div class="header {{metrics.statements.score}}">\n\
+{{#if env.npm_package_homepage}}\n\
     <h1 style="font-weight: bold;">\n\
         <a href="{{env.npm_package_homepage}}">{{env.npm_package_name}} ({{env.npm_package_version}})</a>\n\
     </h1>\n\
+{{/if env.npm_package_homepage}}\n\
     <h1>Code coverage report for <span class="entity">{{nameOrAllFiles}}</span></h1>\n\
     <table class="tableHeader">\n\
     <thead>\n\
@@ -10476,16 +10694,92 @@ local.templateCoverageHead = '\
     </tr>\n\
     </thead>\n\
     <tbody>\n\
-        <td>Statements: {{metrics.statements.skipped}}<br>Branches: {{metrics.branches.skipped}}<br>Functions: {{metrics.functions.skipped}}</td>\n\
-        <td>{{metrics.branches.pct}}%<br>({{metrics.branches.covered}} / {{metrics.branches.total}})</td>\n\
-        <td>{{metrics.branches.pct}}%<br>({{metrics.branches.covered}} / {{metrics.branches.total}})</td>\n\
-        <td>{{metrics.functions.pct}}%<br>({{metrics.functions.covered}} / {{metrics.functions.total}})</td>\n\
-        <td>{{metrics.lines.pct}}%<br>({{metrics.lines.covered}} / {{metrics.lines.total}})</td>\n\
+        <td>\n\
+            Statements: {{metrics.statements.skipped}}<br>\n\
+            Branches: {{metrics.branches.skipped}}<br>\n\
+            Functions: {{metrics.functions.skipped}}\n\
+        </td>\n\
+        <td>\n\
+            {{metrics.branches.pct}}%<br>\n\
+            ({{metrics.branches.covered}} / {{metrics.branches.total}})\n\
+        </td>\n\
+        <td>\n\
+            {{metrics.branches.pct}}%<br>\n\
+            ({{metrics.branches.covered}} / {{metrics.branches.total}})\n\
+        </td>\n\
+        <td>\n\
+            {{metrics.functions.pct}}%<br>\n\
+            ({{metrics.functions.covered}} / {{metrics.functions.total}})\n\
+        </td>\n\
+        <td>\n\
+            {{metrics.lines.pct}}%<br>\n\
+            ({{metrics.lines.covered}} / {{metrics.lines.total}})\n\
+        </td>\n\
     </tbody>\n\
     </table>\n\
-    <div class="path">{{#show_path}}</div>\n\
+    <div class="path">{{htmlPath notHtmlSafe}}</div>\n\
 </div>\n\
 <div class="body">\n\
+{{#if isFile}}\n\
+<pre><table class="coverage"><tr>\n\
+        <td class="line-count">{{htmlLineIi notHtmlSafe}}</td>\n\
+        <td class="line-coverage">{{htmlLineCnt notHtmlSafe}}</td>\n\
+        <td class="text"><pre class="prettyprint lang-js" tabIndex="0">{{htmlLineCode}}</pre></td>\n\
+</tr></table></pre>\n\
+{{#unless isFile}}\n\
+<div class="coverage-summary">\n\
+    <table>\n\
+    <thead>\n\
+    <tr>\n\
+        <th data-col="file" data-fmt="html" data-html="true" class="file">File</th>\n\
+        <th data-col="statements" data-type="number" data-fmt="pct" class="pct">Statements</th>\n\
+        <th data-col="branches" data-type="number" data-fmt="pct" class="pct">Branches</th>\n\
+        <th data-col="functions" data-type="number" data-fmt="pct" class="pct">Functions</th>\n\
+        <th data-col="lines" data-type="number" data-fmt="pct" class="pct">Lines</th>\n\
+    </tr>\n\
+    </thead>\n\
+    <tbody>\n\
+{{#each children}}\n\
+    <tr>\n\
+        <td class="file {{metrics.statements.score}}" data-value="{{relativeName}}">\n\
+            <a href="{{href}}">{{relativeName}}<br>\n\
+            <span class="cover-fill cover-full" style="width: {{metrics.statements.width1}}px;"></span><span class="cover-empty" style="width: {{metrics.statements.width2}}px;"></span></a>\n\
+        </td>\n\
+        <td>\n\
+            {{metrics.statements.pct}}%<br>\n\
+            ({{metrics.statements.covered}} / {{metrics.statements.total}})\n\
+        </td>\n\
+        <td>\n\
+            {{metrics.branches.pct}}%<br>\n\
+            ({{metrics.branches.covered}} / {{metrics.branches.total}})\n\
+        </td>\n\
+        <td>\n\
+            {{metrics.functions.pct}}%<br>\n\
+            ({{metrics.functions.covered}} / {{metrics.functions.total}})\n\
+        </td>\n\
+        <td>\n\
+            {{metrics.lines.pct}}%<br>\n\
+            ({{metrics.lines.covered}} / {{metrics.lines.total}})\n\
+        </td>\n\
+    </tr>\n\
+{{/each children}}\n\
+    </tbody>\n\
+    </table>\n\
+</div>\n\
+{{/if isFile}}\n\
+</div>\n\
+<div class="footer">\n\
+<div class="meta">\n\
+    Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at ${datetime}\n\
+</div>\n\
+</div>\n\
+{{#if isBrowser}}\n\
+</div>\n\
+</div>\n\
+{{#unless isBrowser}}\n\
+</body>\n\
+</html>\n\
+{{/if isBrowser}}\n\
 ';
 
 
@@ -10516,10 +10810,9 @@ fileWrite = function (file, data) {
 /*
  * this function will write <data> to <file>
  */
+    file = path.resolve(file);
     if (local.fsWriteFileWithMkdirpSync(file, data)) {
-        console.error(
-            "coverage-report - wrote file " + path.resolve(file)
-        );
+        console.error("coverage-report - wrote file " + file);
     }
 };
 reportHtmlWrite = function (node, dirCoverage, coverage) {
@@ -10527,81 +10820,20 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
  * this function will recursively write coverage-report of <node> in html-format
  * to <dirCoverage>
  */
+    let datetime;
     let htmlAll;
-    let lineCreate;
     let lineInsertAt;
     let lineWrapAt;
     let recurse;
-    let templateFoot;
-    let templateHead;
-    let templateRender;
     // init function
-    lineCreate = function (line, text, consumeBlanks) {
-    /*
-     * this function will create line-object with given <text>
-     */
-        let endCol;
-        let ii;
-        let startCol;
-        // init <startCol>
-        startCol = -1;
-        ii = 0;
-        while (ii < text.length) {
-            if (!text[ii].match(
-                /[\u0020\f\n\r\t\u000b\u00a0\u2028\u2029]/
-            )) {
-                startCol = ii;
-                break;
-            }
-            ii += 1;
-        }
-        // init <endCol>
-        endCol = text.length + 1;
-        ii = text.length - 1;
-        while (ii >= 0) {
-            if (!text[ii].match(
-                /[\u0020\f\n\r\t\u000b\u00a0\u2028\u2029]/
-            )) {
-                endCol = ii;
-                break;
-            }
-            ii -= 1;
-        }
-        return {
-            consumeBlanks,
-            endCol,
-            line,
-            offsets: [],
-            origLength: text.length,
-            startCol,
-            text
-        };
-    };
-    lineInsertAt = function (lineObj, col, str, insertBefore, consumeBlanks) {
+    lineInsertAt = function (lineObj, col, str, insertBefore) {
     /*
      * this function will insert <str> into <lineObj> at <col>
      */
         let ii;
         let offset;
         let offsetObj;
-        consumeBlanks = (
-            consumeBlanks === undefined
-            ? lineObj.consumeBlanks
-            : consumeBlanks
-        );
-        col = (
-            col > lineObj.origLength
-            ? lineObj.origLength
-            : col
-        );
-        if (consumeBlanks) {
-            if (col <= lineObj.startCol) {
-                col = 0;
-            }
-            if (col > lineObj.endCol) {
-                col = lineObj.origLength;
-            }
-        }
+        col = Math.min(col, lineObj.length0);
         // find <offset> from <col>
         offset = col;
         ii = 0;
@@ -10630,23 +10862,22 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
         lineObj.text = (
             lineObj.text.slice(0, offset) + str + lineObj.text.slice(offset)
         );
-        return lineObj;
     };
-    lineWrapAt = function (
-        lineObj,
-        startCol,
-        startText,
-        endCol,
-        endText,
-        consumeBlanks
-    ) {
+    lineWrapAt = function (lineObj, startCol, startText, endCol, endText) {
     /*
      * this function will wrap <lineObj>.slice(<startCol>, <endCol>)
      * inside <startText> and <endText>
      */
-        lineInsertAt(lineObj, startCol, startText, true, consumeBlanks);
-        lineInsertAt(lineObj, endCol, endText, false, consumeBlanks);
-        return lineObj;
+        startCol = Math.min(startCol, lineObj.length0);
+        // consumeBlanks
+        if (startCol <= lineObj.startCol) {
+            startCol = 0;
+        }
+        if (startCol > lineObj.endCol) {
+            startCol = lineObj.length0;
+        }
+        lineInsertAt(lineObj, startCol, startText);
+        lineInsertAt(lineObj, endCol, endText);
     };
     recurse = function (node, level, dir) {
     /*
@@ -10656,129 +10887,132 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
         let fileCoverage;
         let htmlData;
         let htmlFile;
+        let htmlLineCnt;
+        let htmlLineCode;
+        let htmlLineIi;
+        let htmlPath;
+        let ii;
+        let jj;
+        let kk;
         let lineList;
+        let parent;
+        let tmp;
+        // render <htmlPath>
+        tmp = node;
+        parent = tmp.parent;
+        htmlPath = tmp.relativeName;
+        ii = 1;
+        while (parent) {
+            htmlPath = (
+                "index.html\">" + parent.relativeNameOrAllFiles + "</a>"
+                + " &#187; " + htmlPath
+            );
+            jj = 0;
+            while (jj < ii) {
+                kk = 0;
+                while (kk < tmp.relativeName.split(path.sep).length - 1) {
+                    htmlPath = "../" + htmlPath;
+                    kk += 1;
+                }
+                tmp = tmp.parent;
+                jj += 1;
+            }
+            htmlPath = "<a href=\"" + htmlPath;
+            parent = parent.parent;
+            ii += 1;
+        }
         // write dir
-        if (node.kind === "dir") {
-            htmlFile = path.resolve(dir, "index.html");
-            htmlData = "";
-            htmlData += templateRender(templateHead, node);
-            htmlData += (
-                `<div class="coverage-summary">
-<table>
-<thead>
-<tr>
-<th data-col="file" data-fmt="html" data-html="true" class="file">
-    File
-</th>
-<th data-col="statements" data-type="number" data-fmt="pct" class="pct">
-    Statements
-</th>
-<th data-col="branches" data-type="number" data-fmt="pct" class="pct">
-    Branches
-</th>
-<th data-col="functions" data-type="number" data-fmt="pct" class="pct">
-    Functions
-</th>
-<th data-col="lines" data-type="number" data-fmt="pct" class="pct">
-    Lines
-</th>
-</tr>
-</thead>
-<tbody>`
-            ) + "\n";
-            node.children.forEach(function (child) {
-                htmlData += templateRender((
-                    `<tr>
-<td class="file {{metrics.statements.score}}"
-    data-value="{{relativeName}}"><a href="{{href}}"><div>{{relativeName}}</div>
-    {{#show_percent_bar}}</a></td>
-<td class="pct {{metrics.statements.score}}"
-    data-value="{{metrics.statements.pct}}">{{metrics.statements.pct}}%<br>
-    ({{metrics.statements.covered}} / {{metrics.statements.total}})</td>
-<td class="pct {{metrics.branches.score}}"
-    data-value="{{metrics.branches.pct}}">{{metrics.branches.pct}}%<br>
-    ({{metrics.branches.covered}} / {{metrics.branches.total}})</td>
-<td class="pct {{metrics.functions.score}}"
-    data-value="{{metrics.functions.pct}}">{{metrics.functions.pct}}%<br>
-    ({{metrics.functions.covered}} / {{metrics.functions.total}})</td>
-<td class="pct {{metrics.lines.score}}"
-    data-value="{{metrics.lines.pct}}">{{metrics.lines.pct}}%<br>
-    ({{metrics.lines.covered}} / {{metrics.lines.total}})</td>
-</tr>`
-                ), child);
-            });
-            htmlData += "</tbody>\n</table>\n</div>\n";
-            htmlData += templateFoot;
+        if (!node.isFile) {
+            htmlFile = dir + "/index.html";
+            htmlData = local.templateRender(
+                local.templateCoverageReport,
+                Object.assign({
+                    datetime,
+                    env: process.env,
+                    htmlPath,
+                    isBrowser: local.isBrowser
+                }, node)
+            );
             htmlAll += htmlData + "\n\n";
             fileWrite(htmlFile, htmlData);
             node.children.forEach(function (child) {
-                recurse(
-                    child,
-                    level + 1,
-                    path.resolve(dir, child.relativeName)
-                );
+                recurse(child, level + 1, dir + "/" + child.relativeName);
             });
             return;
         }
         // write file
         htmlFile = dir + ".html";
-        fileCoverage = coverage[node.fullName];
-        lineList = String(fileCoverage.code.join("\n") + "\n").split(
-            /(?:\r?\n)|\r/
-        ).map(function (str, ii) {
-            return lineCreate(ii + 1, str, true);
-        });
-        lineList.unshift(lineCreate(0, ""));
-        // annotateLines(fileCoverage, lineList);
-        Object.entries(fileCoverage.l).forEach(function ([
-            line,
-            count
-        ]) {
-            lineList[line].covered = (
-                count > 0
-                ? "yes"
-                : "no"
-            );
-        });
-        lineList.forEach(function (item) {
-            if (item.covered === undefined) {
-                item.covered = "neutral";
+        fileCoverage = coverage[node.pathname];
+        lineList = [].concat("", fileCoverage.code, "").map(function (text) {
+            let endCol;
+            let startCol;
+            // new InsertionText
+            // init <startCol>
+            startCol = -1;
+            ii = 0;
+            while (ii < text.length) {
+                if (!text[ii].match(
+                    /[\u0020\f\n\r\t\u000b\u00a0\u2028\u2029]/
+                )) {
+                    startCol = ii;
+                    break;
+                }
+                ii += 1;
             }
+            // init <endCol>
+            endCol = text.length + 1;
+            ii = text.length - 1;
+            while (ii >= 0) {
+                if (!text[ii].match(
+                    /[\u0020\f\n\r\t\u000b\u00a0\u2028\u2029]/
+                )) {
+                    endCol = ii;
+                    break;
+                }
+                ii -= 1;
+            }
+            return {
+                endCol,
+                length0: text.length,
+                offsets: [],
+                startCol,
+                text
+            };
         });
         //note: order is important, since statements typically result
         //in spanning the whole line and doing branches late
         //causes mismatched tags
         // annotateBranches(fileCoverage, lineList);
         Object.entries(fileCoverage.b).forEach(function ([
-            branchName,
-            branchArray
+            key,
+            list
         ]) {
-            if (branchArray.reduce(function (p, n) {
-                return p + n;
+            if (list.reduce(function (aa, bb) {
+                return aa + bb;
             }, 0) <= 0) {
                 return;
             }
             //only highlight if partial branches are missing
-            branchArray.forEach(function (count, ii) {
+            list.forEach(function (cnt, ii) {
                 let endCol;
                 let endLine;
                 let lineObj;
                 let meta;
                 let startLine;
-                if (count !== 0) {
+                if (cnt !== 0) {
                     return;
                 }
-                meta = fileCoverage.branchMap[branchName].locations[ii];
+                meta = fileCoverage.branchMap[key].locations[ii];
                 endCol = meta.end.column + 1;
                 endLine = meta.end.line;
                 startLine = meta.start.line;
                 //skip branches taken
                 if (endLine !== startLine) {
                     endLine = startLine;
-                    endCol = lineList[startLine].origLength;
+                    endCol = lineList[startLine].length0;
                 }
                 lineObj = lineList[startLine];
-                if (fileCoverage.branchMap[branchName].type === "if") {
+                if (fileCoverage.branchMap[key].type === "if") {
                     // and "if" is a special case since the else branch
                     // might not be visible, being non-existent
                     lineInsertAt(
@@ -10788,17 +11022,12 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
                             meta.skip
                             ? "skip-if-branch"
                             : "missing-if-branch"
-                        ) + "\" title=\"" + ((
+                        ) + "\" title=\"" + (
                             ii === 0
-                            ? "if"
-                            : "else"
-                        ) + "\" path not taken\u0002") + (
-                            ii === 0
-                            ? "I"
-                            : "E"
+                            ? "if path not taken\"\u0002I"
+                            : "else path not taken\"\u0002E"
                         ) + "\u0001/span\u0002",
-                        true,
-                        false
+                        true
                     );
                     return;
                 }
@@ -10807,266 +11036,145 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
                         meta.skip
                         ? "cbranch-skip"
                         : "cbranch-no"
-                    ) + "\" title=\"branch not covered\" \u0002"
+                    ) + "\" title=\"branch not covered\"\u0002"
                 ), (
                     startLine === endLine
                     ? endCol
-                    : lineObj.origLength
+                    : lineObj.length0
                 ), "\u0001/span\u0002");
             });
         });
         // annotateFunctions(fileCoverage, lineList);
         Object.entries(fileCoverage.f).forEach(function ([
-            fName,
-            count
+            key,
+            cnt
         ]) {
             let endCol;
             let endLine;
             let lineObj;
             let meta;
             let startLine;
-            if (count !== 0) {
+            if (cnt !== 0) {
                 return;
             }
-            meta = fileCoverage.fnMap[fName];
+            meta = fileCoverage.fnMap[key];
             endCol = meta.loc.end.column + 1;
             endLine = meta.loc.end.line;
             startLine = meta.loc.start.line;
             if (endLine !== startLine) {
                 endLine = startLine;
-                endCol = lineList[startLine].origLength;
+                endCol = lineList[startLine].length0;
             }
             lineObj = lineList[startLine];
-            lineWrapAt(
-                lineObj,
-                meta.loc.start.column,
-                "\u0001span class=\"" + (
-                    meta.skip
-                    ? "fstat-skip"
-                    : "fstat-no"
-                ) + "\" title=\"function not covered\" \u0002",
-                (
-                    startLine === endLine
-                    ? endCol
-                    : lineObj.origLength
-                ),
-                "\u0001/span\u0002"
-            );
+            lineWrapAt(lineObj, meta.loc.start.column, "\u0001span class=\"" + (
+                meta.skip
+                ? "fstat-skip"
+                : "fstat-no"
+            ) + "\" title=\"function not covered\"\u0002", (
+                startLine === endLine
+                ? endCol
+                : lineObj.length0
+            ), "\u0001/span\u0002");
         });
         // annotateStatements(fileCoverage, lineList);
         Object.entries(fileCoverage.s).forEach(function ([
-            stName,
-            count
+            key,
+            cnt
         ]) {
             let endCol;
             let endLine;
             let lineObj;
             let meta;
             let startLine;
-            if (count !== 0) {
+            if (cnt !== 0) {
                 return;
             }
-            meta = fileCoverage.statementMap[stName];
+            meta = fileCoverage.statementMap[key];
             endCol = meta.end.column + 1;
             startLine = meta.start.line;
             endLine = meta.end.line;
             if (endLine !== startLine) {
                 endLine = startLine;
-                endCol = lineList[startLine].origLength;
+                endCol = lineList[startLine].length0;
             }
             lineObj = lineList[startLine];
             lineWrapAt(lineObj, meta.start.column, ("\u0001span class=\"" + (
                 meta.skip
                 ? "cstat-skip"
                 : "cstat-no"
-            ) + "\" title=\"statement not covered\" \u0002"), (
+            ) + "\" title=\"statement not covered\"\u0002"), (
                 startLine === endLine
                 ? endCol
-                : lineObj.origLength
+                : lineObj.length0
             ), "\u0001/span\u0002");
         });
-        lineList.shift();
-        htmlData = "";
-        htmlData += templateRender(templateHead, node);
-        htmlData += templateRender((
-            `<pre><table class="coverage"><tr>
-<td class="line-count">{{#show_lineno}}</td>
-<td class="line-coverage">{{#show_line_count}}</td>
-<td class="text"><pre class="prettyprint lang-js" tabIndex="0"
->{{#show_code}}</pre></td>
-</tr></table></pre>`
-        ), {
-            lines: fileCoverage.l,
-            maxLines: lineList.length,
-            lineList
-        });
-        htmlData += templateFoot;
+        // remove trailing whitespace
+        ii = lineList.length - 1;
+        while (ii > 1 && !lineList[ii].text.trim()) {
+            lineList.pop();
+            ii -= 1;
+        }
+        htmlLineCnt = "";
+        htmlLineCode = "";
+        htmlLineIi = "";
+        ii = 1;
+        while (ii < lineList.length) {
+            // render <htmlLineIi>
+            htmlLineIi += `<a href="#l${ii}" id="l${ii}">${ii}</a>` + "\n";
+            tmp = fileCoverage.l[ii];
+            htmlLineCnt += (
+                tmp === undefined
+                ? `<span class="cline-any cline-neutral">&nbsp;</span>`
+                : tmp > 0
+                ? `<span class="cline-any cline-yes">${tmp}</span>`
+                : `<span class="cline-any cline-no">&nbsp;</span>`
+            ) + "\n";
+            htmlLineCode += lineList[ii].text + "\n";
+            ii += 1;
+        }
+        htmlLineCode = htmlLineCode.replace((
+            /&/g
+        ), "&amp;").replace((
+            /</g
+        ), "&lt;").replace((
+            />/g
+        ), "&gt;").replace((
+            /\u0001/g
+        ), "<").replace((
+            /\u0002/g
+        ), ">");
+        htmlData = local.templateRender(
+            local.templateCoverageReport,
+            Object.assign({
+                datetime,
+                env: process.env,
+                htmlLineCnt,
+                htmlLineIi,
+                htmlPath,
+                isBrowser: local.isBrowser,
+                lineList
+            }, node)
+        );
+        htmlData = htmlData.split("{{htmlLineCode}}");
+        htmlData.splice(1, 0, htmlLineCode);
+        htmlData = htmlData.join("");
         htmlAll += htmlData + "\n\n";
         fileWrite(htmlFile, htmlData);
     };
-    templateRender = function (template, node) {
-    /*
-     * this function will render <template> with given <node>
-     */
-        let ii;
-        let jj;
-        let kk;
-        let metrics;
-        let tmp;
-        let val;
-        // render <node>
-        metrics = node.metrics;
-        template = template.replace((
-            /\{\{[^#].+?\}\}/g
-        ), function (match0) {
-            val = node;
-            // iteratively lookup nested <val> in <node>
-            String(match0.slice(2, -2)).split(".").forEach(function (key) {
-                val = val[key];
-            });
-            return val;
-        });
-        // render #show_line_count
-        template = template.replace("{{#show_line_count}}", function () {
-            val = "";
-            ii = 1;
-            while (ii <= node.maxLines) {
-                tmp = node.lines[ii];
-                val += "<span class=\"cline-any " + (
-                    tmp === undefined
-                    ? "cline-neutral\">&nbsp;"
-                    : tmp > 0
-                    ? "cline-yes\">" + node.lines[ii]
-                    : "cline-no\">&nbsp;"
-                ) + "</span>\n";
-                ii += 1;
-            }
-            return val;
-        });
-        // render #show_lineno
-        template = template.replace("{{#show_lineno}}", function () {
-            val = "";
-            ii = 1;
-            while (ii <= node.maxLines) {
-                // hack-coverage - hashtag lineno
-                val += (
-                    "<a href=\"#L" + ii + "\" id=\"L" + ii + "\">"
-                    + ii
-                    + "</a>\n"
-                );
-                ii += 1;
-            }
-            return val;
-        });
-        // render #show_path
-        template = template.replace("{{#show_path}}", function () {
-            tmp = node.parent;
-            if (!tmp) {
-                return "";
-            }
-            val = node.relativeName;
-            ii = 1;
-            while (tmp) {
-                val = (
-                    "index.html\">" + tmp.relativeNameOrAllFiles + "</a>"
-                    + " &#187; " + val
-                );
-                jj = 0;
-                while (jj < ii) {
-                    kk = 0;
-                    while (kk < node.relativeName.split(path.sep).length - 1) {
-                        val = "../" + val;
-                        kk += 1;
-                    }
-                    node = node.parent;
-                    jj += 1;
-                }
-                val = "<a href=\"" + val;
-                tmp = tmp.parent;
-                ii += 1;
-            }
-            return val;
-        });
-        // render #show_percent_bar
-        template = template.replace("{{#show_percent_bar}}", function () {
-            val = Number(metrics.statements.pct) | 0;
-            return (
-                "<span class=\"cover-fill cover-full\" style=\"width:" + val
-                + "px;\"></span><span class=\"cover-empty\" style=\"width:"
-                + (100 - val) + "px;\"></span>"
-            );
-        });
-        // render #show_code last
-        template = template.replace("{{#show_code}}", function () {
-            val = node.lineList.map(function (item) {
-                return item.text;
-            }).join("\n");
-            // sanitize html
-            val = val.replace((
-                /&/g
-            ), "&amp;").replace((
-                /</g
-            ), "&lt;").replace((
-                />/g
-            ), "&gt;").replace((
-                /\u0001/g
-            ), "<").replace((
-                /\u0002/g
-            ), ">");
-            return val;
-        });
-        return template.trim() + "\n";
-    };
+    // init <datetime>
+    datetime = new Date().toGMTString();
     // init <htmlAll>
     htmlAll = (
         `<div class="coverageReportDiv">
 <h1>coverage-report</h1>
 <div style="background: #fff; border: 1px solid #999; margin 0; padding: 0;">`
     ) + "\n";
-    // init <templateFoot>
-    templateFoot = templateRender((
-        `</div>
-<div class="footer">
-<div class="meta">
-    Generated by <a href="https://github.com/kaizhu256/node-utility2"
-    target="_blank">utility2</a> at {{datetime}}
-</div>
-</div>
-</body>
-</html>`
-    ), {
-        datetime: new Date().toGMTString()
-    });
-    // init <templateHead>
-    templateHead = local.templateCoverageHead;
-    if (local.isBrowser) {
-        templateHead = templateHead.replace(
-            "<!doctype html>\n",
-            ""
-        ).replace((
-            /(<\/?)(?:body|html)/g
-        ), "$1div");
-    }
-    if (!local.isBrowser && process.env.npm_package_homepage) {
-        templateHead = templateHead.replace(
-            "{{env.npm_package_homepage}}",
-            process.env.npm_package_homepage
-        ).replace(
-            "{{env.npm_package_name}}",
-            process.env.npm_package_name
-        ).replace(
-            "{{env.npm_package_version}}",
-            process.env.npm_package_version
-        );
-    } else {
-        templateHead = templateHead.replace((
-            /<h1\u0020[\S\s]*<\/h1>/
-        ), "");
-    }
+    // recursively write html
     recurse(node, 0, dirCoverage);
     htmlAll += "</div>\n</div>\n";
     // write coverage.all.html
     fileWrite(dirCoverage + "/coverage.all.html", htmlAll);
+    // return <htmlAll>
     return htmlAll;
 };
 reportTextWrite = function (node, dircoverage) {
@@ -11162,7 +11270,7 @@ reportTextWrite = function (node, dircoverage) {
         + result
     );
     console.error(result);
-    fileWrite(path.resolve(dircoverage, "coverage.txt"), result);
+    fileWrite(dircoverage + "/coverage.txt", result);
 };
 
 
@@ -11190,8 +11298,8 @@ local.coverageMerge = function (coverage1 = {}, coverage2 = {}) {
             // increment coverage for branch lines
             case "b":
                 Object.keys(dict2).forEach(function (key) {
-                    dict2[key].forEach(function (count, ii) {
-                        dict1[key][ii] += count;
+                    dict2[key].forEach(function (cnt, ii) {
+                        dict1[key][ii] += cnt;
                     });
                 });
                 break;
@@ -11242,15 +11350,14 @@ local.coverageReportCreate = function (opt) {
         node.children.push(child);
         child.parent = node;
     };
-    nodeCreate = function (fullName, kind, metrics) {
+    nodeCreate = function (pathname) {
     /*
      * this function will create a tree-node
      */
         return {
             children: [],
-            fullName,
-            kind,
-            metrics: metrics || {
+            pathname,
+            metrics: {
                 branches: {
                     total: 0,
                     covered: 0,
@@ -11276,13 +11383,14 @@ local.coverageReportCreate = function (opt) {
                     pct: "Unknown"
                 }
             },
-            name: fullName
+            name: pathname
         };
     };
     nodeNormalize = function (node, level, filePrefix, parent) {
     /*
      * this function will recursively normalize <node> and its children
      */
+        let metric;
         // init <name>
         if (node.name.indexOf(filePrefix) === 0) {
             node.name = node.name.slice(filePrefix.length);
@@ -11306,9 +11414,9 @@ local.coverageReportCreate = function (opt) {
         node.relativeNameOrAllFiles = node.relativeName || "All files";
         // init <href>
         node.href = node.relativeName.split(path.sep).join("/") + (
-            node.kind === "dir"
-            ? "index.html"
-            : ".html"
+            node.isFile
+            ? ".html"
+            : "index.html"
         );
         // recurse
         node.children.forEach(function (child) {
@@ -11323,14 +11431,15 @@ local.coverageReportCreate = function (opt) {
             );
         });
         // init <metrics>
-        if (node.kind === "dir") {
+        if (!node.isFile) {
             node.children.forEach(function (child) {
                 [
                     "lines", "statements", "branches", "functions"
                 ].forEach(function (key) {
-                    node.metrics[key].total += child.metrics[key].total;
-                    node.metrics[key].covered += child.metrics[key].covered;
-                    node.metrics[key].skipped += child.metrics[key].skipped;
+                    metric = node.metrics[key];
+                    metric.total += child.metrics[key].total;
+                    metric.covered += child.metrics[key].covered;
+                    metric.skipped += child.metrics[key].skipped;
                 });
             });
         }
@@ -11338,18 +11447,21 @@ local.coverageReportCreate = function (opt) {
         [
             "lines", "statements", "branches", "functions"
         ].forEach(function (key) {
-            node.metrics[key].pct = (
-                node.metrics[key].total > 0
-                ? Math.floor((
-                    1000 * 100 * node.metrics[key].covered
-                    / node.metrics[key].total + 5
-                ) / 10) / 100
+            metric = node.metrics[key];
+            metric.pct = (
+                metric.total > 0
+                ? Math.floor(
+                    (1000 * 100 * metric.covered / metric.total + 5)
+                    / 10
+                ) / 100
                 : 100
             );
-            node.metrics[key].score = (
-                node.metrics[key].pct >= 80
+            metric.width1 = metric.pct | 0;
+            metric.width2 = 100 - metric.width1;
+            metric.score = (
+                metric.pct >= 80
                 ? "high"
-                : node.metrics[key].pct >= 50
+                : metric.pct >= 50
                 ? "medium"
                 : "low"
             );
@@ -11393,7 +11505,7 @@ local.coverageReportCreate = function (opt) {
         let skipped;
         let summary;
         if (fileCoverage && coverageInclude.hasOwnProperty(file)) {
-            // reset line-count
+            // reset line-cnt
             delete opt.coverage[file].l;
             // init <summary>
             summary = {
@@ -11422,20 +11534,20 @@ local.coverageReportCreate = function (opt) {
                     pct: "Unknown"
                 }
             };
-            // init line-count
+            // init line-cnt
             fileCoverage.l = {};
             Object.entries(fileCoverage.s).forEach(function ([
                 key,
-                count
+                cnt
             ]) {
-                let line;
-                if (count === 0 && fileCoverage.statementMap[key].skip) {
-                    count = 1;
+                if (cnt === 0 && fileCoverage.statementMap[key].skip) {
+                    cnt = 1;
                 }
-                line = fileCoverage.statementMap[key].start.line;
-                fileCoverage.l[line] = (
-                    Math.max(fileCoverage.l[line] | 0, count)
-                );
+                fileCoverage.l[
+                    fileCoverage.statementMap[key].start.line
+                ] = Math.max(fileCoverage.l[
+                    fileCoverage.statementMap[key].start.line
+                ] | 0, cnt);
             });
             // computeSimpleTotals
             [
@@ -11504,7 +11616,7 @@ local.coverageReportCreate = function (opt) {
     });
     // 3. convert <summaryDict> to <nodeRoot>
     tmp = filePrefix.join(path.sep) + path.sep;
-    nodeRoot = nodeCreate(tmp, "dir");
+    nodeRoot = nodeCreate(tmp);
     nodeDict = {};
     nodeDict[tmp] = nodeRoot;
     filesUnderRoot = false;
@@ -11515,7 +11627,9 @@ local.coverageReportCreate = function (opt) {
         let node;
         let parent;
         let parentPath;
-        node = nodeCreate(key, "file", metrics);
+        node = nodeCreate(key);
+        node.isFile = true;
+        node.metrics = metrics;
         nodeDict[key] = node;
         parentPath = path.dirname(key) + path.sep;
         if (parentPath === path.sep + path.sep) {
@@ -11523,7 +11637,7 @@ local.coverageReportCreate = function (opt) {
         }
         parent = nodeDict[parentPath];
         if (!parent) {
-            parent = nodeCreate(parentPath, "dir");
+            parent = nodeCreate(parentPath);
             nodeChildAdd(nodeRoot, parent);
             nodeDict[parentPath] = parent;
         }
@@ -11538,13 +11652,13 @@ local.coverageReportCreate = function (opt) {
         tmp = nodeRoot;
         tmpChildren = tmp.children;
         tmp.children = [];
-        nodeRoot = nodeCreate(filePrefix.join(path.sep) + path.sep, "dir");
+        nodeRoot = nodeCreate(filePrefix.join(path.sep) + path.sep);
         nodeChildAdd(nodeRoot, tmp);
         tmpChildren.forEach(function (child) {
             nodeChildAdd((
-                child.kind === "dir"
-                ? nodeRoot
-                : tmp
+                child.isFile
+                ? tmp
+                : nodeRoot
             ), child);
         });
     }

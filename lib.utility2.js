@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * lib.utility2.js (2020.5.25)
+ * lib.utility2.js (2020.5.31)
  * https://github.com/kaizhu256/node-utility2
  * this zero-dependency package will provide high-level functions to to build, test, and deploy webapps
  *
@@ -125,6 +125,7 @@
         } catch (ignore) {
             return;
         }
+        file = require("path").resolve(file);
         // try to write file
         try {
             fs.writeFileSync(file, data);
@@ -407,6 +408,7 @@ local.assetsDict["/assets.utility2.header.js"] = '\
         } catch (ignore) {\n\
             return;\n\
         }\n\
+        file = require("path").resolve(file);\n\
         // try to write file\n\
         try {\n\
             fs.writeFileSync(file, data);\n\
@@ -2284,11 +2286,11 @@ local._testCase_webpage_default = function (opt, onError) {
 /*
  * this function will test webpage's default handling-behavior
  */
-    local.domStyleValidate();
     if (local.isBrowser) {
         onError(undefined, opt);
         return;
     }
+    local.domStyleValidate();
     local.browserTest({
         fileScreenshot: (
             local.env.npm_config_dir_build
@@ -4189,18 +4191,25 @@ local.domStyleValidate = function () {
  */
     let rgx;
     let tmp;
+    try {
+        document.querySelector("#undefined");
+    } catch (ignore) {
+        return;
+    }
     rgx = (
         /^0\u0020(?:(body\u0020>\u0020)?(?:\.testReportDiv\u0020.+|\.x-istanbul\u0020.+|\.button|\.colorError|\.readonly|\.textarea|\.uiAnimateSlide|a|body|code|div|input|pre|textarea)(?:,|\u0020\{))|^[1-9]\d*?\u0020#/m
     );
     tmp = [];
-    local.querySelectorAll("style").map(function (elem, ii) {
+    Array.from(
+        document.querySelectorAll("style")
+    ).map(function (elem, ii) {
         elem.innerHTML.replace((
             /\/\*[\S\s]*?\*\/|;|\}/g
         ), "\n").replace((
             /^([^\n\u0020@].*?)[,{:].*?$/gm
         ), function (match0, match1) {
             try {
-                ii = local.querySelectorAll(match1).length;
+                ii = document.querySelectorAll(match1).length;
             } catch (errCaught) {
                 console.error(errCaught);
             }
@@ -5147,7 +5156,7 @@ local.moduleDirname = function (module, pathList) {
     let result;
     // search process.cwd()
     if (!module || module === "." || module.indexOf("/") >= 0) {
-        return require("path").resolve(process.cwd(), module || "");
+        return require("path").resolve(module || "");
     }
     // search pathList
     Array.from([
@@ -5158,10 +5167,7 @@ local.moduleDirname = function (module, pathList) {
         ]
     ]).flat().some(function (path) {
         try {
-            result = require("path").resolve(
-                process.cwd(),
-                path + "/" + module
-            );
+            result = require("path").resolve(path + "/" + module);
             result = require("fs").statSync(result).isDirectory() && result;
             return result;
         } catch (ignore) {
@@ -6363,7 +6369,7 @@ local.templateRender = function (template, dict, opt, ii) {
             partial = (
                 getVal(key)
                 ? partial[0]
-                // handle 'unless' case
+                // handle "unless" case
                 : partial.slice(1).join("{{#unless " + key + "}}")
             );
             // recurse with partial
