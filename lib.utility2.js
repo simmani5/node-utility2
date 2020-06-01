@@ -3297,15 +3297,13 @@ local.buildApp = async function (opt, onError) {
                 + "?callback=window.utility2.stateInit"
             )
         }
-    ], opt.assetsList).map(async function ([
-        file, url
-    ]) {
+    ], opt.assetsList).map(async function (elem) {
         let xhr;
-        xhr = await local.httpFetch(local.serverLocalHost + url, {
+        xhr = await local.httpFetch(local.serverLocalHost + elem.url, {
             responseType: "raw"
         });
         // jslint file
-        local.jslintAndPrint(xhr.data.toString(), file, {
+        local.jslintAndPrint(xhr.data.toString(), elem.file, {
             conditional: true,
             coverage: local.env.npm_config_mode_coverage
         });
@@ -3315,7 +3313,7 @@ local.buildApp = async function (opt, onError) {
             local.jslint.jslintResult.errMsg
         );
         await local.fsWriteFileWithMkdirp(
-            "tmp/build/app/" + file,
+            "tmp/build/app/" + elem.file,
             xhr.data,
             "wrote file - app - {{pathname}}"
         );
