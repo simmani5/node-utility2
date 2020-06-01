@@ -1067,63 +1067,6 @@ local.testCase_buildXxx_default = function (opt, onError) {
     }, onError);
 };
 
-local.testCase_childProcessSpawnWithTimeout_default = function (
-    opt,
-    onError
-) {
-/*
- * this function will test
- * childProcessSpawnWithTimeout's default handling-behavior
- */
-    let onParallel;
-    if (local.isBrowser) {
-        onError(undefined, opt);
-        return;
-    }
-    opt = {};
-    onParallel = local.onParallel(onError);
-    onParallel.cnt += 1;
-    // test default handling-behavior
-    onParallel.cnt += 1;
-    local.childProcessSpawnWithTimeout("ls").on(
-        "error",
-        onParallel
-    ).on("exit", function (exitCode, signal) {
-        // validate exitCode
-        local.assertJsonEqual(exitCode, 0);
-        // validate signal
-        local.assertJsonEqual(signal, null);
-        onParallel(null, opt);
-    });
-    // test timeout handling-behavior
-    onParallel.cnt += 1;
-    local.testMock([
-        [
-            local, {
-                timeoutDefault: 1000
-            }
-        ]
-    ], function (onError) {
-        opt.childProcess = (
-            local.childProcessSpawnWithTimeout("sleep", [
-                5000
-            ])
-        );
-        onError(undefined, opt);
-    }, local.onErrorThrow);
-    opt.childProcess.on(
-        "error",
-        onParallel
-    ).on("exit", function (exitCode, signal) {
-        // validate exitCode
-        local.assertJsonEqual(exitCode, null);
-        // validate signal
-        local.assertJsonEqual(signal, "SIGKILL");
-        onParallel(null, opt);
-    });
-    onParallel(null, opt);
-};
-
 local.testCase_cliRun_default = function (opt, onError) {
 /*
  * this function will test cliRun's default handling-behavior
