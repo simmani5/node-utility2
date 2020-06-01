@@ -3165,12 +3165,23 @@ local.buildApp = async function (opt, onError) {
 /*
  * this function will build app with given <opt>
  */
-    opt = local.objectAssignDefault(opt, {
-        assetsList: []
+    // build app
+    await local.promisify(function (onError) {
+        require("child_process").spawn(
+            "rm -r tmp/build/app; mkdir -p tmp/build/app",
+            {
+                shell: true,
+                stdio: [
+                    "ignore", 1, 2
+                ]
+            }
+        ).on("error", onError).on("exit", function (exitCode) {
+            // validate exitCode
+            local.assertOrThrow(!exitCode, exitCode);
+            onError();
+        });
     });
-    // build assets
-    local.fsRmrfSync("tmp/build/app");
-    await Promise.all([].concat([
+    await Promise.all([
         {
             file: "/LICENSE",
             url: "/LICENSE"
@@ -3211,50 +3222,68 @@ local.buildApp = async function (opt, onError) {
                 + "?callback=window.utility2.stateInit"
             )
         }
-    ], opt.assetsList).map(async function (elem) {
-        let xhr;
-        xhr = await local.httpFetch(local.serverLocalHost + elem.url, {
-            responseType: "raw"
+    ].concat(opt.assetsList).filter(local.identity).map(async function (elem) {
+        let file;
+        file = require("path").resolve("tmp/build/app/" + elem.file);
+        await local.promisify(function (onError) {
+            require("http").request(local.serverLocalHost + elem.url, function (
+                res
+            ) {
+                res.pipe(
+                    require("fs").createWriteStream(
+                        file
+                    ).on("error", onError).on("close", onError)
+                ).on("error", onError);
+            });
         });
-        // jslint file
-        local.jslintAndPrint(xhr.data.toString(), elem.file, {
-            conditional: true,
-            coverage: local.env.npm_config_mode_coverage
-        });
-        // handle err
-        local.assertOrThrow(
-            !local.jslint.jslintResult.errMsg,
-            local.jslint.jslintResult.errMsg
-        );
-        await local.fsWriteFileWithMkdirp(
-            "tmp/build/app/" + elem.file,
-            xhr.data,
-            "wrote file - app - {{pathname}}"
-        );
+        console.error("wrote file - app - " + file);
     }));
+    // jslint app
+    await local.promisify(function (onError) {
+        require("child_process").spawn("node", [
+            "-e", (
+                "require("
+                + JSON.stringify(__filename)
+                + ").jslint.jslintAndPrintDir("
+                + JSON.stringify(process.cwd())
+                + ", {autofix:true,conditional:true}, process.exit);"
+            )
+        ], {
+            stdio: [
+                "ignore", "ignore", 2
+            ]
+        }).on("error", onError).on("exit", function (exitCode) {
+            // validate exitCode
+            local.assertOrThrow(!exitCode, exitCode);
+            onError();
+        });
+    });
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
         "tmp/buildApp/assets.app.js",
         local.assetsDict["/assets.app.js"],
         "wrote file - assets.app.js - {{pathname}}"
     );
-    local.child_process.spawn("node", [
-        "assets.app.js"
-    ], {
-        cwd: "tmp/buildApp",
-        env: {
-            PATH: local.env.PATH,
-            PORT: (Math.random() * 0x10000) | 0x8000,
-            npm_config_timeout_exit: 5000
-        },
-        stdio: [
-            "ignore", "ignore", 2
-        ]
-    }).on("error", onError).on("exit", function (exitCode) {
-        // validate exitCode
-        local.assertOrThrow(!exitCode, exitCode);
-        onError();
+    await local.promisify(function (onError) {
+        require("child_process").spawn("node", [
+            "assets.app.js"
+        ], {
+            cwd: "tmp/buildApp",
+            env: {
+                PATH: local.env.PATH,
+                PORT: (Math.random() * 0x10000) | 0x8000,
+                npm_config_timeout_exit: 5000
+            },
+            stdio: [
+                "ignore", "ignore", 2
+            ]
+        }).on("error", onError).on("exit", function (exitCode) {
+            // validate exitCode
+            local.assertOrThrow(!exitCode, exitCode);
+            onError();
+        });
     });
+    onError();
 };
 
 local.buildLib = function (opt, onError) {
