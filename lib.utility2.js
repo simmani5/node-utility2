@@ -3713,26 +3713,6 @@ local.buildTest = function (opt, onError) {
     return result;
 };
 
-local.childProcessSpawnWithUtility2 = function (script, onError) {
-/*
- * this function will run child_process.spawn, with lib.utility2.sh sourced
- */
-    require("child_process").spawn(
-        ". " + (process.env.npm_config_dir_utility2 || __dirname)
-        + "/lib.utility2.sh; " + script,
-        {
-            shell: true,
-            stdio: [
-                "ignore", 1, 2
-            ]
-        }
-    ).on("exit", function (exitCode) {
-        onError(exitCode && Object.assign(new Error(), {
-            exitCode
-        }));
-    });
-};
-
 local.cliRun = function (opt) {
 /*
  * this function will run cli with given <opt>
