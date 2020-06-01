@@ -57,7 +57,6 @@ this zero-dependency package will provide high-level functions to to build, test
 
 #### changelog 2020.5.31
 - npm publish 2020.5.31
-- deprecate dependent github-crud
 - add function fsWriteFileWithMkdirp
 - update file raw.istanbul.js
 - remove excessive "the" from comments
@@ -1301,7 +1300,6 @@ local.http.createServer(function (req, res) {
     "bin": {
         "utility2": "lib.utility2.sh",
         "utility2-apidoc": "lib.apidoc.js",
-        "utility2-github-crud": "lib.github_crud.js",
         "utility2-istanbul": "lib.istanbul.js",
         "utility2-jslint": "lib.jslint.js"
     },

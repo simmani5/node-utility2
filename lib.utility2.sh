@@ -3441,13 +3441,10 @@ shUtility2Dependents () {(set -e
 printf "
 apidoc-lite
 bootstrap-lite
-github-crud
 istanbul-lite
 jslint-lite
 sqljs-lite
-swgg
 utility2
-wasm-sqlite
 "
 )}
 
@@ -3463,8 +3460,6 @@ shUtility2DependentsSync () {(set -e
     if [ -d "$HOME/bin" ]
     then
         ln -f "utility2/lib.apidoc.js" "$HOME/bin/utility2-apidoc" || true
-        ln -f "utility2/lib.github_crud.js" "$HOME/bin/utility2-github_crud" ||
-            true
         ln -f "utility2/lib.istanbul.js" "$HOME/bin/utility2-istanbul" || true
         ln -f "utility2/lib.jslint.js" "$HOME/bin/utility2-jslint" || true
         ln -f "utility2/lib.utility2.sh" "$HOME/bin/utility2" || true
