@@ -57,6 +57,7 @@ this zero-dependency package will provide high-level functions to to build, test
 
 #### changelog 2020.5.31
 - npm publish 2020.5.31
+- deprecate dependent github-crud
 - add function fsWriteFileWithMkdirp
 - update file raw.istanbul.js
 - remove excessive "the" from comments
@@ -77,7 +78,7 @@ this zero-dependency package will provide high-level functions to to build, test
     semverCompare,
     serverRespondCors,
 - replace function fsReadFileOrEmptyStringSync with fsReadFileOrDefaultSync
-- remove dependency to file lib.swgg.js
+- remove dependency to files lib.github_crud.js, lib.swgg.js
 - inline object local.contentTypeDict
 - istanbul - inline function templateRender
 - none
@@ -87,7 +88,6 @@ this zero-dependency package will provide high-level functions to to build, test
 - add eslint-rule no-multiple-empty-lines
 - remove file lib.swgg.js
 - remove sloppy-cases where npm-test falsely pass
-- deprecate dependent github-crud
 - istanbul - remove filesUnderRoot subroutine
 - jslint - add nullish-coalescing support
 - jslint - add optional-chaining support
@@ -1344,14 +1344,12 @@ local.http.createServer(function (req, res) {
         "utility2": "./npm_scripts.sh"
     },
     "utility2Dependents": [
-        "2019.01.21 github-crud",
-        "2019.09.14 swgg",
         "2020.01.20 bootstrap-lite",
         "2020.02.12 sqljs-lite",
         "2020.03.16 apidoc-lite",
         "2020.05.20 jslint-lite",
-        "2019.05.25 istanbul-lite master",
-        "2020.02.20 utility2"
+        "2020.05.25 istanbul-lite",
+        "2020.02.25 utility2"
     ],
     "version": "2020.5.31"
 }

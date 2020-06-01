@@ -336,7 +336,6 @@ globalThis.utility2 = local;
 // init lib extra
 [
     "apidoc",
-    "github_crud",
     "istanbul",
     "jslint",
     "marked",
@@ -1816,91 +1815,6 @@ local.cliDict["utility2.browserTest"] = function () {
     local.browserTest({
         url: process.argv[3]
     }, local.onErrorDefault);
-};
-
-local.cliDict["utility2.githubCrudContentDelete"] = function () {
-/*
- * <fileRemote|dirRemote> <commitMessage>
- * will delete from github <fileRemote|dirRemote>
- */
-    local.github_crud.githubCrudContentDelete({
-        message: process.argv[4],
-        url: process.argv[3]
-    }, function (err) {
-        process.exit(Boolean(err));
-    });
-};
-
-local.cliDict["utility2.githubCrudContentGet"] = function () {
-/*
- * <fileRemote>
- * will get from github <fileRemote>
- */
-    local.github_crud.githubCrudContentGet({
-        url: process.argv[3]
-    }, function (err, data) {
-        try {
-            process.stdout.write(data);
-        } catch (ignore) {}
-        process.exit(Boolean(err));
-    });
-};
-
-local.cliDict["utility2.githubCrudContentPut"] = function () {
-/*
- * <fileRemote> <fileLocal> <commitMessage>
- * will put on github <fileRemote>, <fileLocal>
- */
-    local.github_crud.githubCrudContentPutFile({
-        message: process.argv[5],
-        url: process.argv[3],
-        file: process.argv[4]
-    }, function (err) {
-        process.exit(Boolean(err));
-    });
-};
-
-local.cliDict["utility2.githubCrudContentTouch"] = function () {
-/*
- * <fileRemoteList> <commitMessage>
- * will touch on github in parallel, comma-separated <fileRemoteList>
- */
-    local.github_crud.githubCrudContentTouchList({
-        message: process.argv[4],
-        urlList: process.argv[3].split(
-            /[,\s]/g
-        ).filter(local.identity)
-    }, function (err) {
-        process.exit(Boolean(err));
-    });
-};
-
-local.cliDict["utility2.githubCrudRepoCreate"] = function () {
-/*
- * <repoList>
- * will create on github in parallel, comma-separated <repoList>
- */
-    local.github_crud.githubCrudRepoCreateList({
-        urlList: process.argv[3].split(
-            /[,\s]/g
-        ).filter(local.identity)
-    }, function (err) {
-        process.exit(Boolean(err));
-    });
-};
-
-local.cliDict["utility2.githubCrudRepoDelete"] = function () {
-/*
- * <repoList>
- * will delete from github in parallel, comma-separated <repoList>
- */
-    local.github_crud.githubCrudRepoDeleteList({
-        urlList: process.argv[3].split(
-            /[,\s]/g
-        ).filter(local.identity)
-    }, function (err) {
-        process.exit(Boolean(err));
-    });
 };
 
 local.cliDict["utility2.start"] = function () {
@@ -4559,7 +4473,6 @@ local.jslintAutofixLocalFunction = function (code, file) {
     case "lib." + process.env.npm_package_nameLib + ".js":
     case "lib." + process.env.npm_package_nameLib + ".sh":
     case "lib.apidoc.js":
-    case "lib.github_crud.js":
     case "lib.istanbul.js":
     case "lib.jslint.js":
     case "lib.marked.js":
@@ -4602,7 +4515,7 @@ local.jslintAutofixLocalFunction = function (code, file) {
         [
             "utility2"
         ], [
-            "utility2", "apidoc", "github_crud"
+            "utility2", "apidoc"
         ]
     ].forEach(function (dictList, ii) {
         tmp = (
@@ -7544,7 +7457,6 @@ if (globalThis.utility2_rollup) {
     "/assets.utility2.html",
     "/assets.utility2.test.js",
     "lib.apidoc.js",
-    "lib.github_crud.js",
     "lib.istanbul.js",
     "lib.jslint.js",
     "lib.marked.js",
@@ -7645,7 +7557,6 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     "header",
     "/assets.utility2.rollup.start.js",
     "lib.apidoc.js",
-    "lib.github_crud.js",
     "lib.istanbul.js",
     "lib.jslint.js",
     "lib.marked.js",
