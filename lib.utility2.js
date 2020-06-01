@@ -150,6 +150,37 @@
             });
         } catch (ignore) {}
     };
+    local.fsWriteFileWithMkdirp = async function (pathname, data, msg) {
+    /*
+     * this function will async write <data> to <pathname> with "mkdir -p"
+     */
+        let fs;
+        let success;
+        // do nothing if module does not exist
+        try {
+            fs = require("fs").promise;
+        } catch (ignore) {
+            return;
+        }
+        pathname = require("path").resolve(pathname);
+        // try to write pathname
+        try {
+            await fs.writeFile(pathname, data);
+            success = true;
+        } catch (ignore) {
+            // mkdir -p
+            await fs.mkdir(require("path").dirname(pathname), {
+                recursive: true
+            });
+            // re-write pathname
+            await fs.writeFile(pathname, data);
+            success = true;
+        }
+        if (success && msg) {
+            console.error(msg.replace("{{pathname}}", pathname));
+        }
+        return success;
+    };
     local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
@@ -220,6 +251,22 @@
         };
         recurse(tgt, src, depth | 0);
         return tgt;
+    };
+    local.promisify = function (fnc) {
+    /*
+     * this function will promisify <fnc>
+     */
+        return function (...argList) {
+            return new Promise(function (resolve, reject) {
+                fnc(...argList, function (err, ...argList) {
+                    if (err) {
+                        reject(err, ...argList);
+                        return;
+                    }
+                    resolve(...argList);
+                });
+            });
+        };
     };
     // require builtin
     if (!local.isBrowser) {
@@ -457,6 +504,37 @@ local.assetsDict["/assets.utility2.header.js"] = '\
             });\n\
         } catch (ignore) {}\n\
     };\n\
+    local.fsWriteFileWithMkdirp = async function (pathname, data, msg) {\n\
+    /*\n\
+     * this function will async write <data> to <pathname> with "mkdir -p"\n\
+     */\n\
+        let fs;\n\
+        let success;\n\
+        // do nothing if module does not exist\n\
+        try {\n\
+            fs = require("fs").promise;\n\
+        } catch (ignore) {\n\
+            return;\n\
+        }\n\
+        pathname = require("path").resolve(pathname);\n\
+        // try to write pathname\n\
+        try {\n\
+            await fs.writeFile(pathname, data);\n\
+            success = true;\n\
+        } catch (ignore) {\n\
+            // mkdir -p\n\
+            await fs.mkdir(require("path").dirname(pathname), {\n\
+                recursive: true\n\
+            });\n\
+            // re-write pathname\n\
+            await fs.writeFile(pathname, data);\n\
+            success = true;\n\
+        }\n\
+        if (success && msg) {\n\
+            console.error(msg.replace("{{pathname}}", pathname));\n\
+        }\n\
+        return success;\n\
+    };\n\
     local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {\n\
     /*\n\
      * this function will sync write <data> to <pathname> with "mkdir -p"\n\
@@ -527,6 +605,22 @@ local.assetsDict["/assets.utility2.header.js"] = '\
         };\n\
         recurse(tgt, src, depth | 0);\n\
         return tgt;\n\
+    };\n\
+    local.promisify = function (fnc) {\n\
+    /*\n\
+     * this function will promisify <fnc>\n\
+     */\n\
+        return function (...argList) {\n\
+            return new Promise(function (resolve, reject) {\n\
+                fnc(...argList, function (err, ...argList) {\n\
+                    if (err) {\n\
+                        reject(err, ...argList);\n\
+                        return;\n\
+                    }\n\
+                    resolve(...argList);\n\
+                });\n\
+            });\n\
+        };\n\
     };\n\
     // require builtin\n\
     if (!local.isBrowser) {\n\
@@ -3153,7 +3247,7 @@ local.bufferValidateAndCoerce = function (buf, mode) {
     return buf;
 };
 
-local.buildApp = function (opt, onError) {
+local.buildApp = async function (opt, onError) {
 /*
  * this function will build app with given <opt>
  */
@@ -3162,58 +3256,56 @@ local.buildApp = function (opt, onError) {
     });
     // build assets
     local.fsRmrfSync("tmp/build/app");
-    local.onParallelList({
-        list: [
-            {
-                file: "/LICENSE",
-                url: "/LICENSE"
-            }, {
-                file: "/assets." + local.env.npm_package_nameLib + ".html",
-                url: "/index.html"
-            }, {
-                file: "/assets." + local.env.npm_package_nameLib + ".js",
-                url: "/assets." + local.env.npm_package_nameLib + ".js"
-            }, {
-                file: "/assets.app.js",
-                url: "/assets.app.js"
-            }, {
-                file: "/assets.example.html",
-                url: "/assets.example.html"
-            }, {
-                file: "/assets.example.js",
-                url: "/assets.example.js"
-            }, {
-                file: "/assets.test.js",
-                url: "/assets.test.js"
-            }, {
-                file: "/assets.utility2.html",
-                url: "/assets.utility2.html"
-            }, {
-                file: "/assets.utility2.rollup.js",
-                url: "/assets.utility2.rollup.js"
-            }, {
-                file: "/index.html",
-                url: "/index.html"
-            }, {
-                file: "/index.rollup.html",
-                url: "/index.rollup.html"
-            }, {
-                file: "/jsonp.utility2.stateInit",
-                url: (
-                    "/jsonp.utility2.stateInit"
-                    + "?callback=window.utility2.stateInit"
-                )
-            }
-        ].concat(opt.assetsList)
-    }, async function (opt2, onParallel) {
+    await Promise.all([].concat([
+        {
+            file: "/LICENSE",
+            url: "/LICENSE"
+        }, {
+            file: "/assets." + local.env.npm_package_nameLib + ".html",
+            url: "/index.html"
+        }, {
+            file: "/assets." + local.env.npm_package_nameLib + ".js",
+            url: "/assets." + local.env.npm_package_nameLib + ".js"
+        }, {
+            file: "/assets.app.js",
+            url: "/assets.app.js"
+        }, {
+            file: "/assets.example.html",
+            url: "/assets.example.html"
+        }, {
+            file: "/assets.example.js",
+            url: "/assets.example.js"
+        }, {
+            file: "/assets.test.js",
+            url: "/assets.test.js"
+        }, {
+            file: "/assets.utility2.html",
+            url: "/assets.utility2.html"
+        }, {
+            file: "/assets.utility2.rollup.js",
+            url: "/assets.utility2.rollup.js"
+        }, {
+            file: "/index.html",
+            url: "/index.html"
+        }, {
+            file: "/index.rollup.html",
+            url: "/index.rollup.html"
+        }, {
+            file: "/jsonp.utility2.stateInit",
+            url: (
+                "/jsonp.utility2.stateInit"
+                + "?callback=window.utility2.stateInit"
+            )
+        }
+    ], opt.assetsList).map(async function ([
+        file, url
+    ]) {
         let xhr;
-        opt2 = opt2.elem;
-        onParallel.cnt += 1;
-        xhr = await local.httpFetch(local.serverLocalHost + opt2.url, {
+        xhr = await local.httpFetch(local.serverLocalHost + url, {
             responseType: "raw"
         });
         // jslint file
-        local.jslintAndPrint(xhr.data.toString(), opt2.file, {
+        local.jslintAndPrint(xhr.data.toString(), file, {
             conditional: true,
             coverage: local.env.npm_config_mode_coverage
         });
@@ -3222,38 +3314,34 @@ local.buildApp = function (opt, onError) {
             !local.jslint.jslintResult.errMsg,
             local.jslint.jslintResult.errMsg
         );
-        local.fsWriteFileWithMkdirpSync(
-            "tmp/build/app" + opt2.file,
+        await local.fsWriteFileWithMkdirp(
+            "tmp/build/app/" + file,
             xhr.data,
             "wrote file - app - {{pathname}}"
         );
-        onParallel();
-    }, function (err) {
-        // handle err
-        local.assertOrThrow(!err, err);
-        // test standalone assets.app.js
-        local.fsWriteFileWithMkdirpSync(
-            "tmp/buildApp/assets.app.js",
-            local.assetsDict["/assets.app.js"],
-            "wrote file - assets.app.js - {{pathname}}"
-        );
-        local.childProcessSpawnWithTimeout("node", [
-            "assets.app.js"
-        ], {
-            cwd: "tmp/buildApp",
-            env: {
-                PATH: local.env.PATH,
-                PORT: (Math.random() * 0x10000) | 0x8000,
-                npm_config_timeout_exit: 5000
-            },
-            stdio: [
-                "ignore", "ignore", 2
-            ]
-        }).on("error", onError).on("exit", function (exitCode) {
-            // validate exitCode
-            local.assertOrThrow(!exitCode, exitCode);
-            onError();
-        });
+    }));
+    // test standalone assets.app.js
+    await local.fsWriteFileWithMkdirp(
+        "tmp/buildApp/assets.app.js",
+        local.assetsDict["/assets.app.js"],
+        "wrote file - assets.app.js - {{pathname}}"
+    );
+    require("child_process").spawn("node", [
+        "assets.app.js"
+    ], {
+        cwd: "tmp/buildApp",
+        env: {
+            PATH: local.env.PATH,
+            PORT: (Math.random() * 0x10000) | 0x8000,
+            npm_config_timeout_exit: 5000
+        },
+        stdio: [
+            "ignore", "ignore", 2
+        ]
+    }).on("error", onError).on("exit", function (exitCode) {
+        // validate exitCode
+        local.assertOrThrow(!exitCode, exitCode);
+        onError();
     });
 };
 
@@ -3625,49 +3713,6 @@ local.buildTest = function (opt, onError) {
     );
     onError();
     return result;
-};
-
-local.childProcessSpawnWithTimeout = function (command, args, opt) {
-/*
- * this function will run like child_process.spawn,
- * but with auto-timeout after timeout milliseconds
- * example use:
-    let child = local.childProcessSpawnWithTimeout(
-        "/bin/sh",
-        ["-c", "echo hello world"],
-        {stdio: ["ignore", 1, 2], timeout: 5000}
-    );
-    child.on("error", console.error);
-    child.on("exit", function (exitCode) {
-        console.error("exitCode " + exitCode);
-    });
- */
-    let child;
-    let child_process;
-    let timerTimeout;
-    child_process = require("child_process");
-    // spawn child
-    child = child_process.spawn(command, args, opt).on("exit", function () {
-        // cleanup timerTimeout
-        try {
-            process.kill(timerTimeout.pid);
-        } catch (ignore) {}
-    });
-    // init timerTimeout
-    timerTimeout = child_process.spawn(
-        // convert timeout to integer seconds with 2 second delay
-        "sleep "
-        + Math.floor(
-            0.001 * (Number(opt && opt.timeout) || local.timeoutDefault)
-            + 2
-        )
-        + "; kill -9 " + child.pid + " 2>/dev/null",
-        {
-            shell: true,
-            stdio: "ignore"
-        }
-    );
-    return child;
 };
 
 local.childProcessSpawnWithUtility2 = function (script, onError) {
@@ -4672,10 +4717,12 @@ local.jslintAutofixLocalFunction = function (code, file) {
         "coalesce",
         "fsReadFileOrDefaultSync",
         "fsRmrfSync",
+        "fsWriteFileWithMkdirp",
         "fsWriteFileWithMkdirpSync",
         "identity",
         "nop",
         "objectAssignDefault",
+        "promisify",
         "querySelector",
         "querySelectorAll"
     ].forEach(function (key) {
@@ -5409,23 +5456,6 @@ local.onParallelList = function (opt, onEach, onError) {
     onParallel.cnt += 1;
     onEach2();
     onParallel();
-};
-
-local.promisify = function (fnc) {
-/*
- * this function will promisify <fnc>
- */
-    return function (...argList) {
-        return new Promise(function (resolve, reject) {
-            fnc(...argList, function (err, ...argList) {
-                if (err) {
-                    reject(err, ...argList);
-                    return;
-                }
-                resolve(...argList);
-            });
-        });
-    };
 };
 
 local.replStart = function () {
