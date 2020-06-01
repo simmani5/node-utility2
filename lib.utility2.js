@@ -158,7 +158,7 @@
         let success;
         // do nothing if module does not exist
         try {
-            fs = require("fs").promise;
+            fs = require("fs").promises;
         } catch (ignore) {
             return;
         }
@@ -512,7 +512,7 @@ local.assetsDict["/assets.utility2.header.js"] = '\
         let success;\n\
         // do nothing if module does not exist\n\
         try {\n\
-            fs = require("fs").promise;\n\
+            fs = require("fs").promises;\n\
         } catch (ignore) {\n\
             return;\n\
         }\n\

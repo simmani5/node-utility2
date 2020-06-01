@@ -303,7 +303,7 @@ instruction
         let success;
         // do nothing if module does not exist
         try {
-            fs = require("fs").promise;
+            fs = require("fs").promises;
         } catch (ignore) {
             return;
         }
