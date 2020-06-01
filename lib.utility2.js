@@ -771,9 +771,9 @@ pre {\n\
             // cleanup <timerInterval> and <timerTimeout>\n\
             timeStart = tmp;\n\
             clearInterval(timerInterval);\n\
-            timerInterval = null;\n\
+            timerInterval = undefined;\n\
             clearTimeout(timerTimeout);\n\
-            timerTimeout = null;\n\
+            timerTimeout = undefined;\n\
             // hide ajaxProgressBar\n\
             styleBar.background = "transparent";\n\
             // hide ajaxProgressModal\n\
@@ -2893,10 +2893,13 @@ local.browserTest = function (opt, onError) {
                 Date.now() + local.timeoutDefault
             );
             // init timerTimeout
-            timerTimeout = local.onTimeout(
+            timerTimeout = setTimeout(
                 opt.gotoNext,
                 local.timeoutDefault,
-                testName
+                new Error(
+                    "timeout - " + local.timeoutDefault + " ms - "
+                    + testName
+                )
             );
             // create puppeteer browser
             local.puppeteerLaunch({
@@ -4911,15 +4914,23 @@ local.middlewareForwardProxy = function (req, res, next) {
  * this function will run middleware to forward-proxy <req>
  * to its destination-host
  */
+    let clientHeaders;
+    let clientReq;
+    let clientRes;
+    let clientUrl;
     let isDone;
     let onError;
-    let opt;
+    let timeStart;
     let timerTimeout;
     // handle preflight-cors
     if (req.method === "OPTIONS" && (
         /forward-proxy-url/
     ).test(req.headers["access-control-request-headers"])) {
-        local.serverRespondCors(req, res);
+        local.serverRespondHeadSet(req, res, undefined, {
+            "access-control-allow-headers": "*",
+            "access-control-allow-methods": "*",
+            "access-control-allow-origin": "*"
+        });
         res.end();
         return;
     }
@@ -4927,7 +4938,11 @@ local.middlewareForwardProxy = function (req, res, next) {
         next();
         return;
     }
-    local.serverRespondCors(req, res);
+    local.serverRespondHeadSet(req, res, undefined, {
+        "access-control-allow-headers": "*",
+        "access-control-allow-methods": "*",
+        "access-control-allow-origin": "*"
+    });
     // init onError
     onError = function (err) {
         if (isDone) {
@@ -4938,56 +4953,57 @@ local.middlewareForwardProxy = function (req, res, next) {
         clearTimeout(timerTimeout);
         // debug middlewareForwardProxy
         console.error("serverLog - " + JSON.stringify({
-            time: new Date(opt.timeStart).toISOString(),
+            time: new Date(timeStart).toISOString(),
             type: "middlewareForwardProxyResponse",
-            method: opt.method,
-            url: opt.url,
+            method: req.method,
+            clientUrl,
             statusCode: res.statusCode | 0,
-            timeElapsed: Date.now() - opt.timeStart,
+            timeElapsed: Date.now() - timeStart,
             // extra
-            headers: opt.headers
+            headers: clientHeaders
         }) + "\n");
         if (!err) {
             return;
         }
         // cleanup clientReq and clientRes
-        local.streamCleanup(opt.clientReq);
-        local.streamCleanup(opt.clientReq);
+        local.streamCleanup(clientReq);
+        local.streamCleanup(clientRes);
         next(err);
     };
-    // init <opt>
-    opt = local.urlParse(req.headers["forward-proxy-url"]);
-    opt.method = req.method;
-    opt.url = req.headers["forward-proxy-url"];
     // init timerTimeout
-    timerTimeout = local.onTimeout(
+    timerTimeout = setTimeout(
         onError,
         local.timeoutDefault,
-        "forward-proxy " + opt.method + " " + opt.url
+        new Error(
+            "timeout - " + local.timeoutDefault + " ms - "
+            + "forward-proxy " + req.method + " " + clientUrl
+        )
     );
-    // parse headers
-    opt.headers = {};
-    local.tryCatchOnError(function () {
-        opt.headers = JSON.parse(req.headers["forward-proxy-headers"]);
-    }, local.nop);
-    // debug opt
-    local._debugForwardProxy = opt;
-    opt.clientReq = (
-        opt.protocol === "https:"
-        ? local.https
-        : local.http
-    ).request(opt, function (clientReq) {
-        opt.clientReq = clientReq.on("error", onError);
-        res.statusCode = opt.clientReq.statusCode;
-        // pipe clientReq to res
-        opt.clientReq.pipe(res);
+    // init client
+    clientUrl = local.urlParse(req.headers["forward-proxy-url"]).href;
+    try {
+        clientHeaders = {};
+        clientHeaders = JSON.parse(req.headers["forward-proxy-headers"]);
+    } catch (ignore) {}
+    clientReq = require(
+        clientUrl.indexOf("http:") === 0
+        ? "http"
+        : "https"
+    ).request(clientUrl, {
+        headers: clientHeaders
+    }, function (arg) {
+        clientRes = arg;
+        clientRes.on("error", onError);
+        res.statusCode = clientRes.statusCode;
+        // pipe clientRes to res
+        clientRes.pipe(res);
     }).on("error", onError);
-    opt.timeStart = Date.now();
+    timeStart = Date.now();
     // handle evt
     req.on("error", onError);
     res.on("finish", onError).on("error", onError);
     // pipe req to clientReq
-    req.pipe(opt.clientReq);
+    req.pipe(clientReq);
 };
 
 local.middlewareInit = function (req, res, next) {
@@ -5024,6 +5040,7 @@ local.middlewareInit = function (req, res, next) {
         ".png": "image/png",
         ".svg": "image/svg+xml; charset=utf-8",
         // text
+        "/": "text/html; charset=utf-8",
         ".css": "text/css; charset=utf-8",
         ".htm": "text/html; charset=utf-8",
         ".html": "text/html; charset=utf-8",
@@ -5031,16 +5048,10 @@ local.middlewareInit = function (req, res, next) {
         ".txt": "text/plain; charset=utf-8"
     };
     contentType = contentType[(
-        /\.[^.]*?$|$/m
+        /^\/$|\.[^.]*?$|$/m
     ).exec(req.urlParsed.pathname)[0]];
     if (contentType) {
         res.setHeader("content-type", contentType);
-    }
-    // set main-page content-type to text/html
-    if (req.urlParsed.pathname === "/") {
-        local.serverRespondHeadSet(req, res, undefined, {
-            "Content-Type": "text/html; charset=utf-8"
-        });
     }
     // default to next
     next();
@@ -5274,16 +5285,13 @@ local.onErrorWithStack = function (onError) {
  */
     let onError2;
     let stack;
-    stack = new Error().stack.replace((
-        /(.*?)\n.*?$/m
-    ), "$1");
+    stack = new Error().stack;
     onError2 = function (err, data, meta) {
         // append current-stack to err.stack
         if (
             err
             && typeof err.stack === "string"
             && err !== local.errorDefault
-            && String(err.stack).indexOf(stack.split("\n")[2]) < 0
         ) {
             err.stack += "\n" + stack;
         }
@@ -5415,46 +5423,6 @@ local.onParallelList = function (opt, onEach, onError) {
     onParallel.cnt += 1;
     onEach2();
     onParallel();
-};
-
-local.onTimeout = function (onError, timeout, message) {
-/*
- * this function will create <timeout>-handler,
- * that appends current-stack to any err encountered
- */
-    onError = local.onErrorWithStack(onError);
-    // create timerTimeout
-    return setTimeout(function () {
-        onError(new Error("onTimeout - " + timeout + " ms - " + message));
-    // coerce to finite integer
-    }, timeout);
-};
-
-local.profile = function (fnc, onError) {
-/*
- * this function will profile async <fnc> in milliseconds
- * with callback <onError>
- */
-    let timeStart;
-    timeStart = Date.now();
-    // run async fnc
-    fnc(function (err) {
-        // call onError with difference in milliseconds
-        // between Date.now() and timeStart
-        onError(err, Date.now() - timeStart);
-    });
-};
-
-local.profileSync = function (fnc) {
-/*
- * this function will profile sync <fnc> in milliseconds
- */
-    let timeStart;
-    timeStart = Date.now();
-    // run sync fnc
-    fnc();
-    // return difference in milliseconds between Date.now() and timeStart
-    return Date.now() - timeStart;
 };
 
 local.promisify = function (fnc) {
@@ -5922,82 +5890,6 @@ instruction\n\
     return module.exports;
 };
 
-local.semverCompare = function (aa, bb) {
-/*
- * this function will compare semver versions aa ? bb and return
- * -1 if aa < bb
- *  0 if aa = bb
- *  1 if aa > bb
- * https://semver.org/#spec-item-11
- * example use:
-    semverCompare("2.2.2", "10.2.2"); // -1
-    semverCompare("1.2.3", "1.2.3");  //  0
-    semverCompare("10.2.2", "2.2.2"); //  1
- */
-    let ii;
-    let len;
-    [
-        aa, bb
-    ] = [
-        aa, bb
-    ].map(function (val) {
-        val = (
-            /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z\-][0-9a-zA-Z\-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z\-][0-9a-zA-Z\-]*))*))?(?:\+([0-9a-zA-Z\-]+(?:\.[0-9a-zA-Z\-]+)*))?$/
-        ).exec(val) || [
-            "", "", "", ""
-        ];
-        val[4] = val[4] || "";
-        return val.slice(1, 4).concat(val[4].split("."));
-    });
-    ii = -1;
-    len = Math.max(aa.length, bb.length);
-    while (true) {
-        ii += 1;
-        if (ii >= len) {
-            return 0;
-        }
-        aa[ii] = aa[ii] || "";
-        bb[ii] = bb[ii] || "";
-        if (ii === 3 && aa[ii] !== bb[ii]) {
-            // 1.2.3 > 1.2.3-alpha
-            if (!aa[ii]) {
-                return 1;
-            }
-            // 1.2.3-alpha < 1.2.3
-            if (!bb[ii]) {
-                return -1;
-            }
-        }
-        if (aa[ii] !== bb[ii]) {
-            aa = aa[ii];
-            bb = bb[ii];
-            return (
-                Number(aa) < Number(bb)
-                ? -1
-                : Number(aa) > Number(bb)
-                ? 1
-                : aa < bb
-                ? -1
-                : 1
-            );
-        }
-    }
-};
-
-local.serverRespondCors = function (req, res) {
-/*
- * this function will enable cors for <req>
- * http://en.wikipedia.org/wiki/Cross-origin_resource_sharing
- */
-    local.serverRespondHeadSet(req, res, undefined, local.jsonCopy({
-        "access-control-allow-headers":
-        req.headers["access-control-request-headers"],
-        "access-control-allow-methods":
-        req.headers["access-control-request-method"],
-        "access-control-allow-origin": "*"
-    }));
-};
-
 local.serverRespondDefault = function (req, res, statusCode, err) {
 /*
  * this function will respond with a default message,
@@ -6103,10 +5995,14 @@ local.serverRespondTimeoutDefault = function (req, res, timeout) {
         }, 1000);
     };
     // init timerTimeout
-    req.timerTimeout = local.onTimeout(
+    timeout = timeout || local.timeoutDefault;
+    req.timerTimeout = setTimeout(
         req.onTimeout,
-        timeout || local.timeoutDefault,
-        "server " + req.method + " " + req.url
+        timeout,
+        new Error(
+            "timeout - " + timeout + " ms - "
+            + "server " + req.method + " " + req.url
+        )
     );
     res.contentLength = 0;
     res.writeContentLength = res.writeContentLength || res.write;
@@ -7087,10 +6983,13 @@ local.testRunDefault = function (opt) {
         };
         testCase = testCase.elem;
         // init timerTimeout
-        timerTimeout = local.onTimeout(
+        timerTimeout = setTimeout(
             onError,
             local.timeoutDefault,
-            testCase.name
+            new Error(
+                "timeout - " + local.timeoutDefault + " ms - "
+                + testCase.name
+            )
         );
         // increment number of tests remaining
         onParallel.cnt += 1;

@@ -57,7 +57,9 @@ this zero-dependency package will provide high-level functions to to build, test
 
 #### changelog 2020.5.31
 - npm publish 2020.5.31
-- remove functions local.querySelector, local.querySelectorAll
+- rename shell-function shPackageJsonVersionUpdate to shPackageJsonVersionIncrement
+- inline functions middlewareForwardProxy, onTimeout, semverCompare, serverRespondCors
+- remove functions profile, profileSync, local.querySelector, local.querySelectorAll
 - replace function fsReadFileOrEmptyStringSync with fsReadFileOrDefaultSync
 - remove dependency to file lib.swgg.js
 - inline object local.contentTypeDict
@@ -740,9 +742,9 @@ pre {\n\
             // cleanup <timerInterval> and <timerTimeout>\n\
             timeStart = tmp;\n\
             clearInterval(timerInterval);\n\
-            timerInterval = null;\n\
+            timerInterval = undefined;\n\
             clearTimeout(timerTimeout);\n\
-            timerTimeout = null;\n\
+            timerTimeout = undefined;\n\
             // hide ajaxProgressBar\n\
             styleBar.background = "transparent";\n\
             // hide ajaxProgressModal\n\

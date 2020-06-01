@@ -494,7 +494,7 @@ shBuildCi () {(set -e
             rm -f package-lock.json
             git add .
             # increment $npm_package_version
-            shPackageJsonVersionUpdate today publishedIncrement
+            shPackageJsonVersionIncrement today
             # update file touch.txt
             printf "$(shDateIso)\n" > .touch.txt
             git add -f .touch.txt
@@ -517,7 +517,7 @@ shBuildCi () {(set -e
             ;;
         "[npm publishAfterCommitAfterBuild]"*)
             # increment $npm_package_version
-            shPackageJsonVersionUpdate today publishedIncrement
+            shPackageJsonVersionIncrement today
             # update file touch.txt
             printf "$(shDateIso)\n" > .touch.txt
             git add -f .touch.txt
@@ -2032,7 +2032,7 @@ require("fs").writeFileSync(
 );
 }());
 ' "$MESSAGE"
-    shPackageJsonVersionUpdate "" publishedIncrement
+    shPackageJsonVersionIncrement
     npm publish
     npm deprecate "$NAME" "$MESSAGE"
 )}
@@ -2246,51 +2246,120 @@ shNpmTestPublished () {(set -e
     npm test --mode-coverage
 )}
 
-shPackageJsonVersionUpdate () {(set -e
-# this function will increment the package.json version before npm-publish
-    node -e "$UTILITY2_MACRO_JS"'
+shPackageJsonVersionIncrement () {(set -e
+# this function will increment package.json version
+    node -e '
 /* jslint utility2:true */
-(function (local) {
+(function () {
 "use strict";
 let aa;
 let bb;
+let cc;
+let dd;
+let ii;
 let packageJson;
+let result;
 packageJson = require("./package.json");
-aa = String(process.argv[1] || packageJson.version).replace((
+// increment packageJson.version
+aa = packageJson.version.replace((
+    /^(\d+?\.\d+?\.)(\d+)(\.*?)$/
+), function (ignore, match1, match2, match3) {
+    return match1 + (Number(match2) + 1) + match3;
+});
+bb = String(process.argv[1] || packageJson.version).replace((
     /^today$/
 ), new Date().toISOString().replace((
     /T.*?$/
 ), "").replace((
     /-0?/g
 ), "."));
-bb = String(process.argv[2] || "0.0.0").replace((
-    /^(\d+?\.\d+?\.)(\d+)(\.*?)$/
-), function (ignore, match1, match2, match3) {
-    return match1 + (Number(match2) + 1) + match3;
+[
+    aa, bb
+] = [
+    aa, bb
+].map(function (aa) {
+    // filter "+" metadata
+    // https://semver.org/#spec-item-10
+    aa = aa.split("+")[0];
+    // normalize x.y.z
+    aa = aa.split(".");
+    while (aa.length < 3) {
+        aa.push("0");
+    }
+    // split "-" pre-release-identifier
+    // https://semver.org/#spec-item-9
+    aa = [].concat(aa.slice(0, 2), aa.slice(2).join(".").split("-"));
+    // normalize x.y.z
+    ii = 0;
+    while (ii < 3) {
+        aa[ii] = String(aa[ii] | 0);
+        ii += 1;
+    }
+    return aa.map(function (aa) {
+        return (
+            Number.isFinite(aa)
+            ? Number(aa)
+            : aa
+        );
+    });
 });
-packageJson.version = (
-    local.semverCompare(aa, bb) === 1
-    ? aa
-    : bb
-);
+// compare precedence
+// https://semver.org/#spec-item-11
+result = aa;
+ii = 0;
+while (ii < Math.max(aa.length, bb.length)) {
+    cc = aa[ii];
+    dd = bb[ii];
+    if (
+        dd === undefined
+        || (typeof cc !== "number" && typeof dd === "number")
+    ) {
+        result = bb;
+        break;
+    }
+    if (
+        cc === undefined
+        || (typeof cc === "number" && typeof dd !== "number")
+    ) {
+        result = aa;
+        break;
+    }
+    if (cc < dd) {
+        result = bb;
+        break;
+    }
+    if (cc > dd) {
+        result = aa;
+        break;
+    }
+    ii += 1;
+}
+[
+    aa, bb, result
+] = [
+    aa, bb, result
+].map(function (aa) {
+    return aa[0] + "." + aa[1] + "." + aa.slice(2).join("-");
+});
+packageJson.version = result;
 console.error([
-    aa, bb, packageJson.version
+    aa, bb, result
 ]);
 // update package.json
 require("fs").writeFileSync(
     "package.json",
-    JSON.stringify(packageJson, null, 4) + "\n"
+    JSON.stringify(packageJson, undefined, 4) + "\n"
 );
 // update README.md
 require("fs").writeFileSync(
     "README.md",
     require("fs").readFileSync("README.md", "utf8").replace((
         /^(####\u0020changelog\u0020|-\u0020npm\u0020publish\u0020|\u0020{4}"version":\u0020")\d+?\.\d+?\.\d[^\n",]*/gm
-    ), "$1" + packageJson.version, null)
+    ), "$1" + packageJson.version, undefined)
 );
-console.error("shPackageJsonVersionUpdate - " + packageJson.version);
-}(globalThis.globalLocal));
-' "$1" "$([ "$2" = publishedIncrement ] && npm info "" version 2>/dev/null)"
+console.error("shPackageJsonVersionIncrement - " + packageJson.version);
+}());
+' "$1"
 )}
 
 shPasswordRandom () {(set -e
@@ -4300,16 +4369,13 @@ local.onErrorWithStack = function (onError) {
  */
     let onError2;
     let stack;
-    stack = new Error().stack.replace((
-        /(.*?)\n.*?$/m
-    ), "$1");
+    stack = new Error().stack;
     onError2 = function (err, data, meta) {
         // append current-stack to err.stack
         if (
             err
             && typeof err.stack === "string"
             && err !== local.errorDefault
-            && String(err.stack).indexOf(stack.split("\n")[2]) < 0
         ) {
             err.stack += "\n" + stack;
         }
@@ -4432,54 +4498,71 @@ local.semverCompare = function (aa, bb) {
     semverCompare("1.2.3", "1.2.3");  //  0
     semverCompare("10.2.2", "2.2.2"); //  1
  */
+    let cc;
+    let dd;
     let ii;
-    let len;
+    let result;
     [
         aa, bb
     ] = [
         aa, bb
-    ].map(function (val) {
-        val = (
-            /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z\-][0-9a-zA-Z\-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z\-][0-9a-zA-Z\-]*))*))?(?:\+([0-9a-zA-Z\-]+(?:\.[0-9a-zA-Z\-]+)*))?$/
-        ).exec(val) || [
-            "", "", "", ""
-        ];
-        val[4] = val[4] || "";
-        return val.slice(1, 4).concat(val[4].split("."));
-    });
-    ii = -1;
-    len = Math.max(aa.length, bb.length);
-    while (true) {
-        ii += 1;
-        if (ii >= len) {
-            return 0;
+    ].map(function (aa) {
+        // filter "+" metadata
+        // https://semver.org/#spec-item-10
+        aa = aa.split("+")[0];
+        // normalize x.y.z
+        aa = aa.split(".");
+        while (aa.length < 3) {
+            aa.push("0");
         }
-        aa[ii] = aa[ii] || "";
-        bb[ii] = bb[ii] || "";
-        if (ii === 3 && aa[ii] !== bb[ii]) {
-            // 1.2.3 > 1.2.3-alpha
-            if (!aa[ii]) {
-                return 1;
-            }
-            // 1.2.3-alpha < 1.2.3
-            if (!bb[ii]) {
-                return -1;
-            }
+        // split "-" pre-release-identifier
+        // https://semver.org/#spec-item-9
+        aa = [].concat(aa.slice(0, 2), aa.slice(2).join(".").split("-"));
+        // normalize x.y.z
+        ii = 0;
+        while (ii < 3) {
+            aa[ii] = String(aa[ii] | 0);
+            ii += 1;
         }
-        if (aa[ii] !== bb[ii]) {
-            aa = aa[ii];
-            bb = bb[ii];
+        return aa.map(function (aa) {
             return (
-                Number(aa) < Number(bb)
-                ? -1
-                : Number(aa) > Number(bb)
-                ? 1
-                : aa < bb
-                ? -1
-                : 1
+                Number.isFinite(aa)
+                ? Number(aa)
+                : aa
             );
+        });
+    });
+    result = aa;
+    ii = 0;
+    while (ii < Math.max(aa.length, bb.length)) {
+        cc = aa[ii];
+        dd = bb[ii];
+        if (
+            dd === undefined
+            || (typeof cc !== "number" && typeof dd === "number")
+        ) {
+            result = bb;
+            break;
         }
+        if (
+            cc === undefined
+            || (typeof cc === "number" && typeof dd !== "number")
+        ) {
+            result = aa;
+            break;
+        }
+        if (cc < dd) {
+            result = bb;
+            break;
+        }
+        if (cc > dd) {
+            result = aa;
+            break;
+        }
+        ii += 1;
     }
+    result = result[0] + "." + result[1] + "." + result.slice(2).join("-");
+    return result;
 };
 
 local.stringHtmlSafe = function (str) {

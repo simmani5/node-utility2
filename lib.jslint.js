@@ -509,16 +509,13 @@ local.onErrorWithStack = function (onError) {
  */
     let onError2;
     let stack;
-    stack = new Error().stack.replace((
-        /(.*?)\n.*?$/m
-    ), "$1");
+    stack = new Error().stack;
     onError2 = function (err, data, meta) {
         // append current-stack to err.stack
         if (
             err
             && typeof err.stack === "string"
             && err !== local.errorDefault
-            && String(err.stack).indexOf(stack.split("\n")[2]) < 0
         ) {
             err.stack += "\n" + stack;
         }

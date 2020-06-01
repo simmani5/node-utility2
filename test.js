@@ -2144,57 +2144,6 @@ local.testCase_onParallel_default = function (opt, onError) {
     onParallel(null, opt);
 };
 
-local.testCase_onTimeout_timeout = function (opt, onError) {
-/*
- * this function will test onTimeout's timeout handling-behavior
- */
-    opt = local.timeElapsedStart();
-    local.onTimeout(function (err) {
-        // handle err
-        local.assertOrThrow(err, err);
-        // validate err.message
-        local.assertOrThrow(
-            err.message.indexOf("testCase_onTimeout_timeout") >= 0,
-            err
-        );
-        // poll timeElapsed
-        local.timeElapsedPoll(opt);
-        // validate timeElapsed passed is greater than timeout
-        local.assertOrThrow(opt.timeElapsed >= 1000, opt);
-        onError(undefined, opt);
-    }, 1000, "testCase_onTimeout_timeout");
-};
-
-local.testCase_profileXxx_default = function (opt, onError) {
-/*
- * this function will test profileXxx's default handling-behavior
- */
-    opt = {};
-    // test profileSync's handling-behavior
-    opt.timeElapsed = local.profileSync(function () {
-        return;
-    });
-    // validate timeElapsed
-    local.assertOrThrow(
-        0 <= opt.timeElapsed && opt.timeElapsed < 1000,
-        opt.timeElapsed
-    );
-    // test profile's async handling-behavior
-    local.profile(function (onError) {
-        setTimeout(onError);
-    }, function (err, timeElapsed) {
-        // handle err
-        local.assertOrThrow(!err, err);
-        opt.timeElapsed = timeElapsed;
-        // validate timeElapsed
-        local.assertOrThrow((
-            0 <= opt.timeElapsed
-            && opt.timeElapsed < local.timeoutDefault
-        ), opt.timeElapsed);
-        onError(undefined, opt);
-    });
-};
-
 local.testCase_replStart_default = function (opt, onError) {
 /*
  * this function will test replStart's default handling-behavior
@@ -2296,76 +2245,6 @@ local.testCase_requireReadme_start = function (opt, onError) {
         local.assertOrThrow(local._testCase_requireReadme_start === local);
         onError(undefined, opt);
     }, onError);
-};
-
-local.testCase_semverCompare_default = function (opt, onError) {
-/*
- * this function will test semverCompare's default handling-behavior
- */
-    // test aa = bb
-    opt = [
-        [
-            "",
-            "1",
-            "1.2",
-            null,
-            undefined
-        ],
-        [
-            "1.2.3",
-            "1.2.3+aa"
-        ],
-        [
-            "1.2.3-aa",
-            "1.2.3-aa+bb"
-        ]
-    ];
-    opt.forEach(function ([
-        aa, bb
-    ]) {
-        local.assertOrThrow(
-            local.semverCompare(aa, bb) === 0,
-            [
-                aa, bb, local.semverCompare(aa, bb)
-            ]
-        );
-    });
-    // test aa < bb
-    opt = [
-        "syntax-err",
-        "1.0.0-alpha",
-        "1.0.0-alpha.1",
-        "1.0.0-alpha.beta",
-        "1.0.0-beta",
-        "1.0.0-beta.2",
-        "1.0.0-beta.11",
-        "1.0.0-rc.1",
-        "1.0.0",
-        "2.2.2",
-        "2.2.10",
-        "2.10.2",
-        "10.2.2"
-    ];
-    opt.reduce(function (aa, bb) {
-        local.assertOrThrow(
-            local.semverCompare(aa, bb) === -1,
-            [
-                aa, bb, local.semverCompare(aa, bb)
-            ]
-        );
-        return bb;
-    });
-    // test aa > bb
-    opt.reverse().reduce(function (aa, bb) {
-        local.assertOrThrow(
-            local.semverCompare(aa, bb) === 1,
-            [
-                aa, bb, local.semverCompare(aa, bb)
-            ]
-        );
-        return bb;
-    });
-    onError(undefined, opt);
 };
 
 local.testCase_serverRespondTimeoutDefault_timeout = function (
