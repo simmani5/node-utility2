@@ -3324,7 +3324,7 @@ local.buildApp = async function (opt, onError) {
         local.assetsDict["/assets.app.js"],
         "wrote file - assets.app.js - {{pathname}}"
     );
-    require("child_process").spawn("node", [
+    local.child_process.spawn("node", [
         "assets.app.js"
     ], {
         cwd: "tmp/buildApp",

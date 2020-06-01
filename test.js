@@ -1124,34 +1124,6 @@ local.testCase_childProcessSpawnWithTimeout_default = function (
     onParallel(null, opt);
 };
 
-local.testCase_childProcessSpawnWithUtility2_err = function (
-    opt,
-    onError
-) {
-/*
- * this function will test
- * childProcessSpawnWithTimeout's err handling-behavior
- */
-    if (local.isBrowser) {
-        onError(undefined, opt);
-        return;
-    }
-    local.testMock([
-        // test __dirname handling-behavior
-        [
-            process.env, {
-                npm_config_dir_utility2: ""
-            }
-        ]
-    ], function (onError) {
-        local.local.childProcessSpawnWithUtility2("undefined", function (err) {
-            // handle err
-            local.assertOrThrow(err, err);
-        });
-        onError(undefined, opt);
-    }, onError);
-};
-
 local.testCase_cliRun_default = function (opt, onError) {
 /*
  * this function will test cliRun's default handling-behavior

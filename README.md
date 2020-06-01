@@ -66,6 +66,7 @@ this zero-dependency package will provide high-level functions to to build, test
 - rename shell-function shPackageJsonVersionUpdate to shPackageJsonVersionIncrement
 - remove functions
     childProcessSpawnWithTimeout,
+    childProcessSpawnWithUtility2,
     functionOrNop,
     local.querySelector,
     local.querySelectorAll,
