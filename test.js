@@ -97,7 +97,7 @@
             return dflt;
         }
         pathname = require("path").resolve(pathname);
-        // try to read <pathname>
+        // try to read pathname
         try {
             return (
                 type === "json"
@@ -140,11 +140,12 @@
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
+        let success;
         // do nothing if module does not exist
         try {
             fs = require("fs");
@@ -152,27 +153,23 @@
             return;
         }
         pathname = require("path").resolve(pathname);
-        // try to write <pathname>
+        // try to write pathname
         try {
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         } catch (ignore) {
             // mkdir -p
             fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // re-write <pathname>
+            // re-write pathname
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         }
-    };
-    local.functionOrNop = function (fnc) {
-    /*
-     * this function will if <fnc> exists,
-     * return <fnc>,
-     * else return <nop>
-     */
-        return fnc || local.nop;
+        if (success && msg) {
+            console.error(msg.replace("{{pathname}}", pathname));
+        }
+        return success;
     };
     local.identity = function (val) {
     /*
@@ -186,22 +183,33 @@
      */
         return;
     };
-    local.objectAssignDefault = function (target, source) {
+    local.objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
     /*
-     * this function will if items from <target> are null, undefined, or "",
-     * then overwrite them with items from <source>
+     * this function will if items from <tgt> are null, undefined, or "",
+     * then overwrite them with items from <src>
      */
-        target = target || {};
-        Object.keys(source || {}).forEach(function (key) {
-            if (
-                target[key] === null
-                || target[key] === undefined
-                || target[key] === ""
-            ) {
-                target[key] = target[key] || source[key];
-            }
-        });
-        return target;
+        let recurse;
+        recurse = function (tgt, src, depth) {
+            Object.entries(src).forEach(function ([
+                key, bb
+            ]) {
+                let aa;
+                aa = tgt[key];
+                if (aa === undefined || aa === null || aa === "") {
+                    tgt[key] = bb;
+                    return;
+                }
+                if (
+                    depth !== 0
+                    && typeof aa === "object" && aa && !Array.isArray(aa)
+                    && typeof bb === "object" && bb && !Array.isArray(bb)
+                ) {
+                    recurse(aa, bb, depth - 1);
+                }
+            });
+        };
+        recurse(tgt, src, depth | 0);
+        return tgt;
     };
     // require builtin
     if (!local.isBrowser) {
@@ -1792,130 +1800,6 @@ local.testCase_objectAssignRecurse_default = function (opt, onError) {
     onError(undefined, opt);
 };
 
-local.testCase_objectSetDefault_default = function (opt, onError) {
-/*
- * this function will test objectSetDefault's default handling-behavior
- */
-    // test null-case handling-behavior
-    local.objectSetDefault();
-    local.objectSetDefault({});
-    // test falsy handling-behavior
-    [
-        "", 0, false, null, undefined
-    ].forEach(function (aa) {
-        [
-            "", 0, false, null, undefined
-        ].forEach(function (bb) {
-            local.assertJsonEqual(
-                local.objectSetDefault({
-                    data: aa
-                }, {
-                    data: bb
-                }).data,
-                (aa === 0 || aa === false || bb === undefined)
-                ? aa
-                : bb
-            );
-        });
-    });
-    // test non-recursive handling-behavior
-    local.assertJsonEqual(local.objectSetDefault({
-        aa: 0,
-        bb: {
-            cc: 1
-        },
-        cc: {
-            dd: {}
-        },
-        dd: [
-            1, 1
-        ],
-        ee: [
-            1, 1
-        ]
-    }, {
-        aa: 2,
-        bb: {
-            dd: 2
-        },
-        cc: {
-            dd: {
-                ee: 2
-            }
-        },
-        dd: [
-            2, 2
-        ],
-        ee: {
-            ff: 2
-        }
-    // test default-depth handling-behavior
-    }, null), {
-        aa: 0,
-        bb: {
-            cc: 1
-        },
-        cc: {
-            dd: {}
-        },
-        dd: [
-            1, 1
-        ],
-        ee: [
-            1, 1
-        ]
-    });
-    // test recursive handling-behavior
-    local.assertJsonEqual(local.objectSetDefault({
-        aa: 0,
-        bb: {
-            cc: 1
-        },
-        cc: {
-            dd: {}
-        },
-        dd: [
-            1, 1
-        ],
-        ee: [
-            1, 1
-        ]
-    }, {
-        aa: 2,
-        bb: {
-            dd: 2
-        },
-        cc: {
-            dd: {
-                ee: 2
-            }
-        },
-        dd: [
-            2, 2
-        ],
-        ee: {
-            ff: 2
-        }
-    // test depth handling-behavior
-    }, 2), {
-        aa: 0,
-        bb: {
-            cc: 1,
-            dd: 2
-        },
-        cc: {
-            dd: {}
-        },
-        dd: [
-            1, 1
-        ],
-        ee: [
-            1, 1
-        ]
-    });
-    onError(undefined, opt);
-};
-
 local.testCase_onErrorDefault_default = function (opt, onError) {
 /*
  * this function will test onErrorDefault's default handling-behavior
@@ -2844,7 +2728,7 @@ if (process.argv[2]) {
     }
     // start
     process.argv.splice(1, 1);
-    process.argv[1] = local.path.resolve(process.cwd(), process.argv[1]);
+    process.argv[1] = local.path.resolve(process.argv[1]);
     local.Module.runMain();
 }
 // runme

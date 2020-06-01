@@ -107,7 +107,7 @@
             return dflt;
         }
         pathname = require("path").resolve(pathname);
-        // try to read <pathname>
+        // try to read pathname
         try {
             return (
                 type === "json"
@@ -150,11 +150,12 @@
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
+        let success;
         // do nothing if module does not exist
         try {
             fs = require("fs");
@@ -162,27 +163,23 @@
             return;
         }
         pathname = require("path").resolve(pathname);
-        // try to write <pathname>
+        // try to write pathname
         try {
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         } catch (ignore) {
             // mkdir -p
             fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // re-write <pathname>
+            // re-write pathname
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         }
-    };
-    local.functionOrNop = function (fnc) {
-    /*
-     * this function will if <fnc> exists,
-     * return <fnc>,
-     * else return <nop>
-     */
-        return fnc || local.nop;
+        if (success && msg) {
+            console.error(msg.replace("{{pathname}}", pathname));
+        }
+        return success;
     };
     local.identity = function (val) {
     /*
@@ -196,22 +193,33 @@
      */
         return;
     };
-    local.objectAssignDefault = function (target, source) {
+    local.objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
     /*
-     * this function will if items from <target> are null, undefined, or "",
-     * then overwrite them with items from <source>
+     * this function will if items from <tgt> are null, undefined, or "",
+     * then overwrite them with items from <src>
      */
-        target = target || {};
-        Object.keys(source || {}).forEach(function (key) {
-            if (
-                target[key] === null
-                || target[key] === undefined
-                || target[key] === ""
-            ) {
-                target[key] = target[key] || source[key];
-            }
-        });
-        return target;
+        let recurse;
+        recurse = function (tgt, src, depth) {
+            Object.entries(src).forEach(function ([
+                key, bb
+            ]) {
+                let aa;
+                aa = tgt[key];
+                if (aa === undefined || aa === null || aa === "") {
+                    tgt[key] = bb;
+                    return;
+                }
+                if (
+                    depth !== 0
+                    && typeof aa === "object" && aa && !Array.isArray(aa)
+                    && typeof bb === "object" && bb && !Array.isArray(bb)
+                ) {
+                    recurse(aa, bb, depth - 1);
+                }
+            });
+        };
+        recurse(tgt, src, depth | 0);
+        return tgt;
     };
     // require builtin
     if (!local.isBrowser) {
@@ -470,7 +478,7 @@ local.ajax = function (opt, onError) {
     /*
      * this function will init xhr
      */
-        // init <opt>
+        // init opt
         Object.keys(opt).forEach(function (key) {
             if (key[0] !== "_") {
                 xhr[key] = opt[key];
@@ -593,7 +601,10 @@ local.ajax = function (opt, onError) {
         xhr.upload.addEventListener("progress", ajaxProgressUpdate);
     }
     // open url - corsForwardProxyHost
-    if (local.functionOrNop(local2.corsForwardProxyHostIfNeeded)(xhr)) {
+    if (
+        local2.corsForwardProxyHostIfNeeded
+        && local2.corsForwardProxyHostIfNeeded(xhr)
+    ) {
         xhr.open(xhr.method, local2.corsForwardProxyHostIfNeeded(xhr));
         xhr.setRequestHeader(
             "forward-proxy-headers",

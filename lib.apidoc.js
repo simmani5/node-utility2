@@ -107,7 +107,7 @@
             return dflt;
         }
         pathname = require("path").resolve(pathname);
-        // try to read <pathname>
+        // try to read pathname
         try {
             return (
                 type === "json"
@@ -150,11 +150,12 @@
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
+        let success;
         // do nothing if module does not exist
         try {
             fs = require("fs");
@@ -162,27 +163,23 @@
             return;
         }
         pathname = require("path").resolve(pathname);
-        // try to write <pathname>
+        // try to write pathname
         try {
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         } catch (ignore) {
             // mkdir -p
             fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // re-write <pathname>
+            // re-write pathname
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         }
-    };
-    local.functionOrNop = function (fnc) {
-    /*
-     * this function will if <fnc> exists,
-     * return <fnc>,
-     * else return <nop>
-     */
-        return fnc || local.nop;
+        if (success && msg) {
+            console.error(msg.replace("{{pathname}}", pathname));
+        }
+        return success;
     };
     local.identity = function (val) {
     /*
@@ -196,22 +193,33 @@
      */
         return;
     };
-    local.objectAssignDefault = function (target, source) {
+    local.objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
     /*
-     * this function will if items from <target> are null, undefined, or "",
-     * then overwrite them with items from <source>
+     * this function will if items from <tgt> are null, undefined, or "",
+     * then overwrite them with items from <src>
      */
-        target = target || {};
-        Object.keys(source || {}).forEach(function (key) {
-            if (
-                target[key] === null
-                || target[key] === undefined
-                || target[key] === ""
-            ) {
-                target[key] = target[key] || source[key];
-            }
-        });
-        return target;
+        let recurse;
+        recurse = function (tgt, src, depth) {
+            Object.entries(src).forEach(function ([
+                key, bb
+            ]) {
+                let aa;
+                aa = tgt[key];
+                if (aa === undefined || aa === null || aa === "") {
+                    tgt[key] = bb;
+                    return;
+                }
+                if (
+                    depth !== 0
+                    && typeof aa === "object" && aa && !Array.isArray(aa)
+                    && typeof bb === "object" && bb && !Array.isArray(bb)
+                ) {
+                    recurse(aa, bb, depth - 1);
+                }
+            });
+        };
+        recurse(tgt, src, depth | 0);
+        return tgt;
     };
     // require builtin
     if (!local.isBrowser) {
@@ -443,7 +451,7 @@ local.moduleDirname = function (module, pathList) {
  * this function will search <pathList> for <module>'s __dirname
  */
     let result;
-    // search process.cwd()
+    // search "."
     if (!module || module === "." || module.indexOf("/") >= 0) {
         return require("path").resolve(module || "");
     }
@@ -464,48 +472,6 @@ local.moduleDirname = function (module, pathList) {
         }
     });
     return result;
-};
-
-local.objectSetDefault = function (dict, defaults, depth) {
-/*
- * this function will recursively set defaults for undefined-items in dict
- */
-    dict = dict || {};
-    defaults = defaults || {};
-    Object.keys(defaults).forEach(function (key) {
-        let defaults2;
-        let dict2;
-        dict2 = dict[key];
-        // handle misbehaving getter
-        try {
-            defaults2 = defaults[key];
-        } catch (ignore) {}
-        if (defaults2 === undefined) {
-            return;
-        }
-        // init dict[key] to default value defaults[key]
-        switch (dict2) {
-        case "":
-        case null:
-        case undefined:
-            dict[key] = defaults2;
-            return;
-        }
-        // if dict2 and defaults2 are both non-undefined and non-array objects,
-        // then recurse with dict2 and defaults2
-        if (
-            depth > 1
-            // dict2 is a non-undefined and non-array object
-            && typeof dict2 === "object" && dict2 && !Array.isArray(dict2)
-            // defaults2 is a non-undefined and non-array object
-            && typeof defaults2 === "object" && defaults2
-            && !Array.isArray(defaults2)
-        ) {
-            // recurse
-            local.objectSetDefault(dict2, defaults2, depth - 1);
-        }
-    });
-    return dict;
 };
 
 local.stringHtmlSafe = function (str) {
@@ -726,7 +692,7 @@ local.templateRender = function (template, dict, opt, ii) {
         );
         match = rgx.exec(template);
     }
-    // search for keys in the template
+    // search for keys in template
     return template.replace((
         /\{\{[^}]+?\}\}/g
     ), function (match0) {
@@ -849,7 +815,7 @@ local.templateRender = function (template, dict, opt, ii) {
 
 local.tryCatchOnError = function (fnc, onError) {
 /*
- * this function will run the fnc in a tryCatch block,
+ * this function will run <fnc> in tryCatch block,
  * else call onError with errCaught
  */
     let result;
@@ -1011,7 +977,7 @@ local.apidocCreate = function (opt) {
         opt.dir,
         opt.modulePathList || require("module").paths
     );
-    local.objectSetDefault(opt, {
+    local.objectAssignDefault(opt, {
         env: {
             npm_package_description: ""
         },
@@ -1044,7 +1010,7 @@ local.apidocCreate = function (opt) {
             opt.env["npm_package_" + key] = tmp;
         }
     });
-    local.objectSetDefault(opt, {
+    local.objectAssignDefault(opt, {
         blacklistDict: {
             globalThis
         },
@@ -1136,7 +1102,7 @@ vendor\\)s\\{0,1\\}\\(\\b\\|_\\)\
         }());
     }
     // normalize moduleMain
-    moduleMain = local.objectSetDefault(tmp, moduleMain);
+    moduleMain = local.objectAssignDefault(tmp, moduleMain);
     opt.moduleDict[opt.env.npm_package_name] = moduleMain;
     // init circularSet - builtins
     [

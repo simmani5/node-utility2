@@ -2383,6 +2383,7 @@ shRawLibFetch () {(set -e
 /* jslint utility2:true */
 (function () {
 "use strict";
+let child_process;
 let footer;
 let fs;
 let header;
@@ -2419,6 +2420,7 @@ normalizeWhitespace = function (str) {
     });
     return str;
 };
+child_process = require("child_process");
 fs = require("fs");
 https = require("https");
 path = require("path");
@@ -2448,11 +2450,15 @@ opt = JSON.parse(opt[1].replace((
 ), "").replace((
     /\u0020\/\/\u0020jslint\u0020ignore:line$/gm
 ), ""));
-opt.urlList.forEach(function (url, repo) {
-    repo = url.split("/").slice(0, 7).join("/");
+opt.fetchList.forEach(function (elem) {
+    let repo;
+    if (!elem.url) {
+        return;
+    }
+    repo = elem.url.split("/").slice(0, 7).join("/");
     if (!repoDict.hasOwnProperty(repo)) {
         repoDict[repo] = {
-            urlList: []
+            fetchList: []
         };
         https.request(repo.replace(
             "/blob/",
@@ -2470,26 +2476,37 @@ opt.urlList.forEach(function (url, repo) {
         }).end();
     }
     repo = repoDict[repo];
-    repo.urlList.push(url);
+    repo.fetchList.push(elem);
 });
 Object.entries(repoDict).forEach(function ([
     prefix, repo
 ], ii) {
     repo.prefix = prefix;
-    repo.urlList.forEach(function (url, jj) {
-        https.request(url.replace(
+    repo.fetchList.forEach(function (elem, jj) {
+        let file;
+        file = fs.createWriteStream(
+            process.env.DIR
+            + "/"
+            + String(ii).padStart(2, "0")
+            + "__"
+            + String(jj).padStart(2, "0")
+            + "__"
+            + elem.url.split("/").slice(7).join("__")
+        );
+        if (elem.sh) {
+            child_process.spawn(elem.sh, {
+                shell: true,
+                stdio: [
+                    "ignore", "pipe", 2
+                ]
+            }).stdout.pipe(file);
+            return;
+        }
+        https.request(elem.url.replace(
             "https://github.com/",
             "https://raw.githubusercontent.com/"
         ).replace("/blob/", "/"), function (res) {
-            res.pipe(fs.createWriteStream(
-                process.env.DIR
-                + "/"
-                + String(ii).padStart(2, "0")
-                + "__"
-                + String(jj).padStart(2, "0")
-                + "__"
-                + url.split("/").slice(7).join("__")
-            ));
+            res.pipe(file);
         }).end();
     });
 });
@@ -2506,7 +2523,7 @@ process.on("exit", function () {
         let prefix;
         let repo;
         repo = Object.values(repoDict)[Number(data.slice(0, 2))];
-        file = repo.urlList[Number(data.slice(4, 6))];
+        file = repo.fetchList[Number(data.slice(4, 6))].url;
         // init prefix
         prefix = "exports_" + path.dirname(file).replace(
             "https://github.com/",
@@ -3685,7 +3702,7 @@ export UTILITY2_MACRO_JS='
             return dflt;
         }
         pathname = require("path").resolve(pathname);
-        // try to read <pathname>
+        // try to read pathname
         try {
             return (
                 type === "json"
@@ -3728,11 +3745,12 @@ export UTILITY2_MACRO_JS='
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
+        let success;
         // do nothing if module does not exist
         try {
             fs = require("fs");
@@ -3740,27 +3758,23 @@ export UTILITY2_MACRO_JS='
             return;
         }
         pathname = require("path").resolve(pathname);
-        // try to write <pathname>
+        // try to write pathname
         try {
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         } catch (ignore) {
             // mkdir -p
             fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // re-write <pathname>
+            // re-write pathname
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         }
-    };
-    local.functionOrNop = function (fnc) {
-    /*
-     * this function will if <fnc> exists,
-     * return <fnc>,
-     * else return <nop>
-     */
-        return fnc || local.nop;
+        if (success && msg) {
+            console.error(msg.replace("{{pathname}}", pathname));
+        }
+        return success;
     };
     local.identity = function (val) {
     /*
@@ -3774,22 +3788,33 @@ export UTILITY2_MACRO_JS='
      */
         return;
     };
-    local.objectAssignDefault = function (target, source) {
+    local.objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
     /*
-     * this function will if items from <target> are null, undefined, or "",
-     * then overwrite them with items from <source>
+     * this function will if items from <tgt> are null, undefined, or "",
+     * then overwrite them with items from <src>
      */
-        target = target || {};
-        Object.keys(source || {}).forEach(function (key) {
-            if (
-                target[key] === null
-                || target[key] === undefined
-                || target[key] === ""
-            ) {
-                target[key] = target[key] || source[key];
-            }
-        });
-        return target;
+        let recurse;
+        recurse = function (tgt, src, depth) {
+            Object.entries(src).forEach(function ([
+                key, bb
+            ]) {
+                let aa;
+                aa = tgt[key];
+                if (aa === undefined || aa === null || aa === "") {
+                    tgt[key] = bb;
+                    return;
+                }
+                if (
+                    depth !== 0
+                    && typeof aa === "object" && aa && !Array.isArray(aa)
+                    && typeof bb === "object" && bb && !Array.isArray(bb)
+                ) {
+                    recurse(aa, bb, depth - 1);
+                }
+            });
+        };
+        recurse(tgt, src, depth | 0);
+        return tgt;
     };
     // require builtin
     if (!local.isBrowser) {
@@ -4278,7 +4303,7 @@ local.moduleDirname = function (module, pathList) {
  * this function will search <pathList> for <module>'"'"'s __dirname
  */
     let result;
-    // search process.cwd()
+    // search "."
     if (!module || module === "." || module.indexOf("/") >= 0) {
         return require("path").resolve(module || "");
     }
@@ -4299,48 +4324,6 @@ local.moduleDirname = function (module, pathList) {
         }
     });
     return result;
-};
-
-local.objectSetDefault = function (dict, defaults, depth) {
-/*
- * this function will recursively set defaults for undefined-items in dict
- */
-    dict = dict || {};
-    defaults = defaults || {};
-    Object.keys(defaults).forEach(function (key) {
-        let defaults2;
-        let dict2;
-        dict2 = dict[key];
-        // handle misbehaving getter
-        try {
-            defaults2 = defaults[key];
-        } catch (ignore) {}
-        if (defaults2 === undefined) {
-            return;
-        }
-        // init dict[key] to default value defaults[key]
-        switch (dict2) {
-        case "":
-        case null:
-        case undefined:
-            dict[key] = defaults2;
-            return;
-        }
-        // if dict2 and defaults2 are both non-undefined and non-array objects,
-        // then recurse with dict2 and defaults2
-        if (
-            depth > 1
-            // dict2 is a non-undefined and non-array object
-            && typeof dict2 === "object" && dict2 && !Array.isArray(dict2)
-            // defaults2 is a non-undefined and non-array object
-            && typeof defaults2 === "object" && defaults2
-            && !Array.isArray(defaults2)
-        ) {
-            // recurse
-            local.objectSetDefault(dict2, defaults2, depth - 1);
-        }
-    });
-    return dict;
 };
 
 local.onErrorDefault = function (err) {
@@ -4609,7 +4592,7 @@ local.templateRenderMyApp = function (template) {
     let githubRepo;
     let packageJson;
     packageJson = JSON.parse(local.fs.readFileSync("package.json", "utf8"));
-    local.objectSetDefault(packageJson, {
+    local.objectAssignDefault(packageJson, {
         nameLib: packageJson.name.replace((
             /\W/g
         ), "_"),
@@ -4856,7 +4839,7 @@ local.ajax = function (opt, onError) {
     /*
      * this function will init xhr
      */
-        // init <opt>
+        // init opt
         Object.keys(opt).forEach(function (key) {
             if (key[0] !== "_") {
                 xhr[key] = opt[key];
@@ -4979,7 +4962,10 @@ local.ajax = function (opt, onError) {
         xhr.upload.addEventListener("progress", ajaxProgressUpdate);
     }
     // open url - corsForwardProxyHost
-    if (local.functionOrNop(local2.corsForwardProxyHostIfNeeded)(xhr)) {
+    if (
+        local2.corsForwardProxyHostIfNeeded
+        && local2.corsForwardProxyHostIfNeeded(xhr)
+    ) {
         xhr.open(xhr.method, local2.corsForwardProxyHostIfNeeded(xhr));
         xhr.setRequestHeader(
             "forward-proxy-headers",

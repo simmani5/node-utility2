@@ -57,9 +57,22 @@ this zero-dependency package will provide high-level functions to to build, test
 
 #### changelog 2020.5.31
 - npm publish 2020.5.31
+- update file raw.istanbul.js
+- remove excessive "the" from comments
+- remove build-process for css-file
+- replace function local.objectSetDefault with objectAssignDefault
+- replace process.cwd() with path.resolve()
 - rename shell-function shPackageJsonVersionUpdate to shPackageJsonVersionIncrement
-- inline functions middlewareForwardProxy, onTimeout, semverCompare, serverRespondCors
-- remove functions profile, profileSync, local.querySelector, local.querySelectorAll
+- remove functions
+    functionOrNop,
+    local.querySelector,
+    local.querySelectorAll,
+    middlewareForwardProxy,
+    onTimeout,
+    profile,
+    profileSync,
+    semverCompare,
+    serverRespondCors,
 - replace function fsReadFileOrEmptyStringSync with fsReadFileOrDefaultSync
 - remove dependency to file lib.swgg.js
 - inline object local.contentTypeDict
@@ -67,18 +80,17 @@ this zero-dependency package will provide high-level functions to to build, test
 - none
 
 #### todo
+- istanbul - inline function Instrumenter into instrumentSync
+- add eslint-rule no-multiple-empty-lines
 - remove file lib.swgg.js
-- replace process.cwd() with path.resolve()
 - remove sloppy-cases where npm-test falsely pass
 - deprecate dependent github-crud
 - istanbul - remove filesUnderRoot subroutine
 - jslint - add nullish-coalescing support
 - jslint - add optional-chaining support
 - jslint - prefer undefined over null
-- replace function local.objectSetDefault with objectAssignDefault
 - replace function local.objectAssignRecurse with Object.assign
 - jslint - fix off-by-one line-error
-- remove excessive "the" from comments
 - replace db-lite with sql_lite.js
 - add default testCase _testCase_cliRun_help
 - add server stress-test using puppeteer
@@ -139,6 +151,7 @@ instruction
 
 
 
+/* istanbul instrument in package utility2 */
 // assets.utility2.header.js - start
 /* istanbul ignore next */
 /* jslint utility2:true */
@@ -237,7 +250,7 @@ instruction
             return dflt;
         }
         pathname = require("path").resolve(pathname);
-        // try to read <pathname>
+        // try to read pathname
         try {
             return (
                 type === "json"
@@ -280,11 +293,12 @@ instruction
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
+        let success;
         // do nothing if module does not exist
         try {
             fs = require("fs");
@@ -292,27 +306,23 @@ instruction
             return;
         }
         pathname = require("path").resolve(pathname);
-        // try to write <pathname>
+        // try to write pathname
         try {
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         } catch (ignore) {
             // mkdir -p
             fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // re-write <pathname>
+            // re-write pathname
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         }
-    };
-    local.functionOrNop = function (fnc) {
-    /*
-     * this function will if <fnc> exists,
-     * return <fnc>,
-     * else return <nop>
-     */
-        return fnc || local.nop;
+        if (success && msg) {
+            console.error(msg.replace("{{pathname}}", pathname));
+        }
+        return success;
     };
     local.identity = function (val) {
     /*
@@ -326,22 +336,33 @@ instruction
      */
         return;
     };
-    local.objectAssignDefault = function (target, source) {
+    local.objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
     /*
-     * this function will if items from <target> are null, undefined, or "",
-     * then overwrite them with items from <source>
+     * this function will if items from <tgt> are null, undefined, or "",
+     * then overwrite them with items from <src>
      */
-        target = target || {};
-        Object.keys(source || {}).forEach(function (key) {
-            if (
-                target[key] === null
-                || target[key] === undefined
-                || target[key] === ""
-            ) {
-                target[key] = target[key] || source[key];
-            }
-        });
-        return target;
+        let recurse;
+        recurse = function (tgt, src, depth) {
+            Object.entries(src).forEach(function ([
+                key, bb
+            ]) {
+                let aa;
+                aa = tgt[key];
+                if (aa === undefined || aa === null || aa === "") {
+                    tgt[key] = bb;
+                    return;
+                }
+                if (
+                    depth !== 0
+                    && typeof aa === "object" && aa && !Array.isArray(aa)
+                    && typeof bb === "object" && bb && !Array.isArray(bb)
+                ) {
+                    recurse(aa, bb, depth - 1);
+                }
+            });
+        };
+        recurse(tgt, src, depth | 0);
+        return tgt;
     };
     // require builtin
     if (!local.isBrowser) {
@@ -687,7 +708,7 @@ pre {\n\
         switch (gotoState) {\n\
         // ajaxProgress - show\n\
         case 1:\n\
-            // init <timerInterval> and <timerTimeout>\n\
+            // init timerInterval and timerTimeout\n\
             if (!timerTimeout) {\n\
                 timeStart = Date.now();\n\
                 timerInterval = setInterval(opt, 2000, 1, onError);\n\
@@ -739,7 +760,7 @@ pre {\n\
                 + (tmp - timeStart)\n\
                 + " ms"\n\
             );\n\
-            // cleanup <timerInterval> and <timerTimeout>\n\
+            // cleanup timerInterval and timerTimeout\n\
             timeStart = tmp;\n\
             clearInterval(timerInterval);\n\
             timerInterval = undefined;\n\
@@ -767,7 +788,7 @@ pre {\n\
         opt.cnt = 0;\n\
         window.domOnEventAjaxProgressUpdate(2, onError);\n\
     };\n\
-    // init <styleBar>\n\
+    // init styleBar\n\
     styleBar = document.getElementById("domElementAjaxProgressBar1").style;\n\
     styleBar0 = Object.assign({}, styleBar);\n\
     Object.entries({\n\
@@ -784,7 +805,7 @@ pre {\n\
     }).forEach(function (entry) {\n\
         styleBar[entry[0]] = styleBar[entry[0]] || entry[1];\n\
     });\n\
-    // init <styleModal>\n\
+    // init styleModal\n\
     styleModal = document.getElementById("domElementAjaxProgressModal1") || {};\n\
     styleModal = styleModal.style || {};\n\
     styleModal0 = Object.assign({}, styleModal);\n\

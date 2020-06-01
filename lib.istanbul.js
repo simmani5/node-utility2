@@ -107,7 +107,7 @@
             return dflt;
         }
         pathname = require("path").resolve(pathname);
-        // try to read <pathname>
+        // try to read pathname
         try {
             return (
                 type === "json"
@@ -150,11 +150,12 @@
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirpSync = function (pathname, data) {
+    local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
      */
         let fs;
+        let success;
         // do nothing if module does not exist
         try {
             fs = require("fs");
@@ -162,27 +163,23 @@
             return;
         }
         pathname = require("path").resolve(pathname);
-        // try to write <pathname>
+        // try to write pathname
         try {
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         } catch (ignore) {
             // mkdir -p
             fs.mkdirSync(require("path").dirname(pathname), {
                 recursive: true
             });
-            // re-write <pathname>
+            // re-write pathname
             fs.writeFileSync(pathname, data);
-            return true;
+            success = true;
         }
-    };
-    local.functionOrNop = function (fnc) {
-    /*
-     * this function will if <fnc> exists,
-     * return <fnc>,
-     * else return <nop>
-     */
-        return fnc || local.nop;
+        if (success && msg) {
+            console.error(msg.replace("{{pathname}}", pathname));
+        }
+        return success;
     };
     local.identity = function (val) {
     /*
@@ -196,22 +193,33 @@
      */
         return;
     };
-    local.objectAssignDefault = function (target, source) {
+    local.objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
     /*
-     * this function will if items from <target> are null, undefined, or "",
-     * then overwrite them with items from <source>
+     * this function will if items from <tgt> are null, undefined, or "",
+     * then overwrite them with items from <src>
      */
-        target = target || {};
-        Object.keys(source || {}).forEach(function (key) {
-            if (
-                target[key] === null
-                || target[key] === undefined
-                || target[key] === ""
-            ) {
-                target[key] = target[key] || source[key];
-            }
-        });
-        return target;
+        let recurse;
+        recurse = function (tgt, src, depth) {
+            Object.entries(src).forEach(function ([
+                key, bb
+            ]) {
+                let aa;
+                aa = tgt[key];
+                if (aa === undefined || aa === null || aa === "") {
+                    tgt[key] = bb;
+                    return;
+                }
+                if (
+                    depth !== 0
+                    && typeof aa === "object" && aa && !Array.isArray(aa)
+                    && typeof bb === "object" && bb && !Array.isArray(bb)
+                ) {
+                    recurse(aa, bb, depth - 1);
+                }
+            });
+        };
+        recurse(tgt, src, depth | 0);
+        return tgt;
     };
     // require builtin
     if (!local.isBrowser) {
@@ -278,7 +286,7 @@ local.istanbul = local;
 /* validateLineSortedReset */
 // init custom
 if (!local.isBrowser) {
-    local._istanbul_module = require("module");
+    local.__istanbul_module = require("module");
     local.process = process;
     local.require = require;
 }
@@ -535,7 +543,7 @@ local.templateRender = function (template, dict, opt, ii) {
         );
         match = rgx.exec(template);
     }
-    // search for keys in the template
+    // search for keys in template
     return template.replace((
         /\{\{[^}]+?\}\}/g
     ), function (match0) {
@@ -678,12 +686,12 @@ process = local.process || {
 };
 require = function (key) {
     try {
-        return local["_istanbul_" + key] || local[key] || local.require(key);
+        return local["__istanbul_" + key] || local[key] || local.require(key);
     } catch (ignore) {}
 };
 local["./package.json"] = {};
 // mock module path
-local._istanbul_path = local.path || {
+local.__istanbul_path = local.path || {
     dirname: function (file) {
         return file.replace((
             /\/[\w\-.]+?$/
@@ -698,7 +706,14 @@ local._istanbul_path = local.path || {
 
 
 /*
-file https://registry.npmjs.org/acorn/-/acorn-6.3.0.tgz
+repo https://github.com/acornjs/acorn/tree/6.3.0
+committed 2019-08-12T09:40:59Z
+*/
+
+
+
+/*
+file https://github.com/acornjs/acorn/blob/6.3.0/acorn/dist/acorn.js
 */
 /* istanbul ignore next */
 /* jslint ignore:start */
@@ -5675,6 +5690,13 @@ file https://registry.npmjs.org/acorn/-/acorn-6.3.0.tgz
 
 
 /*
+repo https://github.com/estools/estraverse/tree/4.2.0
+committed 2016-03-10T21:51:59Z
+*/
+
+
+
+/*
 file https://github.com/estools/estraverse/blob/4.2.0/estraverse.js
 */
 /* istanbul ignore next */
@@ -6533,6 +6555,13 @@ file https://github.com/estools/estraverse/blob/4.2.0/estraverse.js
 
 
 /*
+repo https://github.com/estools/esutils/tree/2.0.3
+committed 2019-07-31T01:06:44Z
+*/
+
+
+
+/*
 file https://github.com/estools/esutils/blob/2.0.3/lib/code.js
 */
 /* istanbul ignore next */
@@ -6673,6 +6702,13 @@ file https://github.com/estools/esutils/blob/2.0.3/lib/code.js
 }());
 /* vim: set sw=4 ts=4 et tw=80 : */
 local.esutils = { code: module.exports }; }());
+
+
+
+/*
+repo https://github.com/estools/escodegen/tree/v1.12.0
+committed 2019-08-13T02:08:40Z
+*/
 
 
 
@@ -9293,6 +9329,13 @@ file https://github.com/estools/escodegen/blob/v1.12.0/escodegen.js
 
 
 /*
+repo https://github.com/gotwarlost/istanbul/tree/v0.4.5
+committed 2016-08-21T19:53:22Z
+*/
+
+
+
+/*
 file https://github.com/gotwarlost/istanbul/blob/v0.4.5/lib/instrumenter.js
 */
 /* istanbul ignore next */
@@ -9757,7 +9800,7 @@ file https://github.com/gotwarlost/istanbul/blob/v0.4.5/lib/instrumenter.js
             }
             try {
                 // hack-coverage - acorn opt
-                var opt = {
+                let opt = {
                     locations: true,
                     onComment: [],
                     onToken: this.opts.preserveComments,
@@ -10174,9 +10217,7 @@ file https://github.com/gotwarlost/istanbul/blob/v0.4.5/lib/instrumenter.js
         },
 
         splice: function (statements, node, walker) {
-            var targetNode = (
-                walker.isLabeled() ? walker.parent().node : node
-            );
+            var targetNode = walker.isLabeled() ? walker.parent().node : node;
             targetNode.prepend = targetNode.prepend || [];
             pushAll(targetNode.prepend, statements);
         },
@@ -10694,11 +10735,11 @@ local.templateCoverageReport = '\
 </script>\n\
 <div class="header {{metrics.statements.score}}">\n\
 {{#if env.npm_package_homepage}}\n\
-    <h1 style="font-weight: bold;">\n\
+    <h2 style="font-weight: bold;">\n\
         <a href="{{env.npm_package_homepage}}">{{env.npm_package_name}} ({{env.npm_package_version}})</a>\n\
-    </h1>\n\
+    </h2>\n\
 {{/if env.npm_package_homepage}}\n\
-    <h1>Code coverage report for <span class="entity">{{nameOrAllFiles}}</span></h1>\n\
+    <h2>Code coverage report for <span class="entity">{{nameOrAllFiles}}</span></h2>\n\
     <table class="tableHeader">\n\
     <thead>\n\
     <tr>\n\
@@ -10826,10 +10867,11 @@ fileWrite = function (file, data) {
 /*
  * this function will write <data> to <file>
  */
-    file = path.resolve(file);
-    if (local.fsWriteFileWithMkdirpSync(file, data)) {
-        console.error("coverage-report - wrote file " + file);
-    }
+    local.fsWriteFileWithMkdirpSync(
+        file,
+        data,
+        "wrote file - coverage-report - {{pathname}}"
+    );
 };
 reportHtmlWrite = function (node, dirCoverage, coverage) {
 /*
@@ -10850,7 +10892,7 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
         let offset;
         let offsetObj;
         col = Math.min(col, lineObj.length0);
-        // find <offset> from <col>
+        // find offset from col
         offset = col;
         ii = 0;
         while (ii < lineObj.offsets.length) {
@@ -10874,7 +10916,7 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
                 len: str.length
             });
         }
-        // insert <str> at <offset>
+        // insert str at offset
         lineObj.text = (
             lineObj.text.slice(0, offset) + str + lineObj.text.slice(offset)
         );
@@ -10913,7 +10955,7 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
         let lineList;
         let parent;
         let tmp;
-        // render <htmlPath>
+        // render htmlPath
         tmp = node;
         parent = tmp.parent;
         htmlPath = tmp.relativeName;
@@ -10963,7 +11005,7 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
             let endCol;
             let startCol;
             // new InsertionText
-            // init <startCol>
+            // init startCol
             startCol = -1;
             ii = 0;
             while (ii < text.length) {
@@ -10975,7 +11017,7 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
                 }
                 ii += 1;
             }
-            // init <endCol>
+            // init endCol
             endCol = text.length + 1;
             ii = text.length - 1;
             while (ii >= 0) {
@@ -11131,11 +11173,11 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
             ii -= 1;
         }
         htmlLineCnt = "";
-        htmlLineCode = "";
+        htmlLineCode = "\n";
         htmlLineIi = "";
         ii = 1;
         while (ii < lineList.length) {
-            // render <htmlLineIi>
+            // render htmlLineIi
             htmlLineIi += `<a href="#l${ii}" id="l${ii}">${ii}</a>` + "\n";
             tmp = fileCoverage.l[ii];
             htmlLineCnt += (
@@ -11177,12 +11219,12 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
         htmlAll += htmlData + "\n\n";
         fileWrite(htmlFile, htmlData);
     };
-    // init <datetime>
+    // init datetime
     datetime = new Date().toGMTString();
-    // init <htmlAll>
+    // init htmlAll
     htmlAll = (
         `<div class="coverageReportDiv">
-<h1>coverage-report</h1>
+<h2>coverage-report</h2>
 <div style="background: #fff; border: 1px solid #999; margin 0; padding: 0;">`
     ) + "\n";
     // recursively write html
@@ -11190,7 +11232,7 @@ reportHtmlWrite = function (node, dirCoverage, coverage) {
     htmlAll += "</div>\n</div>\n";
     // write coverage.all.html
     fileWrite(dirCoverage + "/coverage.all.html", htmlAll);
-    // return <htmlAll>
+    // return htmlAll
     return htmlAll;
 };
 reportTextWrite = function (node, dircoverage) {
@@ -11204,12 +11246,12 @@ reportTextWrite = function (node, dircoverage) {
     let stringPad;
     // init function
     recurse = function (node, level) {
-        // update <nodeNameWidth>
+        // update nodeNameWidth
         nodeNameWidth = Math.max(
             nodeNameWidth,
             Math.max(level, 0) * 2 + node.relativeNameOrAllFiles.length
         );
-        // format <metrics>
+        // format metrics
         return [
             node.metrics.statements,
             node.metrics.statements,
@@ -11269,7 +11311,7 @@ reportTextWrite = function (node, dircoverage) {
         }
         return " ".repeat(indent) + fmtStr;
     };
-    // init <nodeNameWidth>
+    // init nodeNameWidth
     nodeNameWidth = 0;
     recurse(node, -1);
     // write coverage-report
@@ -11299,12 +11341,12 @@ local.coverageMerge = function (coverage1 = {}, coverage2 = {}) {
     let dict1;
     let dict2;
     Object.keys(coverage2).forEach(function (file) {
-        // if <coverage1>[<file>] is undefined, then add it
+        // if coverage1[file] is undefined, then override it
         if (!coverage1[file]) {
             coverage1[file] = coverage2[file];
             return;
         }
-        // merge <coverage2> into <coverage1>
+        // merge coverage2 into coverage1
         [
             "b", "f", "s"
         ].forEach(function (key) {
@@ -11407,14 +11449,14 @@ local.coverageReportCreate = function (opt) {
      * this function will recursively normalize <node> and its children
      */
         let metric;
-        // init <name>
+        // init name
         if (node.name.indexOf(filePrefix) === 0) {
             node.name = node.name.slice(filePrefix.length);
         }
         if (node.name[0] === path.sep) {
             node.name = node.name.slice(1);
         }
-        // init <relativeName>
+        // init relativeName
         node.relativeName = (
             parent
             ? (
@@ -11424,11 +11466,11 @@ local.coverageReportCreate = function (opt) {
             )
             : node.name.slice(filePrefix.length)
         );
-        // init <nameOrAllFiles>
+        // init nameOrAllFiles
         node.nameOrAllFiles = node.name || "All files";
-        // init <relativeNameOrAllFiles>
+        // init relativeNameOrAllFiles
         node.relativeNameOrAllFiles = node.relativeName || "All files";
-        // init <href>
+        // init href
         node.href = node.relativeName.split(path.sep).join("/") + (
             node.isFile
             ? ".html"
@@ -11438,7 +11480,7 @@ local.coverageReportCreate = function (opt) {
         node.children.forEach(function (child) {
             nodeNormalize(child, level + 1, filePrefix, node);
         });
-        // sort <children> by <name>
+        // sort children by name
         node.children.sort(function (aa, bb) {
             return (
                 aa.name > bb.name
@@ -11446,7 +11488,7 @@ local.coverageReportCreate = function (opt) {
                 : -1
             );
         });
-        // init <metrics>
+        // init metrics
         if (!node.isFile) {
             node.children.forEach(function (child) {
                 [
@@ -11459,7 +11501,7 @@ local.coverageReportCreate = function (opt) {
                 });
             });
         }
-        // calculate <pct> and <score>
+        // calculate pct and score
         [
             "lines", "statements", "branches", "functions"
         ].forEach(function (key) {
@@ -11484,29 +11526,23 @@ local.coverageReportCreate = function (opt) {
         });
     };
     // 1. merge previous <dirCoverage>/coverage.json into <opt>.coverage
-    dirCoverage = process.cwd() + "/tmp/build/coverage.html";
+    dirCoverage = path.resolve("tmp/build/coverage.html");
     coverageInclude = opt.coverageInclude || globalThis.__coverageInclude__;
     if (!local.isBrowser && process.env.npm_config_mode_coverage_merge) {
         console.error(
             "istanbul - merging file "
             + dirCoverage + "/coverage.json to coverage"
         );
-        try {
-            tmp = {};
-            tmp = JSON.parse(local.fs.readFileSync(
-                dirCoverage + "/coverage.json",
-                "utf8"
-            ));
-        } catch (ignore) {}
-        local.coverageMerge(opt.coverage, tmp);
-        try {
-            tmp = {};
-            tmp = JSON.parse(local.fs.readFileSync(
-                dirCoverage + "/coverage.include.json",
-                "utf8"
-            ));
-        } catch (ignore) {}
-        Object.keys(tmp).forEach(function (file) {
+        local.coverageMerge(opt.coverage, local.fsReadFileOrDefaultSync(
+            dirCoverage + "/coverage.json",
+            "json",
+            {}
+        ));
+        Object.keys(local.fsReadFileOrDefaultSync(
+            dirCoverage + "/coverage.include.json",
+            "json",
+            {}
+        )).forEach(function (file) {
             coverageInclude[file] = 1;
         });
     }
@@ -11523,7 +11559,7 @@ local.coverageReportCreate = function (opt) {
         if (fileCoverage && coverageInclude.hasOwnProperty(file)) {
             // reset line-cnt
             delete opt.coverage[file].l;
-            // init <summary>
+            // init summary
             summary = {
                 branches: {
                     total: 0,
@@ -11683,20 +11719,20 @@ local.coverageReportCreate = function (opt) {
     reportTextWrite(nodeRoot, dirCoverage);
     // 5. convert <nodeRoot> to html-report <dirCoverage>/\*
     htmlAll = reportHtmlWrite(nodeRoot, dirCoverage, opt.coverage);
-    // save <opt>.coverage to <dirCoverage>/coverage.json
+    // save opt.coverage to dirCoverage/coverage.json
     fileWrite(
         dirCoverage + "/coverage.json",
-        JSON.stringify(opt.coverage)
+        JSON.stringify(opt.coverage, undefined, 4)
     );
-    // save <coverageInclude> to <dirCoverage>/coverage.include.json
+    // save coverageInclude to dirCoverage/coverage.include.json
     fileWrite(
         dirCoverage + "/coverage.include.json",
-        JSON.stringify(coverageInclude)
+        JSON.stringify(coverageInclude, undefined, 4)
     );
     // write coverage.badge.svg
     tmp = nodeRoot.metrics.lines.pct;
     fileWrite(
-        local._istanbul_path.dirname(dirCoverage) + "/coverage.badge.svg",
+        path.dirname(dirCoverage) + "/coverage.badge.svg",
         // edit coverage badge percent
         // edit coverage badge color
         local.templateCoverageBadgeSvg.replace((
@@ -11746,12 +11782,12 @@ local.instrumentInPackage = function (code, file) {
 local.instrumentSync = function (code, file) {
 /*
  * this function will
- * 1. normalize <file>
- * 2. save <code> to __coverageInclude__[<file>] for future html-report
- * 3. return instrumented-code
+    // 1. normalize <file>
+    // 2. save <code> to __coverageInclude__[<file>] for future html-report
+    // 3. return instrumented-code
  */
     // 1. normalize <file>
-    file = local._istanbul_path.resolve("/", file);
+    file = path.resolve(file);
     // 2. save <code> to __coverageInclude__[<file>] for future html-report
     globalThis.__coverageInclude__[file] = 1;
     // 3. return instrumented-code
@@ -11797,16 +11833,18 @@ local.cliDict.cover = function () {
         || "all"
     );
     // add coverage hook to require
-    local._istanbul_moduleExtensionsJs = (
-        local._istanbul_module._extensions[".js"]
+    local.__istanbul_moduleExtensionsJs = (
+        local.__istanbul_module._extensions[".js"]
     );
-    local._istanbul_module._extensions[".js"] = function (module, file) {
+    local.__istanbul_module._extensions[".js"] = function (module, file) {
         if (typeof file === "string" && (
             file.indexOf(process.env.npm_config_mode_coverage_dir) === 0 || (
-                file.indexOf(process.cwd()) === 0
+                file.indexOf(process.cwd() + local.path.sep) === 0
                 && (
                     process.env.npm_config_mode_coverage === "node_modules"
-                    || file.indexOf(process.cwd() + "/node_modules/") !== 0
+                    || file.indexOf(
+                        local.path.resolve("node_modules") + local.path.sep
+                    ) !== 0
                 )
             )
         )) {
@@ -11816,11 +11854,11 @@ local.cliDict.cover = function () {
             ), file);
             return;
         }
-        local._istanbul_moduleExtensionsJs(module, file);
+        local.__istanbul_moduleExtensionsJs(module, file);
     };
     // init process.argv
     process.argv.splice(1, 2);
-    process.argv[1] = local.path.resolve(process.cwd(), process.argv[1]);
+    process.argv[1] = local.path.resolve(process.argv[1]);
     console.error("\nistanbul - covering $ " + process.argv.join(" "));
     // create coverage on exit
     process.on("exit", function () {
@@ -11829,7 +11867,7 @@ local.cliDict.cover = function () {
         });
     });
     // re-init cli
-    local._istanbul_module.runMain();
+    local.__istanbul_module.runMain();
 };
 
 local.cliDict.instrument = function () {
@@ -11837,7 +11875,7 @@ local.cliDict.instrument = function () {
  * <script>
  * will instrument <script> and print result to stdout
  */
-    process.argv[3] = local.path.resolve(process.cwd(), process.argv[3]);
+    process.argv[3] = local.path.resolve(process.argv[3]);
     process.stdout.write(local.instrumentSync(
         local.fs.readFileSync(process.argv[3], "utf8"),
         process.argv[3]
@@ -11849,7 +11887,7 @@ local.cliDict.report = function () {
  * <coverageJson>
  * will create coverage-report from file <coverageJson>
  */
-    process.argv[3] = local.path.resolve(process.cwd(), process.argv[3]);
+    process.argv[3] = local.path.resolve(process.argv[3]);
     globalThis.__coverage__ = JSON.parse(
         local.fs.readFileSync(process.argv[3])
     );
@@ -11875,9 +11913,9 @@ local.cliDict.test = function () {
     }
     // restart node with __filename removed from process.argv
     process.argv.splice(1, 2);
-    process.argv[1] = local.path.resolve(process.cwd(), process.argv[1]);
+    process.argv[1] = local.path.resolve(process.argv[1]);
     // re-init cli
-    local._istanbul_module.runMain();
+    local.__istanbul_module.runMain();
 };
 
 // run the cli
