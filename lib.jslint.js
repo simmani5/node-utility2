@@ -16806,7 +16806,10 @@ globalThis.__jslintAndPrintDirChildProcess = async function (dir, opt) {
  */
     // jslint in current-process
     if (process.env.npm_config_mode_lib) {
-        return await local.jslintAndPrintDir(dir, opt);
+        if (process.env.npm_config_mode_jslint_and_print_dir_child_process) {
+            return await local.jslintAndPrintDir(dir, opt);
+        }
+        return 0;
     }
     // jslint in child-process
     return await new Promise(function (resolve, reject) {
@@ -16821,7 +16824,8 @@ globalThis.__jslintAndPrintDirChildProcess = async function (dir, opt) {
             )
         ], {
             env: {
-                npm_config_mode_lib: "1"
+                npm_config_mode_lib: "1",
+                npm_config_mode_jslint_and_print_dir_child_process: "1"
             },
             stdio: [
                 "ignore", "ignore", 2
