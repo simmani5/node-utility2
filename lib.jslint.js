@@ -16800,40 +16800,6 @@ local.jslintAndPrint = function (code = "", file = "undefined", opt = {}) {
     return local.jslintAndPrint(code, file, opt);
 };
 
-globalThis.__jslintAndPrintDirChildProcess = async function (dir, opt) {
-/*
- * this function will jslint files in shallow <dir>
- */
-    // jslint in current-process
-    if (process.env.npm_config_mode_lib) {
-        if (process.env.npm_config_mode_jslint_and_print_dir_child_process) {
-            return await local.jslintAndPrintDir(dir, opt);
-        }
-        return 0;
-    }
-    // jslint in child-process
-    return await new Promise(function (resolve, reject) {
-        dir = require("path").resolve(dir);
-        require("child_process").spawn("node", [
-            "-e", (
-                "require(" + JSON.stringify(__filename) + ");"
-                + "global.__jslintAndPrintDirChildProcess("
-                + JSON.stringify(dir) + ","
-                + JSON.stringify(opt)
-                + ").then(process.exit);"
-            )
-        ], {
-            env: {
-                npm_config_mode_lib: "1",
-                npm_config_mode_jslint_and_print_dir_child_process: "1"
-            },
-            stdio: [
-                "ignore", "ignore", 2
-            ]
-        }).on("error", reject).on("exit", resolve);
-    });
-};
-
 local.jslintAndPrintDir = async function (dir, opt) {
 /*
  * this function will jslint files in shallow <dir>
@@ -16874,6 +16840,41 @@ local.jslintAndPrintDir = async function (dir, opt) {
         );
     }));
     return errCnt;
+};
+
+globalThis.__jslintAndPrintDirChildProcess = async function (dir, opt = {}) {
+/*
+ * this function will jslint files in shallow <dir>
+ */
+    // jslint in current-process
+    if (process.env.npm_config_mode_lib) {
+        if (process.env.npm_config_mode_jslint_and_print_dir_child_process) {
+            return await local.jslintAndPrintDir(dir, opt);
+        }
+        return 0;
+    }
+    // jslint in child-process
+    return await new Promise(function (resolve, reject) {
+        dir = require("path").resolve(dir);
+        require("child_process").spawn("node", [
+            "-e", (
+                "require(" + JSON.stringify(__filename) + ");"
+                + "global.__jslintAndPrintDirChildProcess("
+                + JSON.stringify(dir) + ","
+                + JSON.stringify(opt)
+                + ").then(process.exit);"
+            )
+        ], {
+            cwd: require("path").resolve(opt.cwd || "."),
+            env: {
+                npm_config_mode_lib: "1",
+                npm_config_mode_jslint_and_print_dir_child_process: "1"
+            },
+            stdio: [
+                "ignore", "ignore", 2
+            ]
+        }).on("error", reject).on("exit", resolve);
+    });
 };
 
 local.jslintAutofix = function (code, file, opt) {

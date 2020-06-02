@@ -3239,7 +3239,7 @@ local.buildApp = async function (opt, onError) {
     }));
     // jslint app
     await globalThis.__jslintAndPrintDirChildProcess("tmp/build/app", {
-        autofix: true,
+        cwd: "tmp/build/app",
         conditional: true
     });
     // test standalone assets.app.js
@@ -3248,23 +3248,26 @@ local.buildApp = async function (opt, onError) {
         local.assetsDict["/assets.app.js"],
         "wrote file - assets.app.js - {{pathname}}"
     );
-    local.child_process.spawn("node", [
-        "assets.app.js"
-    ], {
-        cwd: "tmp/buildApp",
-        env: {
-            PATH: local.env.PATH,
-            PORT: (Math.random() * 0x10000) | 0x8000,
-            npm_config_timeout_exit: 5000
-        },
-        stdio: [
-            "ignore", "ignore", 2
-        ]
-    }).on("error", onError).on("exit", function (exitCode) {
-        // validate exitCode
-        local.assertOrThrow(!exitCode, exitCode);
-        onError();
+    await new Promise(function (resolve, reject) {
+        local.child_process.spawn("node", [
+            "assets.app.js"
+        ], {
+            cwd: "tmp/buildApp",
+            env: {
+                PATH: local.env.PATH,
+                PORT: (Math.random() * 0x10000) | 0x8000,
+                npm_config_timeout_exit: 5000
+            },
+            stdio: [
+                "ignore", "ignore", 2
+            ]
+        }).on("error", reject).on("exit", function (exitCode) {
+            // validate exitCode
+            local.assertOrThrow(!exitCode, exitCode);
+            resolve();
+        });
     });
+    onError();
 };
 
 local.buildLib = function (opt, onError) {
