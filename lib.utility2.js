@@ -3224,21 +3224,23 @@ local.buildApp = async function (opt, onError) {
             )
         }
     ].concat(opt.assetsList).map(async function (elem) {
-        let xhr;
+        let file;
         if (!elem) {
             return;
         }
-        xhr = await local.httpFetch(
-            "http://127.0.0.1:" + local.env.PORT + elem.url,
-            {
-                responseType: "raw"
-            }
-        );
-        await local.fsWriteFileWithMkdirp(
-            "tmp/build/app/" + elem.file,
-            xhr.data,
-            "wrote file - app - {{pathname}}"
-        );
+        file = require("path").resolve("tmp/build/app/" + elem.file);
+        await new Promise(function (resolve, reject) {
+            require("http").request((
+                "http://127.0.0.1:" + process.env.PORT + elem.url
+            ), function (res) {
+                res.pipe(
+                    require("fs").createWriteStream(
+                        file
+                    ).on("error", reject).on("close", resolve)
+                ).on("error", reject);
+            });
+        });
+        console.error("wrote file - app - " + file);
     }));
     // jslint app
     await local.childProcessEval(
