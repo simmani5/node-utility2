@@ -3237,7 +3237,7 @@ local.buildApp = async function (opt, onError) {
             "wrote file - app - {{pathname}}"
         );
     }));
-    //!! // jslint app
+    // jslint app
     //!! await globalThis.__jslintAndPrintDirChildProcess("tmp/build/app", {
         //!! conditional: true
     //!! });
@@ -5584,10 +5584,13 @@ local.requireReadme = function () {
         local.onFileModifiedRestart(file);
     });
     // jslint process.cwd()
-    globalThis.__jslintAndPrintDirChildProcess(process.cwd(), {
-        autofix: true,
-        conditional: true
-    }).catch(local.nop);
+    setTimeout(function () {
+        local.childProcessEval(
+            local.assetsDict["/assets.utility2.lib.jslint.js"]
+            + ";module.exports.jslintAndPrintDir(\".\","
+            + "{autofix:true,conditional:true});"
+        );
+    });
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
         local.assetsDict["/index.html"] = (
@@ -7606,6 +7609,7 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     "lib.utility2.js",
     "/assets.utility2.example.js",
     "/assets.utility2.html",
+    "/assets.utility2.lib.jslint.js",
     "/assets.utility2.test.js",
     "/assets.utility2.rollup.end.js"
 ].map(function (key) {
@@ -7613,6 +7617,7 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     switch (key) {
     case "/assets.utility2.example.js":
     case "/assets.utility2.html":
+    case "/assets.utility2.lib.jslint.js":
     case "/assets.utility2.test.js":
         // handle large string-replace
         script = local.assetsDict["/assets.utility2.rollup.content.js"].split(
