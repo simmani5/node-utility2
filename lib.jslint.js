@@ -16800,44 +16800,41 @@ local.jslintAndPrint = function (code = "", file = "undefined", opt = {}) {
     return local.jslintAndPrint(code, file, opt);
 };
 
-local.jslintAndPrintDir = async function (dir, opt = {}) {
+globalThis.__jslintAndPrintDirChildProcess = async function (dir, opt) {
+/*
+ * this function will jslint files in shallow <dir>
+ */
+    // jslint in current-process
+    if (process.env.npm_config_mode_lib) {
+        return await local.jslintAndPrintDir(dir, opt);
+    }
+    // jslint in child-process
+    return await new Promise(function (resolve, reject) {
+        dir = require("path").resolve(dir);
+        require("child_process").spawn("node", [
+            "-e", (
+                "require(" + JSON.stringify(__filename) + ");"
+                + "global.__jslintAndPrintDirChildProcess("
+                + JSON.stringify(dir) + ","
+                + JSON.stringify(opt)
+                + ").then(process.exit);"
+            )
+        ], {
+            env: {
+                npm_config_mode_lib: "1"
+            },
+            stdio: [
+                "ignore", "ignore", 2
+            ]
+        }).on("error", reject).on("exit", resolve);
+    });
+};
+
+local.jslintAndPrintDir = async function (dir, opt) {
 /*
  * this function will jslint files in shallow <dir>
  */
     let errCnt;
-    // jslint in child-process
-    if (opt.childProcess && !process.env.npm_config_mode_library) {
-        await new Promise(function (resolve, reject) {
-            dir = require("path").resolve(dir);
-            require("child_process").spawn("node", [
-                "-e", (
-                    "require(" + JSON.stringify(__filename) + ");"
-                    + "global.__jslintAndPrintDir("
-                    + JSON.stringify(dir) + ","
-                    + JSON.stringify(opt)
-                    + ").then(process.exit);"
-                )
-            ], {
-                env: {
-                    npm_config_mode_library: "1"
-                },
-                stdio: [
-                    "ignore", "ignore", 2
-                ]
-            }).on("error", reject).on("exit", function (exitCode) {
-                if (exitCode) {
-                    reject(new Error(
-                        "jslintAndPrintDirChildProcess - "
-                        + exitCode + " errors - " + dir
-                    ));
-                    return;
-                }
-                resolve();
-            });
-        });
-        return;
-    }
-    // jslint in current-process
     errCnt = 0;
     await Promise.all((
         await require("fs").promises.readdir(dir)
@@ -16872,9 +16869,8 @@ local.jslintAndPrintDir = async function (dir, opt = {}) {
             "jslint - " + (Date.now() - timeStart) + "ms - " + file
         );
     }));
-    return Boolean(errCnt);
+    return errCnt;
 };
-globalThis.__jslintAndPrintDir = local.jslintAndPrintDir;
 
 local.jslintAutofix = function (code, file, opt) {
 /*

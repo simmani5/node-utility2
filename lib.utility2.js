@@ -5544,9 +5544,8 @@ local.requireReadme = function () {
         local.onFileModifiedRestart(file);
     });
     // jslint process.cwd()
-    globalThis.__jslintAndPrintDir(process.cwd(), {
+    globalThis.__jslintAndPrintDirChildProcess(process.cwd(), {
         autofix: true,
-        childProcess: true,
         conditional: true
     }).catch(local.nop);
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
@@ -6945,7 +6944,7 @@ local.testRunServer = function (opt) {
         local.middlewareJsonpStateInit,
         local.middlewareFileServer
     ];
-    if (local.env.npm_config_mode_library || globalThis.utility2_serverHttp1) {
+    if (local.env.npm_config_mode_lib || globalThis.utility2_serverHttp1) {
         return;
     }
     globalThis.utility2_onReadyBefore.cnt += 1;
@@ -7397,7 +7396,7 @@ local.https = local._http;
 /* istanbul ignore next */
 // run node js-env code - init-after
 (function () {
-if (local.isBrowser || process.env.npm_config_mode_library) {
+if (local.env.npm_config_mode_lib || local.isBrowser) {
     return;
 }
 local.Module = require("module");
