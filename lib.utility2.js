@@ -3165,6 +3165,22 @@ local.buildApp = async function (opt, onError) {
 /*
  * this function will build app with given <opt>
  */
+    // build app
+    await new Promise(function (resolve, reject) {
+        require("child_process").spawn(
+            "rm -r tmp/build/app; mkdir -p tmp/build/app",
+            {
+                shell: true,
+                stdio: [
+                    "ignore", 1, 2
+                ]
+            }
+        ).on("error", reject).on("exit", function (exitCode) {
+            // validate exitCode
+            local.assertOrThrow(!exitCode, exitCode);
+            resolve();
+        });
+    });
     opt = local.objectAssignDefault(opt, {
         assetsList: []
     });
