@@ -4781,7 +4781,7 @@ local.middlewareAssetsCached = function (req, res, next) {
         local.serverResponseHeaderLastModified = (
             local.serverResponseHeaderLastModified
             // resolve to 1000 ms
-            || new Date(new Date().toUTCString())
+            || new Date()
         );
         // respond with 304 If-Modified-Since serverResponseHeaderLastModified
         if (
@@ -5529,22 +5529,11 @@ local.requireReadme = function () {
     });
     // jslint process.cwd()
     if (!local.env.npm_config_mode_library) {
-        local.child_process.spawn("node", [
-            "-e", (
-                "require("
-                + JSON.stringify(__filename)
-                + ").jslint.jslintAndPrintDir("
-                + JSON.stringify(process.cwd())
-                + ", {autofix:true,conditional:true}).then(process.exit);"
-            )
-        ], {
-            env: Object.assign({}, local.env, {
-                npm_config_mode_library: "1"
-            }),
-            stdio: [
-                "ignore", "ignore", 2
-            ]
-        });
+        globalThis.__jslintAndPrintDir(process.cwd(), {
+            autofix: true,
+            childProcess: true,
+            conditional: true
+        }).catch(local.nop);
     }
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
@@ -7394,7 +7383,7 @@ local.https = local._http;
 /* istanbul ignore next */
 // run node js-env code - init-after
 (function () {
-if (local.isBrowser) {
+if (local.isBrowser || process.env.npm_config_mode_library) {
     return;
 }
 local.Module = require("module");
