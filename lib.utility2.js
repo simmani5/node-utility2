@@ -5529,22 +5529,11 @@ local.requireReadme = function () {
     });
     // jslint process.cwd()
     if (!local.env.npm_config_mode_library) {
-        local.child_process.spawn("node", [
-            "-e", (
-                "require("
-                + JSON.stringify(__filename)
-                + ").jslint.jslintAndPrintDir("
-                + JSON.stringify(process.cwd())
-                + ", {autofix:true,conditional:true}).then(process.exit);"
-            )
-        ], {
-            env: Object.assign({}, local.env, {
-                npm_config_mode_library: "1"
-            }),
-            stdio: [
-                "ignore", "ignore", 2
-            ]
-        });
+        globalThis.__jslintAndPrintDir(process.cwd(), {
+            autofix: true,
+            childProcess: true,
+            conditional: true
+        }).catch(local.nop);
     }
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
