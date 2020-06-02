@@ -2048,51 +2048,6 @@ local.testCase_replStart_default = function (opt, onError) {
     }, onError);
 };
 
-local.testCase_requireReadme_start = function (opt, onError) {
-/*
- * this function will test requireReadme's start handling-behavior
- */
-    if (local.isBrowser) {
-        onError(undefined, opt);
-        return;
-    }
-    local.testMock([
-        [
-            local, {
-                assetsDict: {},
-                onFileModifiedRestart: local.nop
-            }
-        ], [
-            local.env, {
-                npm_config_mode_start: "1",
-                npm_package_nameLib: "_testCase_requireReadme_start"
-            }
-        ], [
-            local.fs, {
-                readFile: function (file, opt, onError) {
-                    onError(undefined, "{}", file, opt);
-                },
-                readdirSync: function () {
-                    // test jslintAndPrint.conditional handling-behavior
-                    return [
-                        "aa.css",
-                        "aa.html",
-                        "aa.js",
-                        "aa.json",
-                        "aa.rollup.js",
-                        "assets.swgg.swagger.json"
-                    ];
-                }
-            }
-        ]
-    ], function (onError) {
-        // validate data
-        local.requireReadme();
-        local.assertOrThrow(local._testCase_requireReadme_start === local);
-        onError(undefined, opt);
-    }, onError);
-};
-
 local.testCase_serverRespondTimeoutDefault_timeout = function (
     opt,
     onError

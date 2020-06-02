@@ -3165,7 +3165,7 @@ local.buildApp = async function (opt, onError) {
 /*
  * this function will build app with given <opt>
  */
-    // build app
+    // rm -r
     await new Promise(function (resolve, reject) {
         require("child_process").spawn(
             "rm -r tmp/build/app; mkdir -p tmp/build/app",
@@ -3181,11 +3181,10 @@ local.buildApp = async function (opt, onError) {
             resolve();
         });
     });
+    // build app
     opt = local.objectAssignDefault(opt, {
         assetsList: []
     });
-    // build assets
-    local.fsRmrfSync("tmp/build/app");
     await Promise.all([].concat([
         {
             file: "/LICENSE",
