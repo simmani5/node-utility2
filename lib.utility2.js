@@ -3237,6 +3237,11 @@ local.buildApp = async function (opt, onError) {
             "wrote file - app - {{pathname}}"
         );
     }));
+    // jslint app
+    globalThis.__jslintAndPrintDirChildProcess("tmp/build/app", {
+        autofix: true,
+        conditional: true
+    }).catch(local.nop);
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
         "tmp/buildApp/assets.app.js",
