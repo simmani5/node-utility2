@@ -16869,15 +16869,19 @@ local.jslintAndPrint = function (code = "", file = "undefined", opt = {}) {
     return local.jslintAndPrint(code, file, opt);
 };
 
-local.jslintAndPrintDir = function (dir, opt, onError) {
+local.jslintAndPrintDir = async function (dir, opt = {}) {
 /*
  * this function will jslint files in shallow <dir>
  */
-    let onParallel;
-    onParallel = local.onParallel(onError);
-    local.fs.readdirSync(dir).forEach(function (file) {
+    let err;
+    // jslint in current-process
+    await Promise.all((
+        await require("fs").promises.readdir(dir)
+    ).map(async function (file) {
+        let data;
         let timeStart;
-        file = local.path.resolve(file);
+        timeStart = Date.now();
+        file = require("path").resolve(file);
         switch ((
             /\.\w+?$|$/m
         ).exec(file)[0]) {
@@ -16892,21 +16896,19 @@ local.jslintAndPrintDir = function (dir, opt, onError) {
             ).test(file)) {
                 return;
             }
-            onParallel.cnt += 1;
-            // jslint file
-            local.fs.readFile(file, "utf8", function (err, data) {
-                // handle err
-                local.assertOrThrow(!err, err);
-                timeStart = Date.now();
-                local.jslintAndPrint(data, file, opt);
-                console.error(
-                    "jslint - " + (Date.now() - timeStart) + "ms " + file
-                );
-                onParallel();
-            });
             break;
+        default:
+            return;
         }
-    });
+        // jslint file
+        data = await require("fs").promises.readFile(file, "utf8");
+        local.jslintAndPrint(data, file, opt);
+        err = err || local.jslintResult.errList.length;
+        console.error(
+            "jslint - " + (Date.now() - timeStart) + "ms - " + file
+        );
+    }));
+    return Boolean(err);
 };
 
 local.jslintAutofix = function (code, file, opt) {
@@ -17673,7 +17675,7 @@ local.cliDict.dir = function () {
     local.jslintAndPrintDir(process.argv[3], {
         autofix: process.argv.indexOf("--autofix") >= 0,
         conditional: process.argv.indexOf("--conditional") >= 0
-    }, process.exit);
+    }).then(process.exit);
 };
 
 // run the cli

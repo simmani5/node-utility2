@@ -5535,7 +5535,7 @@ local.requireReadme = function () {
                 + JSON.stringify(__filename)
                 + ").jslint.jslintAndPrintDir("
                 + JSON.stringify(process.cwd())
-                + ", {autofix:true,conditional:true}, process.exit);"
+                + ", {autofix:true,conditional:true}).then(process.exit);"
             )
         ], {
             env: Object.assign({}, local.env, {
