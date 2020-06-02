@@ -144,37 +144,6 @@
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirp = async function (pathname, data, msg) {
-    /*
-     * this function will async write <data> to <pathname> with "mkdir -p"
-     */
-        let fs;
-        let success;
-        // do nothing if module does not exist
-        try {
-            fs = require("fs").promises;
-        } catch (ignore) {
-            return;
-        }
-        pathname = require("path").resolve(pathname);
-        // try to write pathname
-        try {
-            await fs.writeFile(pathname, data);
-            success = true;
-        } catch (ignore) {
-            // mkdir -p
-            await fs.mkdir(require("path").dirname(pathname), {
-                recursive: true
-            });
-            // re-write pathname
-            await fs.writeFile(pathname, data);
-            success = true;
-        }
-        if (success && msg) {
-            console.error(msg.replace("{{pathname}}", pathname));
-        }
-        return success;
-    };
     local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
@@ -245,22 +214,6 @@
         };
         recurse(tgt, src, depth | 0);
         return tgt;
-    };
-    local.promisify = function (fnc) {
-    /*
-     * this function will promisify <fnc>
-     */
-        return function (...argList) {
-            return new Promise(function (resolve, reject) {
-                fnc(...argList, function (err, ...argList) {
-                    if (err) {
-                        reject(err, ...argList);
-                        return;
-                    }
-                    resolve(...argList);
-                });
-            });
-        };
     };
     // require builtin
     if (!local.isBrowser) {

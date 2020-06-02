@@ -925,17 +925,17 @@ shCryptoAesXxxCbcRawDecrypt () {(set -e
 /* jslint utility2:true */
 (function (local) {
 "use strict";
-let bufList;
-bufList = [];
+let chunkList;
+chunkList = [];
 process.stdin.on("data", function (chunk) {
-    bufList.push(chunk);
+    chunkList.push(chunk);
 });
 process.stdin.on("end", function () {
     local.cryptoAesXxxCbcRawDecrypt({
         data: (
             process.argv[2] === "base64"
-            ? Buffer.concat(bufList).toString()
-            : Buffer.concat(bufList)
+            ? Buffer.concat(chunkList).toString()
+            : Buffer.concat(chunkList)
         ),
         key: process.argv[1],
         mode: process.argv[2]
@@ -957,14 +957,14 @@ shCryptoAesXxxCbcRawEncrypt () {(set -e
 /* jslint utility2:true */
 (function (local) {
 "use strict";
-let bufList;
-bufList = [];
+let chunkList;
+chunkList = [];
 process.stdin.on("data", function (chunk) {
-    bufList.push(chunk);
+    chunkList.push(chunk);
 });
 process.stdin.on("end", function () {
     local.cryptoAesXxxCbcRawEncrypt({
-        data: Buffer.concat(bufList),
+        data: Buffer.concat(chunkList),
         key: process.argv[1],
         mode: process.argv[2]
     }, function (err, data) {
@@ -3441,10 +3441,13 @@ shUtility2Dependents () {(set -e
 printf "
 apidoc-lite
 bootstrap-lite
+github-crud
 istanbul-lite
 jslint-lite
 sqljs-lite
+swgg
 utility2
+wasm-sqlite
 "
 )}
 
@@ -3460,6 +3463,8 @@ shUtility2DependentsSync () {(set -e
     if [ -d "$HOME/bin" ]
     then
         ln -f "utility2/lib.apidoc.js" "$HOME/bin/utility2-apidoc" || true
+        ln -f "utility2/lib.github_crud.js" "$HOME/bin/utility2-github_crud" ||
+            true
         ln -f "utility2/lib.istanbul.js" "$HOME/bin/utility2-istanbul" || true
         ln -f "utility2/lib.jslint.js" "$HOME/bin/utility2-jslint" || true
         ln -f "utility2/lib.utility2.sh" "$HOME/bin/utility2" || true
@@ -3740,37 +3745,6 @@ export UTILITY2_MACRO_JS='
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirp = async function (pathname, data, msg) {
-    /*
-     * this function will async write <data> to <pathname> with "mkdir -p"
-     */
-        let fs;
-        let success;
-        // do nothing if module does not exist
-        try {
-            fs = require("fs").promises;
-        } catch (ignore) {
-            return;
-        }
-        pathname = require("path").resolve(pathname);
-        // try to write pathname
-        try {
-            await fs.writeFile(pathname, data);
-            success = true;
-        } catch (ignore) {
-            // mkdir -p
-            await fs.mkdir(require("path").dirname(pathname), {
-                recursive: true
-            });
-            // re-write pathname
-            await fs.writeFile(pathname, data);
-            success = true;
-        }
-        if (success && msg) {
-            console.error(msg.replace("{{pathname}}", pathname));
-        }
-        return success;
-    };
     local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
@@ -3841,22 +3815,6 @@ export UTILITY2_MACRO_JS='
         };
         recurse(tgt, src, depth | 0);
         return tgt;
-    };
-    local.promisify = function (fnc) {
-    /*
-     * this function will promisify <fnc>
-     */
-        return function (...argList) {
-            return new Promise(function (resolve, reject) {
-                fnc(...argList, function (err, ...argList) {
-                    if (err) {
-                        reject(err, ...argList);
-                        return;
-                    }
-                    resolve(...argList);
-                });
-            });
-        };
     };
     // require builtin
     if (!local.isBrowser) {

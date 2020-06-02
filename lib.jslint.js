@@ -150,37 +150,6 @@
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirp = async function (pathname, data, msg) {
-    /*
-     * this function will async write <data> to <pathname> with "mkdir -p"
-     */
-        let fs;
-        let success;
-        // do nothing if module does not exist
-        try {
-            fs = require("fs").promises;
-        } catch (ignore) {
-            return;
-        }
-        pathname = require("path").resolve(pathname);
-        // try to write pathname
-        try {
-            await fs.writeFile(pathname, data);
-            success = true;
-        } catch (ignore) {
-            // mkdir -p
-            await fs.mkdir(require("path").dirname(pathname), {
-                recursive: true
-            });
-            // re-write pathname
-            await fs.writeFile(pathname, data);
-            success = true;
-        }
-        if (success && msg) {
-            console.error(msg.replace("{{pathname}}", pathname));
-        }
-        return success;
-    };
     local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
@@ -251,22 +220,6 @@
         };
         recurse(tgt, src, depth | 0);
         return tgt;
-    };
-    local.promisify = function (fnc) {
-    /*
-     * this function will promisify <fnc>
-     */
-        return function (...argList) {
-            return new Promise(function (resolve, reject) {
-                fnc(...argList, function (err, ...argList) {
-                    if (err) {
-                        reject(err, ...argList);
-                        return;
-                    }
-                    resolve(...argList);
-                });
-            });
-        };
     };
     // require builtin
     if (!local.isBrowser) {
@@ -556,6 +509,75 @@ local.jsonStringifyOrdered = function (obj, replacer, space) {
         ? JSON.parse(stringify(obj))
         : obj
     ), replacer, space);
+};
+
+local.onErrorWithStack = function (onError) {
+/*
+ * this function will wrap <onError> with wrapper preserving current-stack
+ */
+    let onError2;
+    let stack;
+    stack = new Error().stack;
+    onError2 = function (err, data, meta) {
+        // append current-stack to err.stack
+        if (
+            err
+            && typeof err.stack === "string"
+            && err !== local.errorDefault
+        ) {
+            err.stack += "\n" + stack;
+        }
+        onError(err, data, meta);
+    };
+    // debug onError
+    onError2.toString = function () {
+        return String(onError);
+    };
+    return onError2;
+};
+
+local.onParallel = function (onError, onEach, onRetry) {
+/*
+ * this function will create a function that will
+ * 1. run async tasks in parallel
+ * 2. if cnt === 0 or err occurred, then call onError(err)
+ */
+    let onParallel;
+    onError = local.onErrorWithStack(onError);
+    onEach = onEach || local.nop;
+    onRetry = onRetry || local.nop;
+    onParallel = function (err, data) {
+        if (onRetry(err, data)) {
+            return;
+        }
+        // decrement cnt
+        onParallel.cnt -= 1;
+        // validate cnt
+        if (!(onParallel.cnt >= 0 || err || onParallel.err)) {
+            err = new Error(
+                "invalid onParallel.cnt = " + onParallel.cnt
+            );
+        // ensure onError is run only once
+        } else if (onParallel.cnt < 0) {
+            return;
+        }
+        // handle err
+        if (err) {
+            onParallel.err = err;
+            // ensure cnt <= 0
+            onParallel.cnt = -Math.abs(onParallel.cnt);
+        }
+        // call onError when isDone
+        if (onParallel.cnt <= 0) {
+            onError(err, data);
+            return;
+        }
+        onEach();
+    };
+    // init cnt
+    onParallel.cnt = 0;
+    // return callback
+    return onParallel;
 };
 }());
 
@@ -16800,19 +16822,15 @@ local.jslintAndPrint = function (code = "", file = "undefined", opt = {}) {
     return local.jslintAndPrint(code, file, opt);
 };
 
-local.jslintAndPrintDir = async function (dir, opt) {
+local.jslintAndPrintDir = function (dir, opt, onError) {
 /*
  * this function will jslint files in shallow <dir>
  */
-    let errCnt;
-    errCnt = 0;
-    await Promise.all((
-        await require("fs").promises.readdir(dir)
-    ).map(async function (file) {
-        let data;
+    let onParallel;
+    onParallel = local.onParallel(onError);
+    local.fs.readdirSync(dir).forEach(function (file) {
         let timeStart;
-        timeStart = Date.now();
-        file = require("path").resolve(file);
+        file = local.path.resolve(file);
         switch ((
             /\.\w+?$|$/m
         ).exec(file)[0]) {
@@ -16827,17 +16845,21 @@ local.jslintAndPrintDir = async function (dir, opt) {
             ).test(file)) {
                 return;
             }
+            onParallel.cnt += 1;
             // jslint file
-            data = await require("fs").promises.readFile(file, "utf8");
-            local.jslintAndPrint(data, file, opt);
-            errCnt += local.jslintResult.errList.length;
-            console.error(
-                "jslint - " + (Date.now() - timeStart) + "ms - " + file
-            );
+            local.fs.readFile(file, "utf8", function (err, data) {
+                // handle err
+                local.assertOrThrow(!err, err);
+                timeStart = Date.now();
+                local.jslintAndPrint(data, file, opt);
+                console.error(
+                    "jslint - " + (Date.now() - timeStart) + "ms " + file
+                );
+                onParallel();
+            });
             break;
         }
-    }));
-    return Math.min(errCnt, 255);
+    });
 };
 
 local.jslintAutofix = function (code, file, opt) {
@@ -17604,7 +17626,7 @@ local.cliDict.dir = function () {
     local.jslintAndPrintDir(process.argv[3], {
         autofix: process.argv.indexOf("--autofix") >= 0,
         conditional: process.argv.indexOf("--conditional") >= 0
-    }).then(process.exit);
+    }, process.exit);
 };
 
 // run the cli

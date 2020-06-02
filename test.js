@@ -140,37 +140,6 @@
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirp = async function (pathname, data, msg) {
-    /*
-     * this function will async write <data> to <pathname> with "mkdir -p"
-     */
-        let fs;
-        let success;
-        // do nothing if module does not exist
-        try {
-            fs = require("fs").promises;
-        } catch (ignore) {
-            return;
-        }
-        pathname = require("path").resolve(pathname);
-        // try to write pathname
-        try {
-            await fs.writeFile(pathname, data);
-            success = true;
-        } catch (ignore) {
-            // mkdir -p
-            await fs.mkdir(require("path").dirname(pathname), {
-                recursive: true
-            });
-            // re-write pathname
-            await fs.writeFile(pathname, data);
-            success = true;
-        }
-        if (success && msg) {
-            console.error(msg.replace("{{pathname}}", pathname));
-        }
-        return success;
-    };
     local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
@@ -241,22 +210,6 @@
         };
         recurse(tgt, src, depth | 0);
         return tgt;
-    };
-    local.promisify = function (fnc) {
-    /*
-     * this function will promisify <fnc>
-     */
-        return function (...argList) {
-            return new Promise(function (resolve, reject) {
-                fnc(...argList, function (err, ...argList) {
-                    if (err) {
-                        reject(err, ...argList);
-                        return;
-                    }
-                    resolve(...argList);
-                });
-            });
-        };
     };
     // require builtin
     if (!local.isBrowser) {
@@ -1063,6 +1016,91 @@ local.testCase_buildXxx_default = function (opt, onError) {
         local._testCase_webpage_default({}, local.nop);
         local.assetsDict["/"] = "<script src=\"assets.test.js\"></script>";
         local._testCase_webpage_default({}, local.nop);
+        onError(undefined, opt);
+    }, onError);
+};
+
+local.testCase_childProcessSpawnWithTimeout_default = function (
+    opt,
+    onError
+) {
+/*
+ * this function will test
+ * childProcessSpawnWithTimeout's default handling-behavior
+ */
+    let onParallel;
+    if (local.isBrowser) {
+        onError(undefined, opt);
+        return;
+    }
+    opt = {};
+    onParallel = local.onParallel(onError);
+    onParallel.cnt += 1;
+    // test default handling-behavior
+    onParallel.cnt += 1;
+    local.childProcessSpawnWithTimeout("ls").on(
+        "error",
+        onParallel
+    ).on("exit", function (exitCode, signal) {
+        // validate exitCode
+        local.assertJsonEqual(exitCode, 0);
+        // validate signal
+        local.assertJsonEqual(signal, null);
+        onParallel(null, opt);
+    });
+    // test timeout handling-behavior
+    onParallel.cnt += 1;
+    local.testMock([
+        [
+            local, {
+                timeoutDefault: 1000
+            }
+        ]
+    ], function (onError) {
+        opt.childProcess = (
+            local.childProcessSpawnWithTimeout("sleep", [
+                5000
+            ])
+        );
+        onError(undefined, opt);
+    }, local.onErrorThrow);
+    opt.childProcess.on(
+        "error",
+        onParallel
+    ).on("exit", function (exitCode, signal) {
+        // validate exitCode
+        local.assertJsonEqual(exitCode, null);
+        // validate signal
+        local.assertJsonEqual(signal, "SIGKILL");
+        onParallel(null, opt);
+    });
+    onParallel(null, opt);
+};
+
+local.testCase_childProcessSpawnWithUtility2_err = function (
+    opt,
+    onError
+) {
+/*
+ * this function will test
+ * childProcessSpawnWithTimeout's err handling-behavior
+ */
+    if (local.isBrowser) {
+        onError(undefined, opt);
+        return;
+    }
+    local.testMock([
+        // test __dirname handling-behavior
+        [
+            process.env, {
+                npm_config_dir_utility2: ""
+            }
+        ]
+    ], function (onError) {
+        local.local.childProcessSpawnWithUtility2("undefined", function (err) {
+            // handle err
+            local.assertOrThrow(err, err);
+        });
         onError(undefined, opt);
     }, onError);
 };
@@ -2048,7 +2086,55 @@ local.testCase_replStart_default = function (opt, onError) {
     }, onError);
 };
 
-local.testCase_serverRespondTimeoutDefault_timeout = function (opt, onError) {
+local.testCase_requireReadme_start = function (opt, onError) {
+/*
+ * this function will test requireReadme's start handling-behavior
+ */
+    if (local.isBrowser) {
+        onError(undefined, opt);
+        return;
+    }
+    local.testMock([
+        [
+            local, {
+                assetsDict: {},
+                onFileModifiedRestart: local.nop
+            }
+        ], [
+            local.env, {
+                npm_config_mode_start: "1",
+                npm_package_nameLib: "_testCase_requireReadme_start"
+            }
+        ], [
+            local.fs, {
+                readFile: function (file, opt, onError) {
+                    onError(undefined, "{}", file, opt);
+                },
+                readdirSync: function () {
+                    // test jslintAndPrint.conditional handling-behavior
+                    return [
+                        "aa.css",
+                        "aa.html",
+                        "aa.js",
+                        "aa.json",
+                        "aa.rollup.js",
+                        "assets.swgg.swagger.json"
+                    ];
+                }
+            }
+        ]
+    ], function (onError) {
+        // validate data
+        local.requireReadme();
+        local.assertOrThrow(local._testCase_requireReadme_start === local);
+        onError(undefined, opt);
+    }, onError);
+};
+
+local.testCase_serverRespondTimeoutDefault_timeout = function (
+    opt,
+    onError
+) {
 /*
  * this function will test
  * serverRespondTimeoutDefault's timeout handling-behavior

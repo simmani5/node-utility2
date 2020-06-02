@@ -3,6 +3,7 @@
     "bin": {
         "utility2": "lib.utility2.sh",
         "utility2-apidoc": "lib.apidoc.js",
+        "utility2-github-crud": "lib.github_crud.js",
         "utility2-istanbul": "lib.istanbul.js",
         "utility2-jslint": "lib.jslint.js"
     },
@@ -11,7 +12,7 @@
     "engines": {
         "node": ">=12.0"
     },
-    "fileCount": 23,
+    "fileCount": 25,
     "homepage": "https://github.com/kaizhu256/node-utility2",
     "keywords": [
         "continuous-integration",
@@ -45,12 +46,14 @@
         "utility2": "./npm_scripts.sh"
     },
     "utility2Dependents": [
+        "2019.01.21 github-crud",
+        "2019.09.14 swgg",
         "2020.01.20 bootstrap-lite",
         "2020.02.12 sqljs-lite",
         "2020.03.16 apidoc-lite",
         "2020.05.20 jslint-lite",
-        "2020.05.25 istanbul-lite",
-        "2020.02.25 utility2"
+        "2019.05.25 istanbul-lite master",
+        "2020.02.20 utility2"
     ],
     "version": "2020.5.31"
 }

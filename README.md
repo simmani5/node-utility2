@@ -57,7 +57,6 @@ this zero-dependency package will provide high-level functions to to build, test
 
 #### changelog 2020.5.31
 - npm publish 2020.5.31
-- add function fsWriteFileWithMkdirp
 - update file raw.istanbul.js
 - remove excessive "the" from comments
 - remove build-process for css-file
@@ -65,8 +64,6 @@ this zero-dependency package will provide high-level functions to to build, test
 - replace process.cwd() with path.resolve()
 - rename shell-function shPackageJsonVersionUpdate to shPackageJsonVersionIncrement
 - remove functions
-    childProcessSpawnWithTimeout,
-    childProcessSpawnWithUtility2,
     functionOrNop,
     local.querySelector,
     local.querySelectorAll,
@@ -77,7 +74,7 @@ this zero-dependency package will provide high-level functions to to build, test
     semverCompare,
     serverRespondCors,
 - replace function fsReadFileOrEmptyStringSync with fsReadFileOrDefaultSync
-- remove dependency to files lib.github_crud.js, lib.swgg.js
+- remove dependency to file lib.swgg.js
 - inline object local.contentTypeDict
 - istanbul - inline function templateRender
 - none
@@ -87,6 +84,7 @@ this zero-dependency package will provide high-level functions to to build, test
 - add eslint-rule no-multiple-empty-lines
 - remove file lib.swgg.js
 - remove sloppy-cases where npm-test falsely pass
+- deprecate dependent github-crud
 - istanbul - remove filesUnderRoot subroutine
 - jslint - add nullish-coalescing support
 - jslint - add optional-chaining support
@@ -295,37 +293,6 @@ instruction
             });
         } catch (ignore) {}
     };
-    local.fsWriteFileWithMkdirp = async function (pathname, data, msg) {
-    /*
-     * this function will async write <data> to <pathname> with "mkdir -p"
-     */
-        let fs;
-        let success;
-        // do nothing if module does not exist
-        try {
-            fs = require("fs").promises;
-        } catch (ignore) {
-            return;
-        }
-        pathname = require("path").resolve(pathname);
-        // try to write pathname
-        try {
-            await fs.writeFile(pathname, data);
-            success = true;
-        } catch (ignore) {
-            // mkdir -p
-            await fs.mkdir(require("path").dirname(pathname), {
-                recursive: true
-            });
-            // re-write pathname
-            await fs.writeFile(pathname, data);
-            success = true;
-        }
-        if (success && msg) {
-            console.error(msg.replace("{{pathname}}", pathname));
-        }
-        return success;
-    };
     local.fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
     /*
      * this function will sync write <data> to <pathname> with "mkdir -p"
@@ -396,22 +363,6 @@ instruction
         };
         recurse(tgt, src, depth | 0);
         return tgt;
-    };
-    local.promisify = function (fnc) {
-    /*
-     * this function will promisify <fnc>
-     */
-        return function (...argList) {
-            return new Promise(function (resolve, reject) {
-                fnc(...argList, function (err, ...argList) {
-                    if (err) {
-                        reject(err, ...argList);
-                        return;
-                    }
-                    resolve(...argList);
-                });
-            });
-        };
     };
     // require builtin
     if (!local.isBrowser) {
@@ -1300,6 +1251,7 @@ local.http.createServer(function (req, res) {
     "bin": {
         "utility2": "lib.utility2.sh",
         "utility2-apidoc": "lib.apidoc.js",
+        "utility2-github-crud": "lib.github_crud.js",
         "utility2-istanbul": "lib.istanbul.js",
         "utility2-jslint": "lib.jslint.js"
     },
@@ -1308,7 +1260,7 @@ local.http.createServer(function (req, res) {
     "engines": {
         "node": ">=12.0"
     },
-    "fileCount": 23,
+    "fileCount": 25,
     "homepage": "https://github.com/kaizhu256/node-utility2",
     "keywords": [
         "continuous-integration",
@@ -1342,12 +1294,14 @@ local.http.createServer(function (req, res) {
         "utility2": "./npm_scripts.sh"
     },
     "utility2Dependents": [
+        "2019.01.21 github-crud",
+        "2019.09.14 swgg",
         "2020.01.20 bootstrap-lite",
         "2020.02.12 sqljs-lite",
         "2020.03.16 apidoc-lite",
         "2020.05.20 jslint-lite",
-        "2020.05.25 istanbul-lite",
-        "2020.02.25 utility2"
+        "2019.05.25 istanbul-lite master",
+        "2020.02.20 utility2"
     ],
     "version": "2020.5.31"
 }
