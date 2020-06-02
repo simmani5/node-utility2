@@ -4781,7 +4781,7 @@ local.middlewareAssetsCached = function (req, res, next) {
         local.serverResponseHeaderLastModified = (
             local.serverResponseHeaderLastModified
             // resolve to 1000 ms
-            || new Date()
+            || new Date(new Date().toUTCString())
         );
         // respond with 304 If-Modified-Since serverResponseHeaderLastModified
         if (
@@ -5529,11 +5529,22 @@ local.requireReadme = function () {
     });
     // jslint process.cwd()
     if (!local.env.npm_config_mode_library) {
-        globalThis.__jslintAndPrintDir(process.cwd(), {
-            autofix: true,
-            childProcess: true,
-            conditional: true
-        }).catch(local.nop);
+        local.child_process.spawn("node", [
+            "-e", (
+                "require("
+                + JSON.stringify(__filename)
+                + ").jslint.jslintAndPrintDir("
+                + JSON.stringify(process.cwd())
+                + ", {autofix:true,conditional:true}).then(process.exit);"
+            )
+        ], {
+            env: Object.assign({}, local.env, {
+                npm_config_mode_library: "1"
+            }),
+            stdio: [
+                "ignore", "ignore", 2
+            ]
+        });
     }
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
