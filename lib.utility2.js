@@ -3238,6 +3238,11 @@ local.buildApp = async function (opt, onError) {
         );
     }));
     // jslint app
+    //!! local.childProcessEval(
+        //!! local.assetsDict["/assets.utility2.lib.jslint.js"]
+        //!! + ";module.exports.jslintAndPrintDir(\".\","
+        //!! + "{autofix:true,conditional:true});"
+    //!! );
     //!! await globalThis.__jslintAndPrintDirChildProcess("tmp/build/app", {
         //!! conditional: true
     //!! });
@@ -5589,7 +5594,7 @@ local.requireReadme = function () {
             local.assetsDict["/assets.utility2.lib.jslint.js"]
             + ";module.exports.jslintAndPrintDir(\".\","
             + "{autofix:true,conditional:true});"
-        );
+        ).catch(local.nop);
     });
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
