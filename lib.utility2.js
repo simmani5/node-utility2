@@ -7562,6 +7562,7 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     "lib.utility2.js",
     "/assets.utility2.example.js",
     "/assets.utility2.html",
+    "/assets.utility2.lib.jslint.js",
     "/assets.utility2.test.js",
     "/assets.utility2.rollup.end.js"
 ].map(function (key) {
@@ -7569,6 +7570,7 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     switch (key) {
     case "/assets.utility2.example.js":
     case "/assets.utility2.html":
+    case "/assets.utility2.lib.jslint.js":
     case "/assets.utility2.test.js":
         // handle large string-replace
         script = local.assetsDict["/assets.utility2.rollup.content.js"].split(
