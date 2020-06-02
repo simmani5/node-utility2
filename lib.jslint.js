@@ -557,6 +557,75 @@ local.jsonStringifyOrdered = function (obj, replacer, space) {
         : obj
     ), replacer, space);
 };
+
+local.onErrorWithStack = function (onError) {
+/*
+ * this function will wrap <onError> with wrapper preserving current-stack
+ */
+    let onError2;
+    let stack;
+    stack = new Error().stack;
+    onError2 = function (err, data, meta) {
+        // append current-stack to err.stack
+        if (
+            err
+            && typeof err.stack === "string"
+            && err !== local.errorDefault
+        ) {
+            err.stack += "\n" + stack;
+        }
+        onError(err, data, meta);
+    };
+    // debug onError
+    onError2.toString = function () {
+        return String(onError);
+    };
+    return onError2;
+};
+
+local.onParallel = function (onError, onEach, onRetry) {
+/*
+ * this function will create a function that will
+ * 1. run async tasks in parallel
+ * 2. if cnt === 0 or err occurred, then call onError(err)
+ */
+    let onParallel;
+    onError = local.onErrorWithStack(onError);
+    onEach = onEach || local.nop;
+    onRetry = onRetry || local.nop;
+    onParallel = function (err, data) {
+        if (onRetry(err, data)) {
+            return;
+        }
+        // decrement cnt
+        onParallel.cnt -= 1;
+        // validate cnt
+        if (!(onParallel.cnt >= 0 || err || onParallel.err)) {
+            err = new Error(
+                "invalid onParallel.cnt = " + onParallel.cnt
+            );
+        // ensure onError is run only once
+        } else if (onParallel.cnt < 0) {
+            return;
+        }
+        // handle err
+        if (err) {
+            onParallel.err = err;
+            // ensure cnt <= 0
+            onParallel.cnt = -Math.abs(onParallel.cnt);
+        }
+        // call onError when isDone
+        if (onParallel.cnt <= 0) {
+            onError(err, data);
+            return;
+        }
+        onEach();
+    };
+    // init cnt
+    onParallel.cnt = 0;
+    // return callback
+    return onParallel;
+};
 }());
 
 
@@ -16800,51 +16869,15 @@ local.jslintAndPrint = function (code = "", file = "undefined", opt = {}) {
     return local.jslintAndPrint(code, file, opt);
 };
 
-local.jslintAndPrintDir = async function (dir, opt = {}) {
+local.jslintAndPrintDir = function (dir, opt, onError) {
 /*
  * this function will jslint files in shallow <dir>
  */
-    let err;
-    // jslint in child-process
-    if (opt.childProcess && !process.env.npm_config_mode_library) {
-        await new Promise(function (resolve, reject) {
-            dir = require("path").resolve(dir);
-            require("child_process").spawn("node", [
-                "-e", (
-                    "require(" + JSON.stringify(__filename) + ");"
-                    + "global.__jslintAndPrintDir("
-                    + JSON.stringify(dir) + ","
-                    + JSON.stringify(opt)
-                    + ").then(process.exit);"
-                )
-            ], {
-                env: {
-                    npm_config_mode_library: "1"
-                },
-                stdio: [
-                    "ignore", "ignore", 2
-                ]
-            }).on("error", reject).on("exit", function (exitCode) {
-                if (exitCode) {
-                    reject(new Error(
-                        "jslintAndPrintDirChildProcess - "
-                        + exitCode + " errors - " + dir
-                    ));
-                    return;
-                }
-                resolve();
-            });
-        });
-        return;
-    }
-    // jslint in current-process
-    await Promise.all((
-        await require("fs").promises.readdir(dir)
-    ).map(async function (file) {
-        let data;
+    let onParallel;
+    onParallel = local.onParallel(onError);
+    local.fs.readdirSync(dir).forEach(function (file) {
         let timeStart;
-        timeStart = Date.now();
-        file = require("path").resolve(file);
+        file = local.path.resolve(file);
         switch ((
             /\.\w+?$|$/m
         ).exec(file)[0]) {
@@ -16859,21 +16892,22 @@ local.jslintAndPrintDir = async function (dir, opt = {}) {
             ).test(file)) {
                 return;
             }
+            onParallel.cnt += 1;
+            // jslint file
+            local.fs.readFile(file, "utf8", function (err, data) {
+                // handle err
+                local.assertOrThrow(!err, err);
+                timeStart = Date.now();
+                local.jslintAndPrint(data, file, opt);
+                console.error(
+                    "jslint - " + (Date.now() - timeStart) + "ms " + file
+                );
+                onParallel();
+            });
             break;
-        default:
-            return;
         }
-        // jslint file
-        data = await require("fs").promises.readFile(file, "utf8");
-        local.jslintAndPrint(data, file, opt);
-        err = err || local.jslintResult.errList.length;
-        console.error(
-            "jslint - " + (Date.now() - timeStart) + "ms - " + file
-        );
-    }));
-    return Boolean(err);
+    });
 };
-globalThis.__jslintAndPrintDir = local.jslintAndPrintDir;
 
 local.jslintAutofix = function (code, file, opt) {
 /*

@@ -3165,23 +3165,12 @@ local.buildApp = async function (opt, onError) {
 /*
  * this function will build app with given <opt>
  */
-    // build app
-    await local.promisify(function (onError) {
-        require("child_process").spawn(
-            "rm -r tmp/build/app; mkdir -p tmp/build/app",
-            {
-                shell: true,
-                stdio: [
-                    "ignore", 1, 2
-                ]
-            }
-        ).on("error", onError).on("exit", function (exitCode) {
-            // validate exitCode
-            local.assertOrThrow(!exitCode, exitCode);
-            onError();
-        });
+    opt = local.objectAssignDefault(opt, {
+        assetsList: []
     });
-    await Promise.all([
+    // build assets
+    local.fsRmrfSync("tmp/build/app");
+    await Promise.all([].concat([
         {
             file: "/LICENSE",
             url: "/LICENSE"
@@ -3222,55 +3211,50 @@ local.buildApp = async function (opt, onError) {
                 + "?callback=window.utility2.stateInit"
             )
         }
-    ].concat(opt.assetsList).filter(local.identity).map(async function (elem) {
-        let file;
-        file = require("path").resolve("tmp/build/app/" + elem.file);
-        await local.promisify(function (onError) {
-            require("http").request(local.serverLocalHost + elem.url, function (
-                res
-            ) {
-                res.pipe(
-                    require("fs").createWriteStream(
-                        file
-                    ).on("error", onError).on("close", onError)
-                ).on("error", onError);
-            });
+    ], opt.assetsList).map(async function (elem) {
+        let xhr;
+        xhr = await local.httpFetch(local.serverLocalHost + elem.url, {
+            responseType: "raw"
         });
-        console.error("wrote file - app - " + file);
+        // jslint file
+        local.jslintAndPrint(xhr.data.toString(), elem.file, {
+            conditional: true,
+            coverage: local.env.npm_config_mode_coverage
+        });
+        // handle err
+        local.assertOrThrow(
+            !local.jslint.jslintResult.errMsg,
+            local.jslint.jslintResult.errMsg
+        );
+        await local.fsWriteFileWithMkdirp(
+            "tmp/build/app/" + elem.file,
+            xhr.data,
+            "wrote file - app - {{pathname}}"
+        );
     }));
-    // jslint app
-    //!! if (!local.env.npm_config_mode_library) {
-        //!! await local.jslintAndPrintDir("tmp/build/app", {
-            //!! childProcess: true,
-            //!! conditional: true
-        //!! });
-    //!! }
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
         "tmp/buildApp/assets.app.js",
         local.assetsDict["/assets.app.js"],
         "wrote file - assets.app.js - {{pathname}}"
     );
-    //!! await local.promisify(function (onError) {
-        //!! require("child_process").spawn("node", [
-            //!! "assets.app.js"
-        //!! ], {
-            //!! cwd: "tmp/buildApp",
-            //!! env: {
-                //!! PATH: local.env.PATH,
-                //!! PORT: (Math.random() * 0x10000) | 0x8000,
-                //!! npm_config_timeout_exit: 5000
-            //!! },
-            //!! stdio: [
-                //!! "ignore", "ignore", 2
-            //!! ]
-        //!! }).on("error", onError).on("exit", function (exitCode) {
-            //!! // validate exitCode
-            //!! local.assertOrThrow(!exitCode, exitCode);
-            //!! onError();
-        //!! });
-    //!! });
-    onError();
+    local.child_process.spawn("node", [
+        "assets.app.js"
+    ], {
+        cwd: "tmp/buildApp",
+        env: {
+            PATH: local.env.PATH,
+            PORT: (Math.random() * 0x10000) | 0x8000,
+            npm_config_timeout_exit: 5000
+        },
+        stdio: [
+            "ignore", "ignore", 2
+        ]
+    }).on("error", onError).on("exit", function (exitCode) {
+        // validate exitCode
+        local.assertOrThrow(!exitCode, exitCode);
+        onError();
+    });
 };
 
 local.buildLib = function (opt, onError) {
@@ -4797,7 +4781,7 @@ local.middlewareAssetsCached = function (req, res, next) {
         local.serverResponseHeaderLastModified = (
             local.serverResponseHeaderLastModified
             // resolve to 1000 ms
-            || new Date()
+            || new Date(new Date().toUTCString())
         );
         // respond with 304 If-Modified-Since serverResponseHeaderLastModified
         if (
@@ -5545,11 +5529,22 @@ local.requireReadme = function () {
     });
     // jslint process.cwd()
     if (!local.env.npm_config_mode_library) {
-        local.jslintAndPrintDir(process.cwd(), {
-            autofix: true,
-            childProcess: true,
-            conditional: true
-        }).catch(local.nop);
+        local.child_process.spawn("node", [
+            "-e", (
+                "require("
+                + JSON.stringify(__filename)
+                + ").jslint.jslintAndPrintDir("
+                + JSON.stringify(process.cwd())
+                + ", {autofix:true,conditional:true}, process.exit);"
+            )
+        ], {
+            env: Object.assign({}, local.env, {
+                npm_config_mode_library: "1"
+            }),
+            stdio: [
+                "ignore", "ignore", 2
+            ]
+        });
     }
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
@@ -7289,7 +7284,6 @@ local.istanbulInstrumentInPackage = (
 );
 local.istanbulInstrumentSync = local.istanbul.instrumentSync || local.identity;
 local.jslintAndPrint = local.jslint.jslintAndPrint || local.identity;
-local.jslintAndPrintDir = local.jslint.jslintAndPrintDir || local.identity;
 local.puppeteerLaunch = local.puppeteer.puppeteerLaunch || local.identity;
 local.regexpCharsetEncodeUri = (
     /\w!#\$%&'\(\)\*\+,-\.\/:;=\?@~/
