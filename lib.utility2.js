@@ -4781,7 +4781,7 @@ local.middlewareAssetsCached = function (req, res, next) {
         local.serverResponseHeaderLastModified = (
             local.serverResponseHeaderLastModified
             // resolve to 1000 ms
-            || new Date(new Date().toUTCString())
+            || new Date()
         );
         // respond with 304 If-Modified-Since serverResponseHeaderLastModified
         if (
