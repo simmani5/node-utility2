@@ -1308,7 +1308,7 @@ local.http.createServer(function (req, res) {
     "engines": {
         "node": ">=12.0"
     },
-    "fileCount": 25,
+    "fileCount": 23,
     "homepage": "https://github.com/kaizhu256/node-utility2",
     "keywords": [
         "continuous-integration",
