@@ -3176,7 +3176,6 @@ local.buildApp = async function (opt, onError) {
                 ]
             }
         ).on("error", reject).on("exit", function (exitCode) {
-            // validate exitCode
             local.assertOrThrow(!exitCode, exitCode);
             resolve();
         });
@@ -3231,7 +3230,7 @@ local.buildApp = async function (opt, onError) {
         file = require("path").resolve("tmp/build/app/" + elem.file);
         await new Promise(function (resolve, reject) {
             require("http").request((
-                "http://127.0.0.1:" + process.env.PORT + elem.url
+                "http://127.0.0.1:" + local.env.PORT + elem.url
             ), function (res) {
                 res.pipe(
                     require("fs").createWriteStream(
@@ -3268,7 +3267,6 @@ local.buildApp = async function (opt, onError) {
                 "ignore", "ignore", 2
             ]
         }).on("error", reject).on("exit", function (exitCode) {
-            // validate exitCode
             local.assertOrThrow(!exitCode, exitCode);
             resolve();
         });
