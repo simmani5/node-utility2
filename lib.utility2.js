@@ -5558,22 +5558,11 @@ local.requireReadme = function () {
     });
     // jslint process.cwd()
     if (!local.env.npm_config_mode_library) {
-        local.child_process.spawn("node", [
-            "-e", (
-                "require("
-                + JSON.stringify(__filename)
-                + ").jslint.jslintAndPrintDir("
-                + JSON.stringify(process.cwd())
-                + ", {autofix:true,conditional:true}, process.exit);"
-            )
-        ], {
-            env: Object.assign({}, local.env, {
-                npm_config_mode_library: "1"
-            }),
-            stdio: [
-                "ignore", "ignore", 2
-            ]
-        });
+        local.jslintAndPrintDir(process.cwd(), {
+            autofix: true,
+            childProcess: true,
+            conditional: true
+        }).catch(local.nop);
     }
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
@@ -7313,6 +7302,7 @@ local.istanbulInstrumentInPackage = (
 );
 local.istanbulInstrumentSync = local.istanbul.instrumentSync || local.identity;
 local.jslintAndPrint = local.jslint.jslintAndPrint || local.identity;
+local.jslintAndPrintDir = local.jslint.jslintAndPrintDir || local.identity;
 local.puppeteerLaunch = local.puppeteer.puppeteerLaunch || local.identity;
 local.regexpCharsetEncodeUri = (
     /\w!#\$%&'\(\)\*\+,-\.\/:;=\?@~/
