@@ -16837,7 +16837,7 @@ local.jslintAndPrintDir = async function (dir, opt) {
             break;
         }
     }));
-    return errCnt;
+    return Math.min(errCnt, 255);
 };
 
 local.jslintAutofix = function (code, file, opt) {

@@ -3228,9 +3228,12 @@ local.buildApp = async function (opt, onError) {
         if (!elem) {
             return;
         }
-        xhr = await local.httpFetch(local.serverLocalHost + elem.url, {
-            responseType: "raw"
-        });
+        xhr = await local.httpFetch(
+            "http://127.0.0.1:" + local.env.PORT + elem.url,
+            {
+                responseType: "raw"
+            }
+        );
         await local.fsWriteFileWithMkdirp(
             "tmp/build/app/" + elem.file,
             xhr.data,
@@ -3238,7 +3241,7 @@ local.buildApp = async function (opt, onError) {
         );
     }));
     // jslint app
-    local.childProcessEval(
+    await local.childProcessEval(
         local.assetsDict["/assets.utility2.lib.jslint.js"]
         + ";module.exports.jslintAndPrintDir(\"tmp/build/app\","
         + "{conditional:true});"
@@ -3643,7 +3646,7 @@ local.buildTest = function (opt, onError) {
 
 local.childProcessEval = function (code, opt) {
 /*
- * this function will spawn child-process to eval <opt>.code
+ * this function will eval <code> in child-process
  */
     let promise;
     let reject;
