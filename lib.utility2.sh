@@ -925,17 +925,17 @@ shCryptoAesXxxCbcRawDecrypt () {(set -e
 /* jslint utility2:true */
 (function (local) {
 "use strict";
-let chunkList;
-chunkList = [];
+let bufList;
+bufList = [];
 process.stdin.on("data", function (chunk) {
-    chunkList.push(chunk);
+    bufList.push(chunk);
 });
 process.stdin.on("end", function () {
     local.cryptoAesXxxCbcRawDecrypt({
         data: (
             process.argv[2] === "base64"
-            ? Buffer.concat(chunkList).toString()
-            : Buffer.concat(chunkList)
+            ? Buffer.concat(bufList).toString()
+            : Buffer.concat(bufList)
         ),
         key: process.argv[1],
         mode: process.argv[2]
@@ -957,14 +957,14 @@ shCryptoAesXxxCbcRawEncrypt () {(set -e
 /* jslint utility2:true */
 (function (local) {
 "use strict";
-let chunkList;
-chunkList = [];
+let bufList;
+bufList = [];
 process.stdin.on("data", function (chunk) {
-    chunkList.push(chunk);
+    bufList.push(chunk);
 });
 process.stdin.on("end", function () {
     local.cryptoAesXxxCbcRawEncrypt({
-        data: Buffer.concat(chunkList),
+        data: Buffer.concat(bufList),
         key: process.argv[1],
         mode: process.argv[2]
     }, function (err, data) {

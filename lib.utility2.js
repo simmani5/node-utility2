@@ -3639,6 +3639,50 @@ local.buildTest = function (opt, onError) {
     return result;
 };
 
+local.childProcessEval = function (code, opt) {
+/*
+ * this function will spawn child-process to eval <opt>.code
+ */
+    let promise;
+    let reject;
+    let resolve;
+    promise = new Promise(function (aa, bb) {
+        reject = bb;
+        resolve = aa;
+    });
+    promise.child = require("child_process").spawn("node", [
+        "-e", (
+            "/*jslint node*/\n"
+            + "let code = \"\";\n"
+            + "process.stdin.setEncoding(\"utf8\");\n"
+            + "process.stdin.on(\"readable\", function () {\n"
+            + "    let chunk;\n"
+            + "    while (true) {\n"
+            + "        chunk = process.stdin.read();\n"
+            + "        if (chunk === null) {\n"
+            + "            return;\n"
+            + "        }\n"
+            + "        code += chunk;\n"
+            + "    }\n"
+            + "});\n"
+            + "process.stdin.on(\"end\", function () {\n"
+            + "    require(\"vm\").runInThisContext(code);\n"
+            + "});\n"
+        )
+    ], Object.assign({
+        stdio: [
+            "pipe", 1, 2
+        ]
+    }, opt)).on("error", reject).on("exit", function (exitCode) {
+        if (!exitCode) {
+            resolve();
+            return;
+        }
+        reject(new Error("child-process - exitCode " + exitCode));
+    }).stdin.end(code);
+    return promise;
+};
+
 local.cliRun = function (opt) {
 /*
  * this function will run cli with given <opt>
@@ -7562,7 +7606,6 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     "lib.utility2.js",
     "/assets.utility2.example.js",
     "/assets.utility2.html",
-    "/assets.utility2.lib.jslint.js",
     "/assets.utility2.test.js",
     "/assets.utility2.rollup.end.js"
 ].map(function (key) {
@@ -7570,7 +7613,6 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     switch (key) {
     case "/assets.utility2.example.js":
     case "/assets.utility2.html":
-    case "/assets.utility2.lib.jslint.js":
     case "/assets.utility2.test.js":
         // handle large string-replace
         script = local.assetsDict["/assets.utility2.rollup.content.js"].split(
