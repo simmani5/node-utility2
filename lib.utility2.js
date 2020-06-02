@@ -3251,25 +3251,25 @@ local.buildApp = async function (opt, onError) {
         local.assetsDict["/assets.app.js"],
         "wrote file - assets.app.js - {{pathname}}"
     );
-    await local.promisify(function (onError) {
-        require("child_process").spawn("node", [
-            "assets.app.js"
-        ], {
-            cwd: "tmp/buildApp",
-            env: {
-                PATH: local.env.PATH,
-                PORT: (Math.random() * 0x10000) | 0x8000,
-                npm_config_timeout_exit: 5000
-            },
-            stdio: [
-                "ignore", "ignore", 2
-            ]
-        }).on("error", onError).on("exit", function (exitCode) {
-            // validate exitCode
-            local.assertOrThrow(!exitCode, exitCode);
-            onError();
-        });
-    });
+    //!! await local.promisify(function (onError) {
+        //!! require("child_process").spawn("node", [
+            //!! "assets.app.js"
+        //!! ], {
+            //!! cwd: "tmp/buildApp",
+            //!! env: {
+                //!! PATH: local.env.PATH,
+                //!! PORT: (Math.random() * 0x10000) | 0x8000,
+                //!! npm_config_timeout_exit: 5000
+            //!! },
+            //!! stdio: [
+                //!! "ignore", "ignore", 2
+            //!! ]
+        //!! }).on("error", onError).on("exit", function (exitCode) {
+            //!! // validate exitCode
+            //!! local.assertOrThrow(!exitCode, exitCode);
+            //!! onError();
+        //!! });
+    //!! });
     onError();
 };
 
