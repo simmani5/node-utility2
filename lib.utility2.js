@@ -5544,13 +5544,11 @@ local.requireReadme = function () {
         local.onFileModifiedRestart(file);
     });
     // jslint process.cwd()
-    if (!local.env.npm_config_mode_library) {
-        globalThis.__jslintAndPrintDir(process.cwd(), {
-            autofix: true,
-            childProcess: true,
-            conditional: true
-        }).catch(local.nop);
-    }
+    globalThis.__jslintAndPrintDir(process.cwd(), {
+        autofix: true,
+        childProcess: true,
+        conditional: true
+    }).catch(local.nop);
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
         local.assetsDict["/index.html"] = (
