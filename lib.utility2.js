@@ -3165,21 +3165,19 @@ local.buildApp = async function (opt, onError) {
 /*
  * this function will build app with given <opt>
  */
-    // rm -r
-    await new Promise(function (resolve, reject) {
-        require("child_process").spawn(
-            "rm -r tmp/build/app; mkdir -p tmp/build/app",
-            {
-                shell: true,
-                stdio: [
-                    "ignore", 1, 2
-                ]
-            }
-        ).on("error", reject).on("exit", function (exitCode) {
-            local.assertOrThrow(!exitCode, exitCode);
-            resolve();
-        });
+    let exitCode;
+    // cleanup app
+    exitCode = await new Promise(function (resolve, reject) {
+        require("child_process").spawn((
+            "rm -r tmp/build/app; mkdir -p tmp/build/app"
+        ), {
+            shell: true,
+            stdio: [
+                "ignore", 1, 2
+            ]
+        }).on("error", reject).on("exit", resolve);
     });
+    local.assertOrThrow(!exitCode, exitCode);
     // build app
     await Promise.all([
         {
@@ -3251,7 +3249,7 @@ local.buildApp = async function (opt, onError) {
         local.assetsDict["/assets.app.js"],
         "wrote file - assets.app.js - {{pathname}}"
     );
-    await new Promise(function (resolve, reject) {
+    exitCode = await new Promise(function (resolve, reject) {
         require("child_process").spawn("node", [
             "assets.app.js"
         ], {
@@ -3262,13 +3260,11 @@ local.buildApp = async function (opt, onError) {
                 npm_config_timeout_exit: 5000
             },
             stdio: [
-                "ignore", "ignore", 2
+                "ignore", 1, 2
             ]
-        }).on("error", reject).on("exit", function (exitCode) {
-            local.assertOrThrow(!exitCode, exitCode);
-            resolve();
-        });
+        }).on("error", reject).on("exit", resolve);
     });
+    local.assertOrThrow(!exitCode, exitCode);
     onError();
 };
 
