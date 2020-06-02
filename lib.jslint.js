@@ -16865,7 +16865,7 @@ globalThis.__jslintAndPrintDirChildProcess = async function (dir, opt = {}) {
                 + ").then(process.exit);"
             )
         ], {
-            cwd: require("path").resolve(opt.cwd || "."),
+            cwd: dir,
             env: {
                 npm_config_mode_lib: "1",
                 npm_config_mode_jslint_and_print_dir_child_process: "1"

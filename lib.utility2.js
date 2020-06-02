@@ -3187,11 +3187,11 @@ local.buildApp = async function (opt, onError) {
             file: "/LICENSE",
             url: "/LICENSE"
         }, {
-            file: "/assets." + local.env.npm_package_nameLib + ".html",
+            file: "/assets." + process.env.npm_package_nameLib + ".html",
             url: "/index.html"
         }, {
-            file: "/assets." + local.env.npm_package_nameLib + ".js",
-            url: "/assets." + local.env.npm_package_nameLib + ".js"
+            file: "/assets." + process.env.npm_package_nameLib + ".js",
+            url: "/assets." + process.env.npm_package_nameLib + ".js"
         }, {
             file: "/assets.app.js",
             url: "/assets.app.js"
@@ -3237,11 +3237,10 @@ local.buildApp = async function (opt, onError) {
             "wrote file - app - {{pathname}}"
         );
     }));
-    // jslint app
-    await globalThis.__jslintAndPrintDirChildProcess("tmp/build/app", {
-        cwd: "tmp/build/app",
-        conditional: true
-    });
+    //!! // jslint app
+    //!! await globalThis.__jslintAndPrintDirChildProcess("tmp/build/app", {
+        //!! conditional: true
+    //!! });
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
         "tmp/buildApp/assets.app.js",
@@ -3249,12 +3248,12 @@ local.buildApp = async function (opt, onError) {
         "wrote file - assets.app.js - {{pathname}}"
     );
     await new Promise(function (resolve, reject) {
-        local.child_process.spawn("node", [
+        require("child_process").spawn("node", [
             "assets.app.js"
         ], {
             cwd: "tmp/buildApp",
             env: {
-                PATH: local.env.PATH,
+                PATH: process.env.PATH,
                 PORT: (Math.random() * 0x10000) | 0x8000,
                 npm_config_timeout_exit: 5000
             },
