@@ -3239,12 +3239,12 @@ local.buildApp = async function (opt, onError) {
         console.error("wrote file - app - " + file);
     }));
     // jslint app
-    if (!local.env.npm_config_mode_library) {
-        await local.jslintAndPrintDir("tmp/build/app", {
-            childProcess: true,
-            conditional: true
-        });
-    }
+    //!! if (!local.env.npm_config_mode_library) {
+        //!! await local.jslintAndPrintDir("tmp/build/app", {
+            //!! childProcess: true,
+            //!! conditional: true
+        //!! });
+    //!! }
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
         "tmp/buildApp/assets.app.js",
