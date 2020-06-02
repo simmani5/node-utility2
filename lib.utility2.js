@@ -3239,10 +3239,12 @@ local.buildApp = async function (opt, onError) {
         console.error("wrote file - app - " + file);
     }));
     // jslint app
-    await local.jslintAndPrintDir("tmp/build/app", {
-        childProcess: true,
-        conditional: true
-    });
+    if (!local.env.npm_config_mode_library) {
+        await local.jslintAndPrintDir("tmp/build/app", {
+            childProcess: true,
+            conditional: true
+        });
+    }
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
         "tmp/buildApp/assets.app.js",
@@ -5542,11 +5544,13 @@ local.requireReadme = function () {
         local.onFileModifiedRestart(file);
     });
     // jslint process.cwd()
-    local.jslintAndPrintDir(process.cwd(), {
-        autofix: true,
-        childProcess: true,
-        conditional: true
-    }).catch(local.nop);
+    if (!local.env.npm_config_mode_library) {
+        local.jslintAndPrintDir(process.cwd(), {
+            autofix: true,
+            childProcess: true,
+            conditional: true
+        }).catch(local.nop);
+    }
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
         local.assetsDict["/index.html"] = (
