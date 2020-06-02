@@ -16874,7 +16874,40 @@ local.jslintAndPrintDir = async function (dir, opt = {}) {
  * this function will jslint files in shallow <dir>
  */
     let err;
+    // jslint in child-process
+    if (opt.childProcess && !process.env.npm_config_mode_library) {
+        await new Promise(function (resolve, reject) {
+            dir = require("path").resolve(dir);
+            require("child_process").spawn("node", [
+                "-e", (
+                    "require(" + JSON.stringify(__filename) + ");"
+                    + "global.__jslintAndPrintDir("
+                    + JSON.stringify(dir) + ","
+                    + JSON.stringify(opt)
+                    + ").then(process.exit);"
+                )
+            ], {
+                env: {
+                    npm_config_mode_library: "1"
+                },
+                stdio: [
+                    "ignore", "ignore", 2
+                ]
+            }).on("error", reject).on("exit", function (exitCode) {
+                if (exitCode) {
+                    reject(new Error(
+                        "jslintAndPrintDirChildProcess - "
+                        + exitCode + " errors - " + dir
+                    ));
+                    return;
+                }
+                resolve();
+            });
+        });
+        return;
+    }
     // jslint in current-process
+    err = 0;
     await Promise.all((
         await require("fs").promises.readdir(dir)
     ).map(async function (file) {
@@ -16903,13 +16936,14 @@ local.jslintAndPrintDir = async function (dir, opt = {}) {
         // jslint file
         data = await require("fs").promises.readFile(file, "utf8");
         local.jslintAndPrint(data, file, opt);
-        err = err || local.jslintResult.errList.length;
+        err += local.jslintResult.errList.length;
         console.error(
             "jslint - " + (Date.now() - timeStart) + "ms - " + file
         );
     }));
     return Boolean(err);
 };
+globalThis.__jslintAndPrintDir = local.jslintAndPrintDir;
 
 local.jslintAutofix = function (code, file, opt) {
 /*
