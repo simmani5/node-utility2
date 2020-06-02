@@ -2048,10 +2048,7 @@ local.testCase_replStart_default = function (opt, onError) {
     }, onError);
 };
 
-local.testCase_serverRespondTimeoutDefault_timeout = function (
-    opt,
-    onError
-) {
+local.testCase_serverRespondTimeoutDefault_timeout = function (opt, onError) {
 /*
  * this function will test
  * serverRespondTimeoutDefault's timeout handling-behavior

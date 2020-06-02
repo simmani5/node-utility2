@@ -3182,10 +3182,7 @@ local.buildApp = async function (opt, onError) {
         });
     });
     // build app
-    opt = local.objectAssignDefault(opt, {
-        assetsList: []
-    });
-    await Promise.all([].concat([
+    await Promise.all([
         {
             file: "/LICENSE",
             url: "/LICENSE"
@@ -3226,26 +3223,24 @@ local.buildApp = async function (opt, onError) {
                 + "?callback=window.utility2.stateInit"
             )
         }
-    ], opt.assetsList).map(async function (elem) {
-        let xhr;
-        xhr = await local.httpFetch(local.serverLocalHost + elem.url, {
-            responseType: "raw"
+    ].concat(opt.assetsList).map(async function (elem) {
+        let file;
+        if (!elem) {
+            return;
+        }
+        file = require("path").resolve("tmp/build/app/" + elem.file);
+        await new Promise(function (resolve, reject) {
+            require("http").request(local.serverLocalHost + elem.url, function (
+                res
+            ) {
+                res.pipe(
+                    require("fs").createWriteStream(
+                        file
+                    ).on("error", reject).on("close", resolve)
+                ).on("error", reject);
+            });
         });
-        // jslint file
-        local.jslintAndPrint(xhr.data.toString(), elem.file, {
-            conditional: true,
-            coverage: local.env.npm_config_mode_coverage
-        });
-        // handle err
-        local.assertOrThrow(
-            !local.jslint.jslintResult.errMsg,
-            local.jslint.jslintResult.errMsg
-        );
-        await local.fsWriteFileWithMkdirp(
-            "tmp/build/app/" + elem.file,
-            xhr.data,
-            "wrote file - app - {{pathname}}"
-        );
+        console.error("wrote file - app - " + file);
     }));
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
