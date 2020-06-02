@@ -16827,17 +16827,15 @@ local.jslintAndPrintDir = async function (dir, opt) {
             ).test(file)) {
                 return;
             }
+            // jslint file
+            data = await require("fs").promises.readFile(file, "utf8");
+            local.jslintAndPrint(data, file, opt);
+            errCnt += local.jslintResult.errList.length;
+            console.error(
+                "jslint - " + (Date.now() - timeStart) + "ms - " + file
+            );
             break;
-        default:
-            return;
         }
-        // jslint file
-        data = await require("fs").promises.readFile(file, "utf8");
-        local.jslintAndPrint(data, file, opt);
-        errCnt += local.jslintResult.errList.length;
-        console.error(
-            "jslint - " + (Date.now() - timeStart) + "ms - " + file
-        );
     }));
     return errCnt;
 };
