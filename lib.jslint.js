@@ -16818,9 +16818,9 @@ local.jslintAndPrintDir = async function (dir, opt = {}) {
                     + ").then(process.exit);"
                 )
             ], {
-                env: Object.assign({}, process.env, {
+                env: {
                     npm_config_mode_library: "1"
-                }),
+                },
                 stdio: [
                     "ignore", "ignore", 2
                 ]

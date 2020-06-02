@@ -3239,24 +3239,9 @@ local.buildApp = async function (opt, onError) {
         console.error("wrote file - app - " + file);
     }));
     // jslint app
-    await local.promisify(function (onError) {
-        require("child_process").spawn("node", [
-            "-e", (
-                "require("
-                + JSON.stringify(__filename)
-                + ").jslint.jslintAndPrintDir("
-                + JSON.stringify(process.cwd())
-                + ", {autofix:true,conditional:true}, process.exit);"
-            )
-        ], {
-            stdio: [
-                "ignore", "ignore", 2
-            ]
-        }).on("error", onError).on("exit", function (exitCode) {
-            // validate exitCode
-            local.assertOrThrow(!exitCode, exitCode);
-            onError();
-        });
+    await local.jslintAndPrintDir("tmp/build/app", {
+        childProcess: true,
+        conditional: true
     });
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
@@ -5557,13 +5542,11 @@ local.requireReadme = function () {
         local.onFileModifiedRestart(file);
     });
     // jslint process.cwd()
-    if (!local.env.npm_config_mode_library) {
-        local.jslintAndPrintDir(process.cwd(), {
-            autofix: true,
-            childProcess: true,
-            conditional: true
-        }).catch(local.nop);
-    }
+    local.jslintAndPrintDir(process.cwd(), {
+        autofix: true,
+        childProcess: true,
+        conditional: true
+    }).catch(local.nop);
     if (globalThis.utility2_rollup || local.env.npm_config_mode_start) {
         // init assets index.html
         local.assetsDict["/index.html"] = (
