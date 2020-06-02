@@ -3238,14 +3238,11 @@ local.buildApp = async function (opt, onError) {
         );
     }));
     // jslint app
-    //!! local.childProcessEval(
-        //!! local.assetsDict["/assets.utility2.lib.jslint.js"]
-        //!! + ";module.exports.jslintAndPrintDir(\".\","
-        //!! + "{autofix:true,conditional:true});"
-    //!! );
-    //!! await globalThis.__jslintAndPrintDirChildProcess("tmp/build/app", {
-        //!! conditional: true
-    //!! });
+    local.childProcessEval(
+        local.assetsDict["/assets.utility2.lib.jslint.js"]
+        + ";module.exports.jslintAndPrintDir(\"tmp/build/app\","
+        + "{conditional:true});"
+    );
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
         "tmp/buildApp/assets.app.js",
