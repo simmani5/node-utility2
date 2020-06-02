@@ -3224,23 +3224,18 @@ local.buildApp = async function (opt, onError) {
             )
         }
     ].concat(opt.assetsList).map(async function (elem) {
-        let file;
+        let xhr;
         if (!elem) {
             return;
         }
-        file = require("path").resolve("tmp/build/app/" + elem.file);
-        await new Promise(function (resolve, reject) {
-            require("http").request(local.serverLocalHost + elem.url, function (
-                res
-            ) {
-                res.pipe(
-                    require("fs").createWriteStream(
-                        file
-                    ).on("error", reject).on("close", resolve)
-                ).on("error", reject);
-            });
+        xhr = await local.httpFetch(local.serverLocalHost + elem.url, {
+            responseType: "raw"
         });
-        console.error("wrote file - app - " + file);
+        await local.fsWriteFileWithMkdirp(
+            "tmp/build/app/" + elem.file,
+            xhr.data,
+            "wrote file - app - {{pathname}}"
+        );
     }));
     // test standalone assets.app.js
     await local.fsWriteFileWithMkdirp(
