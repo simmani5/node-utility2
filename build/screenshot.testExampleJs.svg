@@ -31,7 +31,7 @@
 
 <tspan x="10" y="250">+ utility2@2020.8.12</tspan>
 
-<tspan x="10" y="266">added 1 package from 1 contributor and audited 1 package in 2.102s</tspan>
+<tspan x="10" y="266">added 1 package from 1 contributor and audited 1 package in 1.281s</tspan>
 
 <tspan x="10" y="282">found 0 vulnerabilities</tspan>
 
@@ -39,14 +39,14 @@
 
 <tspan x="10" y="314"></tspan>
 
-<tspan x="10" y="330">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:35:49.272Z - (shRun shNpmTest example.\</tspan>
+<tspan x="10" y="330">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:44:56.494Z - (shRun shNpmTest example.\</tspan>
 <tspan x="10" y="346">js 2&gt;&amp;1)</tspan>
 
 <tspan x="10" y="362"></tspan>
 
 <tspan x="10" y="378"></tspan>
 
-<tspan x="10" y="394">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:35:49.309Z - npm-testing /tmp/app</tspan>
+<tspan x="10" y="394">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:44:56.533Z - npm-testing /tmp/app</tspan>
 
 <tspan x="10" y="410"></tspan>
 
@@ -58,30 +58,30 @@
 
 <tspan x="10" y="474">testRunDefault - 3 ms - [node test-case 1 of 4 passed] - testCase_ajax_200</tspan>
 
-<tspan x="10" y="490">testRunDefault - 3 ms - [node test-case 2 of 4 passed] - testCase_ajax_404</tspan>
+<tspan x="10" y="490">testRunDefault - 4 ms - [node test-case 2 of 4 passed] - testCase_ajax_404</tspan>
 
-<tspan x="10" y="506">testRunDefault - 3 ms - [node test-case 3 of 4 passed] - testCase_nop_default</tspan>
+<tspan x="10" y="506">testRunDefault - 4 ms - [node test-case 3 of 4 passed] - testCase_nop_default</tspan>
 
 <tspan x="10" y="522"></tspan>
 
-<tspan x="10" y="538">DevTools listening on ws://127.0.0.1:39469/devtools/browser/b29731be-d5b0-4e06-acb6-7521d5bb0ff3</tspan>
+<tspan x="10" y="538">DevTools listening on ws://127.0.0.1:36239/devtools/browser/3695be74-b37b-43af-bf8b-b19f9f7630d8</tspan>
 
-<tspan x="10" y="554">[0819/073549.854259:INFO:CONSOLE(6149)] "http-server listening on port undefined", source: http:\</tspan>
+<tspan x="10" y="554">[0819/074457.049953:INFO:CONSOLE(6149)] "http-server listening on port undefined", source: http:\</tspan>
 <tspan x="10" y="570">//127.0.0.1:8081/assets.utility2.js (6149)</tspan>
 
-<tspan x="10" y="586">[0819/073549.867746:INFO:CONSOLE(411)] "testRunDefault - 5 ms - [browser test-case 1 of 4 passed\</tspan>
+<tspan x="10" y="586">[0819/074457.061816:INFO:CONSOLE(411)] "testRunDefault - 5 ms - [browser test-case 1 of 4 passed\</tspan>
 <tspan x="10" y="602">] - testCase_nop_default", source: http://127.0.0.1:8081/assets.example.js (411)</tspan>
 
-<tspan x="10" y="618">[0819/073549.869948:INFO:CONSOLE(411)] "testRunDefault - 8 ms - [browser test-case 2 of 4 passed\</tspan>
+<tspan x="10" y="618">[0819/074457.063796:INFO:CONSOLE(411)] "testRunDefault - 7 ms - [browser test-case 2 of 4 passed\</tspan>
 <tspan x="10" y="634">] - testCase_webpage_default", source: http://127.0.0.1:8081/assets.example.js (411)</tspan>
 
-<tspan x="10" y="650">[0819/073549.908593:INFO:CONSOLE(411)] "testRunDefault - 46 ms - [browser test-case 3 of 4 passe\</tspan>
+<tspan x="10" y="650">[0819/074457.099475:INFO:CONSOLE(411)] "testRunDefault - 41 ms - [browser test-case 3 of 4 passe\</tspan>
 <tspan x="10" y="666">d] - testCase_ajax_200", source: http://127.0.0.1:8081/assets.example.js (411)</tspan>
 
-<tspan x="10" y="682">[0819/073549.912611:INFO:CONSOLE(411)] "testRunDefault - 51 ms - [browser test-case 4 of 4 passe\</tspan>
+<tspan x="10" y="682">[0819/074457.100475:INFO:CONSOLE(411)] "testRunDefault - 44 ms - [browser test-case 4 of 4 passe\</tspan>
 <tspan x="10" y="698">d] - testCase_ajax_404", source: http://127.0.0.1:8081/assets.example.js (411)</tspan>
 
-<tspan x="10" y="714">[0819/073549.919084:INFO:CONSOLE(411)] "------------------|---------|---------|---------|-------\</tspan>
+<tspan x="10" y="714">[0819/074457.108797:INFO:CONSOLE(411)] "------------------|---------|---------|---------|-------\</tspan>
 <tspan x="10" y="730">--|</tspan>
 
 <tspan x="10" y="746">File              | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
@@ -96,13 +96,13 @@
 
 <tspan x="10" y="826">", source: http://127.0.0.1:8081/assets.example.js (411)</tspan>
 
-<tspan x="10" y="842">[0819/073549.928651:INFO:CONSOLE(411)] "istanbul - created coverage file .tmp/build/coverage/ind\</tspan>
+<tspan x="10" y="842">[0819/074457.117472:INFO:CONSOLE(411)] "istanbul - created coverage file .tmp/build/coverage/ind\</tspan>
 <tspan x="10" y="858">ex.html", source: http://127.0.0.1:8081/assets.example.js (411)</tspan>
 
-<tspan x="10" y="874">[0819/073549.974809:INFO:CONSOLE(411)] "domOnEventWindowOnloadTimeElapsed = 102", source: http:/\</tspan>
-<tspan x="10" y="890">/127.0.0.1:8081/assets.example.js (411)</tspan>
+<tspan x="10" y="874">[0819/074457.165562:INFO:CONSOLE(411)] "domOnEventWindowOnloadTimeElapsed = 94", source: http://\</tspan>
+<tspan x="10" y="890">127.0.0.1:8081/assets.example.js (411)</tspan>
 
-<tspan x="10" y="906">testRunDefault - 597 ms - [node test-case 4 of 4 passed] - testCase_webpage_default</tspan>
+<tspan x="10" y="906">testRunDefault - 559 ms - [node test-case 4 of 4 passed] - testCase_webpage_default</tspan>
 
 <tspan x="10" y="922">-----------|---------|---------|---------|---------|</tspan>
 
@@ -139,15 +139,15 @@
 <tspan x="10" y="1178">-------------------------------------------------------</tspan>
 
 <tspan x="10" y="1194">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
-<tspan x="10" y="1210"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.125 Safari/537.36 - 2020-08-19T07:35:49.845Z</tspan>
+<tspan x="10" y="1210"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.125 Safari/537.36 - 2020-08-19T07:44:57.041Z</tspan>
 
-<tspan x="10" y="1226">|      54 ms            0 failed        4 passed      |</tspan>
+<tspan x="10" y="1226">|      45 ms            0 failed        4 passed      |</tspan>
 
 <tspan x="10" y="1242">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1258">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T07:35:49.476Z</tspan>
+<tspan x="10" y="1258">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T07:44:56.695Z</tspan>
 
-<tspan x="10" y="1274">|     598 ms            0 failed        4 passed      |</tspan>
+<tspan x="10" y="1274">|     559 ms            0 failed        4 passed      |</tspan>
 
 <tspan x="10" y="1290">-------------------------------------------------------</tspan>
 
@@ -167,19 +167,19 @@
 
 <tspan x="10" y="1418"></tspan>
 
-<tspan x="10" y="1434">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:35:50.262Z - EXIT_CODE - 0</tspan>
+<tspan x="10" y="1434">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:44:57.446Z - EXIT_CODE - 0</tspan>
 
 <tspan x="10" y="1450"></tspan>
 
 <tspan x="10" y="1466"></tspan>
 
-<tspan x="10" y="1482">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:35:50.298Z - EXIT_CODE - 0</tspan>
+<tspan x="10" y="1482">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:44:57.481Z - EXIT_CODE - 0</tspan>
 
 <tspan x="10" y="1498"></tspan>
 
 <tspan x="10" y="1514"></tspan>
 
-<tspan x="10" y="1530">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:35:50.369Z - created screenshot file /\</tspan>
+<tspan x="10" y="1530">\x1b[35m[MODE_BUILD=testExampleJs]\x1b[0m - 2020-08-19T07:44:57.549Z - created screenshot file /\</tspan>
 <tspan x="10" y="1546">home/travis/build/kaizhu256/node-utility2/.tmp/build/screenshot.testExampleJs.svg</tspan>
 
 </text>
