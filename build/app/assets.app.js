@@ -45426,7 +45426,6 @@ the greatest app in the world!\n\
 ![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.npmPackageCliHelp.svg)\n\
 \n\
 #### changelog 0.0.1\n\
-- npm publish 0.0.1\n\
 - update build\n\
 - none\n\
 \n\
@@ -73360,7 +73359,6 @@ the greatest app in the world!\\n\\\n\
 ![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.npmPackageCliHelp.svg)\\n\\\n\
 \\n\\\n\
 #### changelog 0.0.1\\n\\\n\
-- npm publish 0.0.1\\n\\\n\
 - update build\\n\\\n\
 - none\\n\\\n\
 \\n\\\n\
@@ -80150,7 +80148,6 @@ the greatest app in the world!\n\
 ![screenshot](https://kaizhu256.github.io/node-my-app-lite/build/screenshot.npmPackageCliHelp.svg)\n\
 \n\
 #### changelog 0.0.1\n\
-- npm publish 0.0.1\n\
 - update build\n\
 - none\n\
 \n\
