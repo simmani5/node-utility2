@@ -46824,18 +46824,18 @@ local.buildApp = function ({
         require("fs").readdir(".", function (err, fileList) {
             onErrorThrow(err);
             Promise.all(fileList.map(function (file) {
-               return new Promise(function (resolve) {
-                  if (require("path").extname(file) !== ".node") {
-                      resolve();
-                      return;
-                  }
-                  require("fs").copyFile(file, (
-                  ".tmp/build/app.standalone/" + file
-                  ), function (err) {
-                      onErrorThrow(err);
-                      resolve();
-                  });
-               });
+                return new Promise(function (resolve) {
+                    if (require("path").extname(file) !== ".node") {
+                        resolve();
+                        return;
+                    }
+                    require("fs").copyFile(file, (
+                        ".tmp/build/app.standalone/" + file
+                    ), function (err) {
+                        onErrorThrow(err);
+                        resolve();
+                    });
+                });
             })).then(function () {
                 // write assets.app.js
                 writeFile((

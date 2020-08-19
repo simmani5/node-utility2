@@ -1,5 +1,5 @@
-<svg height="2686" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="2686" fill="#555" width="720"></rect>
+<svg height="1966" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="1966" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
 <tspan x="10" y="26"></tspan>
 
@@ -9,7 +9,7 @@
 
 <tspan x="10" y="74"></tspan>
 
-<tspan x="10" y="90">\x1b[35m[MODE_BUILD=buildApidoc]\x1b[0m - 2020-08-19T07:34:09.214Z - npm-testing /home/travis/bu\</tspan>
+<tspan x="10" y="90">\x1b[35m[MODE_BUILD=buildApidoc]\x1b[0m - 2020-08-19T07:36:00.022Z - npm-testing /home/travis/bu\</tspan>
 <tspan x="10" y="106">ild/kaizhu256/node-utility2</tspan>
 
 <tspan x="10" y="122"></tspan>
@@ -19,7 +19,7 @@
 <tspan x="10" y="154">buildApidoc - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build\</tspan>
 <tspan x="10" y="170">/test-report.json</tspan>
 
-<tspan x="10" y="186">&gt; http-server listening on port 53017</tspan>
+<tspan x="10" y="186">&gt; http-server listening on port 48553</tspan>
 
 <tspan x="10" y="202">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/package.json</tspan>
 
@@ -61,34 +61,34 @@
 
 <tspan x="10" y="506">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.istanbul.js</tspan>
 
-<tspan x="10" y="522">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.jslint.js</tspan>
+<tspan x="10" y="522"></tspan>
 
-<tspan x="10" y="538">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.msnodesqlv8.js</tspan>
+<tspan x="10" y="538">buildApidoc - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build\</tspan>
+<tspan x="10" y="554">/test-report.json</tspan>
 
-<tspan x="10" y="554">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.puppeteer.js</tspan>
+<tspan x="10" y="570">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.jslint.js</tspan>
 
-<tspan x="10" y="570">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.sqlite3.js</tspan>
+<tspan x="10" y="586">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.msnodesqlv8.js</tspan>
 
-<tspan x="10" y="586">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/README.md</tspan>
+<tspan x="10" y="602">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.puppeteer.js</tspan>
 
-<tspan x="10" y="602">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/.screenrc</tspan>
+<tspan x="10" y="618">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/raw.sqlite3.js</tspan>
 
-<tspan x="10" y="618">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/test.js</tspan>
+<tspan x="10" y="634">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/README.md</tspan>
 
-<tspan x="10" y="634">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/.travis.yml</tspan>
+<tspan x="10" y="650">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/.screenrc</tspan>
 
-<tspan x="10" y="650">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/.vimrc</tspan>
+<tspan x="10" y="666">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/test.js</tspan>
 
-<tspan x="10" y="666">apidocCreate - requiring /home/travis/build/kaizhu256/node-utility2 ...</tspan>
+<tspan x="10" y="682">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/.travis.yml</tspan>
 
-<tspan x="10" y="682">apidocCreate - ... required /home/travis/build/kaizhu256/node-utility2</tspan>
+<tspan x="10" y="698">apidocCreate - readExample /home/travis/build/kaizhu256/node-utility2/.vimrc</tspan>
 
-<tspan x="10" y="698"></tspan>
+<tspan x="10" y="714">apidocCreate - requiring /home/travis/build/kaizhu256/node-utility2 ...</tspan>
 
-<tspan x="10" y="714">buildApidoc - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build\</tspan>
-<tspan x="10" y="730">/test-report.json</tspan>
+<tspan x="10" y="730">jslint - 13ms - /home/travis/build/kaizhu256/node-utility2/README.md</tspan>
 
-<tspan x="10" y="746">jslint - 6ms - /home/travis/build/kaizhu256/node-utility2/README.md</tspan>
+<tspan x="10" y="746">apidocCreate - ... required /home/travis/build/kaizhu256/node-utility2</tspan>
 
 <tspan x="10" y="762">apidocCreate - libFile lib.apidoc.js</tspan>
 
@@ -106,220 +106,131 @@
 
 <tspan x="10" y="874">apidocCreate - libFile lib.terser.js</tspan>
 
-<tspan x="10" y="890">apidocCreate - libFile raw.istanbul.js</tspan>
+<tspan x="10" y="890">jslint - 121ms - /home/travis/build/kaizhu256/node-utility2/lib.apidoc.js</tspan>
 
-<tspan x="10" y="906">apidocCreate - libFile raw.jslint.js</tspan>
+<tspan x="10" y="906">apidocCreate - libFile raw.istanbul.js</tspan>
 
-<tspan x="10" y="922">apidocCreate - libFile raw.msnodesqlv8.js</tspan>
+<tspan x="10" y="922">apidocCreate - libFile raw.jslint.js</tspan>
 
-<tspan x="10" y="938">apidocCreate - libFile raw.puppeteer.js</tspan>
+<tspan x="10" y="938">apidocCreate - libFile raw.msnodesqlv8.js</tspan>
 
-<tspan x="10" y="954">apidocCreate - libFile raw.sqlite3.js</tspan>
+<tspan x="10" y="954">apidocCreate - libFile raw.puppeteer.js</tspan>
 
-<tspan x="10" y="970">jslint - 117ms - /home/travis/build/kaizhu256/node-utility2/lib.apidoc.js</tspan>
+<tspan x="10" y="970">apidocCreate - libFile raw.sqlite3.js</tspan>
 
-<tspan x="10" y="986">jslint - 335ms - /home/travis/build/kaizhu256/node-utility2/lib.istanbul.js</tspan>
+<tspan x="10" y="986">jslint - 339ms - /home/travis/build/kaizhu256/node-utility2/lib.istanbul.js</tspan>
 
-<tspan x="10" y="1002">jslint - 349ms - /home/travis/build/kaizhu256/node-utility2/lib.marked.js</tspan>
+<tspan x="10" y="1002">jslint - 348ms - /home/travis/build/kaizhu256/node-utility2/lib.marked.js</tspan>
 
-<tspan x="10" y="1018">jslint - 350ms - /home/travis/build/kaizhu256/node-utility2/lib.msnodesqlv8.js</tspan>
+<tspan x="10" y="1018">jslint - 348ms - /home/travis/build/kaizhu256/node-utility2/lib.msnodesqlv8.js</tspan>
 
-<tspan x="10" y="1034">jslint - 428ms - /home/travis/build/kaizhu256/node-utility2/lib.puppeteer.js</tspan>
+<tspan x="10" y="1034">jslint - 420ms - /home/travis/build/kaizhu256/node-utility2/lib.puppeteer.js</tspan>
 
-<tspan x="10" y="1050">jslint - 438ms - /home/travis/build/kaizhu256/node-utility2/lib.sqlite3.js</tspan>
+<tspan x="10" y="1050">jslint - 427ms - /home/travis/build/kaizhu256/node-utility2/lib.sqlite3.js</tspan>
 
-<tspan x="10" y="1066">jslint /home/travis/build/kaizhu256/node-utility2/lib.utility2.js</tspan>
+<tspan x="10" y="1066">jslint - 729ms - /home/travis/build/kaizhu256/node-utility2/lib.utility2.js</tspan>
 
-<tspan x="10" y="1082">  1 Expected 'return' at column 16, not column 15. // line 2762, column 17</tspan>
+<tspan x="10" y="1082">jslint - 739ms - /home/travis/build/kaizhu256/node-utility2/lib.utility2.sh</tspan>
 
-<tspan x="10" y="1098">    return new Promise(function (resolve) {</tspan>
+<tspan x="10" y="1098">jslint - 750ms - /home/travis/build/kaizhu256/node-utility2/npm_scripts.sh</tspan>
 
-<tspan x="10" y="1114">{</tspan>
+<tspan x="10" y="1114">jslint - 759ms - /home/travis/build/kaizhu256/node-utility2/package.json</tspan>
 
-<tspan x="10" y="1130">    "name": "JSLintError",</tspan>
+<tspan x="10" y="1130">jslint - 829ms - /home/travis/build/kaizhu256/node-utility2/test.js</tspan>
 
-<tspan x="10" y="1146">    "column": 16,</tspan>
+<tspan x="10" y="1146">jslint - 897ms - /home/travis/build/kaizhu256/node-utility2/lib.jslint.js</tspan>
 
-<tspan x="10" y="1162">    "line": 2762,</tspan>
+<tspan x="10" y="1162">jslint - 900ms - /home/travis/build/kaizhu256/node-utility2/lib.terser.js</tspan>
 
-<tspan x="10" y="1178">    "code": "expected_a_at_b_c",</tspan>
+<tspan x="10" y="1178">testRunDefault - 10892 ms - testCase pending - testCase_buildApidoc_default ...</tspan>
 
-<tspan x="10" y="1194">    "a": "return",</tspan>
+<tspan x="10" y="1194">fsWriteFileWithMkdirp - /home/travis/build/kaizhu256/node-utility2/.tmp/build/apidoc.html</tspan>
 
-<tspan x="10" y="1210">    "b": 16,</tspan>
+<tspan x="10" y="1210">testRunDefault - 10897 ms - [node test-case 1 of 1 passed] - testCase_buildApidoc_default</tspan>
 
-<tspan x="10" y="1226">    "c": 15,</tspan>
+<tspan x="10" y="1226">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.js\</tspan>
+<tspan x="10" y="1242">on</tspan>
 
-<tspan x="10" y="1242">    "message": "Expected 'return' at column 16, not column 15.",</tspan>
+<tspan x="10" y="1258"></tspan>
 
-<tspan x="10" y="1258">    "source": "               return new Promise(function (resolve) {",</tspan>
+<tspan x="10" y="1274">buildApidoc - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build\</tspan>
+<tspan x="10" y="1290">/test-report.json</tspan>
 
-<tspan x="10" y="1274">    "evidence": "               return new Promise(function (resolve) {"</tspan>
+<tspan x="10" y="1306"></tspan>
 
-<tspan x="10" y="1290">}</tspan>
+<tspan x="10" y="1322">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1306">Error</tspan>
+<tspan x="10" y="1338">| test-report - buildApidoc - node - linux v14.8.0 - 2020-08-19T07:36:00.111Z</tspan>
 
-<tspan x="10" y="1322">    at warn_at (/home/travis/build/kaizhu256/node-utility2/lib.jslint.js:11680:42)</tspan>
+<tspan x="10" y="1354">|   10898 ms            0 failed        1 passed      |</tspan>
 
-<tspan x="10" y="1338">    at warn (/home/travis/build/kaizhu256/node-utility2/lib.jslint.js:11703:29)</tspan>
+<tspan x="10" y="1370">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1354">    at expected_at (/home/travis/build/kaizhu256/node-utility2/lib.jslint.js:15822:9)</tspan>
+<tspan x="10" y="1386">| test-report - npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTM\</tspan>
+<tspan x="10" y="1402">L, like Gecko) HeadlessChrome/84.0.4147.125 Safari/537.36 - 2020-08-19T07:35:55.100Z</tspan>
 
-<tspan x="10" y="1370">    at at_margin (/home/travis/build/kaizhu256/node-utility2/lib.jslint.js:15835:20)</tspan>
+<tspan x="10" y="1418">|    1264 ms            0 failed       41 passed      |</tspan>
 
-<tspan x="10" y="1386">    at /home/travis/build/kaizhu256/node-utility2/lib.jslint.js:15954:29</tspan>
+<tspan x="10" y="1434">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1402">    at Array.forEach (&lt;anonymous&gt;)</tspan>
+<tspan x="10" y="1450">| test-report - npmTest - node - linux v14.8.0 - 2020-08-19T07:35:52.813Z</tspan>
 
-<tspan x="10" y="1418">    at whitage (/home/travis/build/kaizhu256/node-utility2/lib.jslint.js:15917:12)</tspan>
+<tspan x="10" y="1466">|    5437 ms            0 failed       41 passed      |</tspan>
 
-<tspan x="10" y="1434">    at Object.jslint0 (/home/travis/build/kaizhu256/node-utility2/lib.jslint.js:16239:21)</tspan>
+<tspan x="10" y="1482">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1450">    at jslintRecurse (/home/travis/build/kaizhu256/node-utility2/lib.jslint.js:16892:24)</tspan>
+<tspan x="10" y="1498">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
+<tspan x="10" y="1514"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.125 Safari/537.36 - 2020-08-19T07:35:49.845Z</tspan>
 
-<tspan x="10" y="1466">    at Object.local.jslintAndPrint (/home/travis/build/kaizhu256/node-utility2/lib.jslint.js:173\</tspan>
-<tspan x="10" y="1482">25:12)</tspan>
+<tspan x="10" y="1530">|      54 ms            0 failed        4 passed      |</tspan>
 
-<tspan x="10" y="1498">  2 Expected 'if' at column 20, not column 18. // line 2763, column 20</tspan>
+<tspan x="10" y="1546">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1514">    if (require("path").extname(file) !== ".node") {</tspan>
+<tspan x="10" y="1562">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
+<tspan x="10" y="1578"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.125 Safari/537.36 - 2020-08-19T07:35:49.845Z</tspan>
 
-<tspan x="10" y="1530">  3 Expected 'resolve' at column 24, not column 22. // line 2764, column 24</tspan>
+<tspan x="10" y="1594">|      54 ms            0 failed        4 passed      |</tspan>
 
-<tspan x="10" y="1546">    resolve();</tspan>
+<tspan x="10" y="1610">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1562">  4 Expected 'return' at column 24, not column 22. // line 2765, column 24</tspan>
+<tspan x="10" y="1626">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T07:35:49.476Z</tspan>
 
-<tspan x="10" y="1578">    return;</tspan>
+<tspan x="10" y="1642">|     598 ms            0 failed        4 passed      |</tspan>
 
-<tspan x="10" y="1594">  5 Expected '}' at column 20, not column 18. // line 2766, column 20</tspan>
+<tspan x="10" y="1658">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1610">    }</tspan>
+<tspan x="10" y="1674">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T07:35:49.476Z</tspan>
 
-<tspan x="10" y="1626">  6 Expected 'require' at column 20, not column 18. // line 2767, column 20</tspan>
+<tspan x="10" y="1690">|     598 ms            0 failed        4 passed      |</tspan>
 
-<tspan x="10" y="1642">    require("fs").copyFile(file, (</tspan>
+<tspan x="10" y="1706">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="1658">  7 Expected '.tmp/build/app.standalone/' at column 24, not column 18. // line 2768, column 20</tspan>
+<tspan x="10" y="1722"></tspan>
 
-<tspan x="10" y="1674">    ".tmp/build/app.standalone/" + file</tspan>
+<tspan x="10" y="1738">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.ht\</tspan>
+<tspan x="10" y="1754">ml</tspan>
 
-<tspan x="10" y="1690">  8 Expected ')' at column 20, not column 18. // line 2769, column 20</tspan>
+<tspan x="10" y="1770">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/build.badge.sv\</tspan>
+<tspan x="10" y="1786">g</tspan>
 
-<tspan x="10" y="1706">    ), function (err) {</tspan>
+<tspan x="10" y="1802">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.ba\</tspan>
+<tspan x="10" y="1818">dge.svg</tspan>
 
-<tspan x="10" y="1722">  9 Expected 'onErrorThrow' at column 24, not column 22. // line 2770, column 24</tspan>
+<tspan x="10" y="1834"></tspan>
 
-<tspan x="10" y="1738">    onErrorThrow(err);</tspan>
+<tspan x="10" y="1850">buildApidoc - 0 failed tests</tspan>
 
-<tspan x="10" y="1754"> 10 Expected 'resolve' at column 24, not column 22. // line 2771, column 24</tspan>
+<tspan x="10" y="1866"></tspan>
 
-<tspan x="10" y="1770">    resolve();</tspan>
+<tspan x="10" y="1882"></tspan>
 
-<tspan x="10" y="1786">jslint - 775ms - /home/travis/build/kaizhu256/node-utility2/lib.utility2.js</tspan>
+<tspan x="10" y="1898">\x1b[35m[MODE_BUILD=buildApidoc]\x1b[0m - 2020-08-19T07:36:11.285Z - EXIT_CODE - 0</tspan>
 
-<tspan x="10" y="1802">jslint - 779ms - /home/travis/build/kaizhu256/node-utility2/lib.utility2.sh</tspan>
+<tspan x="10" y="1914"></tspan>
 
-<tspan x="10" y="1818">jslint - 780ms - /home/travis/build/kaizhu256/node-utility2/npm_scripts.sh</tspan>
+<tspan x="10" y="1930">process exited with code 0</tspan>
 
-<tspan x="10" y="1834">jslint - 782ms - /home/travis/build/kaizhu256/node-utility2/package.json</tspan>
-
-<tspan x="10" y="1850">jslint - 918ms - /home/travis/build/kaizhu256/node-utility2/test.js</tspan>
-
-<tspan x="10" y="1866">jslint - 984ms - /home/travis/build/kaizhu256/node-utility2/lib.jslint.js</tspan>
-
-<tspan x="10" y="1882">jslint - 990ms - /home/travis/build/kaizhu256/node-utility2/lib.terser.js</tspan>
-
-<tspan x="10" y="1898">testRunDefault - 10902 ms - testCase pending - testCase_buildApidoc_default ...</tspan>
-
-<tspan x="10" y="1914">fsWriteFileWithMkdirp - /home/travis/build/kaizhu256/node-utility2/.tmp/build/apidoc.html</tspan>
-
-<tspan x="10" y="1930">testRunDefault - 10906 ms - [node test-case 1 of 1 passed] - testCase_buildApidoc_default</tspan>
-
-<tspan x="10" y="1946">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.js\</tspan>
-<tspan x="10" y="1962">on</tspan>
-
-<tspan x="10" y="1978"></tspan>
-
-<tspan x="10" y="1994">buildApidoc - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build\</tspan>
-<tspan x="10" y="2010">/test-report.json</tspan>
-
-<tspan x="10" y="2026"></tspan>
-
-<tspan x="10" y="2042">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="2058">| test-report - buildApidoc - node - linux v14.8.0 - 2020-08-19T07:34:09.302Z</tspan>
-
-<tspan x="10" y="2074">|   10906 ms            0 failed        1 passed      |</tspan>
-
-<tspan x="10" y="2090">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="2106">| test-report - npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTM\</tspan>
-<tspan x="10" y="2122">L, like Gecko) HeadlessChrome/84.0.4147.125 Safari/537.36 - 2020-08-19T07:34:04.224Z</tspan>
-
-<tspan x="10" y="2138">|    1314 ms            0 failed       41 passed      |</tspan>
-
-<tspan x="10" y="2154">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="2170">| test-report - npmTest - node - linux v14.8.0 - 2020-08-19T07:34:02.070Z</tspan>
-
-<tspan x="10" y="2186">|    5482 ms            0 failed       41 passed      |</tspan>
-
-<tspan x="10" y="2202">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="2218">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
-<tspan x="10" y="2234"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.125 Safari/537.36 - 2020-08-19T07:33:58.955Z</tspan>
-
-<tspan x="10" y="2250">|      51 ms            0 failed        4 passed      |</tspan>
-
-<tspan x="10" y="2266">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="2282">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
-<tspan x="10" y="2298"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.125 Safari/537.36 - 2020-08-19T07:33:58.955Z</tspan>
-
-<tspan x="10" y="2314">|      51 ms            0 failed        4 passed      |</tspan>
-
-<tspan x="10" y="2330">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="2346">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T07:33:58.609Z</tspan>
-
-<tspan x="10" y="2362">|     560 ms            0 failed        4 passed      |</tspan>
-
-<tspan x="10" y="2378">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="2394">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T07:33:58.609Z</tspan>
-
-<tspan x="10" y="2410">|     560 ms            0 failed        4 passed      |</tspan>
-
-<tspan x="10" y="2426">-------------------------------------------------------</tspan>
-
-<tspan x="10" y="2442"></tspan>
-
-<tspan x="10" y="2458">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.ht\</tspan>
-<tspan x="10" y="2474">ml</tspan>
-
-<tspan x="10" y="2490">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/build.badge.sv\</tspan>
-<tspan x="10" y="2506">g</tspan>
-
-<tspan x="10" y="2522">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.ba\</tspan>
-<tspan x="10" y="2538">dge.svg</tspan>
-
-<tspan x="10" y="2554"></tspan>
-
-<tspan x="10" y="2570">buildApidoc - 0 failed tests</tspan>
-
-<tspan x="10" y="2586"></tspan>
-
-<tspan x="10" y="2602"></tspan>
-
-<tspan x="10" y="2618">\x1b[35m[MODE_BUILD=buildApidoc]\x1b[0m - 2020-08-19T07:34:20.472Z - EXIT_CODE - 0</tspan>
-
-<tspan x="10" y="2634"></tspan>
-
-<tspan x="10" y="2650">process exited with code 0</tspan>
-
-<tspan x="10" y="2666">EXIT_CODE - 0</tspan>
+<tspan x="10" y="1946">EXIT_CODE - 0</tspan>
 
 </text>
 </svg>

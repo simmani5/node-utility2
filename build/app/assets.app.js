@@ -47038,18 +47038,18 @@ local.buildApp = function ({
         require("fs").readdir(".", function (err, fileList) {
             onErrorThrow(err);
             Promise.all(fileList.map(function (file) {
-               return new Promise(function (resolve) {
-                  if (require("path").extname(file) !== ".node") {
-                      resolve();
-                      return;
-                  }
-                  require("fs").copyFile(file, (
-                  ".tmp/build/app.standalone/" + file
-                  ), function (err) {
-                      onErrorThrow(err);
-                      resolve();
-                  });
-               });
+                return new Promise(function (resolve) {
+                    if (require("path").extname(file) !== ".node") {
+                        resolve();
+                        return;
+                    }
+                    require("fs").copyFile(file, (
+                        ".tmp/build/app.standalone/" + file
+                    ), function (err) {
+                        onErrorThrow(err);
+                        resolve();
+                    });
+                });
             })).then(function () {
                 // write assets.app.js
                 writeFile((
@@ -74972,18 +74972,18 @@ local.buildApp = function ({\n\
         require(\"fs\").readdir(\".\", function (err, fileList) {\n\
             onErrorThrow(err);\n\
             Promise.all(fileList.map(function (file) {\n\
-               return new Promise(function (resolve) {\n\
-                  if (require(\"path\").extname(file) !== \".node\") {\n\
-                      resolve();\n\
-                      return;\n\
-                  }\n\
-                  require(\"fs\").copyFile(file, (\n\
-                  \".tmp/build/app.standalone/\" + file\n\
-                  ), function (err) {\n\
-                      onErrorThrow(err);\n\
-                      resolve();\n\
-                  });\n\
-               });\n\
+                return new Promise(function (resolve) {\n\
+                    if (require(\"path\").extname(file) !== \".node\") {\n\
+                        resolve();\n\
+                        return;\n\
+                    }\n\
+                    require(\"fs\").copyFile(file, (\n\
+                        \".tmp/build/app.standalone/\" + file\n\
+                    ), function (err) {\n\
+                        onErrorThrow(err);\n\
+                        resolve();\n\
+                    });\n\
+                });\n\
             })).then(function () {\n\
                 // write assets.app.js\n\
                 writeFile((\n\
@@ -81762,18 +81762,18 @@ local.buildApp = function ({
         require("fs").readdir(".", function (err, fileList) {
             onErrorThrow(err);
             Promise.all(fileList.map(function (file) {
-               return new Promise(function (resolve) {
-                  if (require("path").extname(file) !== ".node") {
-                      resolve();
-                      return;
-                  }
-                  require("fs").copyFile(file, (
-                  ".tmp/build/app.standalone/" + file
-                  ), function (err) {
-                      onErrorThrow(err);
-                      resolve();
-                  });
-               });
+                return new Promise(function (resolve) {
+                    if (require("path").extname(file) !== ".node") {
+                        resolve();
+                        return;
+                    }
+                    require("fs").copyFile(file, (
+                        ".tmp/build/app.standalone/" + file
+                    ), function (err) {
+                        onErrorThrow(err);
+                        resolve();
+                    });
+                });
             })).then(function () {
                 // write assets.app.js
                 writeFile((

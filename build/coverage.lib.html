@@ -16665,18 +16665,18 @@ local.buildApp = function ({
         require("fs").readdir(".", function (err, fileList) {
             onErrorThrow(err);
             Promise.all(fileList.map(function (file) {
-               return new Promise(function (resolve) {
-                  <span class="missing-if-branch" title="else path not taken">E</span>if (require("path").extname(file) !== ".node") {
-                      resolve();
-                      return;
-                  }
-<span class="cstat-no" title="statement not covered">                  require("fs").copyFile(file, (</span>
-                  ".tmp/build/app.standalone/" + file
-                  ), <span class="fstat-no" title="function not covered">function (err) {</span>
-<span class="cstat-no" title="statement not covered">                      onErrorThrow(err);</span>
-<span class="cstat-no" title="statement not covered">                      resolve();</span>
-                  });
-               });
+                return new Promise(function (resolve) {
+                    <span class="missing-if-branch" title="else path not taken">E</span>if (require("path").extname(file) !== ".node") {
+                        resolve();
+                        return;
+                    }
+<span class="cstat-no" title="statement not covered">                    require("fs").copyFile(file, (</span>
+                        ".tmp/build/app.standalone/" + file
+                    ), <span class="fstat-no" title="function not covered">function (err) {</span>
+<span class="cstat-no" title="statement not covered">                        onErrorThrow(err);</span>
+<span class="cstat-no" title="statement not covered">                        resolve();</span>
+                    });
+                });
             })).then(function () {
                 // write assets.app.js
                 writeFile((
