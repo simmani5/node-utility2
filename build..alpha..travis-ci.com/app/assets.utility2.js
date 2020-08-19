@@ -2755,24 +2755,43 @@ local.buildApp = function ({
         });
     };
     buildAppStandalone = function (resolve) {
-        // write assets.app.js
-        writeFile((
-            ".tmp/build/app.standalone/assets.app.js"
-        ), local.assetsDict["/assets.app.js"], function () {
-            // test-file assets.app.js
-            require("child_process").spawn("node", [
-                "assets.app.js"
-            ], {
-                cwd: ".tmp/build/app.standalone",
-                env: {
-                    PATH: process.env.PATH,
-                    PORT: port,
-                    npm_config_timeout_exit: 4000
-                },
-                stdio: [
-                    "ignore", 1, 2
-                ]
-            }).on("exit", resolve);
+        // write native-module
+        require("fs").readdir(".", function (err, fileList) {
+            onErrorThrow(err);
+            Promise.all(fileList.map(function (file) {
+               return new Promise(function (resolve) {
+                  if (require("path").extname(file) !== ".node") {
+                      resolve();
+                      return;
+                  }
+                  require("fs").copyFile(file, (
+                  ".tmp/build/app.standalone/" + file
+                  ), function (err) {
+                      onErrorThrow(err);
+                      resolve();
+                  });
+               });
+            })).then(function () {
+                // write assets.app.js
+                writeFile((
+                    ".tmp/build/app.standalone/assets.app.js"
+                ), local.assetsDict["/assets.app.js"], function () {
+                    // test-file assets.app.js
+                    require("child_process").spawn("node", [
+                        "assets.app.js"
+                    ], {
+                        cwd: ".tmp/build/app.standalone",
+                        env: {
+                            PATH: process.env.PATH,
+                            PORT: port,
+                            npm_config_timeout_exit: 4000
+                        },
+                        stdio: [
+                            "ignore", 1, 2
+                        ]
+                    }).on("exit", resolve);
+                });
+            });
         });
     };
     buildLib = function (resolve) {

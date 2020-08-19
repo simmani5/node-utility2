@@ -47034,24 +47034,43 @@ local.buildApp = function ({
         });
     };
     buildAppStandalone = function (resolve) {
-        // write assets.app.js
-        writeFile((
-            ".tmp/build/app.standalone/assets.app.js"
-        ), local.assetsDict["/assets.app.js"], function () {
-            // test-file assets.app.js
-            require("child_process").spawn("node", [
-                "assets.app.js"
-            ], {
-                cwd: ".tmp/build/app.standalone",
-                env: {
-                    PATH: process.env.PATH,
-                    PORT: port,
-                    npm_config_timeout_exit: 4000
-                },
-                stdio: [
-                    "ignore", 1, 2
-                ]
-            }).on("exit", resolve);
+        // write native-module
+        require("fs").readdir(".", function (err, fileList) {
+            onErrorThrow(err);
+            Promise.all(fileList.map(function (file) {
+               return new Promise(function (resolve) {
+                  if (require("path").extname(file) !== ".node") {
+                      resolve();
+                      return;
+                  }
+                  require("fs").copyFile(file, (
+                  ".tmp/build/app.standalone/" + file
+                  ), function (err) {
+                      onErrorThrow(err);
+                      resolve();
+                  });
+               });
+            })).then(function () {
+                // write assets.app.js
+                writeFile((
+                    ".tmp/build/app.standalone/assets.app.js"
+                ), local.assetsDict["/assets.app.js"], function () {
+                    // test-file assets.app.js
+                    require("child_process").spawn("node", [
+                        "assets.app.js"
+                    ], {
+                        cwd: ".tmp/build/app.standalone",
+                        env: {
+                            PATH: process.env.PATH,
+                            PORT: port,
+                            npm_config_timeout_exit: 4000
+                        },
+                        stdio: [
+                            "ignore", 1, 2
+                        ]
+                    }).on("exit", resolve);
+                });
+            });
         });
     };
     buildLib = function (resolve) {
@@ -74949,24 +74968,43 @@ local.buildApp = function ({\n\
         });\n\
     };\n\
     buildAppStandalone = function (resolve) {\n\
-        // write assets.app.js\n\
-        writeFile((\n\
-            \".tmp/build/app.standalone/assets.app.js\"\n\
-        ), local.assetsDict[\"/assets.app.js\"], function () {\n\
-            // test-file assets.app.js\n\
-            require(\"child_process\").spawn(\"node\", [\n\
-                \"assets.app.js\"\n\
-            ], {\n\
-                cwd: \".tmp/build/app.standalone\",\n\
-                env: {\n\
-                    PATH: process.env.PATH,\n\
-                    PORT: port,\n\
-                    npm_config_timeout_exit: 4000\n\
-                },\n\
-                stdio: [\n\
-                    \"ignore\", 1, 2\n\
-                ]\n\
-            }).on(\"exit\", resolve);\n\
+        // write native-module\n\
+        require(\"fs\").readdir(\".\", function (err, fileList) {\n\
+            onErrorThrow(err);\n\
+            Promise.all(fileList.map(function (file) {\n\
+               return new Promise(function (resolve) {\n\
+                  if (require(\"path\").extname(file) !== \".node\") {\n\
+                      resolve();\n\
+                      return;\n\
+                  }\n\
+                  require(\"fs\").copyFile(file, (\n\
+                  \".tmp/build/app.standalone/\" + file\n\
+                  ), function (err) {\n\
+                      onErrorThrow(err);\n\
+                      resolve();\n\
+                  });\n\
+               });\n\
+            })).then(function () {\n\
+                // write assets.app.js\n\
+                writeFile((\n\
+                    \".tmp/build/app.standalone/assets.app.js\"\n\
+                ), local.assetsDict[\"/assets.app.js\"], function () {\n\
+                    // test-file assets.app.js\n\
+                    require(\"child_process\").spawn(\"node\", [\n\
+                        \"assets.app.js\"\n\
+                    ], {\n\
+                        cwd: \".tmp/build/app.standalone\",\n\
+                        env: {\n\
+                            PATH: process.env.PATH,\n\
+                            PORT: port,\n\
+                            npm_config_timeout_exit: 4000\n\
+                        },\n\
+                        stdio: [\n\
+                            \"ignore\", 1, 2\n\
+                        ]\n\
+                    }).on(\"exit\", resolve);\n\
+                });\n\
+            });\n\
         });\n\
     };\n\
     buildLib = function (resolve) {\n\
@@ -81720,24 +81758,43 @@ local.buildApp = function ({
         });
     };
     buildAppStandalone = function (resolve) {
-        // write assets.app.js
-        writeFile((
-            ".tmp/build/app.standalone/assets.app.js"
-        ), local.assetsDict["/assets.app.js"], function () {
-            // test-file assets.app.js
-            require("child_process").spawn("node", [
-                "assets.app.js"
-            ], {
-                cwd: ".tmp/build/app.standalone",
-                env: {
-                    PATH: process.env.PATH,
-                    PORT: port,
-                    npm_config_timeout_exit: 4000
-                },
-                stdio: [
-                    "ignore", 1, 2
-                ]
-            }).on("exit", resolve);
+        // write native-module
+        require("fs").readdir(".", function (err, fileList) {
+            onErrorThrow(err);
+            Promise.all(fileList.map(function (file) {
+               return new Promise(function (resolve) {
+                  if (require("path").extname(file) !== ".node") {
+                      resolve();
+                      return;
+                  }
+                  require("fs").copyFile(file, (
+                  ".tmp/build/app.standalone/" + file
+                  ), function (err) {
+                      onErrorThrow(err);
+                      resolve();
+                  });
+               });
+            })).then(function () {
+                // write assets.app.js
+                writeFile((
+                    ".tmp/build/app.standalone/assets.app.js"
+                ), local.assetsDict["/assets.app.js"], function () {
+                    // test-file assets.app.js
+                    require("child_process").spawn("node", [
+                        "assets.app.js"
+                    ], {
+                        cwd: ".tmp/build/app.standalone",
+                        env: {
+                            PATH: process.env.PATH,
+                            PORT: port,
+                            npm_config_timeout_exit: 4000
+                        },
+                        stdio: [
+                            "ignore", 1, 2
+                        ]
+                    }).on("exit", resolve);
+                });
+            });
         });
     };
     buildLib = function (resolve) {
