@@ -5,25 +5,25 @@
 
 <tspan x="10" y="42"></tspan>
 
-<tspan x="10" y="58">0.    2020-08-19 10:34:52 -0500   4092215 bytes .</tspan>
+<tspan x="10" y="58">0.    2020-08-19 10:36:47 -0500   4092241 bytes .</tspan>
 
-<tspan x="10" y="74">1.    2020-08-12 12:30:39 -0500       125 bytes .dockerignore</tspan>
+<tspan x="10" y="74">1.    2020-08-12 12:34:55 -0500       125 bytes .dockerignore</tspan>
 
-<tspan x="10" y="90">2.    2020-08-12 12:30:39 -0500      1037 bytes .gitconfig</tspan>
+<tspan x="10" y="90">2.    2020-08-12 12:34:55 -0500      1037 bytes .gitconfig</tspan>
 
-<tspan x="10" y="106">3.    2020-08-12 12:30:39 -0500       137 bytes .gitignore</tspan>
+<tspan x="10" y="106">3.    2020-08-12 12:34:55 -0500       137 bytes .gitignore</tspan>
 
-<tspan x="10" y="122">4.    2020-08-12 12:30:39 -0500       498 bytes .screenrc</tspan>
+<tspan x="10" y="122">4.    2020-08-12 12:34:55 -0500       498 bytes .screenrc</tspan>
 
-<tspan x="10" y="138">5.    2020-08-12 12:30:39 -0500      1018 bytes .travis.yml</tspan>
+<tspan x="10" y="138">5.    2020-08-12 12:34:55 -0500      1018 bytes .travis.yml</tspan>
 
-<tspan x="10" y="154">6.    2020-08-12 12:30:39 -0500      6100 bytes .vimrc</tspan>
+<tspan x="10" y="154">6.    2020-08-12 12:34:55 -0500      6100 bytes .vimrc</tspan>
 
-<tspan x="10" y="170">7.    2020-08-12 12:30:39 -0500      1102 bytes LICENSE</tspan>
+<tspan x="10" y="170">7.    2020-08-12 12:34:55 -0500      1102 bytes LICENSE</tspan>
 
-<tspan x="10" y="186">8.    2020-08-19 10:34:52 -0500     48966 bytes README.md</tspan>
+<tspan x="10" y="186">8.    2020-08-19 10:36:47 -0500     48992 bytes README.md</tspan>
 
-<tspan x="10" y="202">9.    2020-08-12 12:30:39 -0500        11 bytes assets.hello.txt</tspan>
+<tspan x="10" y="202">9.    2020-08-12 12:34:55 -0500        11 bytes assets.hello.txt</tspan>
 
 <tspan x="10" y="218">10.   2020-08-18 20:13:36 -0500     39966 bytes lib.apidoc.js</tspan>
 
@@ -37,21 +37,21 @@
 
 <tspan x="10" y="298">15.   2020-08-19 10:33:46 -0500     16433 bytes lib.sqlite3.js</tspan>
 
-<tspan x="10" y="314">16.   2020-08-12 12:30:39 -0500    795189 bytes lib.terser.js</tspan>
+<tspan x="10" y="314">16.   2020-08-12 12:34:55 -0500    795189 bytes lib.terser.js</tspan>
 
 <tspan x="10" y="330">17.   2020-08-19 09:50:39 -0500    219072 bytes lib.utility2.js</tspan>
 
 <tspan x="10" y="346">18.   2020-08-19 00:02:26 -0500    126592 bytes lib.utility2.sh</tspan>
 
-<tspan x="10" y="362">19.   2020-08-12 12:30:39 -0500      2002 bytes npm_scripts.sh</tspan>
+<tspan x="10" y="362">19.   2020-08-12 12:34:55 -0500      2002 bytes npm_scripts.sh</tspan>
 
 <tspan x="10" y="378">20.   2020-08-19 10:34:52 -0500      1590 bytes package.json</tspan>
 
-<tspan x="10" y="394">21.   2020-08-12 12:30:39 -0500    396710 bytes raw.istanbul.js</tspan>
+<tspan x="10" y="394">21.   2020-08-12 12:34:55 -0500    396710 bytes raw.istanbul.js</tspan>
 
-<tspan x="10" y="410">22.   2020-08-12 12:30:39 -0500    541584 bytes raw.jslint.js</tspan>
+<tspan x="10" y="410">22.   2020-08-12 12:34:55 -0500    541584 bytes raw.jslint.js</tspan>
 
-<tspan x="10" y="426">23.   2020-08-12 12:30:39 -0500    391126 bytes raw.puppeteer.js</tspan>
+<tspan x="10" y="426">23.   2020-08-12 12:34:55 -0500    391126 bytes raw.puppeteer.js</tspan>
 
 <tspan x="10" y="442">24.   2020-08-19 10:33:46 -0500     10222 bytes raw.sqlite3.js</tspan>
 
