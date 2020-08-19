@@ -1,5 +1,5 @@
-<svg height="4334" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="4334" fill="#555" width="720"></rect>
+<svg height="4366" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="4366" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
 <tspan x="10" y="26"></tspan>
 
@@ -9,7 +9,7 @@
 
 <tspan x="10" y="74"></tspan>
 
-<tspan x="10" y="90">\x1b[35m[MODE_BUILD=npmTest]\x1b[0m - 2020-08-19T21:21:26.885Z - npm-testing /home/travis/build/\</tspan>
+<tspan x="10" y="90">\x1b[35m[MODE_BUILD=npmTest]\x1b[0m - 2020-08-19T23:48:30.370Z - npm-testing /home/travis/build/\</tspan>
 <tspan x="10" y="106">kaizhu256/node-utility2</tspan>
 
 <tspan x="10" y="122"></tspan>
@@ -24,440 +24,443 @@
 <tspan x="10" y="202">npmTest - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build/tes\</tspan>
 <tspan x="10" y="218">t-report.json</tspan>
 
-<tspan x="10" y="234">&gt; http-server listening on port 47833</tspan>
+<tspan x="10" y="234">&gt; http-server listening on port 35450</tspan>
 
 <tspan x="10" y="250"></tspan>
 
 <tspan x="10" y="266">npmTest - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build/tes\</tspan>
 <tspan x="10" y="282">t-report.json</tspan>
 
-<tspan x="10" y="298">jslint - 5ms - /home/travis/build/kaizhu256/node-utility2/README.md</tspan>
+<tspan x="10" y="298">jslint - 8ms - /home/travis/build/kaizhu256/node-utility2/README.md</tspan>
 
-<tspan x="10" y="314">jslint - 147ms - /home/travis/build/kaizhu256/node-utility2/lib.apidoc.js</tspan>
+<tspan x="10" y="314">jslint - 192ms - /home/travis/build/kaizhu256/node-utility2/lib.apidoc.js</tspan>
 
-<tspan x="10" y="330">testRunDefault - 26 ms - [node test-case 1 of 41 passed] - testCase_ajax_200</tspan>
+<tspan x="10" y="330">jslint - 422ms - /home/travis/build/kaizhu256/node-utility2/lib.istanbul.js</tspan>
 
-<tspan x="10" y="346">testRunDefault - 31 ms - [node test-case 2 of 41 passed] - testCase_ajax_404</tspan>
+<tspan x="10" y="346">jslint - 434ms - /home/travis/build/kaizhu256/node-utility2/lib.marked.js</tspan>
 
-<tspan x="10" y="362">testRunDefault - 54 ms - [node test-case 3 of 41 passed] - testCase_assertXxx_default</tspan>
+<tspan x="10" y="362">testRunDefault - 32 ms - [node test-case 1 of 41 passed] - testCase_ajax_200</tspan>
 
-<tspan x="10" y="378">jslint - 424ms - /home/travis/build/kaizhu256/node-utility2/lib.istanbul.js</tspan>
+<tspan x="10" y="378">testRunDefault - 36 ms - [node test-case 2 of 41 passed] - testCase_ajax_404</tspan>
 
-<tspan x="10" y="394">testRunDefault - 65 ms - [node test-case 4 of 41 passed] - testCase_base64Xxx_default</tspan>
+<tspan x="10" y="394">testRunDefault - 64 ms - [node test-case 3 of 41 passed] - testCase_assertXxx_default</tspan>
 
-<tspan x="10" y="410">testRunDefault - 65 ms - [node test-case 5 of 41 passed] - testCase_blobRead_default</tspan>
+<tspan x="10" y="410">testRunDefault - 72 ms - [node test-case 4 of 41 passed] - testCase_base64Xxx_default</tspan>
 
-<tspan x="10" y="426">testRunDefault - 66 ms - [node test-case 6 of 41 passed] - testCase_bufferValidateAndCoerce_err</tspan>
+<tspan x="10" y="426">testRunDefault - 78 ms - [node test-case 5 of 41 passed] - testCase_blobRead_default</tspan>
 
-<tspan x="10" y="442">jslint - 449ms - /home/travis/build/kaizhu256/node-utility2/lib.marked.js</tspan>
+<tspan x="10" y="442">testRunDefault - 83 ms - [node test-case 6 of 41 passed] - testCase_bufferValidateAndCoerce_err</tspan>
 
-<tspan x="10" y="458">testRunDefault - 82 ms - [node test-case 7 of 41 passed] - testCase_buildXxx_default</tspan>
+<tspan x="10" y="458">jslint - 519ms - /home/travis/build/kaizhu256/node-utility2/lib.puppeteer.js</tspan>
 
-<tspan x="10" y="474">testRunDefault - 86 ms - [node test-case 8 of 41 passed] - testCase_cliRun_default</tspan>
+<tspan x="10" y="474">jslint - 527ms - /home/travis/build/kaizhu256/node-utility2/lib.sqlite3.js</tspan>
 
-<tspan x="10" y="490">testRunDefault - 86 ms - [node test-case 9 of 41 passed] - testCase_corsForwardProxyHostIfNeeded\</tspan>
-<tspan x="10" y="506">_default</tspan>
+<tspan x="10" y="490">testRunDefault - 109 ms - [node test-case 7 of 41 passed] - testCase_buildXxx_default</tspan>
 
-<tspan x="10" y="522">testRunDefault - 86 ms - [node test-case 10 of 41 passed] - testCase_cryptoAesXxxCbcRawXxx_defau\</tspan>
-<tspan x="10" y="538">lt</tspan>
+<tspan x="10" y="506">testRunDefault - 118 ms - [node test-case 8 of 41 passed] - testCase_cliRun_default</tspan>
 
-<tspan x="10" y="554">testRunDefault - 87 ms - [node test-case 11 of 41 passed] - testCase_domFragmentRender_default</tspan>
+<tspan x="10" y="522">testRunDefault - 123 ms - [node test-case 9 of 41 passed] - testCase_corsForwardProxyHostIfNeede\</tspan>
+<tspan x="10" y="538">d_default</tspan>
 
-<tspan x="10" y="570">testRunDefault - 87 ms - [node test-case 12 of 41 passed] - testCase_eventListenerXxx_default</tspan>
+<tspan x="10" y="554">testRunDefault - 123 ms - [node test-case 10 of 41 passed] - testCase_cryptoAesXxxCbcRawXxx_defa\</tspan>
+<tspan x="10" y="570">ult</tspan>
 
-<tspan x="10" y="586">testRunDefault - 89 ms - [node test-case 13 of 41 passed] - testCase_listShuffle_default</tspan>
+<tspan x="10" y="586">testRunDefault - 123 ms - [node test-case 11 of 41 passed] - testCase_domFragmentRender_default</tspan>
 
-<tspan x="10" y="602">testRunDefault - 92 ms - [node test-case 14 of 41 passed] - testCase_nop_default</tspan>
+<tspan x="10" y="602">testRunDefault - 124 ms - [node test-case 12 of 41 passed] - testCase_eventListenerXxx_default</tspan>
 
-<tspan x="10" y="618">testRunDefault - 92 ms - [node test-case 15 of 41 passed] - testCase_onErrorWithStack_toString</tspan>
+<tspan x="10" y="618">testRunDefault - 125 ms - [node test-case 13 of 41 passed] - testCase_listShuffle_default</tspan>
 
-<tspan x="10" y="634">testRunDefault - 93 ms - [node test-case 16 of 41 passed] - testCase_onNext_err</tspan>
+<tspan x="10" y="634">testRunDefault - 152 ms - [node test-case 14 of 41 passed] - testCase_nop_default</tspan>
 
-<tspan x="10" y="650">jslint - 515ms - /home/travis/build/kaizhu256/node-utility2/lib.sqlite3.js</tspan>
+<tspan x="10" y="650">testRunDefault - 156 ms - [node test-case 15 of 41 passed] - testCase_onErrorWithStack_toString</tspan>
 
-<tspan x="10" y="666">testRunDefault - 189 ms - [node test-case 17 of 41 passed] - testCase_buildApidoc_default</tspan>
+<tspan x="10" y="666">testRunDefault - 162 ms - [node test-case 16 of 41 passed] - testCase_onNext_err</tspan>
 
-<tspan x="10" y="682">testRunDefault - 204 ms - [node test-case 18 of 41 passed] - testCase_onParallel_default</tspan>
+<tspan x="10" y="682">testRunDefault - 282 ms - [node test-case 17 of 41 passed] - testCase_buildApidoc_default</tspan>
 
-<tspan x="10" y="698">testRunDefault - 210 ms - [node test-case 19 of 41 passed] - testCase_replStart_default</tspan>
+<tspan x="10" y="698">testRunDefault - 309 ms - [node test-case 18 of 41 passed] - testCase_onParallel_default</tspan>
 
-<tspan x="10" y="714">testRunDefault - 212 ms - [node test-case 20 of 41 passed] - testCase_libUtility2Js_standalone</tspan>
+<tspan x="10" y="714">testRunDefault - 322 ms - [node test-case 19 of 41 passed] - testCase_replStart_default</tspan>
 
-<tspan x="10" y="730">testRunDefault - 213 ms - [node test-case 21 of 41 passed] - testCase_serverRespondTimeoutDefaul\</tspan>
-<tspan x="10" y="746">t_timeout</tspan>
+<tspan x="10" y="730">testRunDefault - 329 ms - [node test-case 20 of 41 passed] - testCase_libUtility2Js_standalone</tspan>
 
-<tspan x="10" y="762">testRunDefault - 228 ms - [node test-case 22 of 41 passed] - testCase_requireReadme_misc</tspan>
+<tspan x="10" y="746">testRunDefault - 335 ms - [node test-case 21 of 41 passed] - testCase_serverRespondTimeoutDefaul\</tspan>
+<tspan x="10" y="762">t_timeout</tspan>
 
-<tspan x="10" y="778">testRunDefault - 228 ms - [node test-case 23 of 41 passed] - testCase_stringHtmlSafe_default</tspan>
+<tspan x="10" y="778">testRunDefault - 356 ms - [node test-case 22 of 41 passed] - testCase_requireReadme_misc</tspan>
 
-<tspan x="10" y="794">testRunDefault - 229 ms - [node test-case 24 of 41 passed] - testCase_stringQuotedToAscii_defaul\</tspan>
-<tspan x="10" y="810">t</tspan>
+<tspan x="10" y="794">testRunDefault - 362 ms - [node test-case 23 of 41 passed] - testCase_stringHtmlSafe_default</tspan>
 
-<tspan x="10" y="826">testRunDefault - 229 ms - [node test-case 25 of 41 passed] - testCase_stringRegexpEscape_default</tspan>
+<tspan x="10" y="810">testRunDefault - 367 ms - [node test-case 24 of 41 passed] - testCase_stringQuotedToAscii_defaul\</tspan>
+<tspan x="10" y="826">t</tspan>
 
-<tspan x="10" y="842">testRunDefault - 238 ms - [node test-case 26 of 41 passed] - testCase_templateRender_default</tspan>
+<tspan x="10" y="842">testRunDefault - 371 ms - [node test-case 25 of 41 passed] - testCase_stringRegexpEscape_default</tspan>
 
-<tspan x="10" y="858">testRunDefault - 238 ms - [node test-case 27 of 41 passed] - testCase_testMock_err</tspan>
+<tspan x="10" y="858">testRunDefault - 385 ms - [node test-case 26 of 41 passed] - testCase_templateRender_default</tspan>
 
-<tspan x="10" y="874">testRunDefault - 244 ms - [node test-case 28 of 41 passed] - testCase_testReportCreate_default</tspan>
+<tspan x="10" y="874">testRunDefault - 391 ms - [node test-case 27 of 41 passed] - testCase_testMock_err</tspan>
 
-<tspan x="10" y="890">testRunDefault - 244 ms - [node test-case 29 of 41 passed] - testCase_throwError_default</tspan>
+<tspan x="10" y="890">testRunDefault - 399 ms - [node test-case 28 of 41 passed] - testCase_testReportCreate_default</tspan>
 
-<tspan x="10" y="906">testRunDefault - 244 ms - [node test-case 30 of 41 passed] - testCase_uiAnimateXxx_default</tspan>
+<tspan x="10" y="906">testRunDefault - 405 ms - [node test-case 29 of 41 passed] - testCase_throwError_default</tspan>
 
-<tspan x="10" y="922">testRunDefault - 245 ms - [node test-case 31 of 41 passed] - testCase_urlJoin_default</tspan>
+<tspan x="10" y="922">testRunDefault - 410 ms - [node test-case 30 of 41 passed] - testCase_uiAnimateXxx_default</tspan>
 
-<tspan x="10" y="938">testRunDefault - 246 ms - [node test-case 32 of 41 passed] - testCase_urlParse_default</tspan>
+<tspan x="10" y="938">testRunDefault - 414 ms - [node test-case 31 of 41 passed] - testCase_urlJoin_default</tspan>
 
-<tspan x="10" y="954">testRunDefault - 247 ms - [node test-case 33 of 41 passed] - testCase_uuid4Create_default</tspan>
+<tspan x="10" y="954">testRunDefault - 419 ms - [node test-case 32 of 41 passed] - testCase_urlParse_default</tspan>
 
-<tspan x="10" y="970">testRunDefault - 276 ms - [node test-case 34 of 41 passed] - testCase_setTimeoutOnError_default</tspan>
+<tspan x="10" y="970">testRunDefault - 425 ms - [node test-case 33 of 41 passed] - testCase_uuid4Create_default</tspan>
 
-<tspan x="10" y="986">testRunDefault - 329 ms - [node test-case 35 of 41 passed] - testCase_ajax_cache</tspan>
+<tspan x="10" y="986">testRunDefault - 435 ms - [node test-case 34 of 41 passed] - testCase_setTimeoutOnError_default</tspan>
 
-<tspan x="10" y="1002">testRunDefault - 334 ms - [node test-case 36 of 41 passed] - testCase_middlewareForwardProxy_def\</tspan>
-<tspan x="10" y="1018">ault</tspan>
+<tspan x="10" y="1002">testRunDefault - 492 ms - [node test-case 35 of 41 passed] - testCase_ajax_cache</tspan>
 
-<tspan x="10" y="1034">jslint - 1057ms - /home/travis/build/kaizhu256/node-utility2/lib.utility2.js</tspan>
+<tspan x="10" y="1018">jslint - 1004ms - /home/travis/build/kaizhu256/node-utility2/lib.utility2.js</tspan>
 
-<tspan x="10" y="1050">jslint - 1126ms - /home/travis/build/kaizhu256/node-utility2/lib.utility2.sh</tspan>
+<tspan x="10" y="1034">jslint - 1011ms - /home/travis/build/kaizhu256/node-utility2/lib.utility2.sh</tspan>
 
-<tspan x="10" y="1066">jslint - 1130ms - /home/travis/build/kaizhu256/node-utility2/npm_scripts.sh</tspan>
+<tspan x="10" y="1050">jslint - 1022ms - /home/travis/build/kaizhu256/node-utility2/npm_scripts.sh</tspan>
 
-<tspan x="10" y="1082">jslint - 1157ms - /home/travis/build/kaizhu256/node-utility2/package.json</tspan>
+<tspan x="10" y="1066">jslint - 1029ms - /home/travis/build/kaizhu256/node-utility2/package.json</tspan>
 
-<tspan x="10" y="1098"></tspan>
+<tspan x="10" y="1082">testRunDefault - 650 ms - [node test-case 36 of 41 passed] - testCase_middlewareForwardProxy_def\</tspan>
+<tspan x="10" y="1098">ault</tspan>
 
-<tspan x="10" y="1114">DevTools listening on ws://127.0.0.1:35091/devtools/browser/0e3a1f72-8c44-42ff-ab59-872307736ac1</tspan>
+<tspan x="10" y="1114"></tspan>
 
-<tspan x="10" y="1130">jslint - 1355ms - /home/travis/build/kaizhu256/node-utility2/test.js</tspan>
+<tspan x="10" y="1130">DevTools listening on ws://127.0.0.1:44277/devtools/browser/3fe19c8c-44d7-4885-b9e6-012fb0713f2b</tspan>
 
-<tspan x="10" y="1146">testRunDefault - 1070 ms - [node test-case 37 of 41 passed] - testCase_ajax_default</tspan>
+<tspan x="10" y="1146">jslint - 1241ms - /home/travis/build/kaizhu256/node-utility2/test.js</tspan>
 
-<tspan x="10" y="1162">testRunDefault - 1188 ms - [node test-case 38 of 41 passed] - testCase_onParallelList_default</tspan>
+<tspan x="10" y="1162">[0819/234832.454980:ERROR:command_buffer_proxy_impl.cc(122)] ContextResult::kTransientFailure: F\</tspan>
+<tspan x="10" y="1178">ailed to send GpuChannelMsg_CreateCommandBuffer.</tspan>
 
-<tspan x="10" y="1178">jslint - 1567ms - /home/travis/build/kaizhu256/node-utility2/lib.jslint.js</tspan>
+<tspan x="10" y="1194">jslint - 1494ms - /home/travis/build/kaizhu256/node-utility2/lib.jslint.js</tspan>
 
-<tspan x="10" y="1194">jslint - 1720ms - /home/travis/build/kaizhu256/node-utility2/lib.puppeteer.js</tspan>
+<tspan x="10" y="1210">jslint - 1505ms - /home/travis/build/kaizhu256/node-utility2/lib.terser.js</tspan>
 
-<tspan x="10" y="1210">jslint - 1747ms - /home/travis/build/kaizhu256/node-utility2/lib.terser.js</tspan>
+<tspan x="10" y="1226">testRunDefault - 1094 ms - [node test-case 37 of 41 passed] - testCase_ajax_default</tspan>
 
-<tspan x="10" y="1226">jslint - 5ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.example.html</tspan>
+<tspan x="10" y="1242">testRunDefault - 1200 ms - [node test-case 38 of 41 passed] - testCase_onParallelList_default</tspan>
 
-<tspan x="10" y="1242">[0819/212129.604173:INFO:CONSOLE(9)] "http-server listening on port undefined", source: http://1\</tspan>
-<tspan x="10" y="1258">27.0.0.1:47833/assets.utility2.js (9)</tspan>
+<tspan x="10" y="1258">jslint - 6ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.example.html</tspan>
 
 <tspan x="10" y="1274">jslint - 18ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.example.js</tspan>
 
-<tspan x="10" y="1290">jslint - 18ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.script_only.htm\</tspan>
+<tspan x="10" y="1290">jslint - 19ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.script_only.htm\</tspan>
 <tspan x="10" y="1306">l</tspan>
 
-<tspan x="10" y="1322">jslint - 18ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.css</tspan>
+<tspan x="10" y="1322">jslint - 21ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.test.js</tspan>
 
-<tspan x="10" y="1338">jslint - 19ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.html</tspan>
+<tspan x="10" y="1338">jslint - 29ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.css</tspan>
 
-<tspan x="10" y="1354">jslint - 19ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.test.js</tspan>
+<tspan x="10" y="1354">jslint - 31ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.html</tspan>
 
-<tspan x="10" y="1370">http-server listening on port 46850</tspan>
+<tspan x="10" y="1370">[0819/234833.351837:INFO:CONSOLE(9)] "http-server listening on port undefined", source: http://1\</tspan>
+<tspan x="10" y="1386">27.0.0.1:35450/assets.utility2.js (9)</tspan>
 
-<tspan x="10" y="1386">&gt; jslint - 323ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.lib\</tspan>
-<tspan x="10" y="1402">.istanbul.js</tspan>
+<tspan x="10" y="1402">http-server listening on port 52072</tspan>
 
-<tspan x="10" y="1418">[0819/212129.937855:INFO:CONSOLE(9)] "testRunDefault - 163 ms - [browser test-case 1 of 41 passe\</tspan>
-<tspan x="10" y="1434">d] - testCase_ajax_cache", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1418">&gt; [0819/234833.686021:INFO:CONSOLE(9)] "testRunDefault - 190 ms - [browser test-case 1 of 41 pas\</tspan>
+<tspan x="10" y="1434">sed] - testCase_ajax_cache", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1450">jslint - 366ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.lib.m\</tspan>
-<tspan x="10" y="1466">arked.js</tspan>
+<tspan x="10" y="1450">jslint - 392ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.lib.i\</tspan>
+<tspan x="10" y="1466">stanbul.js</tspan>
 
-<tspan x="10" y="1482">jslint - 380ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/index.html</tspan>
+<tspan x="10" y="1482">jslint - 432ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.lib.m\</tspan>
+<tspan x="10" y="1498">arked.js</tspan>
 
-<tspan x="10" y="1498">jslint - 380ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/utility2.state.init.j\</tspan>
-<tspan x="10" y="1514">s</tspan>
+<tspan x="10" y="1514">jslint - 437ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/index.html</tspan>
 
-<tspan x="10" y="1530">[0819/212130.008314:INFO:CONSOLE(9)] "testRunDefault - 234 ms - [browser test-case 2 of 41 passe\</tspan>
-<tspan x="10" y="1546">d] - testCase_assertXxx_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1530">jslint - 453ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/utility2.state.init.j\</tspan>
+<tspan x="10" y="1546">s</tspan>
 
-<tspan x="10" y="1562">[0819/212130.018107:INFO:CONSOLE(9)] "testRunDefault - 244 ms - [browser test-case 3 of 41 passe\</tspan>
-<tspan x="10" y="1578">d] - testCase_base64Xxx_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1562">jslint - 466ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.js</tspan>
 
-<tspan x="10" y="1594">[0819/212130.036484:INFO:CONSOLE(9)] "testRunDefault - 262 ms - [browser test-case 4 of 41 passe\</tspan>
-<tspan x="10" y="1610">d] - testCase_bufferValidateAndCoerce_err", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1578">[0819/234833.776344:INFO:CONSOLE(9)] "testRunDefault - 283 ms - [browser test-case 2 of 41 passe\</tspan>
+<tspan x="10" y="1594">d] - testCase_assertXxx_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1626">[0819/212130.048855:INFO:CONSOLE(9)] "testRunDefault - 274 ms - [browser test-case 5 of 41 passe\</tspan>
-<tspan x="10" y="1642">d] - testCase_buildApidoc_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1610">[0819/234833.784491:INFO:CONSOLE(9)] "testRunDefault - 291 ms - [browser test-case 3 of 41 passe\</tspan>
+<tspan x="10" y="1626">d] - testCase_base64Xxx_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1658">[0819/212130.057124:INFO:CONSOLE(9)] "testRunDefault - 283 ms - [browser test-case 6 of 41 passe\</tspan>
-<tspan x="10" y="1674">d] - testCase_buildApp_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1642">[0819/234833.801195:INFO:CONSOLE(9)] "testRunDefault - 308 ms - [browser test-case 4 of 41 passe\</tspan>
+<tspan x="10" y="1658">d] - testCase_bufferValidateAndCoerce_err", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1690">[0819/212130.082842:INFO:CONSOLE(9)] "testRunDefault - 302 ms - [browser test-case 7 of 41 passe\</tspan>
-<tspan x="10" y="1706">d] - testCase_buildXxx_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1674">[0819/234833.809258:INFO:CONSOLE(9)] "testRunDefault - 316 ms - [browser test-case 5 of 41 passe\</tspan>
+<tspan x="10" y="1690">d] - testCase_buildApidoc_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1722">[0819/212130.086294:INFO:CONSOLE(9)] "testRunDefault - 312 ms - [browser test-case 8 of 41 passe\</tspan>
-<tspan x="10" y="1738">d] - testCase_cliRun_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1706">[0819/234833.825353:INFO:CONSOLE(9)] "testRunDefault - 320 ms - [browser test-case 6 of 41 passe\</tspan>
+<tspan x="10" y="1722">d] - testCase_buildApp_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1754">[0819/212130.097575:INFO:CONSOLE(9)] "testRunDefault - 323 ms - [browser test-case 9 of 41 passe\</tspan>
-<tspan x="10" y="1770">d] - testCase_corsForwardProxyHostIfNeeded_default", source: http://127.0.0.1:47833/assets.examp\</tspan>
-<tspan x="10" y="1786">le.js (9)</tspan>
+<tspan x="10" y="1738">[0819/234833.836755:INFO:CONSOLE(9)] "testRunDefault - 343 ms - [browser test-case 7 of 41 passe\</tspan>
+<tspan x="10" y="1754">d] - testCase_buildXxx_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1802">[0819/212130.101089:INFO:CONSOLE(9)] "testRunDefault - 327 ms - [browser test-case 10 of 41 pass\</tspan>
-<tspan x="10" y="1818">ed] - testCase_cryptoAesXxxCbcRawXxx_default", source: http://127.0.0.1:47833/assets.example.js \</tspan>
-<tspan x="10" y="1834">(9)</tspan>
+<tspan x="10" y="1770">[0819/234833.838742:INFO:CONSOLE(9)] "testRunDefault - 345 ms - [browser test-case 8 of 41 passe\</tspan>
+<tspan x="10" y="1786">d] - testCase_cliRun_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1850">[0819/212130.104873:INFO:CONSOLE(9)] "testRunDefault - 331 ms - [browser test-case 11 of 41 pass\</tspan>
-<tspan x="10" y="1866">ed] - testCase_domFragmentRender_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1802">[0819/234833.853091:INFO:CONSOLE(9)] "testRunDefault - 360 ms - [browser test-case 9 of 41 passe\</tspan>
+<tspan x="10" y="1818">d] - testCase_corsForwardProxyHostIfNeeded_default", source: http://127.0.0.1:35450/assets.examp\</tspan>
+<tspan x="10" y="1834">le.js (9)</tspan>
 
-<tspan x="10" y="1882">[0819/212130.113962:INFO:CONSOLE(9)] "testRunDefault - 340 ms - [browser test-case 12 of 41 pass\</tspan>
-<tspan x="10" y="1898">ed] - testCase_eventListenerXxx_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1850">[0819/234833.865971:INFO:CONSOLE(9)] "testRunDefault - 372 ms - [browser test-case 10 of 41 pass\</tspan>
+<tspan x="10" y="1866">ed] - testCase_cryptoAesXxxCbcRawXxx_default", source: http://127.0.0.1:35450/assets.example.js \</tspan>
+<tspan x="10" y="1882">(9)</tspan>
 
-<tspan x="10" y="1914">[0819/212130.131155:INFO:CONSOLE(9)] "testRunDefault - 357 ms - [browser test-case 13 of 41 pass\</tspan>
-<tspan x="10" y="1930">ed] - testCase_libUtility2Js_standalone", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1898">[0819/234833.874661:INFO:CONSOLE(9)] "testRunDefault - 381 ms - [browser test-case 11 of 41 pass\</tspan>
+<tspan x="10" y="1914">ed] - testCase_domFragmentRender_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1946">[0819/212130.140566:INFO:CONSOLE(9)] "testRunDefault - 366 ms - [browser test-case 14 of 41 pass\</tspan>
-<tspan x="10" y="1962">ed] - testCase_listShuffle_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1930">[0819/234833.891999:INFO:CONSOLE(9)] "testRunDefault - 398 ms - [browser test-case 12 of 41 pass\</tspan>
+<tspan x="10" y="1946">ed] - testCase_eventListenerXxx_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="1978">[0819/212130.168760:INFO:CONSOLE(9)] "testRunDefault - 379 ms - [browser test-case 15 of 41 pass\</tspan>
-<tspan x="10" y="1994">ed] - testCase_middlewareForwardProxy_default", source: http://127.0.0.1:47833/assets.example.js\</tspan>
-<tspan x="10" y="2010"> (9)</tspan>
+<tspan x="10" y="1962">[0819/234833.900451:INFO:CONSOLE(9)] "testRunDefault - 401 ms - [browser test-case 13 of 41 pass\</tspan>
+<tspan x="10" y="1978">ed] - testCase_libUtility2Js_standalone", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2026">[0819/212130.173110:INFO:CONSOLE(9)] "testRunDefault - 399 ms - [browser test-case 16 of 41 pass\</tspan>
-<tspan x="10" y="2042">ed] - testCase_nop_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="1994">[0819/234833.904729:INFO:CONSOLE(9)] "testRunDefault - 411 ms - [browser test-case 14 of 41 pass\</tspan>
+<tspan x="10" y="2010">ed] - testCase_listShuffle_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2058">[0819/212130.185273:INFO:CONSOLE(9)] "testRunDefault - 403 ms - [browser test-case 17 of 41 pass\</tspan>
-<tspan x="10" y="2074">ed] - testCase_onErrorWithStack_toString", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2026">[0819/234833.913853:INFO:CONSOLE(9)] "testRunDefault - 420 ms - [browser test-case 15 of 41 pass\</tspan>
+<tspan x="10" y="2042">ed] - testCase_middlewareForwardProxy_default", source: http://127.0.0.1:35450/assets.example.js\</tspan>
+<tspan x="10" y="2058"> (9)</tspan>
 
-<tspan x="10" y="2090">[0819/212130.212019:INFO:CONSOLE(9)] "testRunDefault - 437 ms - [browser test-case 18 of 41 pass\</tspan>
-<tspan x="10" y="2106">ed] - testCase_onNext_err", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2074">[0819/234833.932947:INFO:CONSOLE(9)] "testRunDefault - 435 ms - [browser test-case 16 of 41 pass\</tspan>
+<tspan x="10" y="2090">ed] - testCase_nop_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2122">[0819/212130.231030:INFO:CONSOLE(9)] "testRunDefault - 457 ms - [browser test-case 19 of 41 pass\</tspan>
-<tspan x="10" y="2138">ed] - testCase_replStart_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2106">[0819/234833.937974:INFO:CONSOLE(9)] "testRunDefault - 444 ms - [browser test-case 17 of 41 pass\</tspan>
+<tspan x="10" y="2122">ed] - testCase_onErrorWithStack_toString", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2154">[0819/212130.237295:INFO:CONSOLE(9)] "testRunDefault - 463 ms - [browser test-case 20 of 41 pass\</tspan>
-<tspan x="10" y="2170">ed] - testCase_requireReadme_misc", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2138">[0819/234833.951229:INFO:CONSOLE(9)] "testRunDefault - 457 ms - [browser test-case 18 of 41 pass\</tspan>
+<tspan x="10" y="2154">ed] - testCase_onNext_err", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2186">[0819/212130.241659:INFO:CONSOLE(9)] "testRunDefault - 467 ms - [browser test-case 21 of 41 pass\</tspan>
-<tspan x="10" y="2202">ed] - testCase_serverRespondTimeoutDefault_timeout", source: http://127.0.0.1:47833/assets.examp\</tspan>
-<tspan x="10" y="2218">le.js (9)</tspan>
+<tspan x="10" y="2170">[0819/234833.960245:INFO:CONSOLE(9)] "testRunDefault - 467 ms - [browser test-case 19 of 41 pass\</tspan>
+<tspan x="10" y="2186">ed] - testCase_replStart_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2234">[0819/212130.267243:INFO:CONSOLE(9)] "testRunDefault - 493 ms - [browser test-case 22 of 41 pass\</tspan>
-<tspan x="10" y="2250">ed] - testCase_ajax_404", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2202">[0819/234833.965883:INFO:CONSOLE(9)] "testRunDefault - 473 ms - [browser test-case 20 of 41 pass\</tspan>
+<tspan x="10" y="2218">ed] - testCase_requireReadme_misc", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2266">[0819/212130.269588:INFO:CONSOLE(9)] "testRunDefault - 496 ms - [browser test-case 23 of 41 pass\</tspan>
-<tspan x="10" y="2282">ed] - testCase_stringHtmlSafe_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2234">[0819/234833.974710:INFO:CONSOLE(9)] "testRunDefault - 481 ms - [browser test-case 21 of 41 pass\</tspan>
+<tspan x="10" y="2250">ed] - testCase_serverRespondTimeoutDefault_timeout", source: http://127.0.0.1:35450/assets.examp\</tspan>
+<tspan x="10" y="2266">le.js (9)</tspan>
 
-<tspan x="10" y="2298">[0819/212130.285150:INFO:CONSOLE(9)] "testRunDefault - 511 ms - [browser test-case 24 of 41 pass\</tspan>
-<tspan x="10" y="2314">ed] - testCase_stringQuotedToAscii_default", source: http://127.0.0.1:47833/assets.example.js (9\</tspan>
-<tspan x="10" y="2330">)</tspan>
+<tspan x="10" y="2282">[0819/234834.001339:INFO:CONSOLE(9)] "testRunDefault - 508 ms - [browser test-case 22 of 41 pass\</tspan>
+<tspan x="10" y="2298">ed] - testCase_ajax_200", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2346">[0819/212130.302985:INFO:CONSOLE(9)] "testRunDefault - 529 ms - [browser test-case 25 of 41 pass\</tspan>
-<tspan x="10" y="2362">ed] - testCase_stringRegexpEscape_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2314">[0819/234834.010558:INFO:CONSOLE(9)] "testRunDefault - 518 ms - [browser test-case 23 of 41 pass\</tspan>
+<tspan x="10" y="2330">ed] - testCase_stringHtmlSafe_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2378">[0819/212130.338626:INFO:CONSOLE(9)] "testRunDefault - 565 ms - [browser test-case 26 of 41 pass\</tspan>
-<tspan x="10" y="2394">ed] - testCase_templateRender_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2346">[0819/234834.034109:INFO:CONSOLE(9)] "testRunDefault - 541 ms - [browser test-case 24 of 41 pass\</tspan>
+<tspan x="10" y="2362">ed] - testCase_stringQuotedToAscii_default", source: http://127.0.0.1:35450/assets.example.js (9\</tspan>
+<tspan x="10" y="2378">)</tspan>
 
-<tspan x="10" y="2410">[0819/212130.341561:INFO:CONSOLE(9)] "testRunDefault - 568 ms - [browser test-case 27 of 41 pass\</tspan>
-<tspan x="10" y="2426">ed] - testCase_testMock_err", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2394">[0819/234834.045579:INFO:CONSOLE(9)] "testRunDefault - 552 ms - [browser test-case 25 of 41 pass\</tspan>
+<tspan x="10" y="2410">ed] - testCase_stringRegexpEscape_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2442">jslint - 762ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.lib.j\</tspan>
-<tspan x="10" y="2458">slint.js</tspan>
+<tspan x="10" y="2426">[0819/234834.066510:INFO:CONSOLE(9)] "testRunDefault - 573 ms - [browser test-case 26 of 41 pass\</tspan>
+<tspan x="10" y="2442">ed] - testCase_templateRender_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2474">jslint - 764ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.js</tspan>
+<tspan x="10" y="2458">[0819/234834.080458:INFO:CONSOLE(9)] "testRunDefault - 587 ms - [browser test-case 27 of 41 pass\</tspan>
+<tspan x="10" y="2474">ed] - testCase_testMock_err", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2490">[0819/212130.355097:INFO:CONSOLE(9)] "testRunDefault - 581 ms - [browser test-case 28 of 41 pass\</tspan>
-<tspan x="10" y="2506">ed] - testCase_testReportCreate_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2490">[0819/234834.109018:INFO:CONSOLE(9)] "testRunDefault - 616 ms - [browser test-case 28 of 41 pass\</tspan>
+<tspan x="10" y="2506">ed] - testCase_testReportCreate_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2522">[0819/212130.363809:INFO:CONSOLE(9)] "testRunDefault - 590 ms - [browser test-case 29 of 41 pass\</tspan>
-<tspan x="10" y="2538">ed] - testCase_throwError_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2522">[0819/234834.120117:INFO:CONSOLE(9)] "testRunDefault - 627 ms - [browser test-case 29 of 41 pass\</tspan>
+<tspan x="10" y="2538">ed] - testCase_throwError_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2554">[0819/212130.368316:INFO:CONSOLE(9)] "testRunDefault - 594 ms - [browser test-case 30 of 41 pass\</tspan>
-<tspan x="10" y="2570">ed] - testCase_uiAnimateXxx_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2554">[0819/234834.131000:INFO:CONSOLE(9)] "testRunDefault - 638 ms - [browser test-case 30 of 41 pass\</tspan>
+<tspan x="10" y="2570">ed] - testCase_uiAnimateXxx_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2586">[0819/212130.379886:INFO:CONSOLE(9)] "testRunDefault - 605 ms - [browser test-case 31 of 41 pass\</tspan>
-<tspan x="10" y="2602">ed] - testCase_urlJoin_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2586">[0819/234834.142938:INFO:CONSOLE(9)] "testRunDefault - 650 ms - [browser test-case 31 of 41 pass\</tspan>
+<tspan x="10" y="2602">ed] - testCase_urlJoin_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2618">[0819/212130.386038:INFO:CONSOLE(9)] "testRunDefault - 612 ms - [browser test-case 32 of 41 pass\</tspan>
-<tspan x="10" y="2634">ed] - testCase_urlParse_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2618">[0819/234834.154411:INFO:CONSOLE(9)] "testRunDefault - 661 ms - [browser test-case 32 of 41 pass\</tspan>
+<tspan x="10" y="2634">ed] - testCase_urlParse_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2650">[0819/212130.390497:INFO:CONSOLE(9)] "testRunDefault - 616 ms - [browser test-case 33 of 41 pass\</tspan>
-<tspan x="10" y="2666">ed] - testCase_uuid4Create_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2650">[0819/234834.165684:INFO:CONSOLE(9)] "testRunDefault - 672 ms - [browser test-case 33 of 41 pass\</tspan>
+<tspan x="10" y="2666">ed] - testCase_uuid4Create_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2682">[0819/212130.394797:INFO:CONSOLE(9)] "testRunDefault - 620 ms - [browser test-case 34 of 41 pass\</tspan>
-<tspan x="10" y="2698">ed] - testCase_webpage_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2682">[0819/234834.176419:INFO:CONSOLE(9)] "testRunDefault - 683 ms - [browser test-case 34 of 41 pass\</tspan>
+<tspan x="10" y="2698">ed] - testCase_webpage_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2714">[0819/212130.399059:INFO:CONSOLE(9)] "testRunDefault - 625 ms - [browser test-case 35 of 41 pass\</tspan>
-<tspan x="10" y="2730">ed] - testCase_webpage_err", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2714">[0819/234834.194322:INFO:CONSOLE(9)] "testRunDefault - 701 ms - [browser test-case 35 of 41 pass\</tspan>
+<tspan x="10" y="2730">ed] - testCase_webpage_err", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2746">[0819/212130.409185:INFO:CONSOLE(9)] "testRunDefault - 635 ms - [browser test-case 36 of 41 pass\</tspan>
-<tspan x="10" y="2762">ed] - testCase_ajax_200", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2746">jslint - 902ms - /home/travis/build/kaizhu256/node-utility2/.tmp/build/app/assets.utility2.lib.j\</tspan>
+<tspan x="10" y="2762">slint.js</tspan>
 
-<tspan x="10" y="2778">[0819/212130.419096:INFO:CONSOLE(9)] "testRunDefault - 645 ms - [browser test-case 37 of 41 pass\</tspan>
-<tspan x="10" y="2794">ed] - testCase_onParallel_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2778">[0819/234834.220283:INFO:CONSOLE(9)] "testRunDefault - 727 ms - [browser test-case 36 of 41 pass\</tspan>
+<tspan x="10" y="2794">ed] - testCase_ajax_404", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2810">[0819/212130.525198:INFO:CONSOLE(9)] "testRunDefault - 664 ms - [browser test-case 38 of 41 pass\</tspan>
-<tspan x="10" y="2826">ed] - testCase_setTimeoutOnError_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2810">[0819/234834.244886:INFO:CONSOLE(9)] "testRunDefault - 752 ms - [browser test-case 37 of 41 pass\</tspan>
+<tspan x="10" y="2826">ed] - testCase_onParallel_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2842">[0819/212130.525583:INFO:CONSOLE(9)] "testRunDefault - 698 ms - [browser test-case 39 of 41 pass\</tspan>
-<tspan x="10" y="2858">ed] - testCase_blobRead_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2842">[0819/234834.340558:INFO:CONSOLE(9)] "testRunDefault - 786 ms - [browser test-case 38 of 41 pass\</tspan>
+<tspan x="10" y="2858">ed] - testCase_setTimeoutOnError_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2874">[0819/212131.010136:INFO:CONSOLE(9)] "testRunDefault - 1236 ms - [browser test-case 40 of 41 pas\</tspan>
-<tspan x="10" y="2890">sed] - testCase_ajax_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2874">[0819/234834.344418:INFO:CONSOLE(9)] "testRunDefault - 798 ms - [browser test-case 39 of 41 pass\</tspan>
+<tspan x="10" y="2890">ed] - testCase_blobRead_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2906">[0819/212131.233888:INFO:CONSOLE(9)] "testRunDefault - 1460 ms - [browser test-case 41 of 41 pas\</tspan>
-<tspan x="10" y="2922">sed] - testCase_onParallelList_default", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="2906">[0819/234834.777611:INFO:CONSOLE(9)] "testRunDefault - 1285 ms - [browser test-case 40 of 41 pas\</tspan>
+<tspan x="10" y="2922">sed] - testCase_ajax_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2938">[0819/212131.268210:INFO:CONSOLE(9)] "-------------------------------------------|---------|----\</tspan>
-<tspan x="10" y="2954">-----|---------|---------|</tspan>
+<tspan x="10" y="2938">[0819/234834.963250:INFO:CONSOLE(9)] "testRunDefault - 1470 ms - [browser test-case 41 of 41 pas\</tspan>
+<tspan x="10" y="2954">sed] - testCase_onParallelList_default", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="2970">File                                       | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
+<tspan x="10" y="2970">[0819/234834.998873:INFO:CONSOLE(9)] "-------------------------------------------|---------|----\</tspan>
+<tspan x="10" y="2986">-----|---------|---------|</tspan>
 
-<tspan x="10" y="2986">-------------------------------------------|---------|---------|---------|---------|</tspan>
+<tspan x="10" y="3002">File                                       | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
 
-<tspan x="10" y="3002">All files                                  |   70.73 |   67.73 |   69.26 |   70.73 |</tspan>
+<tspan x="10" y="3018">-------------------------------------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3018">home/travis/build/kaizhu256/node-utility2/ |   70.96 |   67.85 |   69.62 |   70.96 |</tspan>
+<tspan x="10" y="3034">All files                                  |   70.73 |   67.73 |   69.26 |   70.73 |</tspan>
 
-<tspan x="10" y="3034">  example.js                               |   96.39 |    95.7 |     100 |   96.39 |</tspan>
+<tspan x="10" y="3050">home/travis/build/kaizhu256/node-utility2/ |   70.96 |   67.85 |   69.62 |   70.96 |</tspan>
 
-<tspan x="10" y="3050">  lib.utility2.js                          |   63.88 |    62.1 |   59.88 |   63.88 |</tspan>
+<tspan x="10" y="3066">  example.js                               |   96.39 |    95.7 |     100 |   96.39 |</tspan>
 
-<tspan x="10" y="3066">  test.js                                  |   86.89 |    87.5 |   87.12 |   86.89 |</tspan>
+<tspan x="10" y="3082">  lib.utility2.js                          |   63.88 |    62.1 |   59.88 |   63.88 |</tspan>
 
-<tspan x="10" y="3082">inputTextarea1.js                          |   36.84 |       0 |      25 |   36.84 |</tspan>
+<tspan x="10" y="3098">  test.js                                  |   86.89 |    87.5 |   87.12 |   86.89 |</tspan>
 
-<tspan x="10" y="3098">-------------------------------------------|---------|---------|---------|---------|</tspan>
+<tspan x="10" y="3114">inputTextarea1.js                          |   36.84 |       0 |      25 |   36.84 |</tspan>
 
-<tspan x="10" y="3114">", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="3130">-------------------------------------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3130">[0819/212131.372009:INFO:CONSOLE(9)] "istanbul - created coverage file .tmp/build/coverage/index\</tspan>
-<tspan x="10" y="3146">.html", source: http://127.0.0.1:47833/assets.example.js (9)</tspan>
+<tspan x="10" y="3146">", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="3162">testRunDefault - 4290 ms - [node test-case 39 of 41 passed] - testCase_webpage_default</tspan>
+<tspan x="10" y="3162">[0819/234835.087276:INFO:CONSOLE(9)] "istanbul - created coverage file .tmp/build/coverage/index\</tspan>
+<tspan x="10" y="3178">.html", source: http://127.0.0.1:35450/assets.example.js (9)</tspan>
 
-<tspan x="10" y="3178">testRunDefault - 4996 ms - [node test-case 40 of 41 passed] - testCase_webpage_err</tspan>
+<tspan x="10" y="3194">testRunDefault - 4422 ms - [node test-case 39 of 41 passed] - testCase_webpage_default</tspan>
 
-<tspan x="10" y="3194">testRunDefault - 5526 ms - [node test-case 41 of 41 passed] - testCase_buildApp_default</tspan>
+<tspan x="10" y="3210">testRunDefault - 5172 ms - [node test-case 40 of 41 passed] - testCase_webpage_err</tspan>
 
-<tspan x="10" y="3210">----------------|---------|---------|---------|---------|</tspan>
-
-<tspan x="10" y="3226">File            | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
+<tspan x="10" y="3226">testRunDefault - 5675 ms - [node test-case 41 of 41 passed] - testCase_buildApp_default</tspan>
 
 <tspan x="10" y="3242">----------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3258">All files       |   95.13 |   90.71 |   94.57 |   95.13 |</tspan>
+<tspan x="10" y="3258">File            | % Stmts | % Brchs | % Funcs | % Lines |</tspan>
 
-<tspan x="10" y="3274">example.js      |     100 |     100 |     100 |     100 |</tspan>
+<tspan x="10" y="3274">----------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3290">lib.utility2.js |   93.21 |   88.36 |   91.92 |   93.21 |</tspan>
+<tspan x="10" y="3290">All files       |   95.13 |   90.71 |   94.57 |   95.13 |</tspan>
 
-<tspan x="10" y="3306">test.js         |     100 |     100 |     100 |     100 |</tspan>
+<tspan x="10" y="3306">example.js      |     100 |     100 |     100 |     100 |</tspan>
 
-<tspan x="10" y="3322">----------------|---------|---------|---------|---------|</tspan>
+<tspan x="10" y="3322">lib.utility2.js |   93.21 |   88.36 |   91.92 |   93.21 |</tspan>
 
-<tspan x="10" y="3338"></tspan>
+<tspan x="10" y="3338">test.js         |     100 |     100 |     100 |     100 |</tspan>
 
-<tspan x="10" y="3354">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/cover\</tspan>
-<tspan x="10" y="3370">age.txt</tspan>
+<tspan x="10" y="3354">----------------|---------|---------|---------|---------|</tspan>
 
-<tspan x="10" y="3386">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/index\</tspan>
-<tspan x="10" y="3402">.html</tspan>
+<tspan x="10" y="3370"></tspan>
 
-<tspan x="10" y="3418">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/examp\</tspan>
-<tspan x="10" y="3434">le.js.html</tspan>
+<tspan x="10" y="3386">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/cover\</tspan>
+<tspan x="10" y="3402">age.txt</tspan>
 
-<tspan x="10" y="3450">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/lib.u\</tspan>
-<tspan x="10" y="3466">tility2.js.html</tspan>
+<tspan x="10" y="3418">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/index\</tspan>
+<tspan x="10" y="3434">.html</tspan>
 
-<tspan x="10" y="3482">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/test.\</tspan>
-<tspan x="10" y="3498">js.html</tspan>
+<tspan x="10" y="3450">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/examp\</tspan>
+<tspan x="10" y="3466">le.js.html</tspan>
 
-<tspan x="10" y="3514">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/cover\</tspan>
-<tspan x="10" y="3530">age.all.html</tspan>
+<tspan x="10" y="3482">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/lib.u\</tspan>
+<tspan x="10" y="3498">tility2.js.html</tspan>
+
+<tspan x="10" y="3514">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/test.\</tspan>
+<tspan x="10" y="3530">js.html</tspan>
 
 <tspan x="10" y="3546">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/cover\</tspan>
-<tspan x="10" y="3562">age.json</tspan>
+<tspan x="10" y="3562">age.all.html</tspan>
 
 <tspan x="10" y="3578">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/cover\</tspan>
-<tspan x="10" y="3594">age.include.json</tspan>
+<tspan x="10" y="3594">age.json</tspan>
 
 <tspan x="10" y="3610">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/cover\</tspan>
-<tspan x="10" y="3626">age.badge.svg</tspan>
+<tspan x="10" y="3626">age.include.json</tspan>
 
-<tspan x="10" y="3642">istanbul - created coverage file /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/\</tspan>
-<tspan x="10" y="3658">index.html</tspan>
+<tspan x="10" y="3642">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/cover\</tspan>
+<tspan x="10" y="3658">age.badge.svg</tspan>
 
-<tspan x="10" y="3674"></tspan>
+<tspan x="10" y="3674">istanbul - created coverage file /home/travis/build/kaizhu256/node-utility2/.tmp/build/coverage/\</tspan>
+<tspan x="10" y="3690">index.html</tspan>
 
-<tspan x="10" y="3690">npmTest - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build/tes\</tspan>
-<tspan x="10" y="3706">t-report.json</tspan>
+<tspan x="10" y="3706"></tspan>
 
-<tspan x="10" y="3722"></tspan>
+<tspan x="10" y="3722">npmTest - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/build/tes\</tspan>
+<tspan x="10" y="3738">t-report.json</tspan>
 
-<tspan x="10" y="3738">-------------------------------------------------------</tspan>
+<tspan x="10" y="3754"></tspan>
 
-<tspan x="10" y="3754">| test-report - npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTM\</tspan>
-<tspan x="10" y="3770">L, like Gecko) HeadlessChrome/84.0.4147.135 Safari/537.36 - 2020-08-19T21:21:29.468Z</tspan>
+<tspan x="10" y="3770">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="3786">|    1465 ms            0 failed       41 passed      |</tspan>
+<tspan x="10" y="3786">| test-report - npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTM\</tspan>
+<tspan x="10" y="3802">L, like Gecko) HeadlessChrome/84.0.4147.135 Safari/537.36 - 2020-08-19T23:48:33.214Z</tspan>
 
-<tspan x="10" y="3802">-------------------------------------------------------</tspan>
+<tspan x="10" y="3818">|    1475 ms            0 failed       41 passed      |</tspan>
 
-<tspan x="10" y="3818">| test-report - npmTest - node - linux v14.8.0 - 2020-08-19T21:21:27.414Z</tspan>
+<tspan x="10" y="3834">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="3834">|    5527 ms            0 failed       41 passed      |</tspan>
+<tspan x="10" y="3850">| test-report - npmTest - node - linux v14.8.0 - 2020-08-19T23:48:30.911Z</tspan>
 
-<tspan x="10" y="3850">-------------------------------------------------------</tspan>
+<tspan x="10" y="3866">|    5676 ms            0 failed       41 passed      |</tspan>
 
-<tspan x="10" y="3866">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
-<tspan x="10" y="3882"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.135 Safari/537.36 - 2020-08-19T21:21:24.507Z</tspan>
+<tspan x="10" y="3882">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="3898">|      49 ms            0 failed        4 passed      |</tspan>
+<tspan x="10" y="3898">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
+<tspan x="10" y="3914"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.135 Safari/537.36 - 2020-08-19T23:48:28.181Z</tspan>
 
-<tspan x="10" y="3914">-------------------------------------------------------</tspan>
+<tspan x="10" y="3930">|      55 ms            0 failed        4 passed      |</tspan>
 
-<tspan x="10" y="3930">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
-<tspan x="10" y="3946"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.135 Safari/537.36 - 2020-08-19T21:21:24.507Z</tspan>
+<tspan x="10" y="3946">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="3962">|      49 ms            0 failed        4 passed      |</tspan>
+<tspan x="10" y="3962">| test-report - testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\</tspan>
+<tspan x="10" y="3978"> (KHTML, like Gecko) HeadlessChrome/84.0.4147.135 Safari/537.36 - 2020-08-19T23:48:28.181Z</tspan>
 
-<tspan x="10" y="3978">-------------------------------------------------------</tspan>
+<tspan x="10" y="3994">|      55 ms            0 failed        4 passed      |</tspan>
 
-<tspan x="10" y="3994">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T21:21:24.168Z</tspan>
+<tspan x="10" y="4010">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="4010">|     550 ms            0 failed        4 passed      |</tspan>
+<tspan x="10" y="4026">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T23:48:27.607Z</tspan>
 
-<tspan x="10" y="4026">-------------------------------------------------------</tspan>
+<tspan x="10" y="4042">|     807 ms            0 failed        4 passed      |</tspan>
 
-<tspan x="10" y="4042">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T21:21:24.168Z</tspan>
+<tspan x="10" y="4058">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="4058">|     550 ms            0 failed        4 passed      |</tspan>
+<tspan x="10" y="4074">| test-report - testExampleJs - node - linux v14.8.0 - 2020-08-19T23:48:27.607Z</tspan>
 
-<tspan x="10" y="4074">-------------------------------------------------------</tspan>
+<tspan x="10" y="4090">|     807 ms            0 failed        4 passed      |</tspan>
 
-<tspan x="10" y="4090"></tspan>
+<tspan x="10" y="4106">-------------------------------------------------------</tspan>
 
-<tspan x="10" y="4106">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.ht\</tspan>
-<tspan x="10" y="4122">ml</tspan>
+<tspan x="10" y="4122"></tspan>
 
-<tspan x="10" y="4138">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/build.badge.sv\</tspan>
-<tspan x="10" y="4154">g</tspan>
+<tspan x="10" y="4138">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.ht\</tspan>
+<tspan x="10" y="4154">ml</tspan>
 
-<tspan x="10" y="4170">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.ba\</tspan>
-<tspan x="10" y="4186">dge.svg</tspan>
+<tspan x="10" y="4170">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/build.badge.sv\</tspan>
+<tspan x="10" y="4186">g</tspan>
 
-<tspan x="10" y="4202"></tspan>
-
-<tspan x="10" y="4218">npmTest - 0 failed tests</tspan>
+<tspan x="10" y="4202">fsWriteFileWithMkdirpSync - /home/travis/build/kaizhu256/node-utility2/.tmp/build/test-report.ba\</tspan>
+<tspan x="10" y="4218">dge.svg</tspan>
 
 <tspan x="10" y="4234"></tspan>
 
-<tspan x="10" y="4250"></tspan>
+<tspan x="10" y="4250">npmTest - 0 failed tests</tspan>
 
-<tspan x="10" y="4266">\x1b[35m[MODE_BUILD=npmTest]\x1b[0m - 2020-08-19T21:21:33.844Z - EXIT_CODE - 0</tspan>
+<tspan x="10" y="4266"></tspan>
 
 <tspan x="10" y="4282"></tspan>
 
-<tspan x="10" y="4298">process exited with code 0</tspan>
+<tspan x="10" y="4298">\x1b[35m[MODE_BUILD=npmTest]\x1b[0m - 2020-08-19T23:48:37.549Z - EXIT_CODE - 0</tspan>
 
-<tspan x="10" y="4314">EXIT_CODE - 0</tspan>
+<tspan x="10" y="4314"></tspan>
+
+<tspan x="10" y="4330">process exited with code 0</tspan>
+
+<tspan x="10" y="4346">EXIT_CODE - 0</tspan>
 
 </text>
 </svg>
