@@ -49005,7 +49005,7 @@ local.requireReadme = function () {
             "/assets." + env.npm_package_nameLib + extname
         ] = local.fsReadFileOrDefaultSync(
             require("path").resolve(env.npm_package_main).replace((
-                /\.\w+$/
+                /\.\w+?$/
             ), extname),
             "utf8",
             ""
@@ -76940,7 +76940,7 @@ local.requireReadme = function () {\n\
             \"/assets.\" + env.npm_package_nameLib + extname\n\
         ] = local.fsReadFileOrDefaultSync(\n\
             require(\"path\").resolve(env.npm_package_main).replace((\n\
-                /\\.\\w+$/\n\
+                /\\.\\w+?$/\n\
             ), extname),\n\
             \"utf8\",\n\
             \"\"\n\
@@ -83729,7 +83729,7 @@ local.requireReadme = function () {
             "/assets." + env.npm_package_nameLib + extname
         ] = local.fsReadFileOrDefaultSync(
             require("path").resolve(env.npm_package_main).replace((
-                /\.\w+$/
+                /\.\w+?$/
             ), extname),
             "utf8",
             ""
