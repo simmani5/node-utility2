@@ -52,7 +52,7 @@
 
         href="https://github.com/kaizhu256/node-utility2"
 
-    >utility2 (2020.8.1)</a>
+    >utility2 (2020.8.19)</a>
 </h1>
 <h4>this zero-dependency package will provide high-level functions to to build, test, and deploy webapps</h4>
 <div class="apidocSectionDiv"><a
@@ -4084,8 +4084,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -4103,7 +4102,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -7030,8 +7029,7 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
 <span class="apidocCodeCommentSpan">/*
  * this function will recursively deep-copy &lt;obj&gt; with keys sorted
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -7049,7 +7047,7 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     return objectDeepCopyWithKeysSorted(obj);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
@@ -8485,8 +8483,8 @@ case &quot;eachTrimEndComma&quot;:
     return template;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-            ]
-        }).on(&quot;exit&quot;, resolve);
+            });
+        });
     });
 };
 buildLib = function (resolve) {
@@ -10235,13 +10233,37 @@ module.exports[env.npm_package_nameLib] = (
   }
 
   if (parent &amp;&amp; parent.filename) {
-    const filename = trySelf(parent.filename, request);
-    if (filename) {
-      const cacheKey = request + &apos;\x00&apos; +
-          (paths.length === 1 ? paths[0] : paths.join(&apos;\x00&apos;));
-      Module._pathCache[cacheKey] = filename;
-      return filename;
+    if (request[0] === &apos;#&apos;) {
+      const pkg = readPackageScope(parent.filename) || {};
+      if (pkg.data &amp;&amp; pkg.data.imports !== null &amp;&amp;
+          pkg.data.imports !== undefined) {
+        try {
+          const resolved = packageInternalResolve(
+            request, pathToFileURL(parent.filename), cjsConditions);
+          return fileURLToPath(resolved);
+        } catch (err) {
+          if (err.code === &apos;ERR_MODULE_NOT_FOUND&apos;) {
+            // eslint-disable-next-line no-restricted-syntax
+            const err = new Error(`Cannot find module &apos;${request}&apos;`);
+            err.code = &apos;MODULE_NOT_FOUND&apos;;
+            err.path = path.resolve(pkg.path, &apos;package.json&apos;);
+            // TODO(BridgeAR): Add the requireStack as well.
+            throw err;
+          }
+          throw err;
+        }
+      }
     }
+  }
+
+  // Try module self resoultion first
+  const parentPath = trySelfParentPath(parent);
+  const selfResolved = trySelf(parentPath, request);
+  if (selfResolved) {
+    const cacheKey = request + &apos;\x00&apos; +
+         (paths.length === 1 ? paths[0] : ArrayPrototypeJoin(paths, &apos;\x00&apos;));
+    Module._pathCache[cacheKey] = selfResolved;
+    return selfResolved;
   }
 
   // Look up the filename first, since that&apos;s the cache key.
@@ -11089,8 +11111,7 @@ module = opt.moduleExtraDict[opt.env.npm_package_name];
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -11108,7 +11129,7 @@ module = opt.moduleExtraDict[opt.env.npm_package_name];
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -12034,8 +12055,7 @@ local.moduleDirname = function (module, pathList) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -12053,7 +12073,7 @@ local.moduleDirname = function (module, pathList) {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -14366,8 +14386,7 @@ elemList: Object.keys(module).filter(function (key) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -14385,7 +14404,7 @@ elemList: Object.keys(module).filter(function (key) {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -15028,8 +15047,7 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
 <span class="apidocCodeCommentSpan">/*
  * this function will recursively deep-copy &lt;obj&gt; with keys sorted
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -15047,7 +15065,7 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     return objectDeepCopyWithKeysSorted(obj);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
@@ -17212,8 +17230,7 @@ this.renderer.link(n,r,this.output(e[1])):this.renderer.image(n,r,o(e[1]))},r.pr
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -17231,7 +17248,7 @@ this.renderer.link(n,r,this.output(e[1])):this.renderer.image(n,r,o(e[1]))},r.pr
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {

@@ -280,7 +280,7 @@
 <div class="header high">
 
     <h2 style="font-weight: bold;">
-        <a href="https://github.com/kaizhu256/node-utility2">utility2 (2020.8.1)</a>
+        <a href="https://github.com/kaizhu256/node-utility2">utility2 (2020.8.19)</a>
     </h2>
 
     <h2>Code coverage report for <span class="entity">test.js</span></h2>
@@ -296,13 +296,13 @@
     </thead>
     <tbody>
         <td>
-            Statements: 112<br>
+            Statements: 111<br>
             Branches: 69<br>
             Functions: 19
         </td>
         <td>
             100%<br>
-            (619 / 619)
+            (618 / 618)
         </td>
         <td>
             100%<br>
@@ -314,7 +314,7 @@
         </td>
         <td>
             100%<br>
-            (619 / 619)
+            (618 / 618)
         </td>
     </tbody>
     </table>
@@ -2153,7 +2153,6 @@
 <a href="#l1828" id="l1828">1828</a>
 <a href="#l1829" id="l1829">1829</a>
 <a href="#l1830" id="l1830">1830</a>
-<a href="#l1831" id="l1831">1831</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2165,11 +2164,11 @@
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2178,12 +2177,6 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2191,12 +2184,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -3995,12 +3993,12 @@
 // run shared js-env code - init-local
 (function () {
     "use strict";
-    let consoleError;
     let isBrowser;
     let isWebWorker;
     let local;
     // init debugInline
     <span class="skip-if-branch" title="if path not taken">I</span>if (!globalThis.debugInline) {
+<span class="cstat-skip" title="statement not covered">        let consoleError;</span>
 <span class="cstat-skip" title="statement not covered">        consoleError = console.error;</span>
 <span class="cstat-skip" title="statement not covered">        globalThis.debugInline = <span class="fstat-skip" title="function not covered">function (...argList) {</span></span>
         /*
@@ -4028,8 +4026,7 @@
     /*
      * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
      */
-<span class="cstat-skip" title="statement not covered">        let objectDeepCopyWithKeysSorted;</span>
-<span class="cstat-skip" title="statement not covered">        objectDeepCopyWithKeysSorted = <span class="fstat-skip" title="function not covered">function (obj) {</span></span>
+<span class="fstat-skip" title="function not covered">        function objectDeepCopyWithKeysSorted(obj) {</span>
         /*
          * this function will recursively deep-copy &lt;obj&gt; with keys sorted
          */
@@ -4047,7 +4044,7 @@
 <span class="cstat-skip" title="statement not covered">                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);</span>
             });
 <span class="cstat-skip" title="statement not covered">            return sorted;</span>
-        };
+        }
 <span class="cstat-skip" title="statement not covered">        aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));</span>
 <span class="cstat-skip" title="statement not covered">        bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));</span>
 <span class="cstat-skip" title="statement not covered">        if (aa !== bb) {</span>
