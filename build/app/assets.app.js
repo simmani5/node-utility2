@@ -30990,9 +30990,7 @@ local.jslintAndPrintDir = function (dir, opt, onError) {
                     }
                     // jslint file
                     require("fs").readFile(file, "utf8", function (err, data) {
-                        if (err) {
-                            return;
-                        }
+                        local.onErrorThrow(err);
                         local.jslintAndPrint(data, file, opt);
                         errCnt += local.jslintResult.errList.length;
                         console.error(
@@ -49005,7 +49003,7 @@ local.requireReadme = function () {
             "/assets." + env.npm_package_nameLib + extname
         ] = local.fsReadFileOrDefaultSync(
             require("path").resolve(env.npm_package_main).replace((
-                /\.\w+?$/
+                /\.\w+$/
             ), extname),
             "utf8",
             ""
@@ -70037,9 +70035,7 @@ local.jslintAndPrintDir = function (dir, opt, onError) {\n\
                     }\n\
                     // jslint file\n\
                     require(\"fs\").readFile(file, \"utf8\", function (err, data) {\n\
-                        if (err) {\n\
-                            return;\n\
-                        }\n\
+                        local.onErrorThrow(err);\n\
                         local.jslintAndPrint(data, file, opt);\n\
                         errCnt += local.jslintResult.errList.length;\n\
                         console.error(\n\
@@ -76940,7 +76936,7 @@ local.requireReadme = function () {\n\
             \"/assets.\" + env.npm_package_nameLib + extname\n\
         ] = local.fsReadFileOrDefaultSync(\n\
             require(\"path\").resolve(env.npm_package_main).replace((\n\
-                /\\.\\w+?$/\n\
+                /\\.\\w+$/\n\
             ), extname),\n\
             \"utf8\",\n\
             \"\"\n\
@@ -83729,7 +83725,7 @@ local.requireReadme = function () {
             "/assets." + env.npm_package_nameLib + extname
         ] = local.fsReadFileOrDefaultSync(
             require("path").resolve(env.npm_package_main).replace((
-                /\.\w+?$/
+                /\.\w+$/
             ), extname),
             "utf8",
             ""

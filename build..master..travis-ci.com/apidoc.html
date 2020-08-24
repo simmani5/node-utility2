@@ -52,7 +52,7 @@
 
         href="https://github.com/kaizhu256/node-utility2"
 
-    >utility2 (2020.6.9)</a>
+    >utility2 (2020.8.19)</a>
 </h1>
 <h4>this zero-dependency package will provide high-level functions to to build, test, and deploy webapps</h4>
 <div class="apidocSectionDiv"><a
@@ -105,33 +105,6 @@
 
             <a class="apidocElementLiA" href="#apidoc.elem.utility2._testCase_buildApp_default">
             function <span class="apidocSignatureSpan">utility2.</span>_testCase_buildApp_default
-            <span class="apidocSignatureSpan">(opt, onError)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2._testCase_buildLib_default">
-            function <span class="apidocSignatureSpan">utility2.</span>_testCase_buildLib_default
-            <span class="apidocSignatureSpan">(opt, onError)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2._testCase_buildReadme_default">
-            function <span class="apidocSignatureSpan">utility2.</span>_testCase_buildReadme_default
-            <span class="apidocSignatureSpan">(opt, onError)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2._testCase_buildTest_default">
-            function <span class="apidocSignatureSpan">utility2.</span>_testCase_buildTest_default
             <span class="apidocSignatureSpan">(opt, onError)</span>
             </a>
 
@@ -267,43 +240,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.buildApp">
             function <span class="apidocSignatureSpan">utility2.</span>buildApp
-            <span class="apidocSignatureSpan">(opt, onError)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.buildLib">
-            function <span class="apidocSignatureSpan">utility2.</span>buildLib
-            <span class="apidocSignatureSpan">(opt, onError)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.buildReadme">
-            function <span class="apidocSignatureSpan">utility2.</span>buildReadme
-            <span class="apidocSignatureSpan">(opt, onError)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.buildTest">
-            function <span class="apidocSignatureSpan">utility2.</span>buildTest
-            <span class="apidocSignatureSpan">(opt, onError)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.childProcessEval">
-            function <span class="apidocSignatureSpan">utility2.</span>childProcessEval
-            <span class="apidocSignatureSpan">(code, opt)</span>
+            <span class="apidocSignatureSpan">({ assetsList = [], customizeReadmeList = [] }, onError)</span>
             </a>
 
         </li>
@@ -373,15 +310,6 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.domSelectOptionValue">
-            function <span class="apidocSignatureSpan">utility2.</span>domSelectOptionValue
-            <span class="apidocSignatureSpan">(elem)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.domStyleValidate">
             function <span class="apidocSignatureSpan">utility2.</span>domStyleValidate
             <span class="apidocSignatureSpan">()</span>
@@ -409,6 +337,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.eventListenerRemove">
+            function <span class="apidocSignatureSpan">utility2.</span>eventListenerRemove
+            <span class="apidocSignatureSpan">(listener)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.fsReadFileOrDefaultSync">
             function <span class="apidocSignatureSpan">utility2.</span>fsReadFileOrDefaultSync
             <span class="apidocSignatureSpan">(pathname, type, dflt)</span>
@@ -418,18 +355,9 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.fsRmrfSync">
-            function <span class="apidocSignatureSpan">utility2.</span>fsRmrfSync
-            <span class="apidocSignatureSpan">(pathname)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.fsWriteFileWithMkdirp">
             function <span class="apidocSignatureSpan">utility2.</span>fsWriteFileWithMkdirp
-            <span class="apidocSignatureSpan">({ data, modeDebug, modeUncaughtException, pathname }, onError)</span>
+            <span class="apidocSignatureSpan">(pathname, data, onError)</span>
             </a>
 
         </li>
@@ -438,7 +366,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.fsWriteFileWithMkdirpSync">
             function <span class="apidocSignatureSpan">utility2.</span>fsWriteFileWithMkdirpSync
-            <span class="apidocSignatureSpan">(pathname, data, msg)</span>
+            <span class="apidocSignatureSpan">(pathname, data)</span>
             </a>
 
         </li>
@@ -510,7 +438,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslintAndPrint">
             function <span class="apidocSignatureSpan">utility2.</span>jslintAndPrint
-            <span class="apidocSignatureSpan">(code = &quot;&quot;, file = &quot;undefined&quot;, opt = {})</span>
+            <span class="apidocSignatureSpan">(code, file = &quot;undefined&quot;, opt = {})</span>
             </a>
 
         </li>
@@ -634,8 +562,8 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.middlewareJsonpStateInit">
-            function <span class="apidocSignatureSpan">utility2.</span>middlewareJsonpStateInit
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.middlewareUtility2StateInit">
+            function <span class="apidocSignatureSpan">utility2.</span>middlewareUtility2StateInit
             <span class="apidocSignatureSpan">(req, res, next)</span>
             </a>
 
@@ -1575,6 +1503,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.apidoc.onErrorThrow">
+            function <span class="apidocSignatureSpan">utility2.apidoc.</span>onErrorThrow
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.apidoc.stringHtmlSafe">
             function <span class="apidocSignatureSpan">utility2.apidoc.</span>stringHtmlSafe
             <span class="apidocSignatureSpan">(str)</span>
@@ -1766,7 +1703,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.istanbul.fsWriteFileWithMkdirpSync">
             function <span class="apidocSignatureSpan">utility2.istanbul.</span>fsWriteFileWithMkdirpSync
-            <span class="apidocSignatureSpan">(pathname, data, msg)</span>
+            <span class="apidocSignatureSpan">(pathname, data)</span>
             </a>
 
         </li>
@@ -1812,6 +1749,15 @@
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.istanbul.objectAssignDefault">
             function <span class="apidocSignatureSpan">utility2.istanbul.</span>objectAssignDefault
             <span class="apidocSignatureSpan">(tgt = {}, src = {}, depth = 0)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.istanbul.onErrorThrow">
+            function <span class="apidocSignatureSpan">utility2.istanbul.</span>onErrorThrow
+            <span class="apidocSignatureSpan">(err)</span>
             </a>
 
         </li>
@@ -2341,9 +2287,18 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.jslint0">
+            function <span class="apidocSignatureSpan">utility2.jslint.</span>jslint0
+            <span class="apidocSignatureSpan">( source = &quot;&quot;, option_object = empty()</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.jslintAndPrint">
             function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintAndPrint
-            <span class="apidocSignatureSpan">(code = &quot;&quot;, file = &quot;undefined&quot;, opt = {})</span>
+            <span class="apidocSignatureSpan">(code, file = &quot;undefined&quot;, opt = {})</span>
             </a>
 
         </li>
@@ -2352,43 +2307,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.jslintAndPrintDir">
             function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintAndPrintDir
-            <span class="apidocSignatureSpan">(dir, opt)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.jslintAutofix">
-            function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintAutofix
-            <span class="apidocSignatureSpan">(code, file, opt)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.jslintGetColumnLine">
-            function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintGetColumnLine
-            <span class="apidocSignatureSpan">(code, ii)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.jslintUtility2">
-            function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintUtility2
-            <span class="apidocSignatureSpan">(code, ignore, opt)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.jslint_export">
-            function <span class="apidocSignatureSpan">utility2.jslint.</span>jslint_export
-            <span class="apidocSignatureSpan">( source = &quot;&quot;, option_object = empty()</span>
+            <span class="apidocSignatureSpan">(dir, opt, onError)</span>
             </a>
 
         </li>
@@ -2416,6 +2335,15 @@
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.objectDeepCopyWithKeysSorted">
             function <span class="apidocSignatureSpan">utility2.jslint.</span>objectDeepCopyWithKeysSorted
             <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.jslint.onErrorThrow">
+            function <span class="apidocSignatureSpan">utility2.jslint.</span>onErrorThrow
+            <span class="apidocSignatureSpan">(err)</span>
             </a>
 
         </li>
@@ -3242,6 +3170,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.puppeteer.onErrorThrow">
+            function <span class="apidocSignatureSpan">utility2.puppeteer.</span>onErrorThrow
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.puppeteer.puppeteerLaunch">
             function <span class="apidocSignatureSpan">utility2.puppeteer.</span>puppeteerLaunch
             <span class="apidocSignatureSpan">()</span>
@@ -3667,6 +3604,7 @@ module.exports[env.npm_package_nameLib] = (
             require(&quot;v8&quot;),
             require(&quot;vm&quot;),
             {
+                // coverage-hack
                 &quot;__zjqx1234__&quot;: nop
             }
         ].forEach(function (dict) {
@@ -3692,25 +3630,22 @@ module.exports[env.npm_package_nameLib] = (
                 console.error(errCaught);
             }
             onError();
-        }, local.onErrorThrow);
+        }, onErrorThrow);
         return exports;
     };
     // coverage-hack
     require2();
     // save apidoc.html
-    local.fsWriteFileWithMkdirp({
-        data: local.apidocCreate(local.objectAssignDefault(opt, {
+    local.fsWriteFileWithMkdirp(&quot;.tmp/build/apidoc.html&quot;, local.apidocCreate(
+        Object.assign({
             blacklistDict: local,
             modeNop: (
                 process.env.npm_config_mode_test_case
                 !== &quot;testCase_buildApidoc_default&quot;
             ),
             require: require2
-        })),
-        modeDebug: true,
-        modeUncaughtException: true,
-        pathname: &quot;tmp/build/apidoc.html&quot;
-    }, onError);
+        }, opt)
+    ), onError);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
    onError(undefined, opt);
@@ -3748,140 +3683,24 @@ local.testCase_buildApp_default = function (opt, onError) {
         onError(undefined, opt);
         return;
     }
-    globalThis.local.testCase_buildReadme_default(opt, local.onErrorThrow);
-    globalThis.local.testCase_buildLib_default(opt, local.onErrorThrow);
-    globalThis.local.testCase_buildTest_default(opt, local.onErrorThrow);
     local.buildApp(opt, onError);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-            testCase_buildReadme_default: local.nop,
-            testCase_buildLib_default: local.nop,
-            testCase_buildTest_default: local.nop
-        }
-    ]
-], function (onError) {
-    local._testCase_buildApidoc_default({}, local.nop);
-    local.<span class="apidocCodeKeywordSpan">_testCase_buildApp_default</span>({}, local.nop);
-    local._testCase_buildLib_default({}, local.nop);
-    local._testCase_buildReadme_default({}, local.nop);
-    local._testCase_buildTest_default({}, local.nop);
-    local._testCase_webpage_default({}, local.nop);
-    local.assetsDict[&quot;/&quot;] = &quot;&lt;script src=\&quot;assets.test.js\&quot;&gt;&lt;/script&gt;&quot;;
-    local._testCase_webpage_default({}, local.nop);
-    onError(undefined, opt);
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2._testCase_buildLib_default" id="apidoc.elem.utility2._testCase_buildLib_default">
-        function <span class="apidocSignatureSpan">utility2.</span>_testCase_buildLib_default
-        <span class="apidocSignatureSpan">(opt, onError)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">_testCase_buildLib_default = function (opt, onError) {
-<span class="apidocCodeCommentSpan">/*
- * this function will test buildLib&apos;s default handling-behavior
- */
-</span>    if (local.isBrowser) {
-        onError(undefined, opt);
-        return;
-    }
-    return local.buildLib({}, onError);
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-            testCase_buildLib_default: local.nop,
-            testCase_buildTest_default: local.nop
-        }
-    ]
-], function (onError) {
-    local._testCase_buildApidoc_default({}, local.nop);
-    local._testCase_buildApp_default({}, local.nop);
-    local.<span class="apidocCodeKeywordSpan">_testCase_buildLib_default</span>({}, local.nop);
-    local._testCase_buildReadme_default({}, local.nop);
-    local._testCase_buildTest_default({}, local.nop);
-    local._testCase_webpage_default({}, local.nop);
-    local.assetsDict[&quot;/&quot;] = &quot;&lt;script src=\&quot;assets.test.js\&quot;&gt;&lt;/script&gt;&quot;;
-    local._testCase_webpage_default({}, local.nop);
-    onError(undefined, opt);
-}, onError);
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2._testCase_buildReadme_default" id="apidoc.elem.utility2._testCase_buildReadme_default">
-        function <span class="apidocSignatureSpan">utility2.</span>_testCase_buildReadme_default
-        <span class="apidocSignatureSpan">(opt, onError)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">_testCase_buildReadme_default = function (opt, onError) {
-<span class="apidocCodeCommentSpan">/*
- * this function will test buildReadme&apos;s default handling-behavior
- */
-</span>    if (local.isBrowser) {
-        onError(undefined, opt);
-        return;
-    }
-    return local.buildReadme({}, onError);
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-                testCase_buildTest_default: local.nop
-            }
-        ]
-    ], function (onError) {
-        local._testCase_buildApidoc_default({}, local.nop);
-        local._testCase_buildApp_default({}, local.nop);
-        local._testCase_buildLib_default({}, local.nop);
-        local.<span class="apidocCodeKeywordSpan">_testCase_buildReadme_default</span>({}, local.nop);
-        local._testCase_buildTest_default({}, local.nop);
-        local._testCase_webpage_default({}, local.nop);
-        local.assetsDict[&quot;/&quot;] = &quot;&lt;script src=\&quot;assets.test.js\&quot;&gt;&lt;/script&gt;&quot;;
-        local._testCase_webpage_default({}, local.nop);
-        onError(undefined, opt);
-    }, onError);
+   }, onError, opt);
 };
-...</pre></li>
-    </ul>
 
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2._testCase_buildTest_default" id="apidoc.elem.utility2._testCase_buildTest_default">
-        function <span class="apidocSignatureSpan">utility2.</span>_testCase_buildTest_default
-        <span class="apidocSignatureSpan">(opt, onError)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">_testCase_buildTest_default = function (opt, onError) {
-<span class="apidocCodeCommentSpan">/*
- * this function will test buildTest&apos;s default handling-behavior
- */
-</span>    if (local.isBrowser) {
-        onError(undefined, opt);
-        return;
-    }
-    return local.buildTest({}, onError);
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-            }
-        ]
-    ], function (onError) {
-        local._testCase_buildApidoc_default({}, local.nop);
-        local._testCase_buildApp_default({}, local.nop);
-        local._testCase_buildLib_default({}, local.nop);
-        local._testCase_buildReadme_default({}, local.nop);
-        local.<span class="apidocCodeKeywordSpan">_testCase_buildTest_default</span>({}, local.nop);
-        local._testCase_webpage_default({}, local.nop);
-        local.assetsDict[&quot;/&quot;] = &quot;&lt;script src=\&quot;assets.test.js\&quot;&gt;&lt;/script&gt;&quot;;
-        local._testCase_webpage_default({}, local.nop);
-        onError(undefined, opt);
-    }, onError);
-};
+local.testCase_buildApp_default = function (opt, onError) {
+/*
+* this function will test buildApp&apos;s default handling-behavior
+*/
+   local.<span class="apidocCodeKeywordSpan">_testCase_buildApp_default</span>({
+       assetsList: [
+           {
+               file: &quot;/assets.hello.txt&quot;,
+               url: &quot;/assets.hello.txt&quot;
+           }, {
+               file: &quot;/assets.script_only.html&quot;,
+               url: &quot;/assets.script_only.html&quot;
 ...</pre></li>
     </ul>
 
@@ -3898,11 +3717,12 @@ local.testCase_buildApp_default = function (opt, onError) {
 <span class="apidocCodeCommentSpan">/*
  * this function will test webpage&apos;s default handling-behavior
  */
-</span>    if (local.isBrowser) {
+</span>    local.domQuerySelectorAllTagName(&quot;html&quot;);
+    local.domStyleValidate();
+    if (local.isBrowser) {
         onError(undefined, opt);
         return;
     }
-    local.domStyleValidate();
     local.browserTest({
         fileScreenshot: (
             process.env.npm_config_dir_build
@@ -3918,21 +3738,21 @@ local.testCase_buildApp_default = function (opt, onError) {
     }, onError);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-        ]
-    ], function (onError) {
-        local._testCase_buildApidoc_default({}, local.nop);
-        local._testCase_buildApp_default({}, local.nop);
-        local._testCase_buildLib_default({}, local.nop);
-        local._testCase_buildReadme_default({}, local.nop);
-        local._testCase_buildTest_default({}, local.nop);
-        local.<span class="apidocCodeKeywordSpan">_testCase_webpage_default</span>({}, local.nop);
-        local.assetsDict[&quot;/&quot;] = &quot;&lt;script src=\&quot;assets.test.js\&quot;&gt;&lt;/script&gt;&quot;;
-        local._testCase_webpage_default({}, local.nop);
-        onError(undefined, opt);
-    }, onError);
+   local.testMock([
+       [
+           local, {
+               browserTest: local.nop
+           }
+       ]
+   ], function (onError) {
+       local.<span class="apidocCodeKeywordSpan">_testCase_webpage_default</span>({}, local.nop);
+       onError(undefined, opt);
+   }, onError);
 };
 
 local.testCase_cliRun_default = function (opt, onError) {
+/*
+* this function will test cliRun&apos;s default handling-behavior
 ...</pre></li>
     </ul>
 
@@ -4260,12 +4080,11 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertJsonEqual = function (aa, bb) {
+    <li>description and source-code<pre class="apidocCodePre">function assertJsonEqual(aa, bb) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -4283,7 +4102,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -4302,7 +4121,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, msg) {
+    <li>description and source-code<pre class="apidocCodePre">function assertOrThrow(passed, msg) {
 <span class="apidocCodeCommentSpan">/*
  * this function will throw &lt;msg&gt; if &lt;passed&gt; is falsy
  */
@@ -4633,27 +4452,22 @@ case local2.Blob:
         return;
     }
     local.gotoNext(opt, function (err, data) {
-        let url;
         switch (opt.gotoState) {
         // node - init
         case 1:
-            url = require(&quot;url&quot;);
             onParallel = local.onParallel(opt.gotoNext);
             onParallel.cnt += 1;
             isDone = 0;
             testId = Math.random().toString(16);
             testName = local.env.MODE_BUILD + &quot;.browser.&quot; + encodeURIComponent(
-                new url.URL(opt.url).pathname.replace(
-                    &quot;/build..&quot;
-                    + local.env.CI_BRANCH
-                    + &quot;..&quot; + local.env.CI_HOST,
+                require(&quot;url&quot;).parse(opt.url).pathname.replace(
+                    &quot;/build..&quot; + local.env.CI_BRANCH + &quot;..&quot; + local.env.CI_HOST,
                     &quot;/build&quot;
                 )
             );
             fileScreenshot = (
-                local.env.npm_config_dir_build + &quot;/screenshot.&quot;
-                + testName
-                + &quot;.png&quot;
+                local.env.npm_config_dir_build
+                + &quot;/screenshot.&quot; + testName + &quot;.png&quot;
             );
             opt.url = opt.url.replace(
                 &quot;{{timeExit}}&quot;,
@@ -4664,8 +4478,7 @@ case local2.Blob:
                 opt.gotoNext,
                 local.timeoutDefault,
                 new Error(
-                    &quot;timeout - &quot; + local.timeoutDefault + &quot; ms - &quot;
-                    + testName
+                    &quot;timeout - &quot; + local.timeoutDefault + &quot; ms - &quot; + testName
                 )
             );
             // create puppeteer browser
@@ -4697,8 +4510,7 @@ case local2.Blob:
                 }).then(function () {
                     console.error(
                         &quot;\nbrowserTest - created screenshot file &quot;
-                        + fileScreenshot
-                        + &quot;\n&quot;
+                        + fileScreenshot + &quot;\n&quot;
                     );
                     onParallel();
                 });
@@ -4715,7 +4527,11 @@ case local2.Blob:
                 if (!window.utility2_modeTest) {
                     console.timeStamp(window.utility2_testId);
                 }
-            }, testId);...</pre></li>
+            }, testId);
+            break;
+        case 5:
+            page.evaluate(function () {
+                return JSON.stringify(window.utility2_testReport |...</pre></li>
     <li>example use<pre class="apidocCodePre">...
 local.cliDict = {};
 
@@ -4792,7 +4608,7 @@ local.cliDict[&quot;utility2.browserTest&quot;] = function () {
     return result;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-localEventListenerDict = {};
+onErrorThrow = local.onErrorThrow;
 // init lib Blob
 local.Blob = globalThis.Blob || function (list, opt) {
 /*
@@ -4909,484 +4725,148 @@ local.blobRead = function (blob, onError) {
     <h2>
         <a href="#apidoc.elem.utility2.buildApp" id="apidoc.elem.utility2.buildApp">
         function <span class="apidocSignatureSpan">utility2.</span>buildApp
-        <span class="apidocSignatureSpan">(opt, onError)</span>
+        <span class="apidocSignatureSpan">({ assetsList = [], customizeReadmeList = [] }, onError)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">buildApp = function (opt, onError) {
+    <li>description and source-code<pre class="apidocCodePre">buildApp = function ({ assetsList = [], customizeReadmeList = [] }, onError) {
 <span class="apidocCodeCommentSpan">/*
- * this function will build app with given &lt;opt&gt;
+ * this function will build app
  */
-</span>    // cleanup app
-    require(&quot;child_process&quot;).spawn((
-        &quot;rm -rf tmp/build/app tmp/buildAssetsAppJs;&quot;
-    ), {
-        shell: true,
-        stdio: [
-            &quot;ignore&quot;, 1, 2
-        ]
-    }).on(&quot;error&quot;, onError).on(&quot;exit&quot;, function (exitCode) {
-        let promiseList;
-        // validate exitCode
-        local.assertOrThrow(!exitCode, exitCode);
-        promiseList = [];
-        // test standalone assets.app.js
-        promiseList.push(new Promise(function (resolve) {
-            local.fsWriteFileWithMkdirp({
-                data: local.assetsDict[&quot;/assets.app.js&quot;],
-                modeDebug: true,
-                modeUncaughtException: true,
-                pathname: &quot;tmp/buildAssetsAppJs/assets.app.js&quot;
-            }, function () {
-                require(&quot;child_process&quot;).spawn(&quot;node&quot;, [
-                    &quot;assets.app.js&quot;
-                ], {
-                    cwd: &quot;tmp/buildAssetsAppJs&quot;,
-                    env: {
-                        PATH: process.env.PATH,
-                        PORT: (Math.random() * 0x10000) | 0x8000,
-                        npm_config_timeout_exit: 5000
-                    },
-                    stdio: [
-                        &quot;ignore&quot;, 1, 2
-                    ]
-                }).on(&quot;exit&quot;, function (exitCode) {
-                    // handle exitCode
-                    local.assertOrThrow(!exitCode, exitCode);
-                    resolve();
-                });
-            });
-        }));
-        // build app
-        [
-            {
-                file: &quot;/LICENSE&quot;,
-                url: &quot;/LICENSE&quot;
-            }, {
-                file: &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.html&quot;,
-                url: &quot;/index.html&quot;
-            }, {
-                file: &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;,
-                url: &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;
-            }, {
-                file: &quot;/assets.app.js&quot;,
-                url: &quot;/assets.app.js&quot;
-            }, {
-                file: &quot;/assets.example.html&quot;,
-                url: &quot;/assets.example.html&quot;
-            }, {
-                file: &quot;/assets.example.js&quot;,
-                url: &quot;/assets.example.js&quot;
-            }, {
-                file: &quot;/assets.test.js&quot;,
-                url: &quot;/assets.test.js&quot;
-            }, {
-                file: &quot;/assets.utility2.html&quot;,
-                url: &quot;/assets.utility2.html&quot;
-            }, {
-                file: &quot;/assets.utility2.rollup.js&quot;,
-                url: &quot;/assets.utility2.rollup.js&quot;
-            }, {
-                file: &quot;/index.html&quot;,
-                url: &quot;/index.html&quot;
-            }, {
-                file: &quot;/index.rollup.html&quot;,
-                url: &quot;/index.rollup.html&quot;
-            }, {
-                file: &quot;/jsonp.utility2.stateInit&quot;,
-                url: (
-                    &quot;/jsonp.utility2.stateInit&quot;
-                    + &quot;?callback=window.utility2.stateInit&quot;
-                )
+</span>    let buildAppAssets;
+    let buildAppStandalone;
+    let buildLib;
+    let buildReadme;
+    let buildTest;
+    let fileDict;
+    let port;
+    let promiseList;
+    let src;
+    let tgt;
+    let tgtReplaceConditional;
+    let writeFile;
+    let writeFileLog;
+    tgtReplaceConditional = function (condition, replaceList) {
+    /*
+     * this function will conditionally replace &lt;tgt&gt; with replacements in
+     * &lt;replaceList&gt;
+     */
+        replaceList.forEach(function ({
+            aa,
+            bb,
+            merge
+        }) {
+            let isMatch;
+            if (!condition) {
+                aa = aa || merge;
+                console.error(
+                    &quot;buildApp - replace-skipped - &quot;
+                    + JSON.stringify((aa &amp;&amp; aa.source) || aa)
+                );
+                return;
             }
-        ].concat(opt.assetsList).forEach(function (elem) {
-            promiseList.push(new Promise(function (resolve) {
-                if (!elem) {
-                    resolve();
+            if (aa) {
+                if (!tgt.match(aa)) {
+                    console.error(
+                        &quot;buildApp - replace-unmatched - &quot;
+                        + JSON.stringify((aa &amp;&amp; aa.source) || aa)
+                    );
                     return;
                 }
-                require(&quot;http&quot;).request((
-                    &quot;http://127.0.0.1:&quot; + process.env.PORT + elem.url
-                ), function (res) {
-                    let data;
-                    data = [];
-                    if (!(res.statusCode &lt; 400)) {
-                        resolve();
-                        return;
-                    }
-                    res....</pre></li>
+                tgt = tgt.replace(aa, bb);
+                return;
+            }
+            src.replace(merge, function (match2) {
+                tgt.replace(merge, function (match1) {
+                    isMatch = true;
+                    // disable $-escape in replacement-string
+                    tgt = tgt.replace(match1, function () {
+                        return match2;
+                    });
+                    return &quot;&quot;;
+                });
+                return &quot;&quot;;
+            });
+            if (!isMatch) {
+                console.error(
+                    &quot;buildApp - replace-unmatched - &quot;
+                    + JSON.stringify(merge.source)
+                );
+            }
+        });
+    };
+    writeFile = function (file, data, resolve) {
+    /*
+     * this function will write &lt;data&gt; to &lt;file&gt; with notification
+     */
+        require(&quot;fs&quot;).writeFile(file, data, function (err) {
+            onErrorThrow(err);
+            writeFileLog(file);
+            resolve();
+        });
+    };
+    writeFileLog = function (file) {
+    /*
+     * this function will notify &lt;file&gt; written
+     */
+        console.error(&quot;buildApp - wrote - &quot; + require(&quot;path&quot;).resolve(file));
+    };
+    buildAppAssets = function (resolve) {
+        let promiseList2;
+        promiseList2 = [];
+        // fetch assets
+        [
+            {
+                url: &quot;/LICENSE&quot;
+            }, {
+                file: (
+                    &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.html&quot;
+                ),
+                url: &quot;/index.html&quot;
+            }, {
+                url: &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.css&quot;
+            }, {
+                url: &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;
+            }, {
+                url: &quot;/assets.app.js&quot;
+            }, {
+                url: &quot;/assets.example.html&quot;
+            }, {
+                url: &quot;/assets.example.js&quot;
+            }, {
+                url: &quot;/assets.test.js&quot;
+            }, {
+                url: &quot;/assets.utility2.html&quot;
+            }, {
+                url: &quot;/assets.utility2.lib.jslint.js&quot;
+            }, {
+                url: &quot;/assets.utility2.rollup.js&quot;
+            }, {
+                url: &quot;/index.html&quot;
+            }, {
+                url: &quot;/index.rollup.html&quot;
+            }, {
+                url: &quot;/utility2.state.init.js&quot;
+            }
+        ].concat(assetsList).forEach(function (elem) {
+            promiseList2.push(new Promise(function (resolve) {
+                require(&quot;http&quot;)....</pre></li>
     <li>example use<pre class="apidocCodePre">...
+/*
+* this function will test buildApp&apos;s default handling-behavior
+*/
    if (local.isBrowser) {
        onError(undefined, opt);
        return;
    }
-   globalThis.local.testCase_buildReadme_default(opt, local.onErrorThrow);
-   globalThis.local.testCase_buildLib_default(opt, local.onErrorThrow);
-   globalThis.local.testCase_buildTest_default(opt, local.onErrorThrow);
    local.<span class="apidocCodeKeywordSpan">buildApp</span>(opt, onError);
-};
-
-local._testCase_buildLib_default = function (opt, onError) {
-/*
-* this function will test buildLib&apos;s default handling-behavior
-*/
-   if (local.isBrowser) {
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.buildLib" id="apidoc.elem.utility2.buildLib">
-        function <span class="apidocSignatureSpan">utility2.</span>buildLib
-        <span class="apidocSignatureSpan">(opt, onError)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">buildLib = function (opt, onError) {
-<span class="apidocCodeCommentSpan">/*
- * this function will build lib with given &lt;opt&gt;
- */
-</span>    let result;
-    local.objectAssignDefault(opt, {
-        customize: local.nop,
-        dataFrom: require(&quot;fs&quot;).readFileSync(
-            &quot;lib.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;,
-            &quot;utf8&quot;
-        ),
-        dataTo: local.templateRenderMyApp(
-            local.assetsDict[&quot;/assets.my_app.template.js&quot;]
-        )
-    });
-    // search-and-replace - customize dataTo
-    [
-        // customize top-level comment-description
-        (
-            /\n\u0020\*\n(?:[\S\s]*?\n)?\u0020\*\/\n/
-        ),
-        // customize code after /* validateLineSortedReset */
-        (
-            /\n\/\*\u0020validateLineSortedReset\u0020\*\/\n[\S\s]*?$/
-        )
-    ].forEach(function (rgx) {
-        opt.dataTo = local.stringMerge(opt.dataTo, opt.dataFrom, rgx);
-    });
-    // customize assets.utility2.rollup.js
-    if (require(&quot;fs&quot;).existsSync(&quot;./assets.utility2.rollup.js&quot;)) {
-        opt.dataTo = opt.dataTo.replace(
-            &quot;    // || globalThis.utility2_rollup_old&quot;,
-            &quot;    || globalThis.utility2_rollup_old&quot;
-        ).replace(
-            &quot;    // || require(\&quot;./assets.utility2.rollup.js\&quot;)&quot;,
-            &quot;    || require(\&quot;./assets.utility2.rollup.js\&quot;)&quot;
-        );
-    }
-    // save lib
-    result = opt.dataTo;
-    if (!process.env.npm_config_mode_coverage) {
-        local.fsWriteFileWithMkdirpSync(
-            &quot;lib.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;,
-            result,
-            &quot;wrote file - lib - {{pathname}}&quot;
-        );
-    }
-    opt.customize(opt);
-    onError();
-    return result;
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-/*
-* this function will test buildLib&apos;s default handling-behavior
-*/
-   if (local.isBrowser) {
-       onError(undefined, opt);
-       return;
-   }
-   return local.<span class="apidocCodeKeywordSpan">buildLib</span>({}, onError);
-};
-
-local._testCase_buildReadme_default = function (opt, onError) {
-/*
-* this function will test buildReadme&apos;s default handling-behavior
-*/
-   if (local.isBrowser) {
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.buildReadme" id="apidoc.elem.utility2.buildReadme">
-        function <span class="apidocSignatureSpan">utility2.</span>buildReadme
-        <span class="apidocSignatureSpan">(opt, onError)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">buildReadme = function (opt, onError) {
-<span class="apidocCodeCommentSpan">/*
- * this function will build readme with given &lt;opt&gt; my-app-lite template
- */
-</span>    let result;
-    local.objectAssignDefault(opt, {
-        customize: local.nop,
-        // reset toc
-        dataFrom: require(&quot;fs&quot;).readFileSync(
-            &quot;README.md&quot;,
-            &quot;utf8&quot;
-        ).replace((
-            /\n#\u0020table\u0020of\u0020contents$[\S\s]*?\n\n\n\n/m
-        ), &quot;\n# table of contents\n\n\n\n&quot;),
-        packageJsonRgx: (
-            /\n#\u0020package.json\n```json\n([\S\s]*?)\n```\n/
-        )
-    });
-    // render dataTo
-    opt.dataTo = local.templateRenderMyApp(
-        local.assetsDict[&quot;/assets.readme.template.md&quot;]
-    );
-    // init package.json
-    opt.dataFrom.replace(opt.packageJsonRgx, function (match0, match1) {
-        // remove null from package.json
-        opt.packageJson = JSON.parse(match1.replace((
-            /\u0020{4}&quot;.*?&quot;:\u0020null,?$/gm
-        ), &quot;&quot;));
-        opt.packageJson.description = opt.dataFrom.split(&quot;\n&quot;)[1];
-        local.objectAssignDefault(opt.packageJson, {
-            nameLib: JSON.parse(
-                require(&quot;fs&quot;).readFileSync(&quot;package.json&quot;, &quot;utf8&quot;)
-            ).nameLib
-        });
-        opt.packageJson = local.objectAssignDefault(opt.packageJson, {
-            nameLib: opt.packageJson.name.replace((
-                /\W/g
-            ), &quot;_&quot;),
-            nameOriginal: opt.packageJson.name
-        });
-        opt.packageJson = local.objectAssignDefault(
-            opt.packageJson,
-            JSON.parse(local.templateRenderMyApp(opt.packageJsonRgx.exec(
-                local.assetsDict[&quot;/assets.readme.template.md&quot;]
-            )[1])),
-            2
-        );
-        // avoid npm-installing that
-        delete opt.packageJson.devDependencies[opt.packageJson.name];
-        // reset scripts
-        opt.packageJson.scripts = {
-            &quot;build-ci&quot;: &quot;./npm_scripts.sh&quot;,
-            env: &quot;env&quot;,
-            eval: &quot;./npm_scripts.sh&quot;,
-            &quot;heroku-postbuild&quot;: &quot;./npm_scripts.sh&quot;,
-            postinstall: &quot;./npm_scripts.sh&quot;,
-            start: &quot;./npm_scripts.sh&quot;,
-            test: &quot;./npm_scripts.sh&quot;,
-            utility2: &quot;./npm_scripts.sh&quot;
-        };
-        // save package.json
-        local.fsWriteFileWithMkdirpSync(
-            &quot;package.json&quot;,
-            JSON.stringify(local.objectDeepCopyWithKeysSorted(
-                opt.packageJson
-            ), undefined, 4) + &quot;\n&quot;,
-            &quot;wrote file - package.json - {{pathname}}&quot;
-        );
-        // re-render dataTo
-        opt.dataTo = local.templateRenderMyApp(
-            local.assetsDict[&quot;/assets.readme.template.md&quot;]
-        );
-        opt.dataTo = opt.dataTo.replace(
-            opt.packageJsonRgx,
-            match0.replace(
-                match1,
-                JSON.stringify(local.objectDeepCopyWithKeysSorted(
-                    opt.packageJson
-                ), undefined, 4)
-            )
-        );
-        return &quot;&quot;;
-    });
-    // search-and-replace - customize dataTo
-    [
-        // customize name and description
-        (
-            /.*?\n.*?\n/
-        ),
-        // customize cdn-download
-        (
-            /\n#\u0020cdn\u0020download\n[\S\s]*?\n\n\n\n/
-        ),
-        // customize live-web-demo
-        (
-            /\n#\u0020live\u0020web\u0020demo\n[\S\s]*?\n\n\n\n/
-        ),
-        // customize changelog
-        (
-            /\n####\u0020changelog\u0020[\S\s]*?\n\n\n\n/
-        ),
-        // customize example.js - shared js\u002denv code - init-before
-        (
-            /\nglobalThis\.local\u0020=\u0020local;\n[^`]*?\n\/\*\u0020istanbul\u0020ignore\u0020next\u0020\*\/\n\/\/\u0020run\u0020browser\u0020js\u002denv\u0020code\u0020-\u0020init-test\n/
-        ),
-        // customize example.js - html-body
-        (...</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-/*
-* this function will test buildReadme&apos;s default handling-behavior
-*/
-   if (local.isBrowser) {
-       onError(undefined, opt);
-       return;
-   }
-   return local.<span class="apidocCodeKeywordSpan">buildReadme</span>({}, onError);
-};
-
-local._testCase_buildTest_default = function (opt, onError) {
-/*
-* this function will test buildTest&apos;s default handling-behavior
-*/
-   if (local.isBrowser) {
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.buildTest" id="apidoc.elem.utility2.buildTest">
-        function <span class="apidocSignatureSpan">utility2.</span>buildTest
-        <span class="apidocSignatureSpan">(opt, onError)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">buildTest = function (opt, onError) {
-<span class="apidocCodeCommentSpan">/*
- * this function will build test with given &lt;opt&gt;
- */
-</span>    let result;
-    local.objectAssignDefault(opt, {
-        customize: local.nop,
-        dataFrom: require(&quot;fs&quot;).readFileSync(&quot;test.js&quot;, &quot;utf8&quot;),
-        dataTo: local.templateRenderMyApp(
-            local.assetsDict[&quot;/assets.test.template.js&quot;]
-        )
-    });
-    // search-and-replace - customize dataTo
-    [
-        // customize shared js\u002denv code - function
-        (
-            /\n\}\(\)\);\n\n\n\n\/\/\u0020run\u0020shared\u0020js\u002denv\u0020code\u0020-\u0020function\n[\S\s]*?$/
-        )
-    ].forEach(function (rgx) {
-        opt.dataTo = local.stringMerge(opt.dataTo, opt.dataFrom, rgx);
-    });
-    // customize require(&quot;utility2&quot;)
-    [
-        &quot;./assets.utility2.rollup.js&quot;,
-        &quot;./lib.utility2.js&quot;
-    ].forEach(function (file) {
-        if (require(&quot;fs&quot;).existsSync(file)) {
-            opt.dataTo = opt.dataTo.replace(
-                &quot;require(\&quot;utility2\&quot;)&quot;,
-                &quot;require(\&quot;&quot; + file + &quot;\&quot;)&quot;
-            );
-        }
-    });
-    opt.customize(opt);
-    // save test.js
-    result = opt.dataTo;
-    local.fsWriteFileWithMkdirpSync(
-        &quot;test.js&quot;,
-        result,
-        &quot;wrote file - test - {{pathname}}&quot;
-    );
-    onError();
-    return result;
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-/*
-* this function will test buildTest&apos;s default handling-behavior
-*/
-   if (local.isBrowser) {
-       onError(undefined, opt);
-       return;
-   }
-   return local.<span class="apidocCodeKeywordSpan">buildTest</span>({}, onError);
 };
 
 local._testCase_webpage_default = function (opt, onError) {
 /*
 * this function will test webpage&apos;s default handling-behavior
 */
-   if (local.isBrowser) {
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.childProcessEval" id="apidoc.elem.utility2.childProcessEval">
-        function <span class="apidocSignatureSpan">utility2.</span>childProcessEval
-        <span class="apidocSignatureSpan">(code, opt)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">childProcessEval = function (code, opt) {
-<span class="apidocCodeCommentSpan">/*
- * this function will eval &lt;code&gt; in child-process
- */
-</span>    let promise;
-    let reject;
-    let resolve;
-    promise = new Promise(function (aa, bb) {
-        reject = bb;
-        resolve = aa;
-    });
-    promise.child = require(&quot;child_process&quot;).spawn(&quot;node&quot;, [
-        &quot;-e&quot;, (
-            &quot;/*jslint node*/\n&quot;
-            + &quot;let data = \&quot;\&quot;;\n&quot;
-            + &quot;process.stdin.on(\&quot;readable\&quot;, function () {\n&quot;
-            + &quot;    let chunk;\n&quot;
-            + &quot;    while (true) {\n&quot;
-            + &quot;        chunk = process.stdin.read();\n&quot;
-            + &quot;        if (chunk === null) {\n&quot;
-            + &quot;            return;\n&quot;
-            + &quot;        }\n&quot;
-            + &quot;        data += chunk;\n&quot;
-            + &quot;    }\n&quot;
-            + &quot;}).setEncoding(\&quot;utf8\&quot;);\n&quot;
-            + &quot;process.stdin.on(\&quot;end\&quot;, function () {\n&quot;
-            + &quot;    require(\&quot;vm\&quot;).runInThisContext(data);\n&quot;
-            + &quot;});\n&quot;
-        )
-    ], Object.assign({
-        stdio: [
-            &quot;pipe&quot;, 1, 2
-        ]
-    }, opt)).on(&quot;error&quot;, reject).on(&quot;exit&quot;, function (exitCode) {
-        if (!exitCode) {
-            resolve();
-            return;
-        }
-        reject(new Error(&quot;child-process - exitCode &quot; + exitCode));
-    }).stdin.end(code);
-    return promise;
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-                }, resolve);
-            });
-        }).end();
-    }));
-});
-// jslint app
-Promise.all(promiseList).then(function () {
-    local.local.<span class="apidocCodeKeywordSpan">childProcessEval</span>((
-        local.assetsDict[&quot;/assets.utility2.lib.jslint.js&quot;]
-        + &quot;;module.exports.jslintAndPrintDir(\&quot;.\&quot;,&quot;
-        + &quot;{conditional:true});&quot;
-    ), {
-        cwd: &quot;tmp/build/app&quot;
-    }).then(onError);
-});
+   local.domQuerySelectorAllTagName(&quot;html&quot;);
 ...</pre></li>
     </ul>
 
@@ -5537,7 +5017,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">coalesce = function (...argList) {
+    <li>description and source-code<pre class="apidocCodePre">function coalesce(...argList) {
 <span class="apidocCodeCommentSpan">/*
  * this function will coalesce null, undefined, or &quot;&quot; in &lt;argList&gt;
  */
@@ -5862,7 +5342,7 @@ local.cryptoAesXxxCbcRawDecrypt = function (opt, onError) {
     onError(undefined, opt);
 };
 
-local.testCase_libUtility2Js_standalone = function (opt, onError) {
+local.testCase_eventListenerXxx_default = function (opt, onError) {
 /*
 ...</pre></li>
     </ul>
@@ -5878,38 +5358,37 @@ local.testCase_libUtility2Js_standalone = function (opt, onError) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">domQuerySelectorAllTagName = function (selector) {
 <span class="apidocCodeCommentSpan">/*
- * this function will return all tagName that match &lt;selector&gt;
+ * this function will return list of tagName matching &lt;selector&gt;
  */
 </span>    let set;
+    try {
+        document.getElementById(&quot;undefined&quot;);
+    } catch (ignore) {
+        return [];
+    }
     set = new Set();
     document.querySelectorAll(selector).forEach(function (elem) {
         set.add(elem.tagName);
     });
     return Array.from(set).sort();
 }</pre></li>
-    <li>example use<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
+    <li>example use<pre class="apidocCodePre">...
+   local.buildApp(opt, onError);
+};
 
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.domSelectOptionValue" id="apidoc.elem.utility2.domSelectOptionValue">
-        function <span class="apidocSignatureSpan">utility2.</span>domSelectOptionValue
-        <span class="apidocSignatureSpan">(elem)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">domSelectOptionValue = function (elem) {
-<span class="apidocCodeCommentSpan">/*
- * this function will return &lt;elem&gt;.options[&lt;elem&gt;.selectedIndex].value
- */
-</span>    if (typeof elem === &quot;string&quot;) {
-        elem = document.querySelector(elem);
-    }
-    elem = elem &amp;&amp; elem.options[elem.selectedIndex];
-    return (elem &amp;&amp; elem.value) || &quot;&quot;;
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">n/a</pre></li>
+local._testCase_webpage_default = function (opt, onError) {
+/*
+* this function will test webpage&apos;s default handling-behavior
+*/
+   local.<span class="apidocCodeKeywordSpan">domQuerySelectorAllTagName</span>(&quot;html&quot;);
+   local.domStyleValidate();
+   if (local.isBrowser) {
+       onError(undefined, opt);
+       return;
+   }
+   local.browserTest({
+       fileScreenshot: (
+...</pre></li>
     </ul>
 
 
@@ -5928,7 +5407,7 @@ local.testCase_libUtility2Js_standalone = function (opt, onError) {
 </span>    let rgx;
     let tmp;
     try {
-        document.querySelector(&quot;#undefined&quot;);
+        document.getElementById(&quot;undefined&quot;);
     } catch (ignore) {
         return;
     }
@@ -5964,21 +5443,21 @@ local.testCase_libUtility2Js_standalone = function (opt, onError) {
     });
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
+};
+
+local._testCase_webpage_default = function (opt, onError) {
 /*
 * this function will test webpage&apos;s default handling-behavior
 */
+   local.domQuerySelectorAllTagName(&quot;html&quot;);
+   local.<span class="apidocCodeKeywordSpan">domStyleValidate</span>();
    if (local.isBrowser) {
        onError(undefined, opt);
        return;
    }
-   local.<span class="apidocCodeKeywordSpan">domStyleValidate</span>();
    local.browserTest({
        fileScreenshot: (
            process.env.npm_config_dir_build
-           + &quot;/screenshot.&quot; + process.env.MODE_BUILD + &quot;.browser.%2F.png&quot;
-       ),
-       url: (
-           local.serverLocalHost
 ...</pre></li>
     </ul>
 
@@ -5995,28 +5474,12 @@ local.testCase_libUtility2Js_standalone = function (opt, onError) {
 <span class="apidocCodeCommentSpan">/*
  * this function will listen evt &lt;type&gt; with &lt;listener&gt;
  */
-</span>    let isDone;
-    let listenerOnce;
-    listenerOnce = function listener2(msg) {
-        let ii;
-        ii = localEventListenerDict[type].length;
-        while (ii &gt; 0) {
-            ii -= 1;
-            if (localEventListenerDict[type][ii] === listener2) {
-                localEventListenerDict[type].splice(ii, 1);
-            }
-        }
-        if (!isDone) {
-            isDone = true;
-            listener(msg);
-        }
+</span>    localEventListenerId = (localEventListenerId + 1) | 0;
+    localEventListenerDict[localEventListenerId] = {
+        listener,
+        once: opt.once,
+        type
     };
-    localEventListenerDict[type] = localEventListenerDict[type] || [];
-    localEventListenerDict[type].push(
-        opt.once
-        ? listenerOnce
-        : listener
-    );
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
 local.timeoutDefault = Number(local.timeoutDefault) || 30000;
@@ -6050,28 +5513,73 @@ globalThis.utility2_onReadyBefore = (
 <span class="apidocCodeCommentSpan">/*
  * this function will emit evt &lt;type&gt; with &lt;msg&gt;
  */
-</span>    Array.from(
-        localEventListenerDict[type] || []
-    ).forEach(function (listener) {
-        listener(msg);
+</span>    Object.entries(localEventListenerDict).forEach(function ([
+        id, elem
+    ]) {
+        if (elem.type === type) {
+            if (elem.once) {
+                delete localEventListenerDict[id];
+            }
+            elem.listener(msg);
+        }
     });
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-local.testReportMerge(testReport);
-if (local.isBrowser) {
-    document.querySelectorAll(&quot;#htmlTestReport1&quot;).forEach(function (elem) {
-        local.uiAnimateSlideDown(elem);
-        elem.innerHTML = local.testReportMerge(testReport);
-    });
+        consoleError(...argList);
+    }
+};
+// mock proces.exit
+if (!local.isBrowser) {
+    processExit = process.exit;
+    process.exit = function (exitCode) {
+        local.<span class="apidocCodeKeywordSpan">eventListenerEmit</span>(
+            &quot;utility2.testRunMock.process.exit&quot;,
+            exitCode | 0
+        );
+    };
 }
-local.<span class="apidocCodeKeywordSpan">eventListenerEmit</span>(&quot;utility2.testRunStart&quot;, testReport);
-// testRunProgressUpdate every 2000 ms until isDone
-timerInterval = setInterval(function () {
-    // update testPlatform.timeElapsed
-    local.timeElapsedPoll(testPlatform);
-    if (local.isBrowser) {
-        document.querySelector(
-            &quot;#htmlTestReport1&quot;
+// init modeTestCase
+local.modeTestCase = (
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.eventListenerRemove" id="apidoc.elem.utility2.eventListenerRemove">
+        function <span class="apidocSignatureSpan">utility2.</span>eventListenerRemove
+        <span class="apidocSignatureSpan">(listener)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">eventListenerRemove = function (listener) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will emit evt &lt;type&gt; with &lt;msg&gt;
+ */
+</span>    Object.entries(localEventListenerDict).forEach(function ([
+        id, elem
+    ]) {
+        if (elem.listener === listener) {
+            delete localEventListenerDict[id];
+        }
+    });
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+   };
+   local.eventListenerAdd(&quot;aa&quot;, listener);
+   local.eventListenerAdd(&quot;aa&quot;, listener, {
+       once: true
+   });
+   local.eventListenerEmit(&quot;aa&quot;, &quot;bb&quot;);
+   local.eventListenerEmit(&quot;aa&quot;, &quot;bb&quot;);
+   local.<span class="apidocCodeKeywordSpan">eventListenerRemove</span>(listener);
+   onError(undefined, opt);
+};
+
+local.testCase_libUtility2Js_standalone = function (opt, onError) {
+/*
+* this function will test lib.utility2.js&apos;s standalone handling-behavior
+*/
 ...</pre></li>
     </ul>
 
@@ -6089,13 +5597,13 @@ timerInterval = setInterval(function () {
  * this function will sync-read &lt;pathname&gt; with given &lt;type&gt; and &lt;dflt&gt;
  */
 </span>    let fs;
-    // do nothing if module does not exist
+    // do nothing if module not exists
     try {
         fs = require(&quot;fs&quot;);
+        pathname = require(&quot;path&quot;).resolve(pathname);
     } catch (ignore) {
         return dflt;
     }
-    pathname = require(&quot;path&quot;).resolve(pathname);
     // try to read pathname
     try {
         return (
@@ -6109,7 +5617,7 @@ timerInterval = setInterval(function () {
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
     stdio: [
-        &quot;ignore&quot;, &quot;ignore&quot;, 2
+        &quot;ignore&quot;, 1, 2
     ]
 });
 if (globalThis.utility2_rollup || env.npm_config_mode_start) {
@@ -6130,90 +5638,28 @@ if (globalThis.utility2_rollup || env.npm_config_mode_start) {
 
 
     <h2>
-        <a href="#apidoc.elem.utility2.fsRmrfSync" id="apidoc.elem.utility2.fsRmrfSync">
-        function <span class="apidocSignatureSpan">utility2.</span>fsRmrfSync
-        <span class="apidocSignatureSpan">(pathname)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">fsRmrfSync = function (pathname) {
-<span class="apidocCodeCommentSpan">/*
- * this function will sync &quot;rm -rf&quot; &lt;pathname&gt;
- */
-</span>    let child_process;
-    // do nothing if module does not exist
-    try {
-        child_process = require(&quot;child_process&quot;);
-    } catch (ignore) {
-        return;
-    }
-    pathname = require(&quot;path&quot;).resolve(pathname);
-    if (process.platform !== &quot;win32&quot;) {
-        child_process.spawnSync(&quot;rm&quot;, [
-            &quot;-rf&quot;, pathname
-        ], {
-            stdio: [
-                &quot;ignore&quot;, 1, 2
-            ]
-        });
-        return;
-    }
-    try {
-        child_process.spawnSync(&quot;rd&quot;, [
-            &quot;/s&quot;, &quot;/q&quot;, pathname
-        ], {
-            stdio: [
-                &quot;ignore&quot;, 1, 2
-            ]
-        });
-    } catch (ignore) {}
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-            return &quot;image/jpeg&quot;;
-        default:
-            return file;
-        }
-    }
-};
-const removeFolder = function (dir, onError) {
-    local.<span class="apidocCodeKeywordSpan">fsRmrfSync</span>(dir);
-    onError();
-};
-removeFolder.sync = local.fsRmrfSync;
-const removeRecursive = removeFolder;
-let EventEmitter = require(&apos;events&apos;);
-let URL = require(&apos;url&apos;);
-// let WebSocket = require(&apos;ws&apos;);
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
         <a href="#apidoc.elem.utility2.fsWriteFileWithMkdirp" id="apidoc.elem.utility2.fsWriteFileWithMkdirp">
         function <span class="apidocSignatureSpan">utility2.</span>fsWriteFileWithMkdirp
-        <span class="apidocSignatureSpan">({ data, modeDebug, modeUncaughtException, pathname }, onError)</span>
+        <span class="apidocSignatureSpan">(pathname, data, onError)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">fsWriteFileWithMkdirp = function ({ data, modeDebug, modeUncaughtException, pathname }, onError) {
+    <li>description and source-code<pre class="apidocCodePre">fsWriteFileWithMkdirp = function (pathname, data, onError) {
 <span class="apidocCodeCommentSpan">/*
  * this function will async write &lt;data&gt; to &lt;pathname&gt; with &quot;mkdir -p&quot;
  */
 </span>    let fs;
-    // do nothing if module does not exist
+    // do nothing if module not exists
     try {
         fs = require(&quot;fs&quot;);
+        pathname = require(&quot;path&quot;).resolve(pathname);
     } catch (ignore) {
         onError();
     }
-    pathname = require(&quot;path&quot;).resolve(pathname);
     // write pathname
     fs.writeFile(pathname, data, function (err) {
         if (!err) {
-            if (modeDebug) {
-                console.error(&quot;fsWriteFileWithMkdirp - &quot; + pathname);
-            }
+            console.error(&quot;fsWriteFileWithMkdirp - &quot; + pathname);
             onError(undefined, true);
             return;
         }
@@ -6223,31 +5669,25 @@ let URL = require(&apos;url&apos;);
         }, function (ignore) {
             // re-write pathname
             fs.writeFile(pathname, data, function (err) {
-                if (!err) {
-                    if (modeDebug) {
-                        console.error(&quot;fsWriteFileWithMkdirp - &quot; + pathname);
-                    }
-                    onError(undefined, true);
-                    return;
-                }
-                if (modeUncaughtException) {
+                if (err) {
                     throw err;
                 }
-                onError(err);
+                console.error(&quot;fsWriteFileWithMkdirp - &quot; + pathname);
+                onError(undefined, true);
             });
         });
     });
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
         onError();
-    }, local.onErrorThrow);
+    }, onErrorThrow);
     return exports;
 };
 // coverage-hack
 require2();
 // save apidoc.html
-local.<span class="apidocCodeKeywordSpan">fsWriteFileWithMkdirp</span>({
-    data: local.apidocCreate(local.objectAssignDefault(opt, {
+local.<span class="apidocCodeKeywordSpan">fsWriteFileWithMkdirp</span>(&quot;.tmp/build/apidoc.html&quot;, local.apidocCreate(
+    Object.assign({
         blacklistDict: local,
         modeNop: (
             process.env.npm_config_mode_test_case
@@ -6262,27 +5702,25 @@ local.<span class="apidocCodeKeywordSpan">fsWriteFileWithMkdirp</span>({
     <h2>
         <a href="#apidoc.elem.utility2.fsWriteFileWithMkdirpSync" id="apidoc.elem.utility2.fsWriteFileWithMkdirpSync">
         function <span class="apidocSignatureSpan">utility2.</span>fsWriteFileWithMkdirpSync
-        <span class="apidocSignatureSpan">(pathname, data, msg)</span>
+        <span class="apidocSignatureSpan">(pathname, data)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
+    <li>description and source-code<pre class="apidocCodePre">fsWriteFileWithMkdirpSync = function (pathname, data) {
 <span class="apidocCodeCommentSpan">/*
  * this function will sync write &lt;data&gt; to &lt;pathname&gt; with &quot;mkdir -p&quot;
  */
 </span>    let fs;
-    let success;
-    // do nothing if module does not exist
+    // do nothing if module not exists
     try {
         fs = require(&quot;fs&quot;);
+        pathname = require(&quot;path&quot;).resolve(pathname);
     } catch (ignore) {
         return;
     }
-    pathname = require(&quot;path&quot;).resolve(pathname);
     // try to write pathname
     try {
         fs.writeFileSync(pathname, data);
-        success = true;
     } catch (ignore) {
         // mkdir -p
         fs.mkdirSync(require(&quot;path&quot;).dirname(pathname), {
@@ -6290,29 +5728,26 @@ local.<span class="apidocCodeKeywordSpan">fsWriteFileWithMkdirp</span>({
         });
         // re-write pathname
         fs.writeFileSync(pathname, data);
-        success = true;
     }
-    if (success &amp;&amp; msg) {
-        console.error(msg.replace(&quot;{{pathname}}&quot;, pathname));
-    }
-    return success;
+    console.error(&quot;fsWriteFileWithMkdirpSync - &quot; + pathname);
+    return true;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-        &quot;    // || require(\&quot;./assets.utility2.rollup.js\&quot;)&quot;,
-        &quot;    || require(\&quot;./assets.utility2.rollup.js\&quot;)&quot;
-    );
-}
-// save lib
-result = opt.dataTo;
-if (!process.env.npm_config_mode_coverage) {
-    local.<span class="apidocCodeKeywordSpan">fsWriteFileWithMkdirpSync</span>(
-        &quot;lib.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;,
-        result,
-        &quot;wrote file - lib - {{pathname}}&quot;
-    );
-}
-opt.customize(opt);
-onError();
+                testPlatform.testsPassed + &quot; passed &quot;
+            ).padStart(16, &quot; &quot;)
+            + &quot;     |\n&quot; + new Array(56).join(&quot;-&quot;)
+        );
+    }).join(&quot;\n&quot;) + &quot;\n&quot;
+);
+// create test-report.html
+local.<span class="apidocCodeKeywordSpan">fsWriteFileWithMkdirpSync</span>(
+    &quot;.tmp/build/test-report.html&quot;,
+    local.testReportMerge(testReport)
+);
+// create build.badge.svg
+local.fsWriteFileWithMkdirpSync(
+    &quot;.tmp/build/build.badge.svg&quot;,
+    local.assetsDict[&quot;/assets.buildBadge.template.svg&quot;].replace((
 ...</pre></li>
     </ul>
 
@@ -6368,13 +5803,13 @@ if (opt.modeTestReportCreate) {
     return;
 }
 local.<span class="apidocCodeKeywordSpan">gotoNext</span>(opt, function (err, data) {
-    let url;
     switch (opt.gotoState) {
     // node - init
     case 1:
-        url = require(&quot;url&quot;);
         onParallel = local.onParallel(opt.gotoNext);
         onParallel.cnt += 1;
+        isDone = 0;
+        testId = Math.random().toString(16);
 ...</pre></li>
     </ul>
 
@@ -6387,7 +5822,7 @@ local.<span class="apidocCodeKeywordSpan">gotoNext</span>(opt, function (err, da
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">identity = function (val) {
+    <li>description and source-code<pre class="apidocCodePre">function identity(val) {
 <span class="apidocCodeCommentSpan">/*
  * this function will return &lt;val&gt;
  */
@@ -6567,7 +6002,6 @@ require(&quot;fs&quot;).writeFile(
 </span>    let coverageInclude;
     let dirCoverage;
     let filePrefix;
-    let filesUnderRoot;
     let htmlAll;
     let nodeChildAdd;
     let nodeCreate;
@@ -6576,7 +6010,6 @@ require(&quot;fs&quot;).writeFile(
     let nodeRoot;
     let summaryDict;
     let tmp;
-    let tmpChildren;
     if (!(opt &amp;&amp; opt.coverage)) {
         return &quot;&quot;;
     }
@@ -6677,7 +6110,10 @@ require(&quot;fs&quot;).writeFile(
                     metric = node.metrics[key];
                     metric.total += child.metrics[key].total;
                     metric.covered += child.metrics[key].covered;
-                    metric.skipped += child.metrics[key].skipped;...</pre></li>
+                    metric.skipped += child.metrics[key].skipped;
+                });
+            });
+        }...</pre></li>
     <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -6754,10 +6190,11 @@ module.exports[env.npm_package_nameLib] = (
 </span>    // 1. normalize &lt;file&gt;
     file = path.resolve(file);
     // 2. save &lt;code&gt; to __coverageInclude__[&lt;file&gt;] for future html-report
-    globalThis.__coverageInclude__ = globalThis.__coverageInclude__ || {};
-    globalThis.__coverageInclude__[file] = 1;
     // 3. return instrumented-code
-    return new local.Instrumenter({
+    return (
+        &quot;globalThis.__coverageInclude__ = globalThis.__coverageInclude__ || {};&quot;
+        + &quot;globalThis.__coverageInclude__[&quot; + JSON.stringify(file) + &quot;] = 1;\n&quot;
+    ) + new local.Instrumenter({
         embedSource: true,
         esModules: true,
         noAutoWrap: true
@@ -6771,130 +6208,16 @@ module.exports[env.npm_package_nameLib] = (
     <h2>
         <a href="#apidoc.elem.utility2.jslintAndPrint" id="apidoc.elem.utility2.jslintAndPrint">
         function <span class="apidocSignatureSpan">utility2.</span>jslintAndPrint
-        <span class="apidocSignatureSpan">(code = &quot;&quot;, file = &quot;undefined&quot;, opt = {})</span>
+        <span class="apidocSignatureSpan">(code, file = &quot;undefined&quot;, opt = {})</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">jslintAndPrint = function (code = &quot;&quot;, file = &quot;undefined&quot;, opt = {}) {
+    <li>description and source-code<pre class="apidocCodePre">jslintAndPrint = function (code, file = &quot;undefined&quot;, opt = {}) {
 <span class="apidocCodeCommentSpan">/*
- * this function will jslint/csslint &lt;code&gt; and print any errors to stderr
+ * this function will jslint-autofix &lt;code&gt;
  */
-</span>    let ii;
-    let tmp;
-    if (!(opt &amp;&amp; opt.gotoState)) {
-        local.jslintResult = {
-            gotoState: 0
-        };
-    }
-    opt = Object.assign(local.jslintResult, opt);
-    opt.gotoState += 1;
-    switch (opt.gotoState) {
-    // jslint - init
-    case 1:
-        // cleanup
-        opt.errList = [];
-        opt.errMsg = &quot;&quot;;
-        // preserve lineno
-        if (opt.iiStart) {
-            // optimization - efficiently count number of newlines
-            // https://jsperf.com/regexp-counting-2/8
-            opt.lineOffset |= 0;
-            ii = 0;
-            while (true) {
-                ii = code.indexOf(&quot;\n&quot;, ii);
-                if (ii === 0 || ii &gt; opt.iiStart) {
-                    break;
-                }
-                ii += 1;
-                opt.lineOffset += 1;
-            }
-            code = code.slice(opt.iiStart, opt.iiEnd || code.length);
-        }
-        switch (opt.fileType0) {
-        // de-embed-js - &apos;\\n\\\n...\\n\\\n&apos;
-        case &quot;.\\n\\&quot;:
-            // rgx - remove \\n\\
-            code = code.replace((
-                /\\n\\$|\\(.)/gm
-            ), function (ignore, match1) {
-                return match1 || &quot;&quot;;
-            });
-            break;
-        // de-embed-js - &apos;\n...\n&apos;
-        case &quot;.sh&quot;:
-            // rgx - convert &apos;&quot;&apos;&quot;&apos; to &apos;
-            code = code.replace((
-                /&apos;&quot;&apos;&quot;&apos;/g
-            ), &quot;&apos;&quot;);
-            break;
-        }
-        // init
-        opt = Object.assign(opt, {
-            &quot;.css&quot;: (
-                /^\/\*csslint\b|(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/$)/m
-            ),
-            &quot;.html&quot;: (
-                /^\/\*csslint\b|(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/$)/m
-            ),
-            &quot;.js&quot;: (
-                /^\/\*jslint\b|(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/$)/m
-            ),
-            &quot;.json&quot;: (
-                /^\s*?(?:\[|\{)/
-            ),
-            &quot;.md&quot;: (
-                /(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/$)/m
-            ),
-            &quot;.sh&quot;: (
-                /(^#\u0020jslint\u0020utility2:true$)/m
-            ),
-            code0: code,
-            fileType: (
-                /\.\w+?$|$/m
-            ).exec(file)[0]
-        });
-        // jslint - .json
-        if (opt.fileType === &quot;.js&quot; &amp;&amp; opt[&quot;.json&quot;].test(code)) {
-            opt.fileType = &quot;.json&quot;;
-        }
-        try {
-            opt.conditionalPassed = opt[opt.fileType].exec(code);
-        } catch (ignore) {}
-        opt.utility2 = (
-            opt.conditionalPassed &amp;&amp; opt.conditionalPassed[1]
-        ) || opt.autofix;
-        if (
-            opt.conditional
-            &amp;&amp; (!opt.conditionalPassed || opt.coverage)
-        ) {
-            break;
-        }
-        opt.gotoState = 10;
-        break;
-    // jslint - autofix
-    case 11:
-        code = local.jslintAutofix(code, file, opt);
-        local.jslintResult = opt;
-        break;
-    // jslint - csslint and jslint
-    case 12:
-        // restore lineOffset
-        code = &quot;\n&quot;.repeat(opt.lineOffset | 0) + code;
-        switch (opt.fileType) {
-        case &quot;.css&quot;:
-            // csslint
-            Object.assign(opt, local.CSSLint.verify(code));
-            // init errList
-            opt.errList = opt.messages.map(function (err) {
-                err.column = err.col;
-                err.message = (
-                    err.type + &quot; - &quot; + err.rule.id + &quot; - &quot; + err.message
-                    + &quot;\n    &quot; + err.rule.desc
-                );
-                return err;
-            });
-            break;
-        case &quot;.html&quot;:...</pre></li>
+</span>    return jslintRecurse(code, file, opt, {});
+}</pre></li>
     <li>example use<pre class="apidocCodePre">...
 ).replace(
     new RegExp(&quot;require\\(.&quot; + env.npm_package_nameOriginal + &quot;.\\)&quot;),
@@ -7274,7 +6597,7 @@ this.options}</pre></li>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">middlewareError = function (err, req, res) {
 <span class="apidocCodeCommentSpan">/*
- * this function will run middleware to handle errors
+ * this function will run middleware to handle &lt;err&gt;
  */
 </span>    // default - 404 Not Found
     if (!err) {
@@ -7361,8 +6684,8 @@ local.serverLocalReqHandler = function (req, res) {
 }());
 
 
-
 // run node js-env code - init-after
+/* istanbul ignore next */
 ...</pre></li>
     </ul>
 
@@ -7531,13 +6854,13 @@ local.serverLocalReqHandler = function (req, res) {
 
 
     <h2>
-        <a href="#apidoc.elem.utility2.middlewareJsonpStateInit" id="apidoc.elem.utility2.middlewareJsonpStateInit">
-        function <span class="apidocSignatureSpan">utility2.</span>middlewareJsonpStateInit
+        <a href="#apidoc.elem.utility2.middlewareUtility2StateInit" id="apidoc.elem.utility2.middlewareUtility2StateInit">
+        function <span class="apidocSignatureSpan">utility2.</span>middlewareUtility2StateInit
         <span class="apidocSignatureSpan">(req, res, next)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">middlewareJsonpStateInit = function (req, res, next) {
+    <li>description and source-code<pre class="apidocCodePre">middlewareUtility2StateInit = function (req, res, next) {
 <span class="apidocCodeCommentSpan">/*
  * this function will run middleware to
  * serve browser-state wrapped in given jsonp-callback
@@ -7545,37 +6868,45 @@ local.serverLocalReqHandler = function (req, res) {
 </span>    let state;
     if (!(req.stateInit || (
         req.urlParsed
-        &amp;&amp; req.urlParsed.pathname === &quot;/jsonp.utility2.stateInit&quot;
+        &amp;&amp; req.urlParsed.pathname === &quot;/utility2.state.init.js&quot;
     ))) {
         next();
         return;
     }
     state = {
-        utility2: {
-            assetsDict: {
-                &quot;/assets.example.html&quot;:
-                local.assetsDict[&quot;/assets.example.html&quot;],
-                &quot;/assets.example.js&quot;: local.assetsDict[&quot;/assets.example.js&quot;],
-                &quot;/assets.test.js&quot;: local.assetsDict[&quot;/assets.test.js&quot;],
-                &quot;/index.rollup.html&quot;: local.assetsDict[&quot;/index.rollup.html&quot;]
-            },
-            env: {
-                NODE_ENV: local.env.NODE_ENV,
-                npm_config_mode_backend: local.env.npm_config_mode_backend,
-                npm_package_description: local.env.npm_package_description,
-                npm_package_homepage: local.env.npm_package_homepage,
-                npm_package_name: local.env.npm_package_name,
-                npm_package_nameLib: local.env.npm_package_nameLib,
-                npm_package_version: local.env.npm_package_version
-            }
-        }
+        assetsDict: {
+            &quot;/assets.example.html&quot;:
+            local.assetsDict[&quot;/assets.example.html&quot;],
+            &quot;/assets.example.js&quot;: local.assetsDict[&quot;/assets.example.js&quot;],
+            &quot;/assets.test.js&quot;: local.assetsDict[&quot;/assets.test.js&quot;],
+            &quot;/index.rollup.html&quot;: local.assetsDict[&quot;/index.rollup.html&quot;]
+        },
+        env: {
+            NODE_ENV: local.env.NODE_ENV,
+            npm_config_mode_backend: local.env.npm_config_mode_backend,
+            npm_package_description: local.env.npm_package_description,
+            npm_package_homepage: local.env.npm_package_homepage,
+            npm_package_name: local.env.npm_package_name,
+            npm_package_nameLib: local.env.npm_package_nameLib,
+            npm_package_version: local.env.npm_package_version
+        },
+        init: (
+            &quot;(function (state) {\n&quot;
+            + &quot;let utility2 = globalThis.utility2;\n&quot;
+            + &quot;utility2.assetsDict = utility2.assetsDict || {};\n&quot;
+            + &quot;utility2.env = utility2.env || {};\n&quot;
+            + &quot;Object.assign(utility2.assetsDict, state.assetsDict);\n&quot;
+            + &quot;Object.assign(utility2.env, state.env);\n&quot;
+            + &quot;}({}));\n&quot;
+        )
     };
     if (req.stateInit) {
         return state;
     }
-    res.end(
-        req.urlParsed.query.callback + &quot;(&quot; + JSON.stringify(state) + &quot;);&quot;
-    );
+    // disable $-escape in replacement-string
+    res.end(state.init.replace(&quot;({})&quot;, function () {
+        return &quot;(\n&quot; + JSON.stringify(state) + &quot;\n)&quot;;
+    }));
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
             ), &quot;\\\\&quot;)
@@ -7585,7 +6916,7 @@ local.serverLocalReqHandler = function (req, res) {
     });
     break;
 case &quot;local.stateInit&quot;:
-    tmp = local.<span class="apidocCodeKeywordSpan">middlewareJsonpStateInit</span>({
+    tmp = local.<span class="apidocCodeKeywordSpan">middlewareUtility2StateInit</span>({
         stateInit: true
     });
     // add extra physical files to assetsDict
@@ -7605,27 +6936,26 @@ case &quot;local.stateInit&quot;:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">nop = function () {
+    <li>description and source-code<pre class="apidocCodePre">function nop() {
 <span class="apidocCodeCommentSpan">/*
  * this function will do nothing
  */
 </span>    return;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-   return template;
-};
+    local.isBrowser
+    ? {
+        env: {},
+        stdout: {}
+    }
+    : globalThis.process
+);
+local.<span class="apidocCodeKeywordSpan">nop</span>(escodegen, esprima, estraverse, esutils);
 
-local.testCase_nop_default = function (opt, onError) {
-/*
-* this function will test nop&apos;s default handling-behavior
-*/
-   local.<span class="apidocCodeKeywordSpan">nop</span>();
-   onError(undefined, opt);
-};
 
-local.testMock = function (mockList, onTestCase, onError) {
 /*
-* this function will mock objects in &lt;mockList&gt; when running &lt;onTestCase&gt;
+repo https://github.com/acornjs/acorn/tree/6.4.1
+committed 2020-03-09T10:38:41Z
 */
 ...</pre></li>
     </ul>
@@ -7639,7 +6969,7 @@ local.testMock = function (mockList, onTestCase, onError) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
+    <li>description and source-code<pre class="apidocCodePre">function objectAssignDefault(tgt = {}, src = {}, depth = 0) {
 <span class="apidocCodeCommentSpan">/*
  * this function will if items from &lt;tgt&gt; are null, undefined, or &quot;&quot;,
  * then overwrite them with items from &lt;src&gt;
@@ -7699,8 +7029,7 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
 <span class="apidocCodeCommentSpan">/*
  * this function will recursively deep-copy &lt;obj&gt; with keys sorted
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -7718,7 +7047,7 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     return objectDeepCopyWithKeysSorted(obj);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
@@ -7726,16 +7055,16 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
     test: &quot;./npm_scripts.sh&quot;,
     utility2: &quot;./npm_scripts.sh&quot;
 };
-// save package.json
-local.fsWriteFileWithMkdirpSync(
+// write package.json
+require(&quot;fs&quot;).writeFileSync(
     &quot;package.json&quot;,
     JSON.stringify(local.<span class="apidocCodeKeywordSpan">objectDeepCopyWithKeysSorted</span>(
-        opt.packageJson
-    ), undefined, 4) + &quot;\n&quot;,
-    &quot;wrote file - package.json - {{pathname}}&quot;
+        packageJson
+    ), undefined, 4) + &quot;\n&quot;
 );
-// re-render dataTo
-opt.dataTo = local.templateRenderMyApp(
+writeFileLog(&quot;package.json&quot;);
+// re-render README.md
+tgt = local.templateRenderMyApp(
     local.assetsDict[&quot;/assets.readme.template.md&quot;]
 ...</pre></li>
     </ul>
@@ -7749,30 +7078,30 @@ opt.dataTo = local.templateRenderMyApp(
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">onErrorThrow = function (err) {
+    <li>description and source-code<pre class="apidocCodePre">function onErrorThrow(err) {
 <span class="apidocCodeCommentSpan">/*
- * this function will if &lt;err&gt; exists, then throw it
+ * this function will throw &lt;err&gt; if exists
  */
 </span>    if (err) {
         throw err;
     }
-    return err;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-};
-
-local.testCase_onErrorThrow_err = function (opt, onError) {
-/*
- * this function will test onErrorThrow&apos;s err handling-behavior
- */
-    local.tryCatchOnError(function () {
-        local.<span class="apidocCodeKeywordSpan">onErrorThrow</span>(new Error());
-    }, function (err) {
-        // handle err
-        assertOrThrow(err, err);
-        onError(undefined, opt);
+                process.argv[2] === &quot;base64&quot;
+                ? Buffer.concat(bufList).toString()
+                : Buffer.concat(bufList)
+            ),
+            key: process.argv[1],
+            mode: process.argv[2]
+        }, function (err, data) {
+            local.<span class="apidocCodeKeywordSpan">onErrorThrow</span>(err);
+            Object.setPrototypeOf(data, Buffer.prototype);
+            process.stdout.write(data);
+        });
     });
-};
+}(globalThis.globalLocal));
+&apos; &quot;$@&quot;
+)}
 ...</pre></li>
     </ul>
 
@@ -7877,21 +7206,21 @@ local.gotoNext = function (opt, onError) {
     return onParallel;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
+if (opt.modeTestReportCreate) {
+    return;
 }
 local.gotoNext(opt, function (err, data) {
-    let url;
     switch (opt.gotoState) {
     // node - init
     case 1:
-        url = require(&quot;url&quot;);
         onParallel = local.<span class="apidocCodeKeywordSpan">onParallel</span>(opt.gotoNext);
         onParallel.cnt += 1;
         isDone = 0;
         testId = Math.random().toString(16);
         testName = local.env.MODE_BUILD + &quot;.browser.&quot; + encodeURIComponent(
-            new url.URL(opt.url).pathname.replace(
-                &quot;/build..&quot;
-                + local.env.CI_BRANCH
+            require(&quot;url&quot;).parse(opt.url).pathname.replace(
+                &quot;/build..&quot; + local.env.CI_BRANCH + &quot;..&quot; + local.env.CI_HOST,
+                &quot;/build&quot;
 ...</pre></li>
     </ul>
 
@@ -7987,10 +7316,10 @@ local.<span class="apidocCodeKeywordSpan">onParallelList</span>({
     <ul>
     <li>description and source-code<pre class="apidocCodePre">puppeteerLaunch = function () { [native code] }</pre></li>
     <li>example use<pre class="apidocCodePre">...
+    opt.gotoNext,
     local.timeoutDefault,
     new Error(
-        &quot;timeout - &quot; + local.timeoutDefault + &quot; ms - &quot;
-        + testName
+        &quot;timeout - &quot; + local.timeoutDefault + &quot; ms - &quot; + testName
     )
 );
 // create puppeteer browser
@@ -8113,6 +7442,7 @@ jquery|\
 log|\
 min|misc|mock|\
 node_module|\
+old|\
 raw|\rollup|\
 swp|\
 tmp|\
@@ -8175,8 +7505,9 @@ local.cliDict[&quot;utility2.testReportCreate&quot;] = function () {
     // if file is modified, then restart process
     if (env.npm_config_mode_auto_restart) {
         require(&quot;fs&quot;).readdir(&quot;.&quot;, function (ignore, fileList) {
-            fileList.forEach(function (file) {
-                require(&quot;fs&quot;).stat(file, function (ignore, data) {
+            fileList.concat(__filename).forEach(function (file) {
+                require(&quot;fs&quot;).stat(file, function (err, data) {
+                    onErrorThrow(err);
                     if (!data.isFile()) {
                         return;
                     }
@@ -8205,18 +7536,17 @@ local.cliDict[&quot;utility2.testReportCreate&quot;] = function () {
     // jslint process.cwd()
     require(&quot;child_process&quot;).spawn(&quot;node&quot;, [
         &quot;-e&quot;, (
-            &quot;require(&quot;
-            + JSON.stringify(__filename)
-            + &quot;).jslint.jslintAndPrintDir(&quot;
-            + JSON.stringify(process.cwd())
-            + &quot;, {autofix:true,conditional:true}, process.exit);&quot;
+            &quot;require(&quot; + JSON.stringify(__filename)
+            + &quot;).jslint.jslintAndPrintDir(&quot; + JSON.stringify(process.cwd())
+            + &quot;, {autofix:&quot; + (!env.npm_config_mode_test)
+            + &quot;,conditional:true});&quot;
         )
     ], {
         env: Object.assign({}, env, {
             npm_config_mode_lib: &quot;1&quot;
         }),
         stdio: [
-            &quot;ignore&quot;, &quot;ignore&quot;, 2
+            &quot;ignore&quot;, 1, 2
         ]
     });
     if (globalThis.utility2_rollup || env.npm_config_mode_start) {
@@ -8248,9 +7578,9 @@ local.cliDict[&quot;utility2.testReportCreate&quot;] = function () {
     );
     local.fsReadFileOrDefaultSync(&quot;README.md&quot;, &quot;utf8&quot;, &quot;&quot;).replace((
         /\n```javascript(\n\/\*\nexample\.js\n[\S\s]*?\n)```\n/
-    ), function (ignore, match1, index, input) {
+    ), function (ignore, match1, ii, input) {
         // preserve lineno
-        code = input.slice(0, index).replace((
+        code = input.slice(0, ii).replace((
             /.+/g
         ), &quot;&quot;) + &quot;\n&quot; + match1;
         return &quot;&quot;;
@@ -8260,12 +7590,11 @@ local.cliDict[&quot;utility2.testReportCreate&quot;] = function () {
         new RegExp(&quot;require\\(.&quot; + env.npm_package_name + &quot;.\\)&quot;),
         &quot;globalThis.utility2_moduleExports&quot;
     ).replace(
-        new RegExp(&quot;require\\(.&quot; + env.npm_package_nameOriginal + &quot;.\\)&quot;),
-        &quot;globalThis.uti...</pre></li>
+        new RegExp(&quot;require\\(.&quot; + env.npm_package_nameOriginal +...</pre></li>
     <li>example use<pre class="apidocCodePre">...
 \n\
 \n\
-\n\
+/* istanbul ignore next */\n\
 // run shared js\-env code - init-before\n\
 (function () {\n\
 // init local\n\
@@ -8277,7 +7606,7 @@ local.testRunDefault(local);\n\
 }());\n\
 \n\
 \n\
-\n\
+// run shared js\-env code - function\n\
 ...</pre></li>
     </ul>
 
@@ -8458,7 +7787,7 @@ if (!xhr) {
 
 local.middlewareError = function (err, req, res) {
 /*
-* this function will run middleware to handle errors
+* this function will run middleware to handle &lt;err&gt;
 */
    // default - 404 Not Found
    if (!err) {
@@ -8712,21 +8041,21 @@ local.middlewareInit = function (req, res, next) {
     Object.assign(local.utility2.env, opt.utility2.env);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-        }
-    });
-    // handle large string-replace
-    code = local.assetsDict[
-        &quot;/assets.utility2.rollup.content.js&quot;
-    ].replace(&quot;/* utility2.rollup.js content */&quot;, function () {
-        return (
-            &quot;local.<span class="apidocCodeKeywordSpan">stateInit</span>(&quot;
-            + JSON.stringify(tmp, undefined, 4)
-            + &quot;);&quot;
-        );
-    });
-    break;
-default:
-    code = local.assetsDict[key];
+
+
+// run shared js-env code - init-after
+(function () {
+// hack-coverage - test testRunServer&apos;s multiple-call handling-behavior
+local.testRunServer(local);
+// hack-coverage - stateInit
+local.<span class="apidocCodeKeywordSpan">stateInit</span>({});
+// init test-middleware
+local.middlewareList.push(function (req, res, next) {
+/*
+* this function will run test-middleware
+*/
+   switch (req.urlParsed.pathname) {
+   // test http POST handling-behavior
 ...</pre></li>
     </ul>
 
@@ -8849,21 +8178,22 @@ elem.source = local.<span class="apidocCodeKeywordSpan">stringHtmlSafe</span>(
     return str1;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-        /\n\u0020\*\n(?:[\S\s]*?\n)?\u0020\*\/\n/
-    ),
-    // customize code after /* validateLineSortedReset */
-    (
-        /\n\/\*\u0020validateLineSortedReset\u0020\*\/\n[\S\s]*?$/
+    return code;
+}
+// autofix - assets.utility2.header.js
+code = code.replace((
+    /\n\/\/\u0020assets.utility2\.header\.js\u0020-\u0020start\n[\S\s]*?\n\/\/\u0020assets.utility2\.header\.js\u0020-\u0020end\
+n/
+), &quot;\n&quot; + local.assetsDict[&quot;/assets.utility2.header.js&quot;]);
+// autofix - assets.my_app.template.js
+code = local.<span class="apidocCodeKeywordSpan">stringMerge</span>(
+    code,
+    local.assetsDict[&quot;/assets.my_app.template.js&quot;].replace((
+        /my_app/g
+    ), file.split(&quot;.&quot;)[1]),
+    file !== &quot;README.md&quot; &amp;&amp; local.identity(
+        /\n\/\*\u0020istanbul\u0020instrument\u0020in\u0020package\u0020[\S\s]*?\n\/\*\u0020validateLineSortedReset\u0020\*\/\n/
     )
-].forEach(function (rgx) {
-    opt.dataTo = local.<span class="apidocCodeKeywordSpan">stringMerge</span>(opt.dataTo, opt.dataFrom, rgx);
-});
-// customize assets.utility2.rollup.js
-if (require(&quot;fs&quot;).existsSync(&quot;./assets.utility2.rollup.js&quot;)) {
-    opt.dataTo = opt.dataTo.replace(
-        &quot;    // || globalThis.utility2_rollup_old&quot;,
-        &quot;    || globalThis.utility2_rollup_old&quot;
-    ).replace(
 ...</pre></li>
     </ul>
 
@@ -9153,21 +8483,21 @@ case &quot;eachTrimEndComma&quot;:
     return template;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-let result;
-local.objectAssignDefault(opt, {
-    customize: local.nop,
-    dataFrom: require(&quot;fs&quot;).readFileSync(
-        &quot;lib.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;,
-        &quot;utf8&quot;
-    ),
-    dataTo: local.<span class="apidocCodeKeywordSpan">templateRenderMyApp</span>(
+            });
+        });
+    });
+};
+buildLib = function (resolve) {
+    src = fileDict[&quot;lib.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;];
+    // render lib.xxx.js
+    tgt = local.<span class="apidocCodeKeywordSpan">templateRenderMyApp</span>(
         local.assetsDict[&quot;/assets.my_app.template.js&quot;]
-    )
-});
-// search-and-replace - customize dataTo
-[
-    // customize top-level comment-description
-    (
+    );
+    tgtReplaceConditional(true, [
+        {
+            // customize top-level comment-description
+            merge: (
+                /\n\u0020\*\n(?:[\S\s]*?\n)?\u0020\*\/\n/
 ...</pre></li>
     </ul>
 
@@ -9237,7 +8567,7 @@ local.<span class="apidocCodeKeywordSpan">testMock</span>(mockList, function (on
         console.error(errCaught);
     }
     onError();
-}, local.onErrorThrow);
+}, onErrorThrow);
 ...</pre></li>
     </ul>
 
@@ -9281,24 +8611,22 @@ local.<span class="apidocCodeKeywordSpan">testMock</span>(mockList, function (on
     );
     // create test-report.html
     local.fsWriteFileWithMkdirpSync(
-        &quot;tmp/build/test-report.html&quot;,
-        local.testReportMerge(testReport),
-        &quot;wrote file - test-report - {{pathname}}&quot;
+        &quot;.tmp/build/test-report.html&quot;,
+        local.testReportMerge(testReport)
     );
     // create build.badge.svg
     local.fsWriteFileWithMkdirpSync(
-        &quot;tmp/build/build.badge.svg&quot;,
+        &quot;.tmp/build/build.badge.svg&quot;,
         local.assetsDict[&quot;/assets.buildBadge.template.svg&quot;].replace((
             /0000-00-00\u002000:00:00\u0020UTC\u0020-\u0020master\u0020-\u0020aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/g
         ), (
             new Date().toISOString().slice(0, 19).replace(&quot;T&quot;, &quot; &quot;)
             + &quot; - &quot; + process.env.CI_BRANCH + &quot; - &quot; + process.env.CI_COMMIT_ID
-        )),
-        &quot;wrote file - test-report - {{pathname}}&quot;
+        ))
     );
     // create test-report.badge.svg
     local.fsWriteFileWithMkdirpSync(
-        &quot;tmp/build/test-report.badge.svg&quot;,
+        &quot;.tmp/build/test-report.badge.svg&quot;,
         local.assetsDict[&quot;/assets.testReportBadge.template.svg&quot;].replace((
             // edit number of tests failed
             /999/g
@@ -9309,8 +8637,7 @@ local.<span class="apidocCodeKeywordSpan">testMock</span>(mockList, function (on
             testReport.testsFailed
             ? &quot;d00&quot;
             : &quot;0d0&quot;
-        )),
-        &quot;wrote file - test-report - {{pathname}}&quot;
+        ))
     );
     // if any test failed, then exit with non-zero exitCode
     console.error(
@@ -9581,7 +8908,12 @@ require(&quot;fs&quot;).writeFile(
     // mock proces.exit
     if (!local.isBrowser) {
         processExit = process.exit;
-        process.exit = local.nop;
+        process.exit = function (exitCode) {
+            local.eventListenerEmit(
+                &quot;utility2.testRunMock.process.exit&quot;,
+                exitCode | 0
+            );
+        };
     }
     // init modeTestCase
     local.modeTestCase = (
@@ -9637,11 +8969,7 @@ require(&quot;fs&quot;).writeFile(
         }
         local.eventListenerEmit(&quot;utility2.testRunProgressUpdate&quot;, testReport);
         // cleanup timerInterval
-        if (!testReport.testsPending) {
-            clearInterval(timerInterval);
-        }
-        // list pending testCase every 5000 ms
-        if (testPlatform.timeElapsed % 5000...</pre></li>
+        if (!tes...</pre></li>
     <li>example use<pre class="apidocCodePre">...
 // run shared js\-env code - init-before\n\
 (function () {\n\
@@ -9654,10 +8982,10 @@ local.<span class="apidocCodeKeywordSpan">testRunDefault</span>(local);\n\
 }());\n\
 \n\
 \n\
-\n\
 // run shared js\-env code - function\n\
 (function () {\n\
 return;\n\
+}());\n\
 ...</pre></li>
     </ul>
 
@@ -9682,7 +9010,7 @@ return;\n\
         local.middlewareInit,
         local.middlewareForwardProxy,
         local.middlewareAssetsCached,
-        local.middlewareJsonpStateInit,
+        local.middlewareUtility2StateInit,
         local.middlewareFileServer
     ];
     if (globalThis.utility2_serverHttp1 || (
@@ -10905,13 +10233,37 @@ module.exports[env.npm_package_nameLib] = (
   }
 
   if (parent &amp;&amp; parent.filename) {
-    const filename = trySelf(parent.filename, request);
-    if (filename) {
-      const cacheKey = request + &apos;\x00&apos; +
-          (paths.length === 1 ? paths[0] : paths.join(&apos;\x00&apos;));
-      Module._pathCache[cacheKey] = filename;
-      return filename;
+    if (request[0] === &apos;#&apos;) {
+      const pkg = readPackageScope(parent.filename) || {};
+      if (pkg.data &amp;&amp; pkg.data.imports !== null &amp;&amp;
+          pkg.data.imports !== undefined) {
+        try {
+          const resolved = packageInternalResolve(
+            request, pathToFileURL(parent.filename), cjsConditions);
+          return fileURLToPath(resolved);
+        } catch (err) {
+          if (err.code === &apos;ERR_MODULE_NOT_FOUND&apos;) {
+            // eslint-disable-next-line no-restricted-syntax
+            const err = new Error(`Cannot find module &apos;${request}&apos;`);
+            err.code = &apos;MODULE_NOT_FOUND&apos;;
+            err.path = path.resolve(pkg.path, &apos;package.json&apos;);
+            // TODO(BridgeAR): Add the requireStack as well.
+            throw err;
+          }
+          throw err;
+        }
+      }
     }
+  }
+
+  // Try module self resoultion first
+  const parentPath = trySelfParentPath(parent);
+  const selfResolved = trySelf(parentPath, request);
+  if (selfResolved) {
+    const cacheKey = request + &apos;\x00&apos; +
+         (paths.length === 1 ? paths[0] : ArrayPrototypeJoin(paths, &apos;\x00&apos;));
+    Module._pathCache[cacheKey] = selfResolved;
+    return selfResolved;
   }
 
   // Look up the filename first, since that&apos;s the cache key.
@@ -11232,7 +10584,7 @@ module.exports[env.npm_package_nameLib] = (
     globalThis.utility2_moduleExports
 );
 // init assets lib.xxx.js
-local.assetsDict[
+[
 ...</pre></li>
     </ul>
 
@@ -11483,21 +10835,21 @@ res.end(body);
     return xhr;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
+    }, {
+        url: &quot;/index.rollup.html&quot;
+    }, {
+        url: &quot;/utility2.state.init.js&quot;
     }
-].concat(opt.assetsList).forEach(function (elem) {
-    promiseList.push(new Promise(function (resolve) {
-        if (!elem) {
-            resolve();
-            return;
-        }
+].concat(assetsList).forEach(function (elem) {
+    promiseList2.push(new Promise(function (resolve) {
         require(&quot;http&quot;).<span class="apidocCodeKeywordSpan">request</span>((
             &quot;http://127.0.0.1:&quot; + process.env.PORT + elem.url
         ), function (res) {
-            let data;
-            data = [];
-            if (!(res.statusCode &lt; 400)) {
-                resolve();
-                return;
+            let file;
+            file = &quot;.tmp/build/app/&quot; + (elem.file || elem.url);
+            res.pipe(require(&quot;fs&quot;).createWriteStream(
+                file
+            ).on(&quot;close&quot;, function () {
 ...</pre></li>
     </ul>
 
@@ -11755,12 +11107,11 @@ module = opt.moduleExtraDict[opt.env.npm_package_name];
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertJsonEqual = function (aa, bb) {
+    <li>description and source-code<pre class="apidocCodePre">function assertJsonEqual(aa, bb) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -11778,7 +11129,7 @@ module = opt.moduleExtraDict[opt.env.npm_package_name];
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -11797,7 +11148,7 @@ module = opt.moduleExtraDict[opt.env.npm_package_name];
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, msg) {
+    <li>description and source-code<pre class="apidocCodePre">function assertOrThrow(passed, msg) {
 <span class="apidocCodeCommentSpan">/*
  * this function will throw &lt;msg&gt; if &lt;passed&gt; is falsy
  */
@@ -11987,7 +11338,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">coalesce = function (...argList) {
+    <li>description and source-code<pre class="apidocCodePre">function coalesce(...argList) {
 <span class="apidocCodeCommentSpan">/*
  * this function will coalesce null, undefined, or &quot;&quot; in &lt;argList&gt;
  */
@@ -12031,7 +11382,7 @@ try {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">identity = function (val) {
+    <li>description and source-code<pre class="apidocCodePre">function identity(val) {
 <span class="apidocCodeCommentSpan">/*
  * this function will return &lt;val&gt;
  */
@@ -12120,27 +11471,26 @@ local.objectAssignDefault(opt, {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">nop = function () {
+    <li>description and source-code<pre class="apidocCodePre">function nop() {
 <span class="apidocCodeCommentSpan">/*
  * this function will do nothing
  */
 </span>    return;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-   return template;
-};
+    local.isBrowser
+    ? {
+        env: {},
+        stdout: {}
+    }
+    : globalThis.process
+);
+local.<span class="apidocCodeKeywordSpan">nop</span>(escodegen, esprima, estraverse, esutils);
 
-local.testCase_nop_default = function (opt, onError) {
-/*
-* this function will test nop&apos;s default handling-behavior
-*/
-   local.<span class="apidocCodeKeywordSpan">nop</span>();
-   onError(undefined, opt);
-};
 
-local.testMock = function (mockList, onTestCase, onError) {
 /*
-* this function will mock objects in &lt;mockList&gt; when running &lt;onTestCase&gt;
+repo https://github.com/acornjs/acorn/tree/6.4.1
+committed 2020-03-09T10:38:41Z
 */
 ...</pre></li>
     </ul>
@@ -12154,7 +11504,7 @@ local.testMock = function (mockList, onTestCase, onError) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
+    <li>description and source-code<pre class="apidocCodePre">function objectAssignDefault(tgt = {}, src = {}, depth = 0) {
 <span class="apidocCodeCommentSpan">/*
  * this function will if items from &lt;tgt&gt; are null, undefined, or &quot;&quot;,
  * then overwrite them with items from &lt;src&gt;
@@ -12198,6 +11548,42 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
     require: function (file) {
         return local.tryCatchOnError(function () {
             return require(file);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.apidoc.onErrorThrow" id="apidoc.elem.utility2.apidoc.onErrorThrow">
+        function <span class="apidocSignatureSpan">utility2.apidoc.</span>onErrorThrow
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function onErrorThrow(err) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will throw &lt;err&gt; if exists
+ */
+</span>    if (err) {
+        throw err;
+    }
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+                process.argv[2] === &quot;base64&quot;
+                ? Buffer.concat(bufList).toString()
+                : Buffer.concat(bufList)
+            ),
+            key: process.argv[1],
+            mode: process.argv[2]
+        }, function (err, data) {
+            local.<span class="apidocCodeKeywordSpan">onErrorThrow</span>(err);
+            Object.setPrototypeOf(data, Buffer.prototype);
+            process.stdout.write(data);
+        });
+    });
+}(globalThis.globalLocal));
+&apos; &quot;$@&quot;
+)}
 ...</pre></li>
     </ul>
 
@@ -12665,12 +12051,11 @@ local.moduleDirname = function (module, pathList) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertJsonEqual = function (aa, bb) {
+    <li>description and source-code<pre class="apidocCodePre">function assertJsonEqual(aa, bb) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -12688,7 +12073,7 @@ local.moduleDirname = function (module, pathList) {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -12707,7 +12092,7 @@ local.moduleDirname = function (module, pathList) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, msg) {
+    <li>description and source-code<pre class="apidocCodePre">function assertOrThrow(passed, msg) {
 <span class="apidocCodeCommentSpan">/*
  * this function will throw &lt;msg&gt; if &lt;passed&gt; is falsy
  */
@@ -12897,7 +12282,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">coalesce = function (...argList) {
+    <li>description and source-code<pre class="apidocCodePre">function coalesce(...argList) {
 <span class="apidocCodeCommentSpan">/*
  * this function will coalesce null, undefined, or &quot;&quot; in &lt;argList&gt;
  */
@@ -13005,7 +12390,6 @@ try {
 </span>    let coverageInclude;
     let dirCoverage;
     let filePrefix;
-    let filesUnderRoot;
     let htmlAll;
     let nodeChildAdd;
     let nodeCreate;
@@ -13014,7 +12398,6 @@ try {
     let nodeRoot;
     let summaryDict;
     let tmp;
-    let tmpChildren;
     if (!(opt &amp;&amp; opt.coverage)) {
         return &quot;&quot;;
     }
@@ -13115,7 +12498,10 @@ try {
                     metric = node.metrics[key];
                     metric.total += child.metrics[key].total;
                     metric.covered += child.metrics[key].covered;
-                    metric.skipped += child.metrics[key].skipped;...</pre></li>
+                    metric.skipped += child.metrics[key].skipped;
+                });
+            });
+        }...</pre></li>
     <li>example use<pre class="apidocCodePre">...
     break;\n\
 }\n\
@@ -13149,13 +12535,13 @@ document.querySelector(\n\
  * this function will sync-read &lt;pathname&gt; with given &lt;type&gt; and &lt;dflt&gt;
  */
 </span>    let fs;
-    // do nothing if module does not exist
+    // do nothing if module not exists
     try {
         fs = require(&quot;fs&quot;);
+        pathname = require(&quot;path&quot;).resolve(pathname);
     } catch (ignore) {
         return dflt;
     }
-    pathname = require(&quot;path&quot;).resolve(pathname);
     // try to read pathname
     try {
         return (
@@ -13169,7 +12555,7 @@ document.querySelector(\n\
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
     stdio: [
-        &quot;ignore&quot;, &quot;ignore&quot;, 2
+        &quot;ignore&quot;, 1, 2
     ]
 });
 if (globalThis.utility2_rollup || env.npm_config_mode_start) {
@@ -13192,27 +12578,25 @@ if (globalThis.utility2_rollup || env.npm_config_mode_start) {
     <h2>
         <a href="#apidoc.elem.utility2.istanbul.fsWriteFileWithMkdirpSync" id="apidoc.elem.utility2.istanbul.fsWriteFileWithMkdirpSync">
         function <span class="apidocSignatureSpan">utility2.istanbul.</span>fsWriteFileWithMkdirpSync
-        <span class="apidocSignatureSpan">(pathname, data, msg)</span>
+        <span class="apidocSignatureSpan">(pathname, data)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">fsWriteFileWithMkdirpSync = function (pathname, data, msg) {
+    <li>description and source-code<pre class="apidocCodePre">fsWriteFileWithMkdirpSync = function (pathname, data) {
 <span class="apidocCodeCommentSpan">/*
  * this function will sync write &lt;data&gt; to &lt;pathname&gt; with &quot;mkdir -p&quot;
  */
 </span>    let fs;
-    let success;
-    // do nothing if module does not exist
+    // do nothing if module not exists
     try {
         fs = require(&quot;fs&quot;);
+        pathname = require(&quot;path&quot;).resolve(pathname);
     } catch (ignore) {
         return;
     }
-    pathname = require(&quot;path&quot;).resolve(pathname);
     // try to write pathname
     try {
         fs.writeFileSync(pathname, data);
-        success = true;
     } catch (ignore) {
         // mkdir -p
         fs.mkdirSync(require(&quot;path&quot;).dirname(pathname), {
@@ -13220,29 +12604,26 @@ if (globalThis.utility2_rollup || env.npm_config_mode_start) {
         });
         // re-write pathname
         fs.writeFileSync(pathname, data);
-        success = true;
     }
-    if (success &amp;&amp; msg) {
-        console.error(msg.replace(&quot;{{pathname}}&quot;, pathname));
-    }
-    return success;
+    console.error(&quot;fsWriteFileWithMkdirpSync - &quot; + pathname);
+    return true;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-        &quot;    // || require(\&quot;./assets.utility2.rollup.js\&quot;)&quot;,
-        &quot;    || require(\&quot;./assets.utility2.rollup.js\&quot;)&quot;
-    );
-}
-// save lib
-result = opt.dataTo;
-if (!process.env.npm_config_mode_coverage) {
-    local.<span class="apidocCodeKeywordSpan">fsWriteFileWithMkdirpSync</span>(
-        &quot;lib.&quot; + process.env.npm_package_nameLib + &quot;.js&quot;,
-        result,
-        &quot;wrote file - lib - {{pathname}}&quot;
-    );
-}
-opt.customize(opt);
-onError();
+                testPlatform.testsPassed + &quot; passed &quot;
+            ).padStart(16, &quot; &quot;)
+            + &quot;     |\n&quot; + new Array(56).join(&quot;-&quot;)
+        );
+    }).join(&quot;\n&quot;) + &quot;\n&quot;
+);
+// create test-report.html
+local.<span class="apidocCodeKeywordSpan">fsWriteFileWithMkdirpSync</span>(
+    &quot;.tmp/build/test-report.html&quot;,
+    local.testReportMerge(testReport)
+);
+// create build.badge.svg
+local.fsWriteFileWithMkdirpSync(
+    &quot;.tmp/build/build.badge.svg&quot;,
+    local.assetsDict[&quot;/assets.buildBadge.template.svg&quot;].replace((
 ...</pre></li>
     </ul>
 
@@ -13255,7 +12636,7 @@ onError();
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">identity = function (val) {
+    <li>description and source-code<pre class="apidocCodePre">function identity(val) {
 <span class="apidocCodeCommentSpan">/*
  * this function will return &lt;val&gt;
  */
@@ -13337,10 +12718,11 @@ cliDict._version = cliDict._version || function () {
 </span>    // 1. normalize &lt;file&gt;
     file = path.resolve(file);
     // 2. save &lt;code&gt; to __coverageInclude__[&lt;file&gt;] for future html-report
-    globalThis.__coverageInclude__ = globalThis.__coverageInclude__ || {};
-    globalThis.__coverageInclude__[file] = 1;
     // 3. return instrumented-code
-    return new local.Instrumenter({
+    return (
+        &quot;globalThis.__coverageInclude__ = globalThis.__coverageInclude__ || {};&quot;
+        + &quot;globalThis.__coverageInclude__[&quot; + JSON.stringify(file) + &quot;] = 1;\n&quot;
+    ) + new local.Instrumenter({
         embedSource: true,
         esModules: true,
         noAutoWrap: true
@@ -13374,27 +12756,26 @@ try {\n\
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">nop = function () {
+    <li>description and source-code<pre class="apidocCodePre">function nop() {
 <span class="apidocCodeCommentSpan">/*
  * this function will do nothing
  */
 </span>    return;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-   return template;
-};
+    local.isBrowser
+    ? {
+        env: {},
+        stdout: {}
+    }
+    : globalThis.process
+);
+local.<span class="apidocCodeKeywordSpan">nop</span>(escodegen, esprima, estraverse, esutils);
 
-local.testCase_nop_default = function (opt, onError) {
-/*
-* this function will test nop&apos;s default handling-behavior
-*/
-   local.<span class="apidocCodeKeywordSpan">nop</span>();
-   onError(undefined, opt);
-};
 
-local.testMock = function (mockList, onTestCase, onError) {
 /*
-* this function will mock objects in &lt;mockList&gt; when running &lt;onTestCase&gt;
+repo https://github.com/acornjs/acorn/tree/6.4.1
+committed 2020-03-09T10:38:41Z
 */
 ...</pre></li>
     </ul>
@@ -13408,7 +12789,7 @@ local.testMock = function (mockList, onTestCase, onError) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
+    <li>description and source-code<pre class="apidocCodePre">function objectAssignDefault(tgt = {}, src = {}, depth = 0) {
 <span class="apidocCodeCommentSpan">/*
  * this function will if items from &lt;tgt&gt; are null, undefined, or &quot;&quot;,
  * then overwrite them with items from &lt;src&gt;
@@ -13452,6 +12833,42 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
     require: function (file) {
         return local.tryCatchOnError(function () {
             return require(file);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.istanbul.onErrorThrow" id="apidoc.elem.utility2.istanbul.onErrorThrow">
+        function <span class="apidocSignatureSpan">utility2.istanbul.</span>onErrorThrow
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function onErrorThrow(err) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will throw &lt;err&gt; if exists
+ */
+</span>    if (err) {
+        throw err;
+    }
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+                process.argv[2] === &quot;base64&quot;
+                ? Buffer.concat(bufList).toString()
+                : Buffer.concat(bufList)
+            ),
+            key: process.argv[1],
+            mode: process.argv[2]
+        }, function (err, data) {
+            local.<span class="apidocCodeKeywordSpan">onErrorThrow</span>(err);
+            Object.setPrototypeOf(data, Buffer.prototype);
+            process.stdout.write(data);
+        });
+    });
+}(globalThis.globalLocal));
+&apos; &quot;$@&quot;
+)}
 ...</pre></li>
     </ul>
 
@@ -14000,7 +13417,7 @@ case &quot;eachTrimEndComma&quot;:
         nodeStart = node.range[0],
         hint;
     this.currentState.currentHint = null;
-    // hack-coverage - allow top-level istanbul-ignore-next
+    // hack-istanbul - allow top-level istanbul-ignore-next
     if (node.type === &quot;Program&quot;) { return; }
     while (i &lt; hints.length) {
         hint = hints[i];
@@ -14356,7 +13773,7 @@ case &quot;eachTrimEndComma&quot;:
         code = LEADER_WRAP + code + TRAILER_WRAP;
     }
     try {
-        // hack-coverage - acorn opt
+        // hack-istanbul - inline acorn-opt
         let opt = {
             locations: true,
             onComment: [],
@@ -14818,15 +14235,12 @@ Reference.prototype.remove = function remove() {
     moduleExtensionsJs = tmp._extensions[&quot;.js&quot;];
     tmp._extensions[&quot;.js&quot;] = function (module, file) {
         if (typeof file === &quot;string&quot; &amp;&amp; (
-            file.indexOf(process.env.npm_config_mode_coverage_dir) === 0 || (
-                file.indexOf(process.cwd() + require(&quot;path&quot;).sep) === 0
-                &amp;&amp; (
-                    process.env.npm_config_mode_coverage === &quot;node_modules&quot;
-                    || file.indexOf(
-                        require(&quot;path&quot;).resolve(&quot;node_modules&quot;)
-                        + require(&quot;path&quot;).sep
-                    ) !== 0
-                )
+            file.indexOf(process.cwd() + require(&quot;path&quot;).sep) === 0 &amp;&amp; (
+                process.env.npm_config_mode_coverage === &quot;node_modules&quot;
+                || file.indexOf(
+                    require(&quot;path&quot;).resolve(&quot;node_modules&quot;)
+                    + require(&quot;path&quot;).sep
+                ) !== 0
             )
         )) {
             module._compile(local.instrumentInPackage(
@@ -14968,12 +14382,11 @@ elemList: Object.keys(module).filter(function (key) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertJsonEqual = function (aa, bb) {
+    <li>description and source-code<pre class="apidocCodePre">function assertJsonEqual(aa, bb) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -14991,7 +14404,7 @@ elemList: Object.keys(module).filter(function (key) {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -15010,7 +14423,7 @@ elemList: Object.keys(module).filter(function (key) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, msg) {
+    <li>description and source-code<pre class="apidocCodePre">function assertOrThrow(passed, msg) {
 <span class="apidocCodeCommentSpan">/*
  * this function will throw &lt;msg&gt; if &lt;passed&gt; is falsy
  */
@@ -15200,7 +14613,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">coalesce = function (...argList) {
+    <li>description and source-code<pre class="apidocCodePre">function coalesce(...argList) {
 <span class="apidocCodeCommentSpan">/*
  * this function will coalesce null, undefined, or &quot;&quot; in &lt;argList&gt;
  */
@@ -15244,7 +14657,7 @@ try {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">identity = function (val) {
+    <li>description and source-code<pre class="apidocCodePre">function identity(val) {
 <span class="apidocCodeCommentSpan">/*
  * this function will return &lt;val&gt;
  */
@@ -15272,511 +14685,13 @@ cliDict._version = cliDict._version || function () {
 
 
     <h2>
-        <a href="#apidoc.elem.utility2.jslint.jslintAndPrint" id="apidoc.elem.utility2.jslint.jslintAndPrint">
-        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintAndPrint
-        <span class="apidocSignatureSpan">(code = &quot;&quot;, file = &quot;undefined&quot;, opt = {})</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">jslintAndPrint = function (code = &quot;&quot;, file = &quot;undefined&quot;, opt = {}) {
-<span class="apidocCodeCommentSpan">/*
- * this function will jslint/csslint &lt;code&gt; and print any errors to stderr
- */
-</span>    let ii;
-    let tmp;
-    if (!(opt &amp;&amp; opt.gotoState)) {
-        local.jslintResult = {
-            gotoState: 0
-        };
-    }
-    opt = Object.assign(local.jslintResult, opt);
-    opt.gotoState += 1;
-    switch (opt.gotoState) {
-    // jslint - init
-    case 1:
-        // cleanup
-        opt.errList = [];
-        opt.errMsg = &quot;&quot;;
-        // preserve lineno
-        if (opt.iiStart) {
-            // optimization - efficiently count number of newlines
-            // https://jsperf.com/regexp-counting-2/8
-            opt.lineOffset |= 0;
-            ii = 0;
-            while (true) {
-                ii = code.indexOf(&quot;\n&quot;, ii);
-                if (ii === 0 || ii &gt; opt.iiStart) {
-                    break;
-                }
-                ii += 1;
-                opt.lineOffset += 1;
-            }
-            code = code.slice(opt.iiStart, opt.iiEnd || code.length);
-        }
-        switch (opt.fileType0) {
-        // de-embed-js - &apos;\\n\\\n...\\n\\\n&apos;
-        case &quot;.\\n\\&quot;:
-            // rgx - remove \\n\\
-            code = code.replace((
-                /\\n\\$|\\(.)/gm
-            ), function (ignore, match1) {
-                return match1 || &quot;&quot;;
-            });
-            break;
-        // de-embed-js - &apos;\n...\n&apos;
-        case &quot;.sh&quot;:
-            // rgx - convert &apos;&quot;&apos;&quot;&apos; to &apos;
-            code = code.replace((
-                /&apos;&quot;&apos;&quot;&apos;/g
-            ), &quot;&apos;&quot;);
-            break;
-        }
-        // init
-        opt = Object.assign(opt, {
-            &quot;.css&quot;: (
-                /^\/\*csslint\b|(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/$)/m
-            ),
-            &quot;.html&quot;: (
-                /^\/\*csslint\b|(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/$)/m
-            ),
-            &quot;.js&quot;: (
-                /^\/\*jslint\b|(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/$)/m
-            ),
-            &quot;.json&quot;: (
-                /^\s*?(?:\[|\{)/
-            ),
-            &quot;.md&quot;: (
-                /(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/$)/m
-            ),
-            &quot;.sh&quot;: (
-                /(^#\u0020jslint\u0020utility2:true$)/m
-            ),
-            code0: code,
-            fileType: (
-                /\.\w+?$|$/m
-            ).exec(file)[0]
-        });
-        // jslint - .json
-        if (opt.fileType === &quot;.js&quot; &amp;&amp; opt[&quot;.json&quot;].test(code)) {
-            opt.fileType = &quot;.json&quot;;
-        }
-        try {
-            opt.conditionalPassed = opt[opt.fileType].exec(code);
-        } catch (ignore) {}
-        opt.utility2 = (
-            opt.conditionalPassed &amp;&amp; opt.conditionalPassed[1]
-        ) || opt.autofix;
-        if (
-            opt.conditional
-            &amp;&amp; (!opt.conditionalPassed || opt.coverage)
-        ) {
-            break;
-        }
-        opt.gotoState = 10;
-        break;
-    // jslint - autofix
-    case 11:
-        code = local.jslintAutofix(code, file, opt);
-        local.jslintResult = opt;
-        break;
-    // jslint - csslint and jslint
-    case 12:
-        // restore lineOffset
-        code = &quot;\n&quot;.repeat(opt.lineOffset | 0) + code;
-        switch (opt.fileType) {
-        case &quot;.css&quot;:
-            // csslint
-            Object.assign(opt, local.CSSLint.verify(code));
-            // init errList
-            opt.errList = opt.messages.map(function (err) {
-                err.column = err.col;
-                err.message = (
-                    err.type + &quot; - &quot; + err.rule.id + &quot; - &quot; + err.message
-                    + &quot;\n    &quot; + err.rule.desc
-                );
-                return err;
-            });
-            break;
-        case &quot;.html&quot;:...</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-).replace(
-    new RegExp(&quot;require\\(.&quot; + env.npm_package_nameOriginal + &quot;.\\)&quot;),
-    &quot;globalThis.utility2_moduleExports&quot;
-);
-// init example.js
-tmp = require(&quot;path&quot;).resolve(&quot;example.js&quot;);
-// jslint code
-local.<span class="apidocCodeKeywordSpan">jslintAndPrint</span>(code, tmp);
-// instrument code
-code = local.istanbulInstrumentInPackage(code, tmp);
-// init module.exports
-module = new local.Module(tmp);
-require.cache[tmp] = module;
-module._compile(code, tmp);
-// init exports
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.jslint.jslintAndPrintDir" id="apidoc.elem.utility2.jslint.jslintAndPrintDir">
-        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintAndPrintDir
-        <span class="apidocSignatureSpan">(dir, opt)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">async function (dir, opt) {
-<span class="apidocCodeCommentSpan">/*
- * this function will jslint files in shallow &lt;dir&gt;
- */
-</span>    let errCnt;
-    errCnt = 0;
-    await Promise.all((
-        await require(&quot;fs&quot;).promises.readdir(require(&quot;path&quot;).resolve(dir))
-    ).map(async function (file) {
-        let data;
-        let timeStart;
-        timeStart = Date.now();
-        file = require(&quot;path&quot;).resolve(file);
-        switch ((
-            /\.\w+?$|$/m
-        ).exec(file)[0]) {
-        case &quot;.css&quot;:
-        case &quot;.html&quot;:
-        case &quot;.js&quot;:
-        case &quot;.json&quot;:
-        case &quot;.md&quot;:
-        case &quot;.sh&quot;:
-            if ((
-                /\b(?:assets\.app\.js|lock|min|raw|rollup)\b/
-            ).test(file)) {
-                return;
-            }
-            // jslint file
-            data = await require(&quot;fs&quot;).promises.readFile(file, &quot;utf8&quot;);
-            local.jslintAndPrint(data, file, opt);
-            errCnt += local.jslintResult.errList.length;
-            console.error(
-                &quot;jslint - &quot; + (Date.now() - timeStart) + &quot;ms - &quot; + file
-            );
-            break;
-        }
-    }));
-    return Math.min(errCnt, 255);
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-                }).end();
-            }));
-        });
-        // jslint app
-        Promise.all(promiseList).then(function () {
-            local.local.childProcessEval((
-                local.assetsDict[&quot;/assets.utility2.lib.jslint.js&quot;]
-                + &quot;;module.exports.<span class="apidocCodeKeywordSpan">jslintAndPrintDir</span>(\&quot;.\&quot;,&quot;
-                + &quot;{conditional:true});&quot;
-            ), {
-                cwd: &quot;tmp/build/app&quot;
-            }).then(onError);
-        });
-    });
-};
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.jslint.jslintAutofix" id="apidoc.elem.utility2.jslint.jslintAutofix">
-        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintAutofix
-        <span class="apidocSignatureSpan">(code, file, opt)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">jslintAutofix = function (code, file, opt) {
-<span class="apidocCodeCommentSpan">/*
- * this function will jslint-autofix &lt;code&gt;
- */
-</span>    let code0;
-    let code2;
-    let dataList;
-    let ignoreList;
-    let ii;
-    let rgx1;
-    let rgx2;
-    let tmp;
-    // autofix-all
-    if (opt.autofix) {
-        // autofix-all - normalize local-function
-        if (
-            globalThis.utility2
-            &amp;&amp; typeof globalThis.utility2.jslintAutofixLocalFunction
-            === &quot;function&quot;
-        ) {
-            code = globalThis.utility2.jslintAutofixLocalFunction(code, file);
-        }
-        // autofix-all - remove trailing-whitespace
-        code = code.replace((
-            /\u0020+$/gm
-        ), &quot;&quot;);
-        // autofix-all - remove leading-whitespace before )]}
-        code = code.replace((
-            /\n+?(\n\u0020*?[)\]}])/g
-        ), &quot;$1&quot;);
-        // autofix-all - normalize newlines to \n\n
-        code = code.replace((
-            /([^\n])\n{3}([^\n])/g
-        ), &quot;$1\n\n$2&quot;);
-        // autofix-all - normalize newlines to \n\n\n\n
-        code = code.replace((
-            /\n{5,}/g
-        ), &quot;\n\n\n\n&quot;);
-        // autofix-all - recurse &lt;script&gt;...&lt;/script&gt;, &lt;style&gt;...&lt;/style&gt;
-        code = code.replace((
-            /(^\/\*\u0020jslint\u0020utility2:true\u0020\*\/\\n\\\n(?:^.*?\\n\\\n)*?)(&apos;;$|&lt;\/script&gt;\\n\\$|&lt;\/style&gt;\\n\\$)/gm
-        ), function (ignore, match1, match2, ii) {
-            return local.jslintAndPrint(
-                code,
-                file + (
-                    match2.indexOf(&quot;style&quot;) &gt; -1
-                    ? &quot;.&lt;style&gt;.css&quot;
-                    : &quot;.&lt;script&gt;.js&quot;
-                ),
-                Object.assign({}, opt, {
-                    fileType0: &quot;.\\n\\&quot;,
-                    iiEnd: ii + match1.length,
-                    iiStart: ii,
-                    gotoState: 0
-                })
-            ) + match2;
-        });
-    }
-    switch (opt.autofix &amp;&amp; opt.fileType) {
-    case &quot;.css&quot;:
-        break;
-    case &quot;.html&quot;:
-        // autofix-html - recurse &lt;script&gt;...&lt;/script&gt;, &lt;style&gt;...&lt;/style&gt;
-        code = code.replace((
-            /^(\/\*\u0020jslint\u0020utility2:true\u0020\*\/\n[\S\s]*?\n)(&lt;\/(?:script|style)&gt;)$/gm
-        ), function (ignore, match1, match2, ii) {
-            return local.jslintAndPrint(
-                code,
-                file + (
-                    match2.indexOf(&quot;style&quot;) &gt;= 0
-                    ? &quot;.&lt;style&gt;.css&quot;
-                    : &quot;.&lt;script&gt;.js&quot;
-                ),
-                Object.assign({}, opt, {
-                    fileType0: opt.fileType,
-                    iiEnd: ii + match1.length,
-                    iiStart: ii,
-                    gotoState: 0
-                })
-            ) + match2;
-        });
-        break;
-    case &quot;.js&quot;:
-    case &quot;.json&quot;:
-        // autofix-js - demux code to [code, ignoreList]
-        ignoreList = [];
-        code = code.replace((
-            /^\u0020*?\/\*\u0020jslint\u0020ignore:start\u0020\*\/$[\S\s]*?^\/\*\u0020jslint\u0020ignore:end\u0020\*\/$/gm
-        ), function (match0) {
-            ignoreList.push(match0);
-            return &quot;/* jslint ignore:start:end */&quot;;
-        });
-        // autofix-js - escape non-ascii
-        code = code.replace((
-            /[^\n\r\t\u0020-\u007e]/g
-        ), function (match0) {
-            return &quot;\\u&quot; + (
-                &quot;0000&quot;
-                + match0.charCodeAt(0).toString(16)
-            ).slice(-4);
-        });
-        // autofix-js - demux code2 to [code2, ignoreList]
-        code2 = &quot;&quot;;
-        dataList = [];
-        ii = 0;
-        rgx1 = (
-            /\\.|\/\*|\*\/|\/\/!!|\/\/|[&quot;&apos;\/`]|$/gm
-        );
-        // parse rgx
-        // https://github.com/douglascrockford/JSLint/blob/557afd32bcaa35480d31a86f02d3a8c06a4e5b5c/jslin...</pre></li>
-    <li>example use<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.jslint.jslintGetColumnLine" id="apidoc.elem.utility2.jslint.jslintGetColumnLine">
-        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintGetColumnLine
-        <span class="apidocSignatureSpan">(code, ii)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">jslintGetColumnLine = function (code, ii) {
-<span class="apidocCodeCommentSpan">/*
- * this function will transform &lt;code&gt; and &lt;ii&gt; to {column, line, evidence}
- */
-</span>    let column;
-    let evidence;
-    let line;
-    evidence = code.slice(0, ii).split(&quot;\n&quot;);
-    line = evidence.length - 1;
-    column = evidence[line].length;
-    evidence = evidence[line] + code.slice(ii, ii + 100).split(&quot;\n&quot;)[0];
-    return {
-        column,
-        evidence,
-        line
-    };
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.jslint.jslintUtility2" id="apidoc.elem.utility2.jslint.jslintUtility2">
-        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintUtility2
-        <span class="apidocSignatureSpan">(code, ignore, opt)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">jslintUtility2 = function (code, ignore, opt) {
-<span class="apidocCodeCommentSpan">/*
- * this function will jslint &lt;code&gt; with utiity2-specific rules
- */
-</span>    let code2;
-    let err;
-    let indent;
-    let previous;
-    // jslintUtility2 - all
-    if (opt.utility2) {
-        code2 = code;
-        // ignore start to end
-        code2 = code2.replace((
-            /^\/\*\u0020jslint\u0020ignore:start\u0020\*\/$[\S\s]+?^\/\*\u0020jslint\u0020ignore:end\u0020\*\/$/gm
-        ), function (match0) {
-            // preserve lineno
-            return match0.replace((
-                /.+/g
-            ), &quot;&quot;);
-        });
-        // lint whitespace
-        code2.replace((
-            /^\u0020+?(?:\*|\/\/!!)|^\u0020+|[\r\t]/gm
-        ), function (match0, ii) {
-            switch (match0.slice(-1)) {
-            case &quot; &quot;:
-                if (match0.length % 4 === 0) {
-                    return &quot;&quot;;
-                }
-                err = {
-                    message: &quot;non 4-space indent&quot;
-                };
-                break;
-            case &quot;\r&quot;:
-                err = {
-                    message: &quot;unexpected \\r&quot;
-                };
-                break;
-            case &quot;\t&quot;:
-                err = {
-                    message: &quot;unexpected \\t&quot;
-                };
-                break;
-            default:
-                return &quot;&quot;;
-            }
-            Object.assign(err, local.jslintGetColumnLine(code2, ii));
-            opt.errList.push({
-                column: err.column + 1,
-                evidence: JSON.stringify(err.evidence),
-                line: err.line + 1,
-                message: err.message
-            });
-            return &quot;&quot;;
-        });
-    }
-    switch (opt.utility2 &amp;&amp; opt.fileType) {
-    // jslintUtility2 - .css
-    case &quot;.css&quot;:
-        // ignore comment
-        code2 = code2.replace((
-            /^\u0020*?\/\*[\S\s]*?\*\/\u0020*?$/gm
-        ), function (match0) {
-            // preserve lineno
-            return match0.replace((
-                /.+/g
-            ), &quot;&quot;);
-        });
-        code2.replace((
-            /\S\u0020{2}|\u0020,|^\S.*?[,;{}]./gm
-        ), function (match0, ii) {
-            switch (match0.slice(-2)) {
-            case &quot;  &quot;:
-                err = {
-                    colOffset: 2,
-                    message: &quot;unexpected multi-whitespace&quot;
-                };
-                break;
-            case &quot; ,&quot;:
-                err = {
-                    colOffset: 1,
-                    message: &quot;unexpected whitespace before comma&quot;
-                };
-                break;
-            default:
-                err = {
-                    colOffset: match0.length,
-                    message: &quot;unexpected multiline-statement&quot;
-                };
-            }
-            Object.assign(err, local.jslintGetColumnLine(code2, ii));
-            opt.errList.push({
-                column: err.column + err.colOffset,
-                evidence: JSON.stringify(err.evidence),
-                line: err.line + 1,
-                message: err.message
-            });
-            return &quot;&quot;;
-        });
-        // validate line-sorted - css-selector
-        previous = &quot;&quot;;
-        code2 = code2.replace((
-            /^.|[#.&gt;]|[,}]$|\u0020\{$|\b\w/gm
-        ), function (match0) {
-            switch (match0) {
-            case &quot; &quot;:
-                return match0;
-            case &quot; {&quot;:
-                return &quot;\u0001&quot; + match0;
-            case &quot;#&quot;:
-                return &quot;\u0002&quot; + match0;
-            case &quot;,&quot;:
-                return &quot;\u0000&quot; + match0;
-            case &quot;.&quot;:
-                return &quot;\u0001&quot; + match0;
-            case &quot;&gt;&quot;:
-                return &quot;\u0003&quot; + match0;
-            case &quot;}&quot;:
-                return match0;
-            default:...</pre></li>
-    <li>example use<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.jslint.jslint_export" id="apidoc.elem.utility2.jslint.jslint_export">
-        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslint_export
+        <a href="#apidoc.elem.utility2.jslint.jslint0" id="apidoc.elem.utility2.jslint.jslint0">
+        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslint0
         <span class="apidocSignatureSpan">( source = &quot;&quot;, option_object = empty()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">jslint_export = function ( source = &quot;&quot;, option_object = empty(),
+    <li>description and source-code<pre class="apidocCodePre">jslint0 = function ( source = &quot;&quot;, option_object = empty(),
     global_array = []
 ) {
     // hack-jslint - init lines_extra
@@ -15887,6 +14802,10 @@ module._compile(code, tmp);
             });
         }
         early_stop = false;
+        // hack-jslint - throw_error
+        if (option.throw_error) {
+            throw new Error();
+        }
     } catch (e) {
         // hack-jslint - early_stop
         e.early_stop = true;
@@ -15898,17 +14817,132 @@ module._compile(code, tmp);
     }
     // hack-jslint - autofix
     warnings = warnings.filter(function (warning) {
-        let indent;
-        warning.source = warning.source || &quot;&quot;;
-        warning.a = warning.a || warning.source.trim();
+        let aa;
+        let bb;
+        let tmp;
+        if (!lines_extra[warning.line]) {
+            return true;
+        }
+        aa = lines_extra[warning.line].source;
+        warning.a = warning.a || aa.trim();
         switch (option.autofix &amp;&amp; warning.code) {
         // expected_a_at_b_c: &quot;Expected &apos;{a}&apos; at column {b}, not column {c}.&quot;,
-        case &quot;expected_a_at_b_c&quot;:
-            // autofix indent - increment
-            indent = warning.b - warning.c;
-            if (indent &gt;= 0) {
-                lines_extra[warning.line].source_autofixed = (...</pre></li>
+        case &quot;expected_a_at_b_c&quo...</pre></li>
     <li>example use<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.jslint.jslintAndPrint" id="apidoc.elem.utility2.jslint.jslintAndPrint">
+        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintAndPrint
+        <span class="apidocSignatureSpan">(code, file = &quot;undefined&quot;, opt = {})</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">jslintAndPrint = function (code, file = &quot;undefined&quot;, opt = {}) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will jslint-autofix &lt;code&gt;
+ */
+</span>    return jslintRecurse(code, file, opt, {});
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+).replace(
+    new RegExp(&quot;require\\(.&quot; + env.npm_package_nameOriginal + &quot;.\\)&quot;),
+    &quot;globalThis.utility2_moduleExports&quot;
+);
+// init example.js
+tmp = require(&quot;path&quot;).resolve(&quot;example.js&quot;);
+// jslint code
+local.<span class="apidocCodeKeywordSpan">jslintAndPrint</span>(code, tmp);
+// instrument code
+code = local.istanbulInstrumentInPackage(code, tmp);
+// init module.exports
+module = new local.Module(tmp);
+require.cache[tmp] = module;
+module._compile(code, tmp);
+// init exports
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.jslint.jslintAndPrintDir" id="apidoc.elem.utility2.jslint.jslintAndPrintDir">
+        function <span class="apidocSignatureSpan">utility2.jslint.</span>jslintAndPrintDir
+        <span class="apidocSignatureSpan">(dir, opt, onError)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">jslintAndPrintDir = function (dir, opt, onError) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will jslint files in &lt;dir&gt;
+ */
+</span>    let errCnt;
+    errCnt = 0;
+    onError = onError || function (err) {
+        process.exit(Math.min((err &amp;&amp; err.message) | 0, 127));
+    };
+    dir = require(&quot;path&quot;).resolve(dir) + require(&quot;path&quot;).sep;
+    require(&quot;fs&quot;).readdir(dir, function (err, fileList) {
+        local.onErrorThrow(err);
+        Promise.all(fileList.map(function (file) {
+            return new Promise(function (resolve) {
+                let timeStart;
+                timeStart = Date.now();
+                file = dir + file;
+                switch ((
+                    /\.\w+?$|$/m
+                ).exec(file)[0]) {
+                case &quot;.css&quot;:
+                case &quot;.html&quot;:
+                case &quot;.js&quot;:
+                case &quot;.json&quot;:
+                case &quot;.md&quot;:
+                case &quot;.sh&quot;:
+                    if ((
+                        /\b(?:assets\.app\.js|lock|min|raw|rollup)\b/
+                    ).test(file)) {
+                        resolve();
+                        return;
+                    }
+                    // jslint file
+                    require(&quot;fs&quot;).readFile(file, &quot;utf8&quot;, function (err, data) {
+                        local.onErrorThrow(err);
+                        local.jslintAndPrint(data, file, opt);
+                        errCnt += local.jslintResult.errList.length;
+                        console.error(
+                            &quot;jslint - &quot; + (Date.now() - timeStart) + &quot;ms - &quot;
+                            + file
+                        );
+                        resolve();
+                    });
+                    return;
+                }
+                resolve();
+            });
+        })).then(function () {
+            onError(errCnt &amp;&amp; new Error(errCnt));
+        });
+    });
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+}
+// start repl-debugger
+local.replStart();
+// jslint process.cwd()
+require(&quot;child_process&quot;).spawn(&quot;node&quot;, [
+    &quot;-e&quot;, (
+        &quot;require(&quot; + JSON.stringify(__filename)
+        + &quot;).jslint.<span class="apidocCodeKeywordSpan">jslintAndPrintDir</span>(&quot; + JSON.stringify(process.cwd())
+        + &quot;, {autofix:&quot; + (!env.npm_config_mode_test)
+        + &quot;,conditional:true});&quot;
+    )
+], {
+    env: Object.assign({}, env, {
+        npm_config_mode_lib: &quot;1&quot;
+    }),
+...</pre></li>
     </ul>
 
 
@@ -15920,27 +14954,26 @@ module._compile(code, tmp);
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">nop = function () {
+    <li>description and source-code<pre class="apidocCodePre">function nop() {
 <span class="apidocCodeCommentSpan">/*
  * this function will do nothing
  */
 </span>    return;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-   return template;
-};
+    local.isBrowser
+    ? {
+        env: {},
+        stdout: {}
+    }
+    : globalThis.process
+);
+local.<span class="apidocCodeKeywordSpan">nop</span>(escodegen, esprima, estraverse, esutils);
 
-local.testCase_nop_default = function (opt, onError) {
-/*
-* this function will test nop&apos;s default handling-behavior
-*/
-   local.<span class="apidocCodeKeywordSpan">nop</span>();
-   onError(undefined, opt);
-};
 
-local.testMock = function (mockList, onTestCase, onError) {
 /*
-* this function will mock objects in &lt;mockList&gt; when running &lt;onTestCase&gt;
+repo https://github.com/acornjs/acorn/tree/6.4.1
+committed 2020-03-09T10:38:41Z
 */
 ...</pre></li>
     </ul>
@@ -15954,7 +14987,7 @@ local.testMock = function (mockList, onTestCase, onError) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
+    <li>description and source-code<pre class="apidocCodePre">function objectAssignDefault(tgt = {}, src = {}, depth = 0) {
 <span class="apidocCodeCommentSpan">/*
  * this function will if items from &lt;tgt&gt; are null, undefined, or &quot;&quot;,
  * then overwrite them with items from &lt;src&gt;
@@ -16014,8 +15047,7 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
 <span class="apidocCodeCommentSpan">/*
  * this function will recursively deep-copy &lt;obj&gt; with keys sorted
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -16033,7 +15065,7 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     return objectDeepCopyWithKeysSorted(obj);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
@@ -16041,17 +15073,53 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
     test: &quot;./npm_scripts.sh&quot;,
     utility2: &quot;./npm_scripts.sh&quot;
 };
-// save package.json
-local.fsWriteFileWithMkdirpSync(
+// write package.json
+require(&quot;fs&quot;).writeFileSync(
     &quot;package.json&quot;,
     JSON.stringify(local.<span class="apidocCodeKeywordSpan">objectDeepCopyWithKeysSorted</span>(
-        opt.packageJson
-    ), undefined, 4) + &quot;\n&quot;,
-    &quot;wrote file - package.json - {{pathname}}&quot;
+        packageJson
+    ), undefined, 4) + &quot;\n&quot;
 );
-// re-render dataTo
-opt.dataTo = local.templateRenderMyApp(
+writeFileLog(&quot;package.json&quot;);
+// re-render README.md
+tgt = local.templateRenderMyApp(
     local.assetsDict[&quot;/assets.readme.template.md&quot;]
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.jslint.onErrorThrow" id="apidoc.elem.utility2.jslint.onErrorThrow">
+        function <span class="apidocSignatureSpan">utility2.jslint.</span>onErrorThrow
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function onErrorThrow(err) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will throw &lt;err&gt; if exists
+ */
+</span>    if (err) {
+        throw err;
+    }
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+                process.argv[2] === &quot;base64&quot;
+                ? Buffer.concat(bufList).toString()
+                : Buffer.concat(bufList)
+            ),
+            key: process.argv[1],
+            mode: process.argv[2]
+        }, function (err, data) {
+            local.<span class="apidocCodeKeywordSpan">onErrorThrow</span>(err);
+            Object.setPrototypeOf(data, Buffer.prototype);
+            process.stdout.write(data);
+        });
+    });
+}(globalThis.globalLocal));
+&apos; &quot;$@&quot;
+)}
 ...</pre></li>
     </ul>
 
@@ -16381,6 +15449,7 @@ if (extensions[PerMessageDeflate.extensionName]) {
         }
     }
 
+
     // capture most horrible error type
     try {
         parser.parse(text);
@@ -16651,15 +15720,15 @@ module = {};
 // if file is modified, then restart process
 if (env.npm_config_mode_auto_restart) {
     require(&quot;fs&quot;).readdir(&quot;.&quot;, function (ignore, fileList) {
-        fileList.forEach(function (file) {
-            require(&quot;fs&quot;).<span class="apidocCodeKeywordSpan">stat</span>(file, function (ignore, data) {
+        fileList.concat(__filename).forEach(function (file) {
+            require(&quot;fs&quot;).<span class="apidocCodeKeywordSpan">stat</span>(file, function (err, data) {
+                onErrorThrow(err);
                 if (!data.isFile()) {
                     return;
                 }
                 require(&quot;fs&quot;).watchFile(file, {
                     interval: 1000,
                     persistent: false
-                }, function () {
 ...</pre></li>
     </ul>
 
@@ -16768,7 +15837,7 @@ local.moduleDirname = function (module, pathList) {
 </span>    local.jslintAndPrintDir(process.argv[3], {
         autofix: process.argv.indexOf(&quot;--autofix&quot;) &gt;= 0,
         conditional: process.argv.indexOf(&quot;--conditional&quot;) &gt;= 0
-    }).then(process.exit);
+    });
 }</pre></li>
     <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -18157,12 +17226,11 @@ this.renderer.link(n,r,this.output(e[1])):this.renderer.image(n,r,o(e[1]))},r.pr
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertJsonEqual = function (aa, bb) {
+    <li>description and source-code<pre class="apidocCodePre">function assertJsonEqual(aa, bb) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    let objectDeepCopyWithKeysSorted;
-    objectDeepCopyWithKeysSorted = function (obj) {
+</span>    function objectDeepCopyWithKeysSorted(obj) {
     /*
      * this function will recursively deep-copy &lt;obj&gt; with keys sorted
      */
@@ -18180,7 +17248,7 @@ this.renderer.link(n,r,this.output(e[1])):this.renderer.image(n,r,o(e[1]))},r.pr
             sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
         });
         return sorted;
-    };
+    }
     aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
@@ -18199,7 +17267,7 @@ this.renderer.link(n,r,this.output(e[1])):this.renderer.image(n,r,o(e[1]))},r.pr
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">assertOrThrow = function (passed, msg) {
+    <li>description and source-code<pre class="apidocCodePre">function assertOrThrow(passed, msg) {
 <span class="apidocCodeCommentSpan">/*
  * this function will throw &lt;msg&gt; if &lt;passed&gt; is falsy
  */
@@ -18389,7 +17457,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">coalesce = function (...argList) {
+    <li>description and source-code<pre class="apidocCodePre">function coalesce(...argList) {
 <span class="apidocCodeCommentSpan">/*
  * this function will coalesce null, undefined, or &quot;&quot; in &lt;argList&gt;
  */
@@ -18438,7 +17506,7 @@ try {
  * this function will sync &quot;rm -rf&quot; &lt;pathname&gt;
  */
 </span>    let child_process;
-    // do nothing if module does not exist
+    // do nothing if module not exists
     try {
         child_process = require(&quot;child_process&quot;);
     } catch (ignore) {
@@ -18478,9 +17546,9 @@ const removeFolder = function (dir, onError) {
 };
 removeFolder.sync = local.fsRmrfSync;
 const removeRecursive = removeFolder;
+
+
 let EventEmitter = require(&apos;events&apos;);
-let URL = require(&apos;url&apos;);
-// let WebSocket = require(&apos;ws&apos;);
 ...</pre></li>
     </ul>
 
@@ -18493,7 +17561,7 @@ let URL = require(&apos;url&apos;);
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">identity = function (val) {
+    <li>description and source-code<pre class="apidocCodePre">function identity(val) {
 <span class="apidocCodeCommentSpan">/*
  * this function will return &lt;val&gt;
  */
@@ -18527,27 +17595,26 @@ cliDict._version = cliDict._version || function () {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">nop = function () {
+    <li>description and source-code<pre class="apidocCodePre">function nop() {
 <span class="apidocCodeCommentSpan">/*
  * this function will do nothing
  */
 </span>    return;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-   return template;
-};
+    local.isBrowser
+    ? {
+        env: {},
+        stdout: {}
+    }
+    : globalThis.process
+);
+local.<span class="apidocCodeKeywordSpan">nop</span>(escodegen, esprima, estraverse, esutils);
 
-local.testCase_nop_default = function (opt, onError) {
-/*
-* this function will test nop&apos;s default handling-behavior
-*/
-   local.<span class="apidocCodeKeywordSpan">nop</span>();
-   onError(undefined, opt);
-};
 
-local.testMock = function (mockList, onTestCase, onError) {
 /*
-* this function will mock objects in &lt;mockList&gt; when running &lt;onTestCase&gt;
+repo https://github.com/acornjs/acorn/tree/6.4.1
+committed 2020-03-09T10:38:41Z
 */
 ...</pre></li>
     </ul>
@@ -18561,7 +17628,7 @@ local.testMock = function (mockList, onTestCase, onError) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">objectAssignDefault = function (tgt = {}, src = {}, depth = 0) {
+    <li>description and source-code<pre class="apidocCodePre">function objectAssignDefault(tgt = {}, src = {}, depth = 0) {
 <span class="apidocCodeCommentSpan">/*
  * this function will if items from &lt;tgt&gt; are null, undefined, or &quot;&quot;,
  * then overwrite them with items from &lt;src&gt;
@@ -18611,6 +17678,42 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
 
 
     <h2>
+        <a href="#apidoc.elem.utility2.puppeteer.onErrorThrow" id="apidoc.elem.utility2.puppeteer.onErrorThrow">
+        function <span class="apidocSignatureSpan">utility2.puppeteer.</span>onErrorThrow
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function onErrorThrow(err) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will throw &lt;err&gt; if exists
+ */
+</span>    if (err) {
+        throw err;
+    }
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+                process.argv[2] === &quot;base64&quot;
+                ? Buffer.concat(bufList).toString()
+                : Buffer.concat(bufList)
+            ),
+            key: process.argv[1],
+            mode: process.argv[2]
+        }, function (err, data) {
+            local.<span class="apidocCodeKeywordSpan">onErrorThrow</span>(err);
+            Object.setPrototypeOf(data, Buffer.prototype);
+            process.stdout.write(data);
+        });
+    });
+}(globalThis.globalLocal));
+&apos; &quot;$@&quot;
+)}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
         <a href="#apidoc.elem.utility2.puppeteer.puppeteerLaunch" id="apidoc.elem.utility2.puppeteer.puppeteerLaunch">
         function <span class="apidocSignatureSpan">utility2.puppeteer.</span>puppeteerLaunch
         <span class="apidocSignatureSpan">()</span>
@@ -18619,10 +17722,10 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">puppeteerLaunch = function () { [native code] }</pre></li>
     <li>example use<pre class="apidocCodePre">...
+    opt.gotoNext,
     local.timeoutDefault,
     new Error(
-        &quot;timeout - &quot; + local.timeoutDefault + &quot; ms - &quot;
-        + testName
+        &quot;timeout - &quot; + local.timeoutDefault + &quot; ms - &quot; + testName
     )
 );
 // create puppeteer browser

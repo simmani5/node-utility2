@@ -783,7 +783,7 @@
             ],
             "36": [
                 200,
-                7
+                8
             ],
             "37": [
                 1,
@@ -59832,7 +59832,7 @@
             "            \"/assets.\" + env.npm_package_nameLib + extname",
             "        ] = local.fsReadFileOrDefaultSync(",
             "            require(\"path\").resolve(env.npm_package_main).replace((",
-            "                /\\.\\w+?$/",
+            "                /\\.\\w+$/",
             "            ), extname),",
             "            \"utf8\",",
             "            \"\"",
