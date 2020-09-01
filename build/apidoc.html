@@ -52,7 +52,7 @@
 
         href="https://github.com/kaizhu256/node-utility2"
 
-    >utility2 (2020.8.19)</a>
+    >utility2 (2020.9.1)</a>
 </h1>
 <h4>this zero-dependency package will provide high-level functions to to build, test, and deploy webapps</h4>
 <div class="apidocSectionDiv"><a
@@ -9908,12 +9908,8 @@ module.exports[env.npm_package_nameLib] = (
 
     if (!absoluteRequest) {
       const exportsResolved = resolveExports(curPath, request);
-      // Undefined means not found, false means no exports
-      if (exportsResolved === undefined)
-        break;
-      if (exportsResolved) {
+      if (exportsResolved)
         return exportsResolved;
-      }
     }
 
     const basePath = path.resolve(curPath, request);
@@ -10238,19 +10234,14 @@ module.exports[env.npm_package_nameLib] = (
       if (pkg.data &amp;&amp; pkg.data.imports !== null &amp;&amp;
           pkg.data.imports !== undefined) {
         try {
-          const resolved = packageInternalResolve(
-            request, pathToFileURL(parent.filename), cjsConditions);
-          return fileURLToPath(resolved);
-        } catch (err) {
-          if (err.code === &apos;ERR_MODULE_NOT_FOUND&apos;) {
-            // eslint-disable-next-line no-restricted-syntax
-            const err = new Error(`Cannot find module &apos;${request}&apos;`);
-            err.code = &apos;MODULE_NOT_FOUND&apos;;
-            err.path = path.resolve(pkg.path, &apos;package.json&apos;);
-            // TODO(BridgeAR): Add the requireStack as well.
-            throw err;
-          }
-          throw err;
+          return finalizeEsmResolution(
+            packageImportsResolve(request, pathToFileURL(parent.filename),
+                                  cjsConditions), request, parent.filename,
+            pkg.path);
+        } catch (e) {
+          if (e.code === &apos;ERR_MODULE_NOT_FOUND&apos;)
+            throw createEsmNotFoundErr(request);
+          throw e;
         }
       }
     }
@@ -10613,29 +10604,13 @@ module.exports[env.npm_package_nameLib] = (
   this.loaded = true;
 
   const ESMLoader = asyncESM.ESMLoader;
-  const url = `${pathToFileURL(filename)}`;
-  const module = ESMLoader.moduleMap.get(url);
   // Create module entry at load time to snapshot exports correctly
   const exports = this.exports;
-  // Called from cjs translator
-  if (module !== undefined &amp;&amp; module.module !== undefined) {
-    if (module.module.getStatus() &gt;= kInstantiated)
-      module.module.setExport(&apos;default&apos;, exports);
-  } else {
-    // Preemptively cache
-    // We use a function to defer promise creation for async hooks.
-    ESMLoader.moduleMap.set(
-      url,
-      // Module job creation will start promises.
-      // We make it a function to lazily trigger those promises
-      // for async hooks compatibility.
-      () =&gt; new ModuleJob(ESMLoader, url, () =&gt;
-        new ModuleWrap(url, undefined, [&apos;default&apos;], function() {
-          this.setExport(&apos;default&apos;, exports);
-        })
-      , false /* isMain */, false /* inspectBrk */)
-    );
-  }
+  // Preemptively cache
+  if ((module?.module === undefined ||
+       module.module.getStatus() &lt; kEvaluated) &amp;&amp;
+      !ESMLoader.cjsCache.has(this))
+    ESMLoader.cjsCache.set(this, exports);
 }</pre></li>
     <li>example use<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -14908,7 +14883,9 @@ module._compile(code, tmp);
                     }
                     // jslint file
                     require(&quot;fs&quot;).readFile(file, &quot;utf8&quot;, function (err, data) {
-                        local.onErrorThrow(err);
+                        if (err) {
+                            return;
+                        }
                         local.jslintAndPrint(data, file, opt);
                         errCnt += local.jslintResult.errList.length;
                         console.error(

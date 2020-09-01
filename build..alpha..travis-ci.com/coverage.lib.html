@@ -280,7 +280,7 @@
 <div class="header high">
 
     <h2 style="font-weight: bold;">
-        <a href="https://github.com/kaizhu256/node-utility2">utility2 (2020.8.19)</a>
+        <a href="https://github.com/kaizhu256/node-utility2">utility2 (2020.9.1)</a>
     </h2>
 
     <h2>Code coverage report for <span class="entity">lib.utility2.js</span></h2>
@@ -7111,6 +7111,16 @@
 <a href="#l6786" id="l6786">6786</a>
 <a href="#l6787" id="l6787">6787</a>
 <a href="#l6788" id="l6788">6788</a>
+<a href="#l6789" id="l6789">6789</a>
+<a href="#l6790" id="l6790">6790</a>
+<a href="#l6791" id="l6791">6791</a>
+<a href="#l6792" id="l6792">6792</a>
+<a href="#l6793" id="l6793">6793</a>
+<a href="#l6794" id="l6794">6794</a>
+<a href="#l6795" id="l6795">6795</a>
+<a href="#l6796" id="l6796">6796</a>
+<a href="#l6797" id="l6797">6797</a>
+<a href="#l6798" id="l6798">6798</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -7539,6 +7549,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -8899,7 +8919,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24</span>
 <span class="cline-any cline-yes">24</span>
-<span class="cline-any cline-yes">409</span>
+<span class="cline-any cline-yes">410</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -13904,7 +13924,7 @@
         <td class="text"><pre class="prettyprint lang-js" tabIndex="0">
 //#!/usr/bin/env node
 /*
- * lib.utility2.js (2020.8.19)
+ * lib.utility2.js (2020.9.1)
  * https://github.com/kaizhu256/node-utility2
  * this zero-dependency package will provide high-level functions to to build, test, and deploy webapps
  *
@@ -14436,6 +14456,16 @@ pre {\n\
 &lt;div class="uiAnimateSpin" style="animation: uiAnimateSpin 2s linear infinite; border: 5px solid #999; border-radius: 50%; border-top: 5px solid #7d7; display: none; height: 25px; vertical-align: middle; width: 25px;"&gt;&lt;/div&gt;\n\
 &lt;script&gt;\n\
 /* jslint utility2:true */\n\
+// polyfill globalThis\n\
+(function () {\n\
+/*\n\
+ * this function will polyfill globalThis\n\
+ */\n\
+    "use strict";\n\
+    window.globalThis = window.globalThis || globalThis;\n\
+}());\n\
+\n\
+\n\
 // init domOnEventWindowOnloadTimeElapsed\n\
 (function () {\n\
 /*\n\
