@@ -44294,7 +44294,7 @@ local.assetsDict["/assets.utility2.header.js"] = '\
 // assets.utility2.header.js - start\n\
 /* jslint utility2:true */\n\
 /* istanbul ignore next */\n\
-// run shared js-env code - init-local\n\
+// run shared js\-env code - init-local\n\
 (function () {\n\
     "use strict";\n\
     let isBrowser;\n\
