@@ -42,29 +42,29 @@
         isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    function objectDeepCopyWithKeysSorted(obj) {
+    /*
+     * this function will recursively deep-copy <obj> with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== "object" || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    }
     function assertJsonEqual(aa, bb) {
     /*
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        function objectDeepCopyWithKeysSorted(obj) {
-        /*
-         * this function will recursively deep-copy <obj> with keys sorted
-         */
-            let sorted;
-            if (typeof obj !== "object" || !obj) {
-                return obj;
-            }
-            // recursively deep-copy list with child-keys sorted
-            if (Array.isArray(obj)) {
-                return obj.map(objectDeepCopyWithKeysSorted);
-            }
-            // recursively deep-copy obj with keys sorted
-            sorted = {};
-            Object.keys(obj).sort().forEach(function (key) {
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-            });
-            return sorted;
-        }
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
         if (aa !== bb) {
@@ -182,6 +182,7 @@
     local.isWebWorker = isWebWorker;
     local.nop = nop;
     local.objectAssignDefault = objectAssignDefault;
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;
     local.onErrorThrow = onErrorThrow;
 }());
 // assets.utility2.header.js - end
@@ -248,29 +249,29 @@
         isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    function objectDeepCopyWithKeysSorted(obj) {
+    /*
+     * this function will recursively deep-copy <obj> with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== "object" || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    }
     function assertJsonEqual(aa, bb) {
     /*
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        function objectDeepCopyWithKeysSorted(obj) {
-        /*
-         * this function will recursively deep-copy <obj> with keys sorted
-         */
-            let sorted;
-            if (typeof obj !== "object" || !obj) {
-                return obj;
-            }
-            // recursively deep-copy list with child-keys sorted
-            if (Array.isArray(obj)) {
-                return obj.map(objectDeepCopyWithKeysSorted);
-            }
-            // recursively deep-copy obj with keys sorted
-            sorted = {};
-            Object.keys(obj).sort().forEach(function (key) {
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-            });
-            return sorted;
-        }
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
         if (aa !== bb) {
@@ -388,6 +389,7 @@
     local.isWebWorker = isWebWorker;
     local.nop = nop;
     local.objectAssignDefault = objectAssignDefault;
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;
     local.onErrorThrow = onErrorThrow;
 }());
 // assets.utility2.header.js - end
@@ -1568,29 +1570,29 @@ if (module === require.main && !globalThis.utility2_rollup) {
         isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    function objectDeepCopyWithKeysSorted(obj) {
+    /*
+     * this function will recursively deep-copy <obj> with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== "object" || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    }
     function assertJsonEqual(aa, bb) {
     /*
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        function objectDeepCopyWithKeysSorted(obj) {
-        /*
-         * this function will recursively deep-copy <obj> with keys sorted
-         */
-            let sorted;
-            if (typeof obj !== "object" || !obj) {
-                return obj;
-            }
-            // recursively deep-copy list with child-keys sorted
-            if (Array.isArray(obj)) {
-                return obj.map(objectDeepCopyWithKeysSorted);
-            }
-            // recursively deep-copy obj with keys sorted
-            sorted = {};
-            Object.keys(obj).sort().forEach(function (key) {
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-            });
-            return sorted;
-        }
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
         if (aa !== bb) {
@@ -1708,6 +1710,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
     local.isWebWorker = isWebWorker;
     local.nop = nop;
     local.objectAssignDefault = objectAssignDefault;
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;
     local.onErrorThrow = onErrorThrow;
 }());
 // assets.utility2.header.js - end
@@ -13460,29 +13463,29 @@ if (module === require.main && !globalThis.utility2_rollup) {
         isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    function objectDeepCopyWithKeysSorted(obj) {
+    /*
+     * this function will recursively deep-copy <obj> with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== "object" || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    }
     function assertJsonEqual(aa, bb) {
     /*
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        function objectDeepCopyWithKeysSorted(obj) {
-        /*
-         * this function will recursively deep-copy <obj> with keys sorted
-         */
-            let sorted;
-            if (typeof obj !== "object" || !obj) {
-                return obj;
-            }
-            // recursively deep-copy list with child-keys sorted
-            if (Array.isArray(obj)) {
-                return obj.map(objectDeepCopyWithKeysSorted);
-            }
-            // recursively deep-copy obj with keys sorted
-            sorted = {};
-            Object.keys(obj).sort().forEach(function (key) {
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-            });
-            return sorted;
-        }
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
         if (aa !== bb) {
@@ -13600,6 +13603,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
     local.isWebWorker = isWebWorker;
     local.nop = nop;
     local.objectAssignDefault = objectAssignDefault;
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;
     local.onErrorThrow = onErrorThrow;
 }());
 // assets.utility2.header.js - end
@@ -30894,29 +30898,29 @@ if (module === require.main && !globalThis.utility2_rollup) {
         isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    function objectDeepCopyWithKeysSorted(obj) {
+    /*
+     * this function will recursively deep-copy <obj> with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== "object" || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    }
     function assertJsonEqual(aa, bb) {
     /*
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        function objectDeepCopyWithKeysSorted(obj) {
-        /*
-         * this function will recursively deep-copy <obj> with keys sorted
-         */
-            let sorted;
-            if (typeof obj !== "object" || !obj) {
-                return obj;
-            }
-            // recursively deep-copy list with child-keys sorted
-            if (Array.isArray(obj)) {
-                return obj.map(objectDeepCopyWithKeysSorted);
-            }
-            // recursively deep-copy obj with keys sorted
-            sorted = {};
-            Object.keys(obj).sort().forEach(function (key) {
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-            });
-            return sorted;
-        }
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
         if (aa !== bb) {
@@ -31034,6 +31038,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
     local.isWebWorker = isWebWorker;
     local.nop = nop;
     local.objectAssignDefault = objectAssignDefault;
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;
     local.onErrorThrow = onErrorThrow;
 }());
 // assets.utility2.header.js - end
@@ -31324,29 +31329,29 @@ if (local.isBrowser) {
         isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    function objectDeepCopyWithKeysSorted(obj) {
+    /*
+     * this function will recursively deep-copy <obj> with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== "object" || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    }
     function assertJsonEqual(aa, bb) {
     /*
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        function objectDeepCopyWithKeysSorted(obj) {
-        /*
-         * this function will recursively deep-copy <obj> with keys sorted
-         */
-            let sorted;
-            if (typeof obj !== "object" || !obj) {
-                return obj;
-            }
-            // recursively deep-copy list with child-keys sorted
-            if (Array.isArray(obj)) {
-                return obj.map(objectDeepCopyWithKeysSorted);
-            }
-            // recursively deep-copy obj with keys sorted
-            sorted = {};
-            Object.keys(obj).sort().forEach(function (key) {
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-            });
-            return sorted;
-        }
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
         if (aa !== bb) {
@@ -31464,6 +31469,7 @@ if (local.isBrowser) {
     local.isWebWorker = isWebWorker;
     local.nop = nop;
     local.objectAssignDefault = objectAssignDefault;
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;
     local.onErrorThrow = onErrorThrow;
 }());
 // assets.utility2.header.js - end
@@ -44110,29 +44116,29 @@ if (module === require.main && !globalThis.utility2_rollup) {
         isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    function objectDeepCopyWithKeysSorted(obj) {
+    /*
+     * this function will recursively deep-copy <obj> with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== "object" || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    }
     function assertJsonEqual(aa, bb) {
     /*
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        function objectDeepCopyWithKeysSorted(obj) {
-        /*
-         * this function will recursively deep-copy <obj> with keys sorted
-         */
-            let sorted;
-            if (typeof obj !== "object" || !obj) {
-                return obj;
-            }
-            // recursively deep-copy list with child-keys sorted
-            if (Array.isArray(obj)) {
-                return obj.map(objectDeepCopyWithKeysSorted);
-            }
-            // recursively deep-copy obj with keys sorted
-            sorted = {};
-            Object.keys(obj).sort().forEach(function (key) {
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-            });
-            return sorted;
-        }
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
         if (aa !== bb) {
@@ -44250,6 +44256,7 @@ if (module === require.main && !globalThis.utility2_rollup) {
     local.isWebWorker = isWebWorker;
     local.nop = nop;
     local.objectAssignDefault = objectAssignDefault;
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;
     local.onErrorThrow = onErrorThrow;
 }());
 // assets.utility2.header.js - end
@@ -44345,29 +44352,29 @@ local.assetsDict["/assets.utility2.header.js"] = '\
         isBrowser && typeof globalThis.importScripts === "function"\n\
     );\n\
     // init function\n\
+    function objectDeepCopyWithKeysSorted(obj) {\n\
+    /*\n\
+     * this function will recursively deep-copy <obj> with keys sorted\n\
+     */\n\
+        let sorted;\n\
+        if (typeof obj !== "object" || !obj) {\n\
+            return obj;\n\
+        }\n\
+        // recursively deep-copy list with child-keys sorted\n\
+        if (Array.isArray(obj)) {\n\
+            return obj.map(objectDeepCopyWithKeysSorted);\n\
+        }\n\
+        // recursively deep-copy obj with keys sorted\n\
+        sorted = {};\n\
+        Object.keys(obj).sort().forEach(function (key) {\n\
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
+        });\n\
+        return sorted;\n\
+    }\n\
     function assertJsonEqual(aa, bb) {\n\
     /*\n\
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)\n\
      */\n\
-        function objectDeepCopyWithKeysSorted(obj) {\n\
-        /*\n\
-         * this function will recursively deep-copy <obj> with keys sorted\n\
-         */\n\
-            let sorted;\n\
-            if (typeof obj !== "object" || !obj) {\n\
-                return obj;\n\
-            }\n\
-            // recursively deep-copy list with child-keys sorted\n\
-            if (Array.isArray(obj)) {\n\
-                return obj.map(objectDeepCopyWithKeysSorted);\n\
-            }\n\
-            // recursively deep-copy obj with keys sorted\n\
-            sorted = {};\n\
-            Object.keys(obj).sort().forEach(function (key) {\n\
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
-            });\n\
-            return sorted;\n\
-        }\n\
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));\n\
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));\n\
         if (aa !== bb) {\n\
@@ -44485,6 +44492,7 @@ local.assetsDict["/assets.utility2.header.js"] = '\
     local.isWebWorker = isWebWorker;\n\
     local.nop = nop;\n\
     local.objectAssignDefault = objectAssignDefault;\n\
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;\n\
     local.onErrorThrow = onErrorThrow;\n\
 }());\n\
 // assets.utility2.header.js - end\n\
@@ -50927,29 +50935,29 @@ instruction\n\
         isBrowser && typeof globalThis.importScripts === \"function\"\n\
     );\n\
     // init function\n\
+    function objectDeepCopyWithKeysSorted(obj) {\n\
+    /*\n\
+     * this function will recursively deep-copy <obj> with keys sorted\n\
+     */\n\
+        let sorted;\n\
+        if (typeof obj !== \"object\" || !obj) {\n\
+            return obj;\n\
+        }\n\
+        // recursively deep-copy list with child-keys sorted\n\
+        if (Array.isArray(obj)) {\n\
+            return obj.map(objectDeepCopyWithKeysSorted);\n\
+        }\n\
+        // recursively deep-copy obj with keys sorted\n\
+        sorted = {};\n\
+        Object.keys(obj).sort().forEach(function (key) {\n\
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
+        });\n\
+        return sorted;\n\
+    }\n\
     function assertJsonEqual(aa, bb) {\n\
     /*\n\
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)\n\
      */\n\
-        function objectDeepCopyWithKeysSorted(obj) {\n\
-        /*\n\
-         * this function will recursively deep-copy <obj> with keys sorted\n\
-         */\n\
-            let sorted;\n\
-            if (typeof obj !== \"object\" || !obj) {\n\
-                return obj;\n\
-            }\n\
-            // recursively deep-copy list with child-keys sorted\n\
-            if (Array.isArray(obj)) {\n\
-                return obj.map(objectDeepCopyWithKeysSorted);\n\
-            }\n\
-            // recursively deep-copy obj with keys sorted\n\
-            sorted = {};\n\
-            Object.keys(obj).sort().forEach(function (key) {\n\
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
-            });\n\
-            return sorted;\n\
-        }\n\
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));\n\
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));\n\
         if (aa !== bb) {\n\
@@ -51067,6 +51075,7 @@ instruction\n\
     local.isWebWorker = isWebWorker;\n\
     local.nop = nop;\n\
     local.objectAssignDefault = objectAssignDefault;\n\
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;\n\
     local.onErrorThrow = onErrorThrow;\n\
 }());\n\
 // assets.utility2.header.js - end\n\
@@ -52537,29 +52546,29 @@ local.assetsDict["/assets.utility2.lib.jslint.js"] = (
         isBrowser && typeof globalThis.importScripts === \"function\"\n\
     );\n\
     // init function\n\
+    function objectDeepCopyWithKeysSorted(obj) {\n\
+    /*\n\
+     * this function will recursively deep-copy <obj> with keys sorted\n\
+     */\n\
+        let sorted;\n\
+        if (typeof obj !== \"object\" || !obj) {\n\
+            return obj;\n\
+        }\n\
+        // recursively deep-copy list with child-keys sorted\n\
+        if (Array.isArray(obj)) {\n\
+            return obj.map(objectDeepCopyWithKeysSorted);\n\
+        }\n\
+        // recursively deep-copy obj with keys sorted\n\
+        sorted = {};\n\
+        Object.keys(obj).sort().forEach(function (key) {\n\
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
+        });\n\
+        return sorted;\n\
+    }\n\
     function assertJsonEqual(aa, bb) {\n\
     /*\n\
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)\n\
      */\n\
-        function objectDeepCopyWithKeysSorted(obj) {\n\
-        /*\n\
-         * this function will recursively deep-copy <obj> with keys sorted\n\
-         */\n\
-            let sorted;\n\
-            if (typeof obj !== \"object\" || !obj) {\n\
-                return obj;\n\
-            }\n\
-            // recursively deep-copy list with child-keys sorted\n\
-            if (Array.isArray(obj)) {\n\
-                return obj.map(objectDeepCopyWithKeysSorted);\n\
-            }\n\
-            // recursively deep-copy obj with keys sorted\n\
-            sorted = {};\n\
-            Object.keys(obj).sort().forEach(function (key) {\n\
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
-            });\n\
-            return sorted;\n\
-        }\n\
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));\n\
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));\n\
         if (aa !== bb) {\n\
@@ -52677,6 +52686,7 @@ local.assetsDict["/assets.utility2.lib.jslint.js"] = (
     local.isWebWorker = isWebWorker;\n\
     local.nop = nop;\n\
     local.objectAssignDefault = objectAssignDefault;\n\
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;\n\
     local.onErrorThrow = onErrorThrow;\n\
 }());\n\
 // assets.utility2.header.js - end\n\
@@ -69977,29 +69987,29 @@ local.assetsDict["/assets.utility2.test.js"] = (
         isBrowser && typeof globalThis.importScripts === \"function\"\n\
     );\n\
     // init function\n\
+    function objectDeepCopyWithKeysSorted(obj) {\n\
+    /*\n\
+     * this function will recursively deep-copy <obj> with keys sorted\n\
+     */\n\
+        let sorted;\n\
+        if (typeof obj !== \"object\" || !obj) {\n\
+            return obj;\n\
+        }\n\
+        // recursively deep-copy list with child-keys sorted\n\
+        if (Array.isArray(obj)) {\n\
+            return obj.map(objectDeepCopyWithKeysSorted);\n\
+        }\n\
+        // recursively deep-copy obj with keys sorted\n\
+        sorted = {};\n\
+        Object.keys(obj).sort().forEach(function (key) {\n\
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
+        });\n\
+        return sorted;\n\
+    }\n\
     function assertJsonEqual(aa, bb) {\n\
     /*\n\
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)\n\
      */\n\
-        function objectDeepCopyWithKeysSorted(obj) {\n\
-        /*\n\
-         * this function will recursively deep-copy <obj> with keys sorted\n\
-         */\n\
-            let sorted;\n\
-            if (typeof obj !== \"object\" || !obj) {\n\
-                return obj;\n\
-            }\n\
-            // recursively deep-copy list with child-keys sorted\n\
-            if (Array.isArray(obj)) {\n\
-                return obj.map(objectDeepCopyWithKeysSorted);\n\
-            }\n\
-            // recursively deep-copy obj with keys sorted\n\
-            sorted = {};\n\
-            Object.keys(obj).sort().forEach(function (key) {\n\
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
-            });\n\
-            return sorted;\n\
-        }\n\
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));\n\
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));\n\
         if (aa !== bb) {\n\
@@ -70117,6 +70127,7 @@ local.assetsDict["/assets.utility2.test.js"] = (
     local.isWebWorker = isWebWorker;\n\
     local.nop = nop;\n\
     local.objectAssignDefault = objectAssignDefault;\n\
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;\n\
     local.onErrorThrow = onErrorThrow;\n\
 }());\n\
 // assets.utility2.header.js - end\n\
