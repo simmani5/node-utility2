@@ -48034,6 +48034,7 @@ local.jslintAutofixLocalFunction = function (code, file) {
         "identity",
         "nop",
         "objectAssignDefault",
+        "objectDeepCopyWithKeysSorted",
         "onErrorThrow"
     ].forEach(function (key) {
         dictFnc[key] = true;

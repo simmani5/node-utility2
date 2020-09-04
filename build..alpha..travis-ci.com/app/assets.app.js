@@ -48249,6 +48249,7 @@ local.jslintAutofixLocalFunction = function (code, file) {
         "identity",
         "nop",
         "objectAssignDefault",
+        "objectDeepCopyWithKeysSorted",
         "onErrorThrow"
     ].forEach(function (key) {
         dictFnc[key] = true;
@@ -76220,6 +76221,7 @@ local.jslintAutofixLocalFunction = function (code, file) {\n\
         \"identity\",\n\
         \"nop\",\n\
         \"objectAssignDefault\",\n\
+        \"objectDeepCopyWithKeysSorted\",\n\
         \"onErrorThrow\"\n\
     ].forEach(function (key) {\n\
         dictFnc[key] = true;\n\
@@ -83021,6 +83023,7 @@ local.jslintAutofixLocalFunction = function (code, file) {
         "identity",
         "nop",
         "objectAssignDefault",
+        "objectDeepCopyWithKeysSorted",
         "onErrorThrow"
     ].forEach(function (key) {
         dictFnc[key] = true;
