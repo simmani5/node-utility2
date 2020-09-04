@@ -14007,32 +14007,6 @@ local.cliRun = function (opt) {
     }
     cliDict._default();
 };
-
-local.objectDeepCopyWithKeysSorted = function (obj) {
-/*
- * this function will recursively deep-copy <obj> with keys sorted
- */
-    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy <obj> with keys sorted
-     */
-        let sorted;
-        if (!(typeof obj === "object" && obj)) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
-    }
-    return objectDeepCopyWithKeysSorted(obj);
-};
 }());
 
 
@@ -48604,32 +48578,6 @@ local.middlewareUtility2StateInit = function (req, res, next) {
     }));
 };
 
-local.objectDeepCopyWithKeysSorted = function (obj) {
-/*
- * this function will recursively deep-copy <obj> with keys sorted
- */
-    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy <obj> with keys sorted
-     */
-        let sorted;
-        if (!(typeof obj === "object" && obj)) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
-    }
-    return objectDeepCopyWithKeysSorted(obj);
-};
-
 local.onErrorWithStack = function (onError) {
 /*
  * this function will wrap <onError> with wrapper preserving current-stack
@@ -53090,32 +53038,6 @@ local.cliRun = function (opt) {\n\
         return;\n\
     }\n\
     cliDict._default();\n\
-};\n\
-\n\
-local.objectDeepCopyWithKeysSorted = function (obj) {\n\
-/*\n\
- * this function will recursively deep-copy <obj> with keys sorted\n\
- */\n\
-    function objectDeepCopyWithKeysSorted(obj) {\n\
-    /*\n\
-     * this function will recursively deep-copy <obj> with keys sorted\n\
-     */\n\
-        let sorted;\n\
-        if (!(typeof obj === \"object\" && obj)) {\n\
-            return obj;\n\
-        }\n\
-        // recursively deep-copy list with child-keys sorted\n\
-        if (Array.isArray(obj)) {\n\
-            return obj.map(objectDeepCopyWithKeysSorted);\n\
-        }\n\
-        // recursively deep-copy obj with keys sorted\n\
-        sorted = {};\n\
-        Object.keys(obj).sort().forEach(function (key) {\n\
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
-        });\n\
-        return sorted;\n\
-    }\n\
-    return objectDeepCopyWithKeysSorted(obj);\n\
 };\n\
 }());\n\
 \n\
@@ -76576,32 +76498,6 @@ local.middlewareUtility2StateInit = function (req, res, next) {\n\
     }));\n\
 };\n\
 \n\
-local.objectDeepCopyWithKeysSorted = function (obj) {\n\
-/*\n\
- * this function will recursively deep-copy <obj> with keys sorted\n\
- */\n\
-    function objectDeepCopyWithKeysSorted(obj) {\n\
-    /*\n\
-     * this function will recursively deep-copy <obj> with keys sorted\n\
-     */\n\
-        let sorted;\n\
-        if (!(typeof obj === \"object\" && obj)) {\n\
-            return obj;\n\
-        }\n\
-        // recursively deep-copy list with child-keys sorted\n\
-        if (Array.isArray(obj)) {\n\
-            return obj.map(objectDeepCopyWithKeysSorted);\n\
-        }\n\
-        // recursively deep-copy obj with keys sorted\n\
-        sorted = {};\n\
-        Object.keys(obj).sort().forEach(function (key) {\n\
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);\n\
-        });\n\
-        return sorted;\n\
-    }\n\
-    return objectDeepCopyWithKeysSorted(obj);\n\
-};\n\
-\n\
 local.onErrorWithStack = function (onError) {\n\
 /*\n\
  * this function will wrap <onError> with wrapper preserving current-stack\n\
@@ -83376,32 +83272,6 @@ local.middlewareUtility2StateInit = function (req, res, next) {
     res.end(state.init.replace("({})", function () {
         return "(\n" + JSON.stringify(state) + "\n)";
     }));
-};
-
-local.objectDeepCopyWithKeysSorted = function (obj) {
-/*
- * this function will recursively deep-copy <obj> with keys sorted
- */
-    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy <obj> with keys sorted
-     */
-        let sorted;
-        if (!(typeof obj === "object" && obj)) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
-    }
-    return objectDeepCopyWithKeysSorted(obj);
 };
 
 local.onErrorWithStack = function (onError) {
