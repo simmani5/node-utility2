@@ -296,17 +296,17 @@
     </thead>
     <tbody>
         <td>
-            Statements: 70<br>
-            Branches: 59<br>
+            Statements: 73<br>
+            Branches: 65<br>
             Functions: 14
         </td>
         <td>
             100%<br>
-            (167 / 167)
+            (171 / 171)
         </td>
         <td>
             100%<br>
-            (93 / 93)
+            (102 / 102)
         </td>
         <td>
             100%<br>
@@ -314,7 +314,7 @@
         </td>
         <td>
             100%<br>
-            (167 / 167)
+            (171 / 171)
         </td>
     </tbody>
     </table>
@@ -1429,6 +1429,14 @@
 <a href="#l1104" id="l1104">1104</a>
 <a href="#l1105" id="l1105">1105</a>
 <a href="#l1106" id="l1106">1106</a>
+<a href="#l1107" id="l1107">1107</a>
+<a href="#l1108" id="l1108">1108</a>
+<a href="#l1109" id="l1109">1109</a>
+<a href="#l1110" id="l1110">1110</a>
+<a href="#l1111" id="l1111">1111</a>
+<a href="#l1112" id="l1112">1112</a>
+<a href="#l1113" id="l1113">1113</a>
+<a href="#l1114" id="l1114">1114</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1559,6 +1567,14 @@
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">1</span>
@@ -2667,6 +2683,14 @@ instruction
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    <span class="skip-if-branch" title="if path not taken">I</span>if (!(typeof globalThis === "object" &amp;&amp; globalThis)) {
+<span class="cstat-skip" title="statement not covered">        if (typeof window === "object" &amp;&amp; window &amp;&amp; window.window === window) {</span>
+<span class="cstat-skip" title="statement not covered">            window.globalThis = window;</span>
+        } else {
+<span class="cstat-skip" title="statement not covered">            global.globalThis = global;</span>
+        }
+    }
     // init debugInline
     <span class="skip-if-branch" title="if path not taken">I</span>if (!globalThis.debugInline) {
 <span class="cstat-skip" title="statement not covered">        let consoleError;</span>

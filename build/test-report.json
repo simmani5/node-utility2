@@ -1,1 +1,1004 @@
-{"testPlatformList":[{"name":"buildApidoc - node - linux v14.10.0 - 2020-09-08T18:25:46.846Z","testCaseList":[{"isBrowser":false,"name":"testCase_buildApp_default","status":"passed","errStack":"","timeElapsed":4659,"timeStart":1599589562816,"isDone":true}],"timeElapsed":20520,"testsFailed":0,"testsPassed":1,"testsPending":0,"status":"passed","timeStart":1599589546955},{"name":"buildApp - node - linux v14.10.0 - 2020-09-08T18:26:02.698Z","testCaseList":[],"timeElapsed":0,"testsFailed":0,"testsPassed":0,"testsPending":0,"status":"passed"},{"name":"deployGithubTest - browser - /node-utility2/build..alpha..travis-ci.com/app/ - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:26:52.684Z","testCaseList":[{"isBrowser":true,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":268,"timeStart":1599589612794,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":396,"timeStart":1599589612798,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_cache","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612807,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_default","status":"passed","errStack":"","timeElapsed":1023,"timeStart":1599589612812,"isDone":true},{"isBrowser":true,"name":"testCase_assertXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612832,"isDone":true},{"isBrowser":true,"name":"testCase_base64Xxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612849,"isDone":true},{"isBrowser":true,"name":"testCase_blobRead_default","status":"passed","errStack":"","timeElapsed":358,"timeStart":1599589612898,"isDone":true},{"isBrowser":true,"name":"testCase_bufferValidateAndCoerce_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612907,"isDone":true},{"isBrowser":true,"name":"testCase_buildApidoc_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612915,"isDone":true},{"isBrowser":true,"name":"testCase_buildApp_default","status":"passed","errStack":"","timeElapsed":5,"timeStart":1599589612927,"isDone":true},{"isBrowser":true,"name":"testCase_buildXxx_default","status":"passed","errStack":"","timeElapsed":3,"timeStart":1599589612937,"isDone":true},{"isBrowser":true,"name":"testCase_cliRun_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612950,"isDone":true},{"isBrowser":true,"name":"testCase_corsForwardProxyHostIfNeeded_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612954,"isDone":true},{"isBrowser":true,"name":"testCase_cryptoAesXxxCbcRawXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612959,"isDone":true},{"isBrowser":true,"name":"testCase_domFragmentRender_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612965,"isDone":true},{"isBrowser":true,"name":"testCase_eventListenerXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612976,"isDone":true},{"isBrowser":true,"name":"testCase_libUtility2Js_standalone","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612979,"isDone":true},{"isBrowser":true,"name":"testCase_listShuffle_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612984,"isDone":true},{"isBrowser":true,"name":"testCase_middlewareForwardProxy_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612992,"isDone":true},{"isBrowser":true,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613002,"isDone":true},{"isBrowser":true,"name":"testCase_onErrorWithStack_toString","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613006,"isDone":true},{"isBrowser":true,"name":"testCase_onNext_err","status":"passed","errStack":"","timeElapsed":4,"timeStart":1599589613014,"isDone":true},{"isBrowser":true,"name":"testCase_onParallelList_default","status":"passed","errStack":"","timeElapsed":1005,"timeStart":1599589613024,"isDone":true},{"isBrowser":true,"name":"testCase_onParallel_default","status":"passed","errStack":"","timeElapsed":205,"timeStart":1599589613026,"isDone":true},{"isBrowser":true,"name":"testCase_replStart_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613026,"isDone":true},{"isBrowser":true,"name":"testCase_requireReadme_misc","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613038,"isDone":true},{"isBrowser":true,"name":"testCase_serverRespondTimeoutDefault_timeout","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613041,"isDone":true},{"isBrowser":true,"name":"testCase_setTimeoutOnError_default","status":"passed","errStack":"","timeElapsed":186,"timeStart":1599589613049,"isDone":true},{"isBrowser":true,"name":"testCase_stringHtmlSafe_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613066,"isDone":true},{"isBrowser":true,"name":"testCase_stringQuotedToAscii_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613072,"isDone":true},{"isBrowser":true,"name":"testCase_stringRegexpEscape_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613078,"isDone":true},{"isBrowser":true,"name":"testCase_templateRender_default","status":"passed","errStack":"","timeElapsed":20,"timeStart":1599589613084,"isDone":true},{"isBrowser":true,"name":"testCase_testMock_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613114,"isDone":true},{"isBrowser":true,"name":"testCase_testReportCreate_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613117,"isDone":true},{"isBrowser":true,"name":"testCase_throwError_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613121,"isDone":true},{"isBrowser":true,"name":"testCase_uiAnimateXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613128,"isDone":true},{"isBrowser":true,"name":"testCase_urlJoin_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613136,"isDone":true},{"isBrowser":true,"name":"testCase_urlParse_default","status":"passed","errStack":"","timeElapsed":4,"timeStart":1599589613150,"isDone":true},{"isBrowser":true,"name":"testCase_uuid4Create_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613158,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613163,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_err","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613168,"isDone":true}],"timeStart":1599589612779,"timeElapsed":1256,"testsFailed":0,"testsPassed":41,"testsPending":0,"status":"passed","domOnEventWindowOnloadTimeElapsed":696,"screenshot":"screenshot.deployGithubTest.browser.%2Fnode-utility2%2Fbuild%2Fapp.png"},{"name":"deployGithubTest - browser - /node-utility2/build..alpha..travis-ci.com/app/ - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:26:52.705Z","testCaseList":[{"isBrowser":true,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":137,"timeStart":1599589612811,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":278,"timeStart":1599589612815,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_cache","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612818,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_default","status":"passed","errStack":"","timeElapsed":1032,"timeStart":1599589612822,"isDone":true},{"isBrowser":true,"name":"testCase_assertXxx_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589612852,"isDone":true},{"isBrowser":true,"name":"testCase_base64Xxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612857,"isDone":true},{"isBrowser":true,"name":"testCase_blobRead_default","status":"passed","errStack":"","timeElapsed":281,"timeStart":1599589612860,"isDone":true},{"isBrowser":true,"name":"testCase_bufferValidateAndCoerce_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612861,"isDone":true},{"isBrowser":true,"name":"testCase_buildApidoc_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612866,"isDone":true},{"isBrowser":true,"name":"testCase_buildApp_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612870,"isDone":true},{"isBrowser":true,"name":"testCase_buildXxx_default","status":"passed","errStack":"","timeElapsed":6,"timeStart":1599589612872,"isDone":true},{"isBrowser":true,"name":"testCase_cliRun_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612881,"isDone":true},{"isBrowser":true,"name":"testCase_corsForwardProxyHostIfNeeded_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612883,"isDone":true},{"isBrowser":true,"name":"testCase_cryptoAesXxxCbcRawXxx_default","status":"passed","errStack":"","timeElapsed":3,"timeStart":1599589612885,"isDone":true},{"isBrowser":true,"name":"testCase_domFragmentRender_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612890,"isDone":true},{"isBrowser":true,"name":"testCase_eventListenerXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612894,"isDone":true},{"isBrowser":true,"name":"testCase_libUtility2Js_standalone","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612897,"isDone":true},{"isBrowser":true,"name":"testCase_listShuffle_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612900,"isDone":true},{"isBrowser":true,"name":"testCase_middlewareForwardProxy_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612906,"isDone":true},{"isBrowser":true,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612910,"isDone":true},{"isBrowser":true,"name":"testCase_onErrorWithStack_toString","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612913,"isDone":true},{"isBrowser":true,"name":"testCase_onNext_err","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612918,"isDone":true},{"isBrowser":true,"name":"testCase_onParallelList_default","status":"passed","errStack":"","timeElapsed":1004,"timeStart":1599589612923,"isDone":true},{"isBrowser":true,"name":"testCase_onParallel_default","status":"passed","errStack":"","timeElapsed":195,"timeStart":1599589612924,"isDone":true},{"isBrowser":true,"name":"testCase_replStart_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589612924,"isDone":true},{"isBrowser":true,"name":"testCase_requireReadme_misc","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612928,"isDone":true},{"isBrowser":true,"name":"testCase_serverRespondTimeoutDefault_timeout","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612931,"isDone":true},{"isBrowser":true,"name":"testCase_setTimeoutOnError_default","status":"passed","errStack":"","timeElapsed":184,"timeStart":1599589612941,"isDone":true},{"isBrowser":true,"name":"testCase_stringHtmlSafe_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612953,"isDone":true},{"isBrowser":true,"name":"testCase_stringQuotedToAscii_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612957,"isDone":true},{"isBrowser":true,"name":"testCase_stringRegexpEscape_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612962,"isDone":true},{"isBrowser":true,"name":"testCase_templateRender_default","status":"passed","errStack":"","timeElapsed":19,"timeStart":1599589612969,"isDone":true},{"isBrowser":true,"name":"testCase_testMock_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589612995,"isDone":true},{"isBrowser":true,"name":"testCase_testReportCreate_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613000,"isDone":true},{"isBrowser":true,"name":"testCase_throwError_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613010,"isDone":true},{"isBrowser":true,"name":"testCase_uiAnimateXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613016,"isDone":true},{"isBrowser":true,"name":"testCase_urlJoin_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613028,"isDone":true},{"isBrowser":true,"name":"testCase_urlParse_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613033,"isDone":true},{"isBrowser":true,"name":"testCase_uuid4Create_default","status":"passed","errStack":"","timeElapsed":5,"timeStart":1599589613045,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589613056,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_err","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589613068,"isDone":true}],"timeStart":1599589612780,"timeElapsed":1154,"testsFailed":0,"testsPassed":41,"testsPending":0,"status":"passed","domOnEventWindowOnloadTimeElapsed":437,"screenshot":"screenshot.deployGithubTest.browser.%2Fnode-utility2%2Fbuild%2Fapp.png"},{"name":"deployGithubTest - node - linux v14.10.0 - 2020-09-08T18:26:51.735Z","testCaseList":[],"timeElapsed":0,"testsFailed":0,"testsPassed":0,"testsPending":0,"status":"passed"},{"name":"deployHerokuTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:27:11.296Z","testCaseList":[{"isBrowser":true,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":263,"timeStart":1599589631433,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":458,"timeStart":1599589631436,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_cache","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631438,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_default","status":"passed","errStack":"","timeElapsed":1019,"timeStart":1599589631443,"isDone":true},{"isBrowser":true,"name":"testCase_assertXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631460,"isDone":true},{"isBrowser":true,"name":"testCase_base64Xxx_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589631466,"isDone":true},{"isBrowser":true,"name":"testCase_blobRead_default","status":"passed","errStack":"","timeElapsed":467,"timeStart":1599589631471,"isDone":true},{"isBrowser":true,"name":"testCase_bufferValidateAndCoerce_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631473,"isDone":true},{"isBrowser":true,"name":"testCase_buildApidoc_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631481,"isDone":true},{"isBrowser":true,"name":"testCase_buildApp_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631486,"isDone":true},{"isBrowser":true,"name":"testCase_buildXxx_default","status":"passed","errStack":"","timeElapsed":3,"timeStart":1599589631492,"isDone":true},{"isBrowser":true,"name":"testCase_cliRun_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631505,"isDone":true},{"isBrowser":true,"name":"testCase_corsForwardProxyHostIfNeeded_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631512,"isDone":true},{"isBrowser":true,"name":"testCase_cryptoAesXxxCbcRawXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631527,"isDone":true},{"isBrowser":true,"name":"testCase_domFragmentRender_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631535,"isDone":true},{"isBrowser":true,"name":"testCase_eventListenerXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631543,"isDone":true},{"isBrowser":true,"name":"testCase_libUtility2Js_standalone","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631554,"isDone":true},{"isBrowser":true,"name":"testCase_listShuffle_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631565,"isDone":true},{"isBrowser":true,"name":"testCase_middlewareForwardProxy_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631573,"isDone":true},{"isBrowser":true,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631582,"isDone":true},{"isBrowser":true,"name":"testCase_onErrorWithStack_toString","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631589,"isDone":true},{"isBrowser":true,"name":"testCase_onNext_err","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631597,"isDone":true},{"isBrowser":true,"name":"testCase_onParallelList_default","status":"passed","errStack":"","timeElapsed":1005,"timeStart":1599589631618,"isDone":true},{"isBrowser":true,"name":"testCase_onParallel_default","status":"passed","errStack":"","timeElapsed":305,"timeStart":1599589631620,"isDone":true},{"isBrowser":true,"name":"testCase_replStart_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631620,"isDone":true},{"isBrowser":true,"name":"testCase_requireReadme_misc","status":"passed","errStack":"","timeElapsed":5,"timeStart":1599589631631,"isDone":true},{"isBrowser":true,"name":"testCase_serverRespondTimeoutDefault_timeout","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631650,"isDone":true},{"isBrowser":true,"name":"testCase_setTimeoutOnError_default","status":"passed","errStack":"","timeElapsed":260,"timeStart":1599589631673,"isDone":true},{"isBrowser":true,"name":"testCase_stringHtmlSafe_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631708,"isDone":true},{"isBrowser":true,"name":"testCase_stringQuotedToAscii_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631720,"isDone":true},{"isBrowser":true,"name":"testCase_stringRegexpEscape_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589631737,"isDone":true},{"isBrowser":true,"name":"testCase_templateRender_default","status":"passed","errStack":"","timeElapsed":30,"timeStart":1599589631751,"isDone":true},{"isBrowser":true,"name":"testCase_testMock_err","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631789,"isDone":true},{"isBrowser":true,"name":"testCase_testReportCreate_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631799,"isDone":true},{"isBrowser":true,"name":"testCase_throwError_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631807,"isDone":true},{"isBrowser":true,"name":"testCase_uiAnimateXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631819,"isDone":true},{"isBrowser":true,"name":"testCase_urlJoin_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631831,"isDone":true},{"isBrowser":true,"name":"testCase_urlParse_default","status":"passed","errStack":"","timeElapsed":4,"timeStart":1599589631841,"isDone":true},{"isBrowser":true,"name":"testCase_uuid4Create_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631855,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631865,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631871,"isDone":true}],"timeStart":1599589631416,"timeElapsed":1213,"testsFailed":0,"testsPassed":41,"testsPending":0,"status":"passed","domOnEventWindowOnloadTimeElapsed":917,"screenshot":"screenshot.deployHerokuTest.browser.%2F.png"},{"name":"deployHerokuTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:27:11.352Z","testCaseList":[{"isBrowser":true,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":289,"timeStart":1599589631543,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":395,"timeStart":1599589631552,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_cache","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631555,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_default","status":"passed","errStack":"","timeElapsed":1035,"timeStart":1599589631565,"isDone":true},{"isBrowser":true,"name":"testCase_assertXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631598,"isDone":true},{"isBrowser":true,"name":"testCase_base64Xxx_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589631610,"isDone":true},{"isBrowser":true,"name":"testCase_blobRead_default","status":"passed","errStack":"","timeElapsed":355,"timeStart":1599589631618,"isDone":true},{"isBrowser":true,"name":"testCase_bufferValidateAndCoerce_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631620,"isDone":true},{"isBrowser":true,"name":"testCase_buildApidoc_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631630,"isDone":true},{"isBrowser":true,"name":"testCase_buildApp_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631635,"isDone":true},{"isBrowser":true,"name":"testCase_buildXxx_default","status":"passed","errStack":"","timeElapsed":10,"timeStart":1599589631640,"isDone":true},{"isBrowser":true,"name":"testCase_cliRun_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631656,"isDone":true},{"isBrowser":true,"name":"testCase_corsForwardProxyHostIfNeeded_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631662,"isDone":true},{"isBrowser":true,"name":"testCase_cryptoAesXxxCbcRawXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631672,"isDone":true},{"isBrowser":true,"name":"testCase_domFragmentRender_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631680,"isDone":true},{"isBrowser":true,"name":"testCase_eventListenerXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631690,"isDone":true},{"isBrowser":true,"name":"testCase_libUtility2Js_standalone","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631700,"isDone":true},{"isBrowser":true,"name":"testCase_listShuffle_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631707,"isDone":true},{"isBrowser":true,"name":"testCase_middlewareForwardProxy_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631714,"isDone":true},{"isBrowser":true,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631720,"isDone":true},{"isBrowser":true,"name":"testCase_onErrorWithStack_toString","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631731,"isDone":true},{"isBrowser":true,"name":"testCase_onNext_err","status":"passed","errStack":"","timeElapsed":6,"timeStart":1599589631740,"isDone":true},{"isBrowser":true,"name":"testCase_onParallelList_default","status":"passed","errStack":"","timeElapsed":1009,"timeStart":1599589631764,"isDone":true},{"isBrowser":true,"name":"testCase_onParallel_default","status":"passed","errStack":"","timeElapsed":193,"timeStart":1599589631770,"isDone":true},{"isBrowser":true,"name":"testCase_replStart_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631773,"isDone":true},{"isBrowser":true,"name":"testCase_requireReadme_misc","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631775,"isDone":true},{"isBrowser":true,"name":"testCase_serverRespondTimeoutDefault_timeout","status":"passed","errStack":"","timeElapsed":6,"timeStart":1599589631797,"isDone":true},{"isBrowser":true,"name":"testCase_setTimeoutOnError_default","status":"passed","errStack":"","timeElapsed":150,"timeStart":1599589631819,"isDone":true},{"isBrowser":true,"name":"testCase_stringHtmlSafe_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631841,"isDone":true},{"isBrowser":true,"name":"testCase_stringQuotedToAscii_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631846,"isDone":true},{"isBrowser":true,"name":"testCase_stringRegexpEscape_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631854,"isDone":true},{"isBrowser":true,"name":"testCase_templateRender_default","status":"passed","errStack":"","timeElapsed":11,"timeStart":1599589631863,"isDone":true},{"isBrowser":true,"name":"testCase_testMock_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631878,"isDone":true},{"isBrowser":true,"name":"testCase_testReportCreate_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631883,"isDone":true},{"isBrowser":true,"name":"testCase_throwError_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631886,"isDone":true},{"isBrowser":true,"name":"testCase_uiAnimateXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631894,"isDone":true},{"isBrowser":true,"name":"testCase_urlJoin_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631902,"isDone":true},{"isBrowser":true,"name":"testCase_urlParse_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589631909,"isDone":true},{"isBrowser":true,"name":"testCase_uuid4Create_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631916,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589631921,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589631928,"isDone":true}],"timeStart":1599589631522,"timeElapsed":1257,"testsFailed":0,"testsPassed":41,"testsPending":0,"status":"passed","domOnEventWindowOnloadTimeElapsed":925,"screenshot":"screenshot.deployHerokuTest.browser.%2F.png"},{"name":"deployHerokuTest - node - linux v14.10.0 - 2020-09-08T18:27:10.111Z","testCaseList":[],"timeElapsed":0,"testsFailed":0,"testsPassed":0,"testsPending":0,"status":"passed"},{"name":"npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:25:41.750Z","testCaseList":[],"timeStart":1599589542076,"timeElapsed":2525,"testsFailed":0,"testsPassed":0,"testsPending":0,"status":"passed","domOnEventWindowOnloadTimeElapsed":744,"screenshot":"screenshot.npmTest.browser.%2F.png"},{"name":"npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:25:41.783Z","testCaseList":[{"isBrowser":true,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":327,"timeStart":1599589542246,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":440,"timeStart":1599589542259,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_cache","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542282,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_default","status":"passed","errStack":"","timeElapsed":1066,"timeStart":1599589542291,"isDone":true},{"isBrowser":true,"name":"testCase_assertXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542354,"isDone":true},{"isBrowser":true,"name":"testCase_base64Xxx_default","status":"passed","errStack":"","timeElapsed":7,"timeStart":1599589542363,"isDone":true},{"isBrowser":true,"name":"testCase_blobRead_default","status":"passed","errStack":"","timeElapsed":334,"timeStart":1599589542385,"isDone":true},{"isBrowser":true,"name":"testCase_bufferValidateAndCoerce_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542387,"isDone":true},{"isBrowser":true,"name":"testCase_buildApidoc_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542394,"isDone":true},{"isBrowser":true,"name":"testCase_buildApp_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542402,"isDone":true},{"isBrowser":true,"name":"testCase_buildXxx_default","status":"passed","errStack":"","timeElapsed":9,"timeStart":1599589542409,"isDone":true},{"isBrowser":true,"name":"testCase_cliRun_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542432,"isDone":true},{"isBrowser":true,"name":"testCase_corsForwardProxyHostIfNeeded_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542439,"isDone":true},{"isBrowser":true,"name":"testCase_cryptoAesXxxCbcRawXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542450,"isDone":true},{"isBrowser":true,"name":"testCase_domFragmentRender_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542468,"isDone":true},{"isBrowser":true,"name":"testCase_eventListenerXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542476,"isDone":true},{"isBrowser":true,"name":"testCase_libUtility2Js_standalone","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542485,"isDone":true},{"isBrowser":true,"name":"testCase_listShuffle_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542494,"isDone":true},{"isBrowser":true,"name":"testCase_middlewareForwardProxy_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542503,"isDone":true},{"isBrowser":true,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542510,"isDone":true},{"isBrowser":true,"name":"testCase_onErrorWithStack_toString","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542518,"isDone":true},{"isBrowser":true,"name":"testCase_onNext_err","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542526,"isDone":true},{"isBrowser":true,"name":"testCase_onParallelList_default","status":"passed","errStack":"","timeElapsed":1005,"timeStart":1599589542534,"isDone":true},{"isBrowser":true,"name":"testCase_onParallel_default","status":"passed","errStack":"","timeElapsed":168,"timeStart":1599589542536,"isDone":true},{"isBrowser":true,"name":"testCase_replStart_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542536,"isDone":true},{"isBrowser":true,"name":"testCase_requireReadme_misc","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542543,"isDone":true},{"isBrowser":true,"name":"testCase_serverRespondTimeoutDefault_timeout","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542549,"isDone":true},{"isBrowser":true,"name":"testCase_setTimeoutOnError_default","status":"passed","errStack":"","timeElapsed":152,"timeStart":1599589542557,"isDone":true},{"isBrowser":true,"name":"testCase_stringHtmlSafe_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542580,"isDone":true},{"isBrowser":true,"name":"testCase_stringQuotedToAscii_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542587,"isDone":true},{"isBrowser":true,"name":"testCase_stringRegexpEscape_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542594,"isDone":true},{"isBrowser":true,"name":"testCase_templateRender_default","status":"passed","errStack":"","timeElapsed":9,"timeStart":1599589542601,"isDone":true},{"isBrowser":true,"name":"testCase_testMock_err","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542616,"isDone":true},{"isBrowser":true,"name":"testCase_testReportCreate_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542624,"isDone":true},{"isBrowser":true,"name":"testCase_throwError_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542631,"isDone":true},{"isBrowser":true,"name":"testCase_uiAnimateXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542638,"isDone":true},{"isBrowser":true,"name":"testCase_urlJoin_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589542646,"isDone":true},{"isBrowser":true,"name":"testCase_urlParse_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589542654,"isDone":true},{"isBrowser":true,"name":"testCase_uuid4Create_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542663,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542671,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589542679,"isDone":true}],"timeStart":1599589542118,"timeElapsed":1426,"testsFailed":0,"testsPassed":41,"testsPending":0,"status":"passed","domOnEventWindowOnloadTimeElapsed":1015,"screenshot":"screenshot.npmTest.browser.%2F.png"},{"name":"npmTest - node - linux v14.10.0 - 2020-09-08T18:25:39.340Z","testCaseList":[{"isBrowser":false,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540300,"isDone":true},{"isBrowser":false,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540301,"isDone":true},{"isBrowser":false,"name":"testCase_ajax_cache","status":"passed","errStack":"","timeElapsed":333,"timeStart":1599589540303,"isDone":true},{"isBrowser":false,"name":"testCase_ajax_default","status":"passed","errStack":"","timeElapsed":1036,"timeStart":1599589540311,"isDone":true},{"isBrowser":false,"name":"testCase_assertXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540332,"isDone":true},{"isBrowser":false,"name":"testCase_base64Xxx_default","status":"passed","errStack":"","timeElapsed":8,"timeStart":1599589540333,"isDone":true},{"isBrowser":false,"name":"testCase_blobRead_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589540341,"isDone":true},{"isBrowser":false,"name":"testCase_bufferValidateAndCoerce_err","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540344,"isDone":true},{"isBrowser":false,"name":"testCase_buildApidoc_default","status":"passed","errStack":"","timeElapsed":144,"timeStart":1599589540345,"isDone":true},{"isBrowser":false,"name":"testCase_buildApp_default","status":"passed","errStack":"","timeElapsed":5321,"timeStart":1599589540359,"isDone":true},{"isBrowser":false,"name":"testCase_buildXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540360,"isDone":true},{"isBrowser":false,"name":"testCase_cliRun_default","status":"passed","errStack":"","timeElapsed":4,"timeStart":1599589540361,"isDone":true},{"isBrowser":false,"name":"testCase_corsForwardProxyHostIfNeeded_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540365,"isDone":true},{"isBrowser":false,"name":"testCase_cryptoAesXxxCbcRawXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540365,"isDone":true},{"isBrowser":false,"name":"testCase_domFragmentRender_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540366,"isDone":true},{"isBrowser":false,"name":"testCase_eventListenerXxx_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540366,"isDone":true},{"isBrowser":false,"name":"testCase_libUtility2Js_standalone","status":"passed","errStack":"","timeElapsed":149,"timeStart":1599589540366,"isDone":true},{"isBrowser":false,"name":"testCase_listShuffle_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540367,"isDone":true},{"isBrowser":false,"name":"testCase_middlewareForwardProxy_default","status":"passed","errStack":"","timeElapsed":270,"timeStart":1599589540368,"isDone":true},{"isBrowser":false,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589540370,"isDone":true},{"isBrowser":false,"name":"testCase_onErrorWithStack_toString","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540370,"isDone":true},{"isBrowser":false,"name":"testCase_onNext_err","status":"passed","errStack":"","timeElapsed":6,"timeStart":1599589540371,"isDone":true},{"isBrowser":false,"name":"testCase_onParallelList_default","status":"passed","errStack":"","timeElapsed":1128,"timeStart":1599589540377,"isDone":true},{"isBrowser":false,"name":"testCase_onParallel_default","status":"passed","errStack":"","timeElapsed":16,"timeStart":1599589540489,"isDone":true},{"isBrowser":false,"name":"testCase_replStart_default","status":"passed","errStack":"","timeElapsed":8,"timeStart":1599589540505,"isDone":true},{"isBrowser":false,"name":"testCase_requireReadme_misc","status":"passed","errStack":"","timeElapsed":21,"timeStart":1599589540513,"isDone":true},{"isBrowser":false,"name":"testCase_serverRespondTimeoutDefault_timeout","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540516,"isDone":true},{"isBrowser":false,"name":"testCase_setTimeoutOnError_default","status":"passed","errStack":"","timeElapsed":51,"timeStart":1599589540518,"isDone":true},{"isBrowser":false,"name":"testCase_stringHtmlSafe_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540534,"isDone":true},{"isBrowser":false,"name":"testCase_stringQuotedToAscii_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540536,"isDone":true},{"isBrowser":false,"name":"testCase_stringRegexpEscape_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540537,"isDone":true},{"isBrowser":false,"name":"testCase_templateRender_default","status":"passed","errStack":"","timeElapsed":8,"timeStart":1599589540539,"isDone":true},{"isBrowser":false,"name":"testCase_testMock_err","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589540547,"isDone":true},{"isBrowser":false,"name":"testCase_testReportCreate_default","status":"passed","errStack":"","timeElapsed":5,"timeStart":1599589540549,"isDone":true},{"isBrowser":false,"name":"testCase_throwError_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589540554,"isDone":true},{"isBrowser":false,"name":"testCase_uiAnimateXxx_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540556,"isDone":true},{"isBrowser":false,"name":"testCase_urlJoin_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540558,"isDone":true},{"isBrowser":false,"name":"testCase_urlParse_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589540560,"isDone":true},{"isBrowser":false,"name":"testCase_uuid4Create_default","status":"passed","errStack":"","timeElapsed":2,"timeStart":1599589540561,"isDone":true},{"isBrowser":false,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":3994,"timeStart":1599589540564,"isDone":true},{"isBrowser":false,"name":"testCase_webpage_err","status":"passed","errStack":"","timeElapsed":4736,"timeStart":1599589540570,"isDone":true}],"timeElapsed":5406,"testsFailed":0,"testsPassed":41,"testsPending":0,"status":"passed","timeStart":1599589540274},{"name":"testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:25:36.534Z","testCaseList":[{"isBrowser":true,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":44,"timeStart":1599589536553,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":48,"timeStart":1599589536555,"isDone":true},{"isBrowser":true,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589536555,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589536557,"isDone":true}],"timeStart":1599589536551,"timeElapsed":56,"testsFailed":0,"testsPassed":4,"testsPending":0,"status":"passed","screenshot":"screenshot.testExampleJs.browser.%2F.png"},{"name":"testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:25:36.534Z","testCaseList":[{"isBrowser":true,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":44,"timeStart":1599589536553,"isDone":true},{"isBrowser":true,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":48,"timeStart":1599589536555,"isDone":true},{"isBrowser":true,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589536555,"isDone":true},{"isBrowser":true,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589536557,"isDone":true}],"timeStart":1599589536551,"timeElapsed":56,"testsFailed":0,"testsPassed":4,"testsPending":0,"status":"passed","screenshot":"screenshot.testExampleJs.browser.%2F.png"},{"name":"testExampleJs - node - linux v14.10.0 - 2020-09-08T18:25:36.174Z","testCaseList":[{"isBrowser":false,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589536206,"isDone":true},{"isBrowser":false,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589536207,"isDone":true},{"isBrowser":false,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589536207,"isDone":true},{"isBrowser":false,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":576,"timeStart":1599589536208,"isDone":true}],"timeStart":1599589536204,"timeElapsed":584,"testsFailed":0,"testsPassed":4,"testsPending":0,"status":"passed"},{"name":"testExampleJs - node - linux v14.10.0 - 2020-09-08T18:25:36.174Z","testCaseList":[{"isBrowser":false,"name":"testCase_ajax_200","status":"passed","errStack":"","timeElapsed":1,"timeStart":1599589536206,"isDone":true},{"isBrowser":false,"name":"testCase_ajax_404","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589536207,"isDone":true},{"isBrowser":false,"name":"testCase_nop_default","status":"passed","errStack":"","timeElapsed":0,"timeStart":1599589536207,"isDone":true},{"isBrowser":false,"name":"testCase_webpage_default","status":"passed","errStack":"","timeElapsed":576,"timeStart":1599589536208,"isDone":true}],"timeStart":1599589536204,"timeElapsed":584,"testsFailed":0,"testsPassed":4,"testsPending":0,"status":"passed"}],"date":"2020-09-08T18:27:10.133Z","errStackList":[],"timeElapsed":2684,"testsFailed":0,"testsPassed":263,"testsPending":0,"timeStart":1599589630138}
+{
+    "testPlatformList": [
+        {
+            "name": "buildApidoc - node - linux v14.10.0 - 2020-09-08T18:38:16.794Z",
+            "testCaseList": [
+                {
+                    "isBrowser": false,
+                    "name": "testCase_buildApp_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 4596,
+                    "timeStart": 1599590312461,
+                    "isDone": true
+                }
+            ],
+            "timeElapsed": 20157,
+            "testsFailed": 0,
+            "testsPassed": 1,
+            "testsPending": 0,
+            "status": "passed",
+            "timeStart": 1599590296901
+        },
+        {
+            "name": "buildApp - node - linux v14.10.0 - 2020-09-08T18:38:32.343Z",
+            "testCaseList": [],
+            "timeElapsed": 0,
+            "testsFailed": 0,
+            "testsPassed": 0,
+            "testsPending": 0,
+            "status": "passed"
+        },
+        {
+            "name": "npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:38:11.591Z",
+            "testCaseList": [],
+            "timeStart": 1599590291914,
+            "timeElapsed": 2591,
+            "testsFailed": 0,
+            "testsPassed": 0,
+            "testsPending": 0,
+            "status": "passed",
+            "domOnEventWindowOnloadTimeElapsed": 697,
+            "screenshot": "screenshot.npmTest.browser.%2F.png"
+        },
+        {
+            "name": "npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:38:11.605Z",
+            "testCaseList": [
+                {
+                    "isBrowser": true,
+                    "name": "testCase_ajax_200",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 302,
+                    "timeStart": 1599590292182,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_ajax_404",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 358,
+                    "timeStart": 1599590292191,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_ajax_cache",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292197,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_ajax_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1043,
+                    "timeStart": 1599590292209,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_assertXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292249,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_base64Xxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 3,
+                    "timeStart": 1599590292266,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_blobRead_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 297,
+                    "timeStart": 1599590292279,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_bufferValidateAndCoerce_err",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292281,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_buildApidoc_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292290,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_buildApp_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292299,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_buildXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 3,
+                    "timeStart": 1599590292309,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_cliRun_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292321,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_corsForwardProxyHostIfNeeded_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292331,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_cryptoAesXxxCbcRawXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292343,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_domFragmentRender_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292353,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_eventListenerXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292363,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_libUtility2Js_standalone",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292374,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_listShuffle_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292385,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_middlewareForwardProxy_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292397,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_nop_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292408,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_onErrorWithStack_toString",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292420,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_onNext_err",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 2,
+                    "timeStart": 1599590292432,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_onParallelList_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1005,
+                    "timeStart": 1599590292444,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_onParallel_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 111,
+                    "timeStart": 1599590292446,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_replStart_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292447,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_requireReadme_misc",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292457,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_serverRespondTimeoutDefault_timeout",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292467,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_setTimeoutOnError_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 85,
+                    "timeStart": 1599590292476,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_stringHtmlSafe_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292486,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_stringQuotedToAscii_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292488,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_stringRegexpEscape_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292491,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_templateRender_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 9,
+                    "timeStart": 1599590292494,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_testMock_err",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292506,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_testReportCreate_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292509,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_throwError_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292513,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_uiAnimateXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292516,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_urlJoin_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292520,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_urlParse_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590292525,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_uuid4Create_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292531,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_webpage_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292535,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_webpage_err",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590292540,
+                    "isDone": true
+                }
+            ],
+            "timeStart": 1599590292053,
+            "timeElapsed": 1401,
+            "testsFailed": 0,
+            "testsPassed": 41,
+            "testsPending": 0,
+            "status": "passed",
+            "domOnEventWindowOnloadTimeElapsed": 1125,
+            "screenshot": "screenshot.npmTest.browser.%2F.png"
+        },
+        {
+            "name": "npmTest - node - linux v14.10.0 - 2020-09-08T18:38:09.447Z",
+            "testCaseList": [
+                {
+                    "isBrowser": false,
+                    "name": "testCase_ajax_200",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290156,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_ajax_404",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290160,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_ajax_cache",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 358,
+                    "timeStart": 1599590290162,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_ajax_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1023,
+                    "timeStart": 1599590290169,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_assertXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290183,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_base64Xxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 3,
+                    "timeStart": 1599590290186,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_blobRead_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290193,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_bufferValidateAndCoerce_err",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290201,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_buildApidoc_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 171,
+                    "timeStart": 1599590290205,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_buildApp_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 5439,
+                    "timeStart": 1599590290217,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_buildXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290218,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_cliRun_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 6,
+                    "timeStart": 1599590290221,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_corsForwardProxyHostIfNeeded_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290230,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_cryptoAesXxxCbcRawXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290233,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_domFragmentRender_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290237,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_eventListenerXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290240,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_libUtility2Js_standalone",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 167,
+                    "timeStart": 1599590290243,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_listShuffle_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290244,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_middlewareForwardProxy_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 277,
+                    "timeStart": 1599590290247,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_nop_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290250,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_onErrorWithStack_toString",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290254,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_onNext_err",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290257,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_onParallelList_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1160,
+                    "timeStart": 1599590290261,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_onParallel_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 15,
+                    "timeStart": 1599590290380,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_replStart_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 7,
+                    "timeStart": 1599590290398,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_requireReadme_misc",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 12,
+                    "timeStart": 1599590290408,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_serverRespondTimeoutDefault_timeout",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290413,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_setTimeoutOnError_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 55,
+                    "timeStart": 1599590290417,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_stringHtmlSafe_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290423,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_stringQuotedToAscii_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290427,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_stringRegexpEscape_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290430,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_templateRender_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 8,
+                    "timeStart": 1599590290433,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_testMock_err",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290445,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_testReportCreate_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 4,
+                    "timeStart": 1599590290448,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_throwError_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290457,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_uiAnimateXxx_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290460,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_urlJoin_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590290462,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_urlParse_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290462,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_uuid4Create_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 1,
+                    "timeStart": 1599590290463,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_webpage_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 4045,
+                    "timeStart": 1599590290464,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_webpage_err",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 4712,
+                    "timeStart": 1599590290475,
+                    "isDone": true
+                }
+            ],
+            "timeElapsed": 5524,
+            "testsFailed": 0,
+            "testsPassed": 41,
+            "testsPending": 0,
+            "status": "passed",
+            "timeStart": 1599590290133
+        },
+        {
+            "name": "testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:38:06.596Z",
+            "testCaseList": [
+                {
+                    "isBrowser": true,
+                    "name": "testCase_ajax_200",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 42,
+                    "timeStart": 1599590286615,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_ajax_404",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 42,
+                    "timeStart": 1599590286617,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_nop_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286618,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_webpage_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286620,
+                    "isDone": true
+                }
+            ],
+            "timeStart": 1599590286613,
+            "timeElapsed": 47,
+            "testsFailed": 0,
+            "testsPassed": 4,
+            "testsPending": 0,
+            "status": "passed",
+            "screenshot": "screenshot.testExampleJs.browser.%2F.png"
+        },
+        {
+            "name": "testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T18:38:06.596Z",
+            "testCaseList": [
+                {
+                    "isBrowser": true,
+                    "name": "testCase_ajax_200",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 42,
+                    "timeStart": 1599590286615,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_ajax_404",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 42,
+                    "timeStart": 1599590286617,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_nop_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286618,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": true,
+                    "name": "testCase_webpage_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286620,
+                    "isDone": true
+                }
+            ],
+            "timeStart": 1599590286613,
+            "timeElapsed": 47,
+            "testsFailed": 0,
+            "testsPassed": 4,
+            "testsPending": 0,
+            "status": "passed",
+            "screenshot": "screenshot.testExampleJs.browser.%2F.png"
+        },
+        {
+            "name": "testExampleJs - node - linux v14.10.0 - 2020-09-08T18:38:06.241Z",
+            "testCaseList": [
+                {
+                    "isBrowser": false,
+                    "name": "testCase_ajax_200",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286272,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_ajax_404",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286273,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_nop_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286273,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_webpage_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 544,
+                    "timeStart": 1599590286273,
+                    "isDone": true
+                }
+            ],
+            "timeStart": 1599590286269,
+            "timeElapsed": 549,
+            "testsFailed": 0,
+            "testsPassed": 4,
+            "testsPending": 0,
+            "status": "passed"
+        },
+        {
+            "name": "testExampleJs - node - linux v14.10.0 - 2020-09-08T18:38:06.241Z",
+            "testCaseList": [
+                {
+                    "isBrowser": false,
+                    "name": "testCase_ajax_200",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286272,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_ajax_404",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286273,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_nop_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 0,
+                    "timeStart": 1599590286273,
+                    "isDone": true
+                },
+                {
+                    "isBrowser": false,
+                    "name": "testCase_webpage_default",
+                    "status": "passed",
+                    "errStack": "",
+                    "timeElapsed": 544,
+                    "timeStart": 1599590286273,
+                    "isDone": true
+                }
+            ],
+            "timeStart": 1599590286269,
+            "timeElapsed": 549,
+            "testsFailed": 0,
+            "testsPassed": 4,
+            "testsPending": 0,
+            "status": "passed"
+        }
+    ],
+    "date": "2020-09-08T18:38:32.346Z",
+    "errStackList": [],
+    "timeElapsed": 4709,
+    "testsFailed": 0,
+    "testsPassed": 99,
+    "testsPending": 0,
+    "timeStart": 1599590312349
+}
