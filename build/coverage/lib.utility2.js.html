@@ -296,25 +296,25 @@
     </thead>
     <tbody>
         <td>
-            Statements: 96<br>
-            Branches: 41<br>
+            Statements: 99<br>
+            Branches: 47<br>
             Functions: 14
         </td>
         <td>
-            93.17%<br>
-            (1842 / 1977)
+            93.19%<br>
+            (1846 / 1981)
         </td>
         <td>
-            88.29%<br>
-            (852 / 965)
+            88.4%<br>
+            (861 / 974)
         </td>
         <td>
             91.84%<br>
             (304 / 331)
         </td>
         <td>
-            93.17%<br>
-            (1842 / 1977)
+            93.19%<br>
+            (1846 / 1981)
         </td>
     </tbody>
     </table>
@@ -7098,6 +7098,22 @@
 <a href="#l6773" id="l6773">6773</a>
 <a href="#l6774" id="l6774">6774</a>
 <a href="#l6775" id="l6775">6775</a>
+<a href="#l6776" id="l6776">6776</a>
+<a href="#l6777" id="l6777">6777</a>
+<a href="#l6778" id="l6778">6778</a>
+<a href="#l6779" id="l6779">6779</a>
+<a href="#l6780" id="l6780">6780</a>
+<a href="#l6781" id="l6781">6781</a>
+<a href="#l6782" id="l6782">6782</a>
+<a href="#l6783" id="l6783">6783</a>
+<a href="#l6784" id="l6784">6784</a>
+<a href="#l6785" id="l6785">6785</a>
+<a href="#l6786" id="l6786">6786</a>
+<a href="#l6787" id="l6787">6787</a>
+<a href="#l6788" id="l6788">6788</a>
+<a href="#l6789" id="l6789">6789</a>
+<a href="#l6790" id="l6790">6790</a>
+<a href="#l6791" id="l6791">6791</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -7118,6 +7134,14 @@
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">1</span>
@@ -7345,6 +7369,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -13895,6 +13927,14 @@
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    <span class="skip-if-branch" title="if path not taken">I</span>if (!(typeof globalThis === "object" &amp;&amp; globalThis)) {
+<span class="cstat-skip" title="statement not covered">        if (typeof window === "object" &amp;&amp; window &amp;&amp; window.window === window) {</span>
+<span class="cstat-skip" title="statement not covered">            window.globalThis = window;</span>
+        } else {
+<span class="cstat-skip" title="statement not covered">            global.globalThis = global;</span>
+        }
+    }
     // init debugInline
     <span class="skip-if-branch" title="if path not taken">I</span>if (!globalThis.debugInline) {
 <span class="cstat-skip" title="statement not covered">        let consoleError;</span>
@@ -14131,6 +14171,14 @@ local.assetsDict["/assets.utility2.header.js"] = '\
     let isBrowser;\n\
     let isWebWorker;\n\
     let local;\n\
+    // polyfill globalThis\n\
+    if (!(typeof globalThis === "object" &amp;&amp; globalThis)) {\n\
+        if (typeof window === "object" &amp;&amp; window &amp;&amp; window.window === window) {\n\
+            window.globalThis = window;\n\
+        } else {\n\
+            global.globalThis = global;\n\
+        }\n\
+    }\n\
     // init debugInline\n\
     if (!globalThis.debugInline) {\n\
         let consoleError;\n\

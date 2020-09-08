@@ -16,6 +16,14 @@
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    if (!(typeof globalThis === "object" && globalThis)) {
+        if (typeof window === "object" && window && window.window === window) {
+            window.globalThis = window;
+        } else {
+            global.globalThis = global;
+        }
+    }
     // init debugInline
     if (!globalThis.debugInline) {
         let consoleError;
@@ -223,6 +231,14 @@
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    if (!(typeof globalThis === "object" && globalThis)) {
+        if (typeof window === "object" && window && window.window === window) {
+            window.globalThis = window;
+        } else {
+            global.globalThis = global;
+        }
+    }
     // init debugInline
     if (!globalThis.debugInline) {
         let consoleError;
@@ -1544,6 +1560,14 @@ if (module === require.main && !globalThis.utility2_rollup) {
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    if (!(typeof globalThis === "object" && globalThis)) {
+        if (typeof window === "object" && window && window.window === window) {
+            window.globalThis = window;
+        } else {
+            global.globalThis = global;
+        }
+    }
     // init debugInline
     if (!globalThis.debugInline) {
         let consoleError;
@@ -13437,6 +13461,14 @@ if (module === require.main && !globalThis.utility2_rollup) {
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    if (!(typeof globalThis === "object" && globalThis)) {
+        if (typeof window === "object" && window && window.window === window) {
+            window.globalThis = window;
+        } else {
+            global.globalThis = global;
+        }
+    }
     // init debugInline
     if (!globalThis.debugInline) {
         let consoleError;
@@ -25227,6 +25259,7 @@ function tokenize(source) {
                 [].concat(
                     allowed_option.browser,
                     allowed_option.node,
+                    "global",
                     "globalThis"
                 ).forEach(function (key) {
                     declared_globals[key] = false;
@@ -30846,6 +30879,14 @@ if (module === require.main && !globalThis.utility2_rollup) {
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    if (!(typeof globalThis === "object" && globalThis)) {
+        if (typeof window === "object" && window && window.window === window) {
+            window.globalThis = window;
+        } else {
+            global.globalThis = global;
+        }
+    }
     // init debugInline
     if (!globalThis.debugInline) {
         let consoleError;
@@ -31277,6 +31318,14 @@ if (local.isBrowser) {
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    if (!(typeof globalThis === "object" && globalThis)) {
+        if (typeof window === "object" && window && window.window === window) {
+            window.globalThis = window;
+        } else {
+            global.globalThis = global;
+        }
+    }
     // init debugInline
     if (!globalThis.debugInline) {
         let consoleError;
@@ -44064,6 +44113,14 @@ if (module === require.main && !globalThis.utility2_rollup) {
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    if (!(typeof globalThis === "object" && globalThis)) {
+        if (typeof window === "object" && window && window.window === window) {
+            window.globalThis = window;
+        } else {
+            global.globalThis = global;
+        }
+    }
     // init debugInline
     if (!globalThis.debugInline) {
         let consoleError;
@@ -44300,6 +44357,14 @@ local.assetsDict["/assets.utility2.header.js"] = '\
     let isBrowser;\n\
     let isWebWorker;\n\
     let local;\n\
+    // polyfill globalThis\n\
+    if (!(typeof globalThis === "object" && globalThis)) {\n\
+        if (typeof window === "object" && window && window.window === window) {\n\
+            window.globalThis = window;\n\
+        } else {\n\
+            global.globalThis = global;\n\
+        }\n\
+    }\n\
     // init debugInline\n\
     if (!globalThis.debugInline) {\n\
         let consoleError;\n\
@@ -50858,6 +50923,14 @@ instruction\n\
     let isBrowser;\n\
     let isWebWorker;\n\
     let local;\n\
+    // polyfill globalThis\n\
+    if (!(typeof globalThis === \"object\" && globalThis)) {\n\
+        if (typeof window === \"object\" && window && window.window === window) {\n\
+            window.globalThis = window;\n\
+        } else {\n\
+            global.globalThis = global;\n\
+        }\n\
+    }\n\
     // init debugInline\n\
     if (!globalThis.debugInline) {\n\
         let consoleError;\n\
@@ -52469,6 +52542,14 @@ local.assetsDict["/assets.utility2.lib.jslint.js"] = (
     let isBrowser;\n\
     let isWebWorker;\n\
     let local;\n\
+    // polyfill globalThis\n\
+    if (!(typeof globalThis === \"object\" && globalThis)) {\n\
+        if (typeof window === \"object\" && window && window.window === window) {\n\
+            window.globalThis = window;\n\
+        } else {\n\
+            global.globalThis = global;\n\
+        }\n\
+    }\n\
     // init debugInline\n\
     if (!globalThis.debugInline) {\n\
         let consoleError;\n\
@@ -64259,6 +64340,7 @@ function tokenize(source) {\n\
                 [].concat(\n\
                     allowed_option.browser,\n\
                     allowed_option.node,\n\
+                    \"global\",\n\
                     \"globalThis\"\n\
                 ).forEach(function (key) {\n\
                     declared_globals[key] = false;\n\
@@ -69884,6 +69966,14 @@ local.assetsDict["/assets.utility2.test.js"] = (
     let isBrowser;\n\
     let isWebWorker;\n\
     let local;\n\
+    // polyfill globalThis\n\
+    if (!(typeof globalThis === \"object\" && globalThis)) {\n\
+        if (typeof window === \"object\" && window && window.window === window) {\n\
+            window.globalThis = window;\n\
+        } else {\n\
+            global.globalThis = global;\n\
+        }\n\
+    }\n\
     // init debugInline\n\
     if (!globalThis.debugInline) {\n\
         let consoleError;\n\

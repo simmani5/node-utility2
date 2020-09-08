@@ -299,25 +299,25 @@
     </thead>
     <tbody>
         <td>
-            Statements: 277<br>
-            Branches: 169<br>
+            Statements: 286<br>
+            Branches: 187<br>
             Functions: 47
         </td>
         <td>
-            95.11%<br>
-            (2628 / 2763)
+            95.14%<br>
+            (2640 / 2775)
         </td>
         <td>
-            90.66%<br>
-            (1097 / 1210)
+            90.86%<br>
+            (1124 / 1237)
         </td>
         <td>
             94.53%<br>
             (467 / 494)
         </td>
         <td>
-            95.11%<br>
-            (2628 / 2763)
+            95.14%<br>
+            (2640 / 2775)
         </td>
     </tbody>
     </table>
@@ -345,11 +345,11 @@
         </td>
         <td>
             100%<br>
-            (167 / 167)
+            (171 / 171)
         </td>
         <td>
             100%<br>
-            (93 / 93)
+            (102 / 102)
         </td>
         <td>
             100%<br>
@@ -357,7 +357,7 @@
         </td>
         <td>
             100%<br>
-            (167 / 167)
+            (171 / 171)
         </td>
     </tr>
 
@@ -367,20 +367,20 @@
             <span class="cover-fill cover-full" style="width: 93px;"></span><span class="cover-empty" style="width: 7px;"></span></a>
         </td>
         <td>
-            93.17%<br>
-            (1842 / 1977)
+            93.19%<br>
+            (1846 / 1981)
         </td>
         <td>
-            88.29%<br>
-            (852 / 965)
+            88.4%<br>
+            (861 / 974)
         </td>
         <td>
             91.84%<br>
             (304 / 331)
         </td>
         <td>
-            93.17%<br>
-            (1842 / 1977)
+            93.19%<br>
+            (1846 / 1981)
         </td>
     </tr>
 
@@ -391,11 +391,11 @@
         </td>
         <td>
             100%<br>
-            (619 / 619)
+            (623 / 623)
         </td>
         <td>
             100%<br>
-            (152 / 152)
+            (161 / 161)
         </td>
         <td>
             100%<br>
@@ -403,7 +403,7 @@
         </td>
         <td>
             100%<br>
-            (619 / 619)
+            (623 / 623)
         </td>
     </tr>
 
@@ -721,17 +721,17 @@
     </thead>
     <tbody>
         <td>
-            Statements: 70<br>
-            Branches: 59<br>
+            Statements: 73<br>
+            Branches: 65<br>
             Functions: 14
         </td>
         <td>
             100%<br>
-            (167 / 167)
+            (171 / 171)
         </td>
         <td>
             100%<br>
-            (93 / 93)
+            (102 / 102)
         </td>
         <td>
             100%<br>
@@ -739,7 +739,7 @@
         </td>
         <td>
             100%<br>
-            (167 / 167)
+            (171 / 171)
         </td>
     </tbody>
     </table>
@@ -1854,6 +1854,14 @@
 <a href="#l1104" id="l1104">1104</a>
 <a href="#l1105" id="l1105">1105</a>
 <a href="#l1106" id="l1106">1106</a>
+<a href="#l1107" id="l1107">1107</a>
+<a href="#l1108" id="l1108">1108</a>
+<a href="#l1109" id="l1109">1109</a>
+<a href="#l1110" id="l1110">1110</a>
+<a href="#l1111" id="l1111">1111</a>
+<a href="#l1112" id="l1112">1112</a>
+<a href="#l1113" id="l1113">1113</a>
+<a href="#l1114" id="l1114">1114</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1984,6 +1992,14 @@
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">1</span>
@@ -3092,6 +3108,14 @@ instruction
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    <span class="skip-if-branch" title="if path not taken">I</span>if (!(typeof globalThis === "object" &amp;&amp; globalThis)) {
+<span class="cstat-skip" title="statement not covered">        if (typeof window === "object" &amp;&amp; window &amp;&amp; window.window === window) {</span>
+<span class="cstat-skip" title="statement not covered">            window.globalThis = window;</span>
+        } else {
+<span class="cstat-skip" title="statement not covered">            global.globalThis = global;</span>
+        }
+    }
     // init debugInline
     <span class="skip-if-branch" title="if path not taken">I</span>if (!globalThis.debugInline) {
 <span class="cstat-skip" title="statement not covered">        let consoleError;</span>
@@ -4382,25 +4406,25 @@ local.assetsDict["/assets.example.html"] = local.assetsDict["/"];
     </thead>
     <tbody>
         <td>
-            Statements: 96<br>
-            Branches: 41<br>
+            Statements: 99<br>
+            Branches: 47<br>
             Functions: 14
         </td>
         <td>
-            93.17%<br>
-            (1842 / 1977)
+            93.19%<br>
+            (1846 / 1981)
         </td>
         <td>
-            88.29%<br>
-            (852 / 965)
+            88.4%<br>
+            (861 / 974)
         </td>
         <td>
             91.84%<br>
             (304 / 331)
         </td>
         <td>
-            93.17%<br>
-            (1842 / 1977)
+            93.19%<br>
+            (1846 / 1981)
         </td>
     </tbody>
     </table>
@@ -11184,6 +11208,22 @@ local.assetsDict["/assets.example.html"] = local.assetsDict["/"];
 <a href="#l6773" id="l6773">6773</a>
 <a href="#l6774" id="l6774">6774</a>
 <a href="#l6775" id="l6775">6775</a>
+<a href="#l6776" id="l6776">6776</a>
+<a href="#l6777" id="l6777">6777</a>
+<a href="#l6778" id="l6778">6778</a>
+<a href="#l6779" id="l6779">6779</a>
+<a href="#l6780" id="l6780">6780</a>
+<a href="#l6781" id="l6781">6781</a>
+<a href="#l6782" id="l6782">6782</a>
+<a href="#l6783" id="l6783">6783</a>
+<a href="#l6784" id="l6784">6784</a>
+<a href="#l6785" id="l6785">6785</a>
+<a href="#l6786" id="l6786">6786</a>
+<a href="#l6787" id="l6787">6787</a>
+<a href="#l6788" id="l6788">6788</a>
+<a href="#l6789" id="l6789">6789</a>
+<a href="#l6790" id="l6790">6790</a>
+<a href="#l6791" id="l6791">6791</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -11204,6 +11244,14 @@ local.assetsDict["/assets.example.html"] = local.assetsDict["/"];
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">1</span>
@@ -11431,6 +11479,14 @@ local.assetsDict["/assets.example.html"] = local.assetsDict["/"];
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -17981,6 +18037,14 @@ local.assetsDict["/assets.example.html"] = local.assetsDict["/"];
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    <span class="skip-if-branch" title="if path not taken">I</span>if (!(typeof globalThis === "object" &amp;&amp; globalThis)) {
+<span class="cstat-skip" title="statement not covered">        if (typeof window === "object" &amp;&amp; window &amp;&amp; window.window === window) {</span>
+<span class="cstat-skip" title="statement not covered">            window.globalThis = window;</span>
+        } else {
+<span class="cstat-skip" title="statement not covered">            global.globalThis = global;</span>
+        }
+    }
     // init debugInline
     <span class="skip-if-branch" title="if path not taken">I</span>if (!globalThis.debugInline) {
 <span class="cstat-skip" title="statement not covered">        let consoleError;</span>
@@ -18217,6 +18281,14 @@ local.assetsDict["/assets.utility2.header.js"] = '\
     let isBrowser;\n\
     let isWebWorker;\n\
     let local;\n\
+    // polyfill globalThis\n\
+    if (!(typeof globalThis === "object" &amp;&amp; globalThis)) {\n\
+        if (typeof window === "object" &amp;&amp; window &amp;&amp; window.window === window) {\n\
+            window.globalThis = window;\n\
+        } else {\n\
+            global.globalThis = global;\n\
+        }\n\
+    }\n\
     // init debugInline\n\
     if (!globalThis.debugInline) {\n\
         let consoleError;\n\
@@ -25050,17 +25122,17 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     </thead>
     <tbody>
         <td>
-            Statements: 111<br>
-            Branches: 69<br>
+            Statements: 114<br>
+            Branches: 75<br>
             Functions: 19
         </td>
         <td>
             100%<br>
-            (619 / 619)
+            (623 / 623)
         </td>
         <td>
             100%<br>
-            (152 / 152)
+            (161 / 161)
         </td>
         <td>
             100%<br>
@@ -25068,7 +25140,7 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
         </td>
         <td>
             100%<br>
-            (619 / 619)
+            (623 / 623)
         </td>
     </tbody>
     </table>
@@ -26908,6 +26980,14 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
 <a href="#l1829" id="l1829">1829</a>
 <a href="#l1830" id="l1830">1830</a>
 <a href="#l1831" id="l1831">1831</a>
+<a href="#l1832" id="l1832">1832</a>
+<a href="#l1833" id="l1833">1833</a>
+<a href="#l1834" id="l1834">1834</a>
+<a href="#l1835" id="l1835">1835</a>
+<a href="#l1836" id="l1836">1836</a>
+<a href="#l1837" id="l1837">1837</a>
+<a href="#l1838" id="l1838">1838</a>
+<a href="#l1839" id="l1839">1839</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -26919,6 +26999,14 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">1</span>
@@ -28752,6 +28840,14 @@ local.assetsDict["/assets.utility2.rollup.js"] = [
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    <span class="skip-if-branch" title="if path not taken">I</span>if (!(typeof globalThis === "object" &amp;&amp; globalThis)) {
+<span class="cstat-skip" title="statement not covered">        if (typeof window === "object" &amp;&amp; window &amp;&amp; window.window === window) {</span>
+<span class="cstat-skip" title="statement not covered">            window.globalThis = window;</span>
+        } else {
+<span class="cstat-skip" title="statement not covered">            global.globalThis = global;</span>
+        }
+    }
     // init debugInline
     <span class="skip-if-branch" title="if path not taken">I</span>if (!globalThis.debugInline) {
 <span class="cstat-skip" title="statement not covered">        let consoleError;</span>
