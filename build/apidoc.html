@@ -52,7 +52,7 @@
 
         href="https://github.com/kaizhu256/node-utility2"
 
-    >utility2 (2020.8.19)</a>
+    >utility2 (2020.9.1)</a>
 </h1>
 <h4>this zero-dependency package will provide high-level functions to to build, test, and deploy webapps</h4>
 <div class="apidocSectionDiv"><a
@@ -1503,6 +1503,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.apidoc.objectDeepCopyWithKeysSorted">
+            function <span class="apidocSignatureSpan">utility2.apidoc.</span>objectDeepCopyWithKeysSorted
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.apidoc.onErrorThrow">
             function <span class="apidocSignatureSpan">utility2.apidoc.</span>onErrorThrow
             <span class="apidocSignatureSpan">(err)</span>
@@ -1749,6 +1758,15 @@
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.istanbul.objectAssignDefault">
             function <span class="apidocSignatureSpan">utility2.istanbul.</span>objectAssignDefault
             <span class="apidocSignatureSpan">(tgt = {}, src = {}, depth = 0)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.istanbul.objectDeepCopyWithKeysSorted">
+            function <span class="apidocSignatureSpan">utility2.istanbul.</span>objectDeepCopyWithKeysSorted
+            <span class="apidocSignatureSpan">(obj)</span>
             </a>
 
         </li>
@@ -3170,6 +3188,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.elem.utility2.puppeteer.objectDeepCopyWithKeysSorted">
+            function <span class="apidocSignatureSpan">utility2.puppeteer.</span>objectDeepCopyWithKeysSorted
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.puppeteer.onErrorThrow">
             function <span class="apidocSignatureSpan">utility2.puppeteer.</span>onErrorThrow
             <span class="apidocSignatureSpan">(err)</span>
@@ -4084,26 +4111,7 @@ if (module === require.main &amp;&amp; !globalThis.utility2_rollup) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
-     */
-        let sorted;
-        if (typeof obj !== &quot;object&quot; || !obj) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
-    }
-    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+</span>    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
         throw new Error(JSON.stringify(aa) + &quot; !== &quot; + JSON.stringify(bb));
@@ -7025,30 +7033,24 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">objectDeepCopyWithKeysSorted = function (obj) {
+    <li>description and source-code<pre class="apidocCodePre">function objectDeepCopyWithKeysSorted(obj) {
 <span class="apidocCodeCommentSpan">/*
  * this function will recursively deep-copy &lt;obj&gt; with keys sorted
  */
-</span>    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
-     */
-        let sorted;
-        if (!(typeof obj === &quot;object&quot; &amp;&amp; obj)) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
+</span>    let sorted;
+    if (typeof obj !== &quot;object&quot; || !obj) {
+        return obj;
     }
-    return objectDeepCopyWithKeysSorted(obj);
+    // recursively deep-copy list with child-keys sorted
+    if (Array.isArray(obj)) {
+        return obj.map(objectDeepCopyWithKeysSorted);
+    }
+    // recursively deep-copy obj with keys sorted
+    sorted = {};
+    Object.keys(obj).sort().forEach(function (key) {
+        sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+    });
+    return sorted;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
     start: &quot;./npm_scripts.sh&quot;,
@@ -11086,26 +11088,7 @@ module = opt.moduleExtraDict[opt.env.npm_package_name];
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
-     */
-        let sorted;
-        if (typeof obj !== &quot;object&quot; || !obj) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
-    }
-    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+</span>    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
         throw new Error(JSON.stringify(aa) + &quot; !== &quot; + JSON.stringify(bb));
@@ -11523,6 +11506,53 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
     require: function (file) {
         return local.tryCatchOnError(function () {
             return require(file);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.apidoc.objectDeepCopyWithKeysSorted" id="apidoc.elem.utility2.apidoc.objectDeepCopyWithKeysSorted">
+        function <span class="apidocSignatureSpan">utility2.apidoc.</span>objectDeepCopyWithKeysSorted
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function objectDeepCopyWithKeysSorted(obj) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will recursively deep-copy &lt;obj&gt; with keys sorted
+ */
+</span>    let sorted;
+    if (typeof obj !== &quot;object&quot; || !obj) {
+        return obj;
+    }
+    // recursively deep-copy list with child-keys sorted
+    if (Array.isArray(obj)) {
+        return obj.map(objectDeepCopyWithKeysSorted);
+    }
+    // recursively deep-copy obj with keys sorted
+    sorted = {};
+    Object.keys(obj).sort().forEach(function (key) {
+        sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+    });
+    return sorted;
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+    start: &quot;./npm_scripts.sh&quot;,
+    test: &quot;./npm_scripts.sh&quot;,
+    utility2: &quot;./npm_scripts.sh&quot;
+};
+// write package.json
+require(&quot;fs&quot;).writeFileSync(
+    &quot;package.json&quot;,
+    JSON.stringify(local.<span class="apidocCodeKeywordSpan">objectDeepCopyWithKeysSorted</span>(
+        packageJson
+    ), undefined, 4) + &quot;\n&quot;
+);
+writeFileLog(&quot;package.json&quot;);
+// re-render README.md
+tgt = local.templateRenderMyApp(
+    local.assetsDict[&quot;/assets.readme.template.md&quot;]
 ...</pre></li>
     </ul>
 
@@ -12030,26 +12060,7 @@ local.moduleDirname = function (module, pathList) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
-     */
-        let sorted;
-        if (typeof obj !== &quot;object&quot; || !obj) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
-    }
-    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+</span>    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
         throw new Error(JSON.stringify(aa) + &quot; !== &quot; + JSON.stringify(bb));
@@ -12808,6 +12819,53 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
     require: function (file) {
         return local.tryCatchOnError(function () {
             return require(file);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.istanbul.objectDeepCopyWithKeysSorted" id="apidoc.elem.utility2.istanbul.objectDeepCopyWithKeysSorted">
+        function <span class="apidocSignatureSpan">utility2.istanbul.</span>objectDeepCopyWithKeysSorted
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function objectDeepCopyWithKeysSorted(obj) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will recursively deep-copy &lt;obj&gt; with keys sorted
+ */
+</span>    let sorted;
+    if (typeof obj !== &quot;object&quot; || !obj) {
+        return obj;
+    }
+    // recursively deep-copy list with child-keys sorted
+    if (Array.isArray(obj)) {
+        return obj.map(objectDeepCopyWithKeysSorted);
+    }
+    // recursively deep-copy obj with keys sorted
+    sorted = {};
+    Object.keys(obj).sort().forEach(function (key) {
+        sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+    });
+    return sorted;
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+    start: &quot;./npm_scripts.sh&quot;,
+    test: &quot;./npm_scripts.sh&quot;,
+    utility2: &quot;./npm_scripts.sh&quot;
+};
+// write package.json
+require(&quot;fs&quot;).writeFileSync(
+    &quot;package.json&quot;,
+    JSON.stringify(local.<span class="apidocCodeKeywordSpan">objectDeepCopyWithKeysSorted</span>(
+        packageJson
+    ), undefined, 4) + &quot;\n&quot;
+);
+writeFileLog(&quot;package.json&quot;);
+// re-render README.md
+tgt = local.templateRenderMyApp(
+    local.assetsDict[&quot;/assets.readme.template.md&quot;]
 ...</pre></li>
     </ul>
 
@@ -14361,26 +14419,7 @@ elemList: Object.keys(module).filter(function (key) {
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
-     */
-        let sorted;
-        if (typeof obj !== &quot;object&quot; || !obj) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
-    }
-    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+</span>    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
         throw new Error(JSON.stringify(aa) + &quot; !== &quot; + JSON.stringify(bb));
@@ -14883,7 +14922,9 @@ module._compile(code, tmp);
                     }
                     // jslint file
                     require(&quot;fs&quot;).readFile(file, &quot;utf8&quot;, function (err, data) {
-                        local.onErrorThrow(err);
+                        if (err) {
+                            return;
+                        }
                         local.jslintAndPrint(data, file, opt);
                         errCnt += local.jslintResult.errList.length;
                         console.error(
@@ -15018,30 +15059,24 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">objectDeepCopyWithKeysSorted = function (obj) {
+    <li>description and source-code<pre class="apidocCodePre">function objectDeepCopyWithKeysSorted(obj) {
 <span class="apidocCodeCommentSpan">/*
  * this function will recursively deep-copy &lt;obj&gt; with keys sorted
  */
-</span>    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
-     */
-        let sorted;
-        if (!(typeof obj === &quot;object&quot; &amp;&amp; obj)) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
+</span>    let sorted;
+    if (typeof obj !== &quot;object&quot; || !obj) {
+        return obj;
     }
-    return objectDeepCopyWithKeysSorted(obj);
+    // recursively deep-copy list with child-keys sorted
+    if (Array.isArray(obj)) {
+        return obj.map(objectDeepCopyWithKeysSorted);
+    }
+    // recursively deep-copy obj with keys sorted
+    sorted = {};
+    Object.keys(obj).sort().forEach(function (key) {
+        sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+    });
+    return sorted;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
     start: &quot;./npm_scripts.sh&quot;,
@@ -17205,26 +17240,7 @@ this.renderer.link(n,r,this.output(e[1])):this.renderer.image(n,r,o(e[1]))},r.pr
 <span class="apidocCodeCommentSpan">/*
  * this function will assert JSON.stringify(&lt;aa&gt;) === JSON.stringify(&lt;bb&gt;)
  */
-</span>    function objectDeepCopyWithKeysSorted(obj) {
-    /*
-     * this function will recursively deep-copy &lt;obj&gt; with keys sorted
-     */
-        let sorted;
-        if (typeof obj !== &quot;object&quot; || !obj) {
-            return obj;
-        }
-        // recursively deep-copy list with child-keys sorted
-        if (Array.isArray(obj)) {
-            return obj.map(objectDeepCopyWithKeysSorted);
-        }
-        // recursively deep-copy obj with keys sorted
-        sorted = {};
-        Object.keys(obj).sort().forEach(function (key) {
-            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-        });
-        return sorted;
-    }
-    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
+</span>    aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
     bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
     if (aa !== bb) {
         throw new Error(JSON.stringify(aa) + &quot; !== &quot; + JSON.stringify(bb));
@@ -17647,6 +17663,53 @@ local.<span class="apidocCodeKeywordSpan">objectAssignDefault</span>(opt, {
     require: function (file) {
         return local.tryCatchOnError(function () {
             return require(file);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.elem.utility2.puppeteer.objectDeepCopyWithKeysSorted" id="apidoc.elem.utility2.puppeteer.objectDeepCopyWithKeysSorted">
+        function <span class="apidocSignatureSpan">utility2.puppeteer.</span>objectDeepCopyWithKeysSorted
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function objectDeepCopyWithKeysSorted(obj) {
+<span class="apidocCodeCommentSpan">/*
+ * this function will recursively deep-copy &lt;obj&gt; with keys sorted
+ */
+</span>    let sorted;
+    if (typeof obj !== &quot;object&quot; || !obj) {
+        return obj;
+    }
+    // recursively deep-copy list with child-keys sorted
+    if (Array.isArray(obj)) {
+        return obj.map(objectDeepCopyWithKeysSorted);
+    }
+    // recursively deep-copy obj with keys sorted
+    sorted = {};
+    Object.keys(obj).sort().forEach(function (key) {
+        sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+    });
+    return sorted;
+}</pre></li>
+    <li>example use<pre class="apidocCodePre">...
+    start: &quot;./npm_scripts.sh&quot;,
+    test: &quot;./npm_scripts.sh&quot;,
+    utility2: &quot;./npm_scripts.sh&quot;
+};
+// write package.json
+require(&quot;fs&quot;).writeFileSync(
+    &quot;package.json&quot;,
+    JSON.stringify(local.<span class="apidocCodeKeywordSpan">objectDeepCopyWithKeysSorted</span>(
+        packageJson
+    ), undefined, 4) + &quot;\n&quot;
+);
+writeFileLog(&quot;package.json&quot;);
+// re-render README.md
+tgt = local.templateRenderMyApp(
+    local.assetsDict[&quot;/assets.readme.template.md&quot;]
 ...</pre></li>
     </ul>
 
