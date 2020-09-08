@@ -296,17 +296,17 @@
     </thead>
     <tbody>
         <td>
-            Statements: 73<br>
-            Branches: 65<br>
+            Statements: 74<br>
+            Branches: 70<br>
             Functions: 14
         </td>
         <td>
             100%<br>
-            (171 / 171)
+            (172 / 172)
         </td>
         <td>
             100%<br>
-            (102 / 102)
+            (107 / 107)
         </td>
         <td>
             100%<br>
@@ -314,7 +314,7 @@
         </td>
         <td>
             100%<br>
-            (171 / 171)
+            (172 / 172)
         </td>
     </tbody>
     </table>
@@ -1437,6 +1437,7 @@
 <a href="#l1112" id="l1112">1112</a>
 <a href="#l1113" id="l1113">1113</a>
 <a href="#l1114" id="l1114">1114</a>
+<a href="#l1115" id="l1115">1115</a>
 </td>
         <td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1572,6 +1573,7 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2687,7 +2689,8 @@ instruction
     <span class="skip-if-branch" title="if path not taken">I</span>if (!(typeof globalThis === "object" &amp;&amp; globalThis)) {
 <span class="cstat-skip" title="statement not covered">        if (typeof window === "object" &amp;&amp; window &amp;&amp; window.window === window) {</span>
 <span class="cstat-skip" title="statement not covered">            window.globalThis = window;</span>
-        } else {
+        }
+<span class="cstat-skip" title="statement not covered">        if (typeof global === "object" &amp;&amp; global &amp;&amp; global.global === global) {</span>
 <span class="cstat-skip" title="statement not covered">            global.globalThis = global;</span>
         }
     }
