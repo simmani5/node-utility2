@@ -153,16 +153,6 @@ pre {
 <div class="uiAnimateSpin" style="animation: uiAnimateSpin 2s linear infinite; border: 5px solid #999; border-radius: 50%; border-top: 5px solid #7d7; display: none; height: 25px; vertical-align: middle; width: 25px;"></div>
 <script>
 /* jslint utility2:true */
-// polyfill globalThis
-(function () {
-/*
- * this function will polyfill globalThis
- */
-    "use strict";
-    window.globalThis = window.globalThis || globalThis;
-}());
-
-
 // init domOnEventWindowOnloadTimeElapsed
 (function () {
 /*
@@ -470,18 +460,18 @@ pre {
         href="https://github.com/kaizhu256/node-utility2"
         
     >
-        utility2 (2020.9.1)
+        utility2 (2020.8.19)
     </a>
 </h1>
 <div class="platform summary">
 <h2>summary</h2>
 <h4>
     <span>version</span>-
-        2020.9.1<br>
-    <span>test date</span>- 2020-09-08T17:55:10.713Z<br>
+        2020.8.19<br>
+    <span>test date</span>- 2020-09-08T17:55:56.804Z<br>
     <span>commit info</span>-
         
-        ac014c31a04f0c287ddfdbce24574838b2dcd744 - <br>
+        eb8092f2969f670ad66276fcb9be58d828adc200 - <br>
         
 </h4>
 <table>
@@ -494,7 +484,7 @@ pre {
     </tr>
 </thead>
 <tbody><tr>
-    <td>32223 ms</td>
+    <td>33168 ms</td>
     <td class="testPassed">0</td>
     <td>99</td>
     <td>0</td>
@@ -504,10 +494,10 @@ pre {
 
 <div class="platform">
 <h4>
-    1. buildApidoc - node - linux v14.10.0 - 2020-09-08T17:54:54.688Z<br>
+    1. buildApidoc - node - linux v14.10.0 - 2020-09-08T17:55:39.600Z<br>
     
     
-    <span>time-elapsed</span>- 21615 ms<br>
+    <span>time-elapsed</span>- 22096 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 1<br>
     <span>tests pending</span>- 0<br>
@@ -523,7 +513,7 @@ pre {
 
 <tr>
     <td>1</td>
-    <td>5346 ms</td>
+    <td>4742 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
@@ -537,7 +527,7 @@ pre {
 
 <div class="platform">
 <h4>
-    2. npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T17:54:49.644Z<br>
+    2. npmTest - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T17:55:34.371Z<br>
     
     <a href="screenshot.npmTest.browser.%252F.png">
         <img alt="screenshot.npmTest.browser.%252F.png" src="screenshot.npmTest.browser.%252F.png">
@@ -545,9 +535,9 @@ pre {
     <br>
     
     
-    <span>onload-time</span>- 1113 ms<br>
+    <span>onload-time</span>- 1108 ms<br>
     
-    <span>time-elapsed</span>- 26608 ms<br>
+    <span>time-elapsed</span>- 27108 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 41<br>
     <span>tests pending</span>- 0<br>
@@ -563,21 +553,21 @@ pre {
 
 <tr>
     <td>2</td>
-    <td>338 ms</td>
+    <td>333 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_200</td>
 </tr>
 
 <tr>
     <td>3</td>
-    <td>532 ms</td>
+    <td>582 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_404</td>
 </tr>
 
 <tr>
     <td>4</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_cache</td>
 </tr>
@@ -591,35 +581,35 @@ pre {
 
 <tr>
     <td>6</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_assertXxx_default</td>
 </tr>
 
 <tr>
     <td>7</td>
-    <td>2 ms</td>
+    <td>8 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_base64Xxx_default</td>
 </tr>
 
 <tr>
     <td>8</td>
-    <td>533 ms</td>
+    <td>618 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_blobRead_default</td>
 </tr>
 
 <tr>
     <td>9</td>
-    <td>0 ms</td>
+    <td>2 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_bufferValidateAndCoerce_err</td>
 </tr>
 
 <tr>
     <td>10</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApidoc_default</td>
 </tr>
@@ -633,7 +623,7 @@ pre {
 
 <tr>
     <td>12</td>
-    <td>3 ms</td>
+    <td>5 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildXxx_default</td>
 </tr>
@@ -647,42 +637,42 @@ pre {
 
 <tr>
     <td>14</td>
-    <td>0 ms</td>
+    <td>11 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_corsForwardProxyHostIfNeeded_default</td>
 </tr>
 
 <tr>
     <td>15</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_cryptoAesXxxCbcRawXxx_default</td>
 </tr>
 
 <tr>
     <td>16</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_domFragmentRender_default</td>
 </tr>
 
 <tr>
     <td>17</td>
-    <td>1 ms</td>
+    <td>9 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_eventListenerXxx_default</td>
 </tr>
 
 <tr>
     <td>18</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_libUtility2Js_standalone</td>
 </tr>
 
 <tr>
     <td>19</td>
-    <td>1 ms</td>
+    <td>7 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_listShuffle_default</td>
 </tr>
@@ -696,7 +686,7 @@ pre {
 
 <tr>
     <td>21</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_nop_default</td>
 </tr>
@@ -710,7 +700,7 @@ pre {
 
 <tr>
     <td>23</td>
-    <td>2 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_onNext_err</td>
 </tr>
@@ -724,7 +714,7 @@ pre {
 
 <tr>
     <td>25</td>
-    <td>305 ms</td>
+    <td>355 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_onParallel_default</td>
 </tr>
@@ -752,14 +742,14 @@ pre {
 
 <tr>
     <td>29</td>
-    <td>277 ms</td>
+    <td>344 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_setTimeoutOnError_default</td>
 </tr>
 
 <tr>
     <td>30</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_stringHtmlSafe_default</td>
 </tr>
@@ -773,35 +763,35 @@ pre {
 
 <tr>
     <td>32</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_stringRegexpEscape_default</td>
 </tr>
 
 <tr>
     <td>33</td>
-    <td>24 ms</td>
+    <td>18 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_templateRender_default</td>
 </tr>
 
 <tr>
     <td>34</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_testMock_err</td>
 </tr>
 
 <tr>
     <td>35</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_testReportCreate_default</td>
 </tr>
 
 <tr>
     <td>36</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_throwError_default</td>
 </tr>
@@ -815,14 +805,14 @@ pre {
 
 <tr>
     <td>38</td>
-    <td>6 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_urlJoin_default</td>
 </tr>
 
 <tr>
     <td>39</td>
-    <td>1 ms</td>
+    <td>2 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_urlParse_default</td>
 </tr>
@@ -843,7 +833,7 @@ pre {
 
 <tr>
     <td>42</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_err</td>
 </tr>
@@ -857,10 +847,10 @@ pre {
 
 <div class="platform">
 <h4>
-    3. npmTest - node - linux v14.10.0 - 2020-09-08T17:54:47.312Z<br>
+    3. npmTest - node - linux v14.10.0 - 2020-09-08T17:55:31.748Z<br>
     
     
-    <span>time-elapsed</span>- 28256 ms<br>
+    <span>time-elapsed</span>- 29435 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 41<br>
     <span>tests pending</span>- 0<br>
@@ -890,56 +880,56 @@ pre {
 
 <tr>
     <td>45</td>
-    <td>323 ms</td>
+    <td>403 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_cache</td>
 </tr>
 
 <tr>
     <td>46</td>
-    <td>1026 ms</td>
+    <td>1127 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_default</td>
 </tr>
 
 <tr>
     <td>47</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_assertXxx_default</td>
 </tr>
 
 <tr>
     <td>48</td>
-    <td>3 ms</td>
+    <td>4 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_base64Xxx_default</td>
 </tr>
 
 <tr>
     <td>49</td>
-    <td>1 ms</td>
+    <td>2 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_blobRead_default</td>
 </tr>
 
 <tr>
     <td>50</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_bufferValidateAndCoerce_err</td>
 </tr>
 
 <tr>
     <td>51</td>
-    <td>155 ms</td>
+    <td>235 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApidoc_default</td>
 </tr>
 
 <tr>
     <td>52</td>
-    <td>5296 ms</td>
+    <td>5955 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_buildApp_default</td>
 </tr>
@@ -953,21 +943,21 @@ pre {
 
 <tr>
     <td>54</td>
-    <td>13 ms</td>
+    <td>5 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_cliRun_default</td>
 </tr>
 
 <tr>
     <td>55</td>
-    <td>2 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_corsForwardProxyHostIfNeeded_default</td>
 </tr>
 
 <tr>
     <td>56</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_cryptoAesXxxCbcRawXxx_default</td>
 </tr>
@@ -988,70 +978,70 @@ pre {
 
 <tr>
     <td>59</td>
-    <td>151 ms</td>
+    <td>255 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_libUtility2Js_standalone</td>
 </tr>
 
 <tr>
     <td>60</td>
-    <td>1 ms</td>
+    <td>3 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_listShuffle_default</td>
 </tr>
 
 <tr>
     <td>61</td>
-    <td>264 ms</td>
+    <td>349 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_middlewareForwardProxy_default</td>
 </tr>
 
 <tr>
     <td>62</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_nop_default</td>
 </tr>
 
 <tr>
     <td>63</td>
-    <td>2 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_onErrorWithStack_toString</td>
 </tr>
 
 <tr>
     <td>64</td>
-    <td>1 ms</td>
+    <td>2 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_onNext_err</td>
 </tr>
 
 <tr>
     <td>65</td>
-    <td>1027 ms</td>
+    <td>1126 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_onParallelList_default</td>
 </tr>
 
 <tr>
     <td>66</td>
-    <td>15 ms</td>
+    <td>20 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_onParallel_default</td>
 </tr>
 
 <tr>
     <td>67</td>
-    <td>7 ms</td>
+    <td>15 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_replStart_default</td>
 </tr>
 
 <tr>
     <td>68</td>
-    <td>22 ms</td>
+    <td>29 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_requireReadme_misc</td>
 </tr>
@@ -1065,21 +1055,21 @@ pre {
 
 <tr>
     <td>70</td>
-    <td>68 ms</td>
+    <td>59 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_setTimeoutOnError_default</td>
 </tr>
 
 <tr>
     <td>71</td>
-    <td>2 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_stringHtmlSafe_default</td>
 </tr>
 
 <tr>
     <td>72</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_stringQuotedToAscii_default</td>
 </tr>
@@ -1093,14 +1083,14 @@ pre {
 
 <tr>
     <td>74</td>
-    <td>16 ms</td>
+    <td>12 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_templateRender_default</td>
 </tr>
 
 <tr>
     <td>75</td>
-    <td>2 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_testMock_err</td>
 </tr>
@@ -1114,14 +1104,14 @@ pre {
 
 <tr>
     <td>77</td>
-    <td>5 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_throwError_default</td>
 </tr>
 
 <tr>
     <td>78</td>
-    <td>1 ms</td>
+    <td>0 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_uiAnimateXxx_default</td>
 </tr>
@@ -1135,28 +1125,28 @@ pre {
 
 <tr>
     <td>80</td>
-    <td>1 ms</td>
+    <td>2 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_urlParse_default</td>
 </tr>
 
 <tr>
     <td>81</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_uuid4Create_default</td>
 </tr>
 
 <tr>
     <td>82</td>
-    <td>3672 ms</td>
+    <td>4275 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_default</td>
 </tr>
 
 <tr>
     <td>83</td>
-    <td>4676 ms</td>
+    <td>5153 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_err</td>
 </tr>
@@ -1170,7 +1160,7 @@ pre {
 
 <div class="platform">
 <h4>
-    4. testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T17:54:44.543Z<br>
+    4. testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T17:55:28.969Z<br>
     
     <a href="screenshot.testExampleJs.browser.%252F.png">
         <img alt="screenshot.testExampleJs.browser.%252F.png" src="screenshot.testExampleJs.browser.%252F.png">
@@ -1178,7 +1168,7 @@ pre {
     <br>
     
     
-    <span>time-elapsed</span>- 31865 ms<br>
+    <span>time-elapsed</span>- 32819 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 4<br>
     <span>tests pending</span>- 0<br>
@@ -1194,14 +1184,14 @@ pre {
 
 <tr>
     <td>84</td>
-    <td>43 ms</td>
+    <td>49 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_200</td>
 </tr>
 
 <tr>
     <td>85</td>
-    <td>46 ms</td>
+    <td>54 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_404</td>
 </tr>
@@ -1229,7 +1219,7 @@ pre {
 
 <div class="platform">
 <h4>
-    5. testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T17:54:44.543Z<br>
+    5. testExampleJs - browser - / - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36 - 2020-09-08T17:55:28.969Z<br>
     
     <a href="screenshot.testExampleJs.browser.%252F.png">
         <img alt="screenshot.testExampleJs.browser.%252F.png" src="screenshot.testExampleJs.browser.%252F.png">
@@ -1237,7 +1227,7 @@ pre {
     <br>
     
     
-    <span>time-elapsed</span>- 31865 ms<br>
+    <span>time-elapsed</span>- 32819 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 4<br>
     <span>tests pending</span>- 0<br>
@@ -1253,14 +1243,14 @@ pre {
 
 <tr>
     <td>88</td>
-    <td>43 ms</td>
+    <td>49 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_200</td>
 </tr>
 
 <tr>
     <td>89</td>
-    <td>46 ms</td>
+    <td>54 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_404</td>
 </tr>
@@ -1288,10 +1278,10 @@ pre {
 
 <div class="platform">
 <h4>
-    6. testExampleJs - node - linux v14.10.0 - 2020-09-08T17:54:44.175Z<br>
+    6. testExampleJs - node - linux v14.10.0 - 2020-09-08T17:55:28.607Z<br>
     
     
-    <span>time-elapsed</span>- 32223 ms<br>
+    <span>time-elapsed</span>- 33168 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 4<br>
     <span>tests pending</span>- 0<br>
@@ -1307,7 +1297,7 @@ pre {
 
 <tr>
     <td>92</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_200</td>
 </tr>
@@ -1328,7 +1318,7 @@ pre {
 
 <tr>
     <td>95</td>
-    <td>553 ms</td>
+    <td>556 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_default</td>
 </tr>
@@ -1342,10 +1332,10 @@ pre {
 
 <div class="platform">
 <h4>
-    7. testExampleJs - node - linux v14.10.0 - 2020-09-08T17:54:44.175Z<br>
+    7. testExampleJs - node - linux v14.10.0 - 2020-09-08T17:55:28.607Z<br>
     
     
-    <span>time-elapsed</span>- 32223 ms<br>
+    <span>time-elapsed</span>- 33168 ms<br>
     <span>tests failed</span>- 0<br>
     <span>tests passed</span>- 4<br>
     <span>tests pending</span>- 0<br>
@@ -1361,7 +1351,7 @@ pre {
 
 <tr>
     <td>96</td>
-    <td>0 ms</td>
+    <td>1 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_ajax_200</td>
 </tr>
@@ -1382,7 +1372,7 @@ pre {
 
 <tr>
     <td>99</td>
-    <td>553 ms</td>
+    <td>556 ms</td>
     <td class="testPassed">passed</td>
     <td>testCase_webpage_default</td>
 </tr>
