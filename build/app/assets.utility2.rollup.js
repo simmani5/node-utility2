@@ -20,7 +20,8 @@
     if (!(typeof globalThis === "object" && globalThis)) {
         if (typeof window === "object" && window && window.window === window) {
             window.globalThis = window;
-        } else {
+        }
+        if (typeof global === "object" && global && global.global === global) {
             global.globalThis = global;
         }
     }
@@ -235,7 +236,8 @@
     if (!(typeof globalThis === "object" && globalThis)) {
         if (typeof window === "object" && window && window.window === window) {
             window.globalThis = window;
-        } else {
+        }
+        if (typeof global === "object" && global && global.global === global) {
             global.globalThis = global;
         }
     }
@@ -1564,7 +1566,8 @@ if (module === require.main && !globalThis.utility2_rollup) {
     if (!(typeof globalThis === "object" && globalThis)) {
         if (typeof window === "object" && window && window.window === window) {
             window.globalThis = window;
-        } else {
+        }
+        if (typeof global === "object" && global && global.global === global) {
             global.globalThis = global;
         }
     }
@@ -13465,7 +13468,8 @@ if (module === require.main && !globalThis.utility2_rollup) {
     if (!(typeof globalThis === "object" && globalThis)) {
         if (typeof window === "object" && window && window.window === window) {
             window.globalThis = window;
-        } else {
+        }
+        if (typeof global === "object" && global && global.global === global) {
             global.globalThis = global;
         }
     }
@@ -30883,7 +30887,8 @@ if (module === require.main && !globalThis.utility2_rollup) {
     if (!(typeof globalThis === "object" && globalThis)) {
         if (typeof window === "object" && window && window.window === window) {
             window.globalThis = window;
-        } else {
+        }
+        if (typeof global === "object" && global && global.global === global) {
             global.globalThis = global;
         }
     }
@@ -31322,7 +31327,8 @@ if (local.isBrowser) {
     if (!(typeof globalThis === "object" && globalThis)) {
         if (typeof window === "object" && window && window.window === window) {
             window.globalThis = window;
-        } else {
+        }
+        if (typeof global === "object" && global && global.global === global) {
             global.globalThis = global;
         }
     }
@@ -44117,7 +44123,8 @@ if (module === require.main && !globalThis.utility2_rollup) {
     if (!(typeof globalThis === "object" && globalThis)) {
         if (typeof window === "object" && window && window.window === window) {
             window.globalThis = window;
-        } else {
+        }
+        if (typeof global === "object" && global && global.global === global) {
             global.globalThis = global;
         }
     }
@@ -44361,7 +44368,8 @@ local.assetsDict["/assets.utility2.header.js"] = '\
     if (!(typeof globalThis === "object" && globalThis)) {\n\
         if (typeof window === "object" && window && window.window === window) {\n\
             window.globalThis = window;\n\
-        } else {\n\
+        }\n\
+        if (typeof global === "object" && global && global.global === global) {\n\
             global.globalThis = global;\n\
         }\n\
     }\n\
@@ -45708,7 +45716,20 @@ let onErrorThrow;
 localEventListenerDict = {};
 localEventListenerId = 0;
 onErrorThrow = local.onErrorThrow;
-// init lib Blob
+
+
+// polyfill TextDecoder and TextEncoder
+(function () {
+    try {
+        globalThis.TextDecoder = (
+            globalThis.TextDecoder || require("util").TextDecoder
+        );
+        globalThis.TextEncoder = (
+            globalThis.TextEncoder || require("util").TextEncoder
+        );
+    } catch (ignore) {}
+}());
+// polyfill Blob
 local.Blob = globalThis.Blob || function (list, opt) {
     /*
      * this function will emulate in node, browser's Blob class
@@ -50927,7 +50948,8 @@ instruction\n\
     if (!(typeof globalThis === \"object\" && globalThis)) {\n\
         if (typeof window === \"object\" && window && window.window === window) {\n\
             window.globalThis = window;\n\
-        } else {\n\
+        }\n\
+        if (typeof global === \"object\" && global && global.global === global) {\n\
             global.globalThis = global;\n\
         }\n\
     }\n\
@@ -52546,7 +52568,8 @@ local.assetsDict["/assets.utility2.lib.jslint.js"] = (
     if (!(typeof globalThis === \"object\" && globalThis)) {\n\
         if (typeof window === \"object\" && window && window.window === window) {\n\
             window.globalThis = window;\n\
-        } else {\n\
+        }\n\
+        if (typeof global === \"object\" && global && global.global === global) {\n\
             global.globalThis = global;\n\
         }\n\
     }\n\
@@ -69970,7 +69993,8 @@ local.assetsDict["/assets.utility2.test.js"] = (
     if (!(typeof globalThis === \"object\" && globalThis)) {\n\
         if (typeof window === \"object\" && window && window.window === window) {\n\
             window.globalThis = window;\n\
-        } else {\n\
+        }\n\
+        if (typeof global === \"object\" && global && global.global === global) {\n\
             global.globalThis = global;\n\
         }\n\
     }\n\

@@ -4616,8 +4616,8 @@ local.cliDict[&quot;utility2.browserTest&quot;] = function () {
     return result;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-onErrorThrow = local.onErrorThrow;
-// init lib Blob
+}());
+// polyfill Blob
 local.Blob = globalThis.Blob || function (list, opt) {
 /*
  * this function will emulate in node, browser&apos;s Blob class
