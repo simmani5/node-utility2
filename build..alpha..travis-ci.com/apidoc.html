@@ -10512,10 +10512,10 @@ if (process.env.npm_config_runme) {
     <li>description and source-code<pre class="apidocCodePre">function(content, filename) {
   let moduleURL;
   let redirects;
-  if (manifest) {
+  if (policy?.manifest) {
     moduleURL = pathToFileURL(filename);
-    redirects = manifest.getRedirector(moduleURL);
-    manifest.assertIntegrity(moduleURL, content);
+    redirects = policy.manifest.getDependencyMapper(moduleURL);
+    policy.manifest.assertIntegrity(moduleURL, content);
   }
 
   maybeCacheSourceMap(filename, content, this);
