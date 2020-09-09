@@ -1,5 +1,5 @@
-<svg height="606" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="606" fill="#555" width="720"></rect>
+<svg height="590" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="590" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
 <tspan x="10" y="26">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</tspan>
 
@@ -7,53 +7,52 @@
 
 <tspan x="10" y="58"></tspan>
 <tspan x="10" y="74">  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0</tspan>
-<tspan x="10" y="90">  1 3065k    1 50727    0     0   198k      0  0:00:15 --:--:--  0:00:15  198k</tspan>
-<tspan x="10" y="106">100 3065k  100 3065k    0     0  4626k      0 --:--:-- --:--:-- --:--:-- 4623k</tspan>
+<tspan x="10" y="90">100 3065k  100 3065k    0     0  5308k      0 --:--:-- --:--:-- --:--:-- 5312k</tspan>
 
-<tspan x="10" y="122"></tspan>
+<tspan x="10" y="106"></tspan>
 
-<tspan x="10" y="138">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/bui\</tspan>
-<tspan x="10" y="154">ld/test-report.json</tspan>
+<tspan x="10" y="122">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/bui\</tspan>
+<tspan x="10" y="138">ld/test-report.json</tspan>
 
-<tspan x="10" y="170"></tspan>
+<tspan x="10" y="154"></tspan>
 
-<tspan x="10" y="186">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/bui\</tspan>
-<tspan x="10" y="202">ld/test-report.json</tspan>
+<tspan x="10" y="170">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/bui\</tspan>
+<tspan x="10" y="186">ld/test-report.json</tspan>
 
-<tspan x="10" y="218">http-server listening on port 8081</tspan>
+<tspan x="10" y="202">http-server listening on port 8081</tspan>
 
-<tspan x="10" y="234">&gt; </tspan>
+<tspan x="10" y="218">&gt; </tspan>
 
-<tspan x="10" y="250">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/bui\</tspan>
-<tspan x="10" y="266">ld/test-report.json</tspan>
+<tspan x="10" y="234">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/bui\</tspan>
+<tspan x="10" y="250">ld/test-report.json</tspan>
 
-<tspan x="10" y="282"></tspan>
+<tspan x="10" y="266"></tspan>
 
-<tspan x="10" y="298">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/bui\</tspan>
-<tspan x="10" y="314">ld/test-report.json</tspan>
+<tspan x="10" y="282">testExampleSh - merged test-report from file /home/travis/build/kaizhu256/node-utility2/.tmp/bui\</tspan>
+<tspan x="10" y="298">ld/test-report.json</tspan>
 
-<tspan x="10" y="330">jslint - 9ms - /tmp/app/example.sh</tspan>
+<tspan x="10" y="314">jslint - 3ms - /tmp/app/example.sh</tspan>
 
-<tspan x="10" y="346">serverLog - {"time":"2020-09-09T20:45:23.674Z","type":"serverResponse","method":"GET","url":"/",\</tspan>
-<tspan x="10" y="362">"statusCode":200,"timeElapsed":4,"reqContentLength":0,"resContentLength":0,"reqHeaderXForwardedF\</tspan>
-<tspan x="10" y="378">or":"","reqHeaderOrigin":"","reqHeaderReferer":"","reqHeaderUserAgent":"Mozilla/5.0 (X11; Linux \</tspan>
-<tspan x="10" y="394">x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36"}</tspan>
+<tspan x="10" y="330">serverLog - {"time":"2020-09-09T20:46:04.681Z","type":"serverResponse","method":"GET","url":"/",\</tspan>
+<tspan x="10" y="346">"statusCode":200,"timeElapsed":10,"reqContentLength":0,"resContentLength":0,"reqHeaderXForwarded\</tspan>
+<tspan x="10" y="362">For":"","reqHeaderOrigin":"","reqHeaderReferer":"","reqHeaderUserAgent":"Mozilla/5.0 (X11; Linux\</tspan>
+<tspan x="10" y="378"> x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.102 Safari/537.36"}</tspan>
 
-<tspan x="10" y="410"></tspan>
+<tspan x="10" y="394"></tspan>
 
-<tspan x="10" y="426">serverLog - {"time":"2020-09-09T20:45:23.699Z","type":"serverResponse","method":"GET","url":"/as\</tspan>
-<tspan x="10" y="442">sets.app.js","statusCode":200,"timeElapsed":18,"reqContentLength":0,"resContentLength":0,"reqHea\</tspan>
-<tspan x="10" y="458">derXForwardedFor":"","reqHeaderOrigin":"","reqHeaderReferer":"http://127.0.0.1:8081/","reqHeader\</tspan>
-<tspan x="10" y="474">UserAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrom\</tspan>
-<tspan x="10" y="490">e/85.0.4183.102 Safari/537.36"}</tspan>
+<tspan x="10" y="410">serverLog - {"time":"2020-09-09T20:46:04.703Z","type":"serverResponse","method":"GET","url":"/as\</tspan>
+<tspan x="10" y="426">sets.app.js","statusCode":200,"timeElapsed":19,"reqContentLength":0,"resContentLength":0,"reqHea\</tspan>
+<tspan x="10" y="442">derXForwardedFor":"","reqHeaderOrigin":"","reqHeaderReferer":"http://127.0.0.1:8081/","reqHeader\</tspan>
+<tspan x="10" y="458">UserAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrom\</tspan>
+<tspan x="10" y="474">e/85.0.4183.102 Safari/537.36"}</tspan>
 
-<tspan x="10" y="506"></tspan>
+<tspan x="10" y="490"></tspan>
 
-<tspan x="10" y="522">serverLog - {"time":"2020-09-09T20:45:23.923Z","type":"serverResponse","method":"GET","url":"/",\</tspan>
-<tspan x="10" y="538">"statusCode":200,"timeElapsed":1,"reqContentLength":0,"resContentLength":0,"reqHeaderXForwardedF\</tspan>
-<tspan x="10" y="554">or":"","reqHeaderOrigin":"","reqHeaderReferer":"http://127.0.0.1:8081/","reqHeaderUserAgent":"Mo\</tspan>
-<tspan x="10" y="570">zilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.10\</tspan>
-<tspan x="10" y="586">2 Safari/537.36"}</tspan>
+<tspan x="10" y="506">serverLog - {"time":"2020-09-09T20:46:04.916Z","type":"serverResponse","method":"GET","url":"/",\</tspan>
+<tspan x="10" y="522">"statusCode":200,"timeElapsed":1,"reqContentLength":0,"resContentLength":0,"reqHeaderXForwardedF\</tspan>
+<tspan x="10" y="538">or":"","reqHeaderOrigin":"","reqHeaderReferer":"http://127.0.0.1:8081/","reqHeaderUserAgent":"Mo\</tspan>
+<tspan x="10" y="554">zilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/85.0.4183.10\</tspan>
+<tspan x="10" y="570">2 Safari/537.36"}</tspan>
 
 </text>
 </svg>
