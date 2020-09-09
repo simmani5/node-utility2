@@ -45729,24 +45729,6 @@ onErrorThrow = local.onErrorThrow;
         );
     } catch (ignore) {}
 }());
-// polyfill Blob
-local.Blob = globalThis.Blob || function (list, opt) {
-    /*
-     * this function will emulate in node, browser's Blob class
-     * https://developer.mozilla.org/en-US/docs/Web/API/Blob/Blob
-     */
-    this.buf = local.bufferConcat(list.map(function (elem) {
-        if (
-            typeof elem === "string"
-            || Object.prototype.toString.call(elem) === "[object Uint8Array]"
-        ) {
-            return elem;
-        }
-        // emulate in node, browser-behavior - auto-stringify arbitrary data
-        return String(elem);
-    }));
-    this.type = (opt && opt.type) || "";
-};
 
 // init lib _http
 local._http = {};
@@ -46339,23 +46321,7 @@ local.ajax = function (opt, onError) {
     Object.keys(xhr.headers).forEach(function (key) {
         xhr.setRequestHeader(key, xhr.headers[key]);
     });
-    // send data
-    switch ((xhr.data && xhr.data.constructor) || true) {
-    // Blob
-    // https://developer.mozilla.org/en-US/docs/Web/API/Blob
-    case local2.Blob:
-        local2.blobRead(xhr.data, function (err, data) {
-            if (err) {
-                xhr.onEvent(err);
-                return;
-            }
-            // send data
-            xhr.send(data);
-        });
-        break;
-    default:
-        xhr.send(xhr.data);
-    }
+    xhr.send(xhr.data);
     return xhr;
 };
 
@@ -46457,44 +46423,6 @@ local.base64ToUtf8 = function (str) {
  * this function will convert base64 <str> to utf8 str
  */
     return local.bufferValidateAndCoerce(local.base64ToBuffer(str), "string");
-};
-
-local.blobRead = function (blob, onError) {
-/*
- * this function will read from <blob>
- */
-    let isDone;
-    let reader;
-    if (!local.isBrowser) {
-        onError(undefined, local.bufferValidateAndCoerce(blob.buf));
-        return;
-    }
-    reader = new FileReader();
-    reader.onabort = function (evt) {
-        if (isDone) {
-            return;
-        }
-        isDone = true;
-        switch (evt.type) {
-        case "abort":
-        case "error":
-            onError(new Error("blobRead - " + evt.type));
-            break;
-        case "load":
-            onError(
-                undefined,
-                Object.prototype.toString.call(reader.result)
-                === "[object ArrayBuffer]"
-                // convert ArrayBuffer to Uint8Array
-                ? new Uint8Array(reader.result)
-                : reader.result
-            );
-            break;
-        }
-    };
-    reader.onerror = reader.onabort;
-    reader.onload = reader.onabort;
-    reader.readAsArrayBuffer(blob);
 };
 
 local.browserTest = function (opt, onError) {
@@ -70252,7 +70180,6 @@ local.testCase_ajax_default = function (opt, onError) {\n\
         list: [\n\
             \"\",\n\
             \"arraybuffer\",\n\
-            \"blob\",\n\
             \"text\"\n\
         ]\n\
     }, function (responseType, onParallel) {\n\
@@ -70263,19 +70190,12 @@ local.testCase_ajax_default = function (opt, onError) {\n\
                 responseType === \"arraybuffer\"\n\
                 // test POST buffer-data handling-behavior\n\
                 ? new TextEncoder().encode(local.stringHelloEmoji)\n\
-                : responseType === \"blob\"\n\
-                // test POST blob-data handling-behavior\n\
-                ? new local.Blob([\n\
-                    \"\",\n\
-                    new Uint8Array(0),\n\
-                    local.stringHelloEmoji\n\
-                ])\n\
                 // test POST string-data handling-behavior\n\
                 : local.stringHelloEmoji\n\
             ),\n\
             method: \"POST\",\n\
             // test nodejs-res handling-behavior\n\
-            responseType: responseType.replace(\"blob\", \"arraybuffer\"),\n\
+            responseType,\n\
             url: \"/test.body\"\n\
         }, function (err, xhr) {\n\
             onErrorThrow(err);\n\
@@ -70284,7 +70204,6 @@ local.testCase_ajax_default = function (opt, onError) {\n\
             // validate responseText\n\
             switch (responseType) {\n\
             case \"arraybuffer\":\n\
-            case \"blob\":\n\
                 assertJsonEqual(xhr.responseBuffer.byteLength, 11);\n\
                 assertJsonEqual(Array.from(xhr.responseBuffer), [\n\
                     0x68,\n\
@@ -70533,59 +70452,6 @@ local.testCase_base64Xxx_default = function (opt, onError) {\n\
         opt.base64\n\
     );\n\
     onError(undefined, opt);\n\
-};\n\
-\n\
-local.testCase_blobRead_default = function (opt, onError) {\n\
-/*\n\
- * this function will test blobRead's default handling-behavior\n\
- */\n\
-    let onParallel;\n\
-    onParallel = local.onParallel(onError);\n\
-    onParallel.cnt += 1;\n\
-    // test data handling-behavior\n\
-    onParallel.cnt += 1;\n\
-    local.blobRead(new local.Blob([\n\
-        \"\",\n\
-        \"aa\",\n\
-        \"bb\",\n\
-        new Uint8Array(0),\n\
-        local.stringHelloEmoji\n\
-    ]), function (err, data) {\n\
-        onErrorThrow(err);\n\
-        // validate data\n\
-        assertJsonEqual(\n\
-            local.bufferToUtf8(data),\n\
-            \"aabbhello \\ud83d\\ude01\\n\"\n\
-        );\n\
-        onParallel(undefined, opt);\n\
-    });\n\
-    if (!local.isBrowser) {\n\
-        onParallel(undefined, opt);\n\
-        return;\n\
-    }\n\
-    // test err handling-behavior\n\
-    onParallel.cnt += 1;\n\
-    local.testMock([\n\
-        [\n\
-            FileReader.prototype, {\n\
-                readAsArrayBuffer: function () {\n\
-                    this.onabort({\n\
-                        type: \"abort\"\n\
-                    });\n\
-                    this.onerror({\n\
-                        type: \"error\"\n\
-                    });\n\
-                }\n\
-            }\n\
-        ]\n\
-    ], function (onError) {\n\
-        local.blobRead(undefined, function (err) {\n\
-            // handle err\n\
-            assertOrThrow(err, err);\n\
-        });\n\
-        onError(undefined, opt);\n\
-    }, onParallel);\n\
-    onParallel();\n\
 };\n\
 \n\
 local.testCase_bufferValidateAndCoerce_err = function (opt, onError) {\n\

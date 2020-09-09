@@ -76,15 +76,6 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.Blob">
-            function <span class="apidocSignatureSpan">utility2.</span>Blob
-            <span class="apidocSignatureSpan">(list, opt)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.Module">
             function <span class="apidocSignatureSpan">utility2.</span>Module
             <span class="apidocSignatureSpan">(id = &apos;&apos;, parent)</span>
@@ -187,15 +178,6 @@
             <a class="apidocElementLiA" href="#apidoc.elem.utility2.base64ToUtf8">
             function <span class="apidocSignatureSpan">utility2.</span>base64ToUtf8
             <span class="apidocSignatureSpan">(str)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.elem.utility2.blobRead">
-            function <span class="apidocSignatureSpan">utility2.</span>blobRead
-            <span class="apidocSignatureSpan">(blob, onError)</span>
             </a>
 
         </li>
@@ -3482,51 +3464,6 @@
 
 
     <h2>
-        <a href="#apidoc.elem.utility2.Blob" id="apidoc.elem.utility2.Blob">
-        function <span class="apidocSignatureSpan">utility2.</span>Blob
-        <span class="apidocSignatureSpan">(list, opt)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">Blob = function (list, opt) {
-<span class="apidocCodeCommentSpan">    /*
-     * this function will emulate in node, browser&apos;s Blob class
-     * https://developer.mozilla.org/en-US/docs/Web/API/Blob/Blob
-     */
-</span>    this.buf = local.bufferConcat(list.map(function (elem) {
-        if (
-            typeof elem === &quot;string&quot;
-            || Object.prototype.toString.call(elem) === &quot;[object Uint8Array]&quot;
-        ) {
-            return elem;
-        }
-        // emulate in node, browser-behavior - auto-stringify arbitrary data
-        return String(elem);
-    }));
-    this.type = (opt &amp;&amp; opt.type) || &quot;&quot;;
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-        local.ajax({
-data: (
-    responseType === &quot;arraybuffer&quot;
-    // test POST buffer-data handling-behavior
-    ? new TextEncoder().encode(local.stringHelloEmoji)
-    : responseType === &quot;blob&quot;
-    // test POST blob-data handling-behavior
-    ? new local.<span class="apidocCodeKeywordSpan">Blob</span>([
-        &quot;&quot;,
-        new Uint8Array(0),
-        local.stringHelloEmoji
-    ])
-    // test POST string-data handling-behavior
-    : local.stringHelloEmoji
-),
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
         <a href="#apidoc.elem.utility2.Module" id="apidoc.elem.utility2.Module">
         function <span class="apidocSignatureSpan">utility2.</span>Module
         <span class="apidocSignatureSpan">(id = &apos;&apos;, parent)</span>
@@ -4311,11 +4248,11 @@ local.base64ToUtf8 = function (str) {
    return local.bufferValidateAndCoerce(local.<span class="apidocCodeKeywordSpan">base64ToBuffer</span>(str), &quot;string&quot;);
 };
 
-local.blobRead = function (blob, onError) {
+local.browserTest = function (opt, onError) {
 /*
-* this function will read from &lt;blob&gt;
+* this function will spawn google-puppeteer-process to test &lt;opt&gt;.url
 */
-   let isDone;
+   let browser;
 ...</pre></li>
     </ul>
 
@@ -4350,71 +4287,6 @@ assertJsonEqual(
     local.base64FromBuffer(local.base64ToBuffer(opt.base64)),
     opt.base64
 );
-...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.elem.utility2.blobRead" id="apidoc.elem.utility2.blobRead">
-        function <span class="apidocSignatureSpan">utility2.</span>blobRead
-        <span class="apidocSignatureSpan">(blob, onError)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">blobRead = function (blob, onError) {
-<span class="apidocCodeCommentSpan">/*
- * this function will read from &lt;blob&gt;
- */
-</span>    let isDone;
-    let reader;
-    if (!local.isBrowser) {
-        onError(undefined, local.bufferValidateAndCoerce(blob.buf));
-        return;
-    }
-    reader = new FileReader();
-    reader.onabort = function (evt) {
-        if (isDone) {
-            return;
-        }
-        isDone = true;
-        switch (evt.type) {
-        case &quot;abort&quot;:
-        case &quot;error&quot;:
-            onError(new Error(&quot;blobRead - &quot; + evt.type));
-            break;
-        case &quot;load&quot;:
-            onError(
-                undefined,
-                Object.prototype.toString.call(reader.result)
-                === &quot;[object ArrayBuffer]&quot;
-                // convert ArrayBuffer to Uint8Array
-                ? new Uint8Array(reader.result)
-                : reader.result
-            );
-            break;
-        }
-    };
-    reader.onerror = reader.onabort;
-    reader.onload = reader.onabort;
-    reader.readAsArrayBuffer(blob);
-}</pre></li>
-    <li>example use<pre class="apidocCodePre">...
-    xhr.setRequestHeader(key, xhr.headers[key]);
-});
-// send data
-switch ((xhr.data &amp;&amp; xhr.data.constructor) || true) {
-// Blob
-// https://developer.mozilla.org/en-US/docs/Web/API/Blob
-case local2.Blob:
-    local2.<span class="apidocCodeKeywordSpan">blobRead</span>(xhr.data, function (err, data) {
-        if (err) {
-            xhr.onEvent(err);
-            return;
-        }
-        // send data
-        xhr.send(data);
-    });
 ...</pre></li>
     </ul>
 
@@ -4616,21 +4488,21 @@ local.cliDict[&quot;utility2.browserTest&quot;] = function () {
     return result;
 }</pre></li>
     <li>example use<pre class="apidocCodePre">...
-}());
-// polyfill Blob
-local.Blob = globalThis.Blob || function (list, opt) {
-/*
- * this function will emulate in node, browser&apos;s Blob class
- * https://developer.mozilla.org/en-US/docs/Web/API/Blob/Blob
- */
-this.buf = local.<span class="apidocCodeKeywordSpan">bufferConcat</span>(list.map(function (elem) {
-    if (
-        typeof elem === &quot;string&quot;
-        || Object.prototype.toString.call(elem) === &quot;[object Uint8Array]&quot;
-    ) {
-        return elem;
     }
-    // emulate in node, browser-behavior - auto-stringify arbitrary data
+    res._isDone = true;
+    bufList.push(data);
+    // notify server res is finished
+    res.emit(&quot;finish&quot;);
+    // pass res to client
+    onResponse(res);
+    res.emit(&quot;data&quot;, local.<span class="apidocCodeKeywordSpan">bufferConcat</span>(bufList));
+    res.emit(&quot;end&quot;);
+},
+on: function (type, onEvent) {
+    handler.addEventListener(&quot;res.&quot; + type, function (evt) {
+        onEvent(evt.detail);
+    });
+    return res;
 ...</pre></li>
     </ul>
 
@@ -4720,11 +4592,11 @@ local.base64ToUtf8 = function (str) {
    return local.<span class="apidocCodeKeywordSpan">bufferValidateAndCoerce</span>(local.base64ToBuffer(str), &quot;string&quot;);
 };
 
-local.blobRead = function (blob, onError) {
+local.browserTest = function (opt, onError) {
 /*
-* this function will read from &lt;blob&gt;
+* this function will spawn google-puppeteer-process to test &lt;opt&gt;.url
 */
-   let isDone;
+   let browser;
 ...</pre></li>
     </ul>
 
