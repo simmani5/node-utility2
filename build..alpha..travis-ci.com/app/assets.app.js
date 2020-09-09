@@ -46992,9 +46992,7 @@ local.buildApp = function ({
             {
                 url: "/LICENSE"
             }, {
-                file: (
-                    "/assets." + process.env.npm_package_nameLib + ".html"
-                ),
+                file: "/assets." + process.env.npm_package_nameLib + ".html",
                 url: "/index.html"
             }, {
                 url: "/assets." + process.env.npm_package_nameLib + ".css"
@@ -74846,9 +74844,7 @@ local.buildApp = function ({\n\
             {\n\
                 url: \"/LICENSE\"\n\
             }, {\n\
-                file: (\n\
-                    \"/assets.\" + process.env.npm_package_nameLib + \".html\"\n\
-                ),\n\
+                file: \"/assets.\" + process.env.npm_package_nameLib + \".html\",\n\
                 url: \"/index.html\"\n\
             }, {\n\
                 url: \"/assets.\" + process.env.npm_package_nameLib + \".css\"\n\
@@ -81581,9 +81577,7 @@ local.buildApp = function ({
             {
                 url: "/LICENSE"
             }, {
-                file: (
-                    "/assets." + process.env.npm_package_nameLib + ".html"
-                ),
+                file: "/assets." + process.env.npm_package_nameLib + ".html",
                 url: "/index.html"
             }, {
                 url: "/assets." + process.env.npm_package_nameLib + ".css"
