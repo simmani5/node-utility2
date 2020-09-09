@@ -1627,24 +1627,6 @@ onErrorThrow = local.onErrorThrow;
         );
     } catch (ignore) {}
 }());
-// polyfill Blob
-local.Blob = globalThis.Blob || function (list, opt) {
-    /*
-     * this function will emulate in node, browser's Blob class
-     * https://developer.mozilla.org/en-US/docs/Web/API/Blob/Blob
-     */
-    this.buf = local.bufferConcat(list.map(function (elem) {
-        if (
-            typeof elem === "string"
-            || Object.prototype.toString.call(elem) === "[object Uint8Array]"
-        ) {
-            return elem;
-        }
-        // emulate in node, browser-behavior - auto-stringify arbitrary data
-        return String(elem);
-    }));
-    this.type = (opt && opt.type) || "";
-};
 
 // init lib _http
 local._http = {};
@@ -2237,23 +2219,7 @@ local.ajax = function (opt, onError) {
     Object.keys(xhr.headers).forEach(function (key) {
         xhr.setRequestHeader(key, xhr.headers[key]);
     });
-    // send data
-    switch ((xhr.data && xhr.data.constructor) || true) {
-    // Blob
-    // https://developer.mozilla.org/en-US/docs/Web/API/Blob
-    case local2.Blob:
-        local2.blobRead(xhr.data, function (err, data) {
-            if (err) {
-                xhr.onEvent(err);
-                return;
-            }
-            // send data
-            xhr.send(data);
-        });
-        break;
-    default:
-        xhr.send(xhr.data);
-    }
+    xhr.send(xhr.data);
     return xhr;
 };
 
@@ -2355,44 +2321,6 @@ local.base64ToUtf8 = function (str) {
  * this function will convert base64 <str> to utf8 str
  */
     return local.bufferValidateAndCoerce(local.base64ToBuffer(str), "string");
-};
-
-local.blobRead = function (blob, onError) {
-/*
- * this function will read from <blob>
- */
-    let isDone;
-    let reader;
-    if (!local.isBrowser) {
-        onError(undefined, local.bufferValidateAndCoerce(blob.buf));
-        return;
-    }
-    reader = new FileReader();
-    reader.onabort = function (evt) {
-        if (isDone) {
-            return;
-        }
-        isDone = true;
-        switch (evt.type) {
-        case "abort":
-        case "error":
-            onError(new Error("blobRead - " + evt.type));
-            break;
-        case "load":
-            onError(
-                undefined,
-                Object.prototype.toString.call(reader.result)
-                === "[object ArrayBuffer]"
-                // convert ArrayBuffer to Uint8Array
-                ? new Uint8Array(reader.result)
-                : reader.result
-            );
-            break;
-        }
-    };
-    reader.onerror = reader.onabort;
-    reader.onload = reader.onabort;
-    reader.readAsArrayBuffer(blob);
 };
 
 local.browserTest = function (opt, onError) {
