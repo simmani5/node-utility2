@@ -4699,9 +4699,7 @@ local.browserTest = function (opt, onError) {
             {
                 url: &quot;/LICENSE&quot;
             }, {
-                file: (
-                    &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.html&quot;
-                ),
+                file: &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.html&quot;,
                 url: &quot;/index.html&quot;
             }, {
                 url: &quot;/assets.&quot; + process.env.npm_package_nameLib + &quot;.css&quot;
@@ -4730,7 +4728,8 @@ local.browserTest = function (opt, onError) {
             }
         ].concat(assetsList).forEach(function (elem) {
             promiseList2.push(new Promise(function (resolve) {
-                require(&quot;http&quot;)....</pre></li>
+                require(&quot;http&quot;).request((
+                    &quot;http...</pre></li>
     <li>example use<pre class="apidocCodePre">...
 /*
 * this function will test buildApp&apos;s default handling-behavior

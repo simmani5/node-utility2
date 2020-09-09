@@ -46768,9 +46768,7 @@ local.buildApp = function ({
             {
                 url: "/LICENSE"
             }, {
-                file: (
-                    "/assets." + process.env.npm_package_nameLib + ".html"
-                ),
+                file: "/assets." + process.env.npm_package_nameLib + ".html",
                 url: "/index.html"
             }, {
                 url: "/assets." + process.env.npm_package_nameLib + ".css"
