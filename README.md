@@ -51,13 +51,16 @@ this zero-dependency package will provide high-level functions to to build, test
 #### cli help
 ![screenshot](https://kaizhu256.github.io/node-utility2/build/screenshot.npmPackageCliHelp.svg)
 
-#### changelog 2020.8.19
-- add file lib.sqlite3.js
-- jslint - require macro jslint-autofix:true to conditionally-autofix .json file
-- add files lib.sqlite3.js
+#### changelog 2020.9.1
+- jslint - update to v2020.9.9
+- experiment with github-actions
+- node v10.x - re-polyfill globalThis
+- node v10.x - re-polyfill TextDecoder and TextEncoder
+- remove blob-polyfill
 - none
 
 #### todo
+- migrate from travis to github-actions
 - update function fsWriteFileWithMkdirp to write to tmpfile first
 - jslint - unmangle function jslintAutofixLocalFunction
 - update function shRawLibFetch to minify assets
@@ -65,7 +68,6 @@ this zero-dependency package will provide high-level functions to to build, test
 - istanbul - inline class Instrumenter into function instrumentSync
 - jslint - add nullish-coalescing support
 - jslint - add optional-chaining support
-- replace function local.objectAssignRecurse with Object.assign
 - replace db-lite with sql_lite.js
 - add default testCase _testCase_cliRun_help
 - add server stress-test using puppeteer
@@ -130,6 +132,15 @@ instruction
     let isBrowser;
     let isWebWorker;
     let local;
+    // polyfill globalThis
+    if (!(typeof globalThis === "object" && globalThis)) {
+        if (typeof window === "object" && window && window.window === window) {
+            window.globalThis = window;
+        }
+        if (typeof global === "object" && global && global.global === global) {
+            global.globalThis = global;
+        }
+    }
     // init debugInline
     if (!globalThis.debugInline) {
         let consoleError;
@@ -156,29 +167,29 @@ instruction
         isBrowser && typeof globalThis.importScripts === "function"
     );
     // init function
+    function objectDeepCopyWithKeysSorted(obj) {
+    /*
+     * this function will recursively deep-copy <obj> with keys sorted
+     */
+        let sorted;
+        if (typeof obj !== "object" || !obj) {
+            return obj;
+        }
+        // recursively deep-copy list with child-keys sorted
+        if (Array.isArray(obj)) {
+            return obj.map(objectDeepCopyWithKeysSorted);
+        }
+        // recursively deep-copy obj with keys sorted
+        sorted = {};
+        Object.keys(obj).sort().forEach(function (key) {
+            sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
+        });
+        return sorted;
+    }
     function assertJsonEqual(aa, bb) {
     /*
      * this function will assert JSON.stringify(<aa>) === JSON.stringify(<bb>)
      */
-        function objectDeepCopyWithKeysSorted(obj) {
-        /*
-         * this function will recursively deep-copy <obj> with keys sorted
-         */
-            let sorted;
-            if (typeof obj !== "object" || !obj) {
-                return obj;
-            }
-            // recursively deep-copy list with child-keys sorted
-            if (Array.isArray(obj)) {
-                return obj.map(objectDeepCopyWithKeysSorted);
-            }
-            // recursively deep-copy obj with keys sorted
-            sorted = {};
-            Object.keys(obj).sort().forEach(function (key) {
-                sorted[key] = objectDeepCopyWithKeysSorted(obj[key]);
-            });
-            return sorted;
-        }
         aa = JSON.stringify(objectDeepCopyWithKeysSorted(aa));
         bb = JSON.stringify(objectDeepCopyWithKeysSorted(bb));
         if (aa !== bb) {
@@ -296,6 +307,7 @@ instruction
     local.isWebWorker = isWebWorker;
     local.nop = nop;
     local.objectAssignDefault = objectAssignDefault;
+    local.objectDeepCopyWithKeysSorted = objectDeepCopyWithKeysSorted;
     local.onErrorThrow = onErrorThrow;
 }());
 // assets.utility2.header.js - end
@@ -547,6 +559,16 @@ pre {\n\
 <div class="uiAnimateSpin" style="animation: uiAnimateSpin 2s linear infinite; border: 5px solid #999; border-radius: 50%; border-top: 5px solid #7d7; display: none; height: 25px; vertical-align: middle; width: 25px;"></div>\n\
 <script>\n\
 /* jslint utility2:true */\n\
+// polyfill globalThis\n\
+(function () {\n\
+/*\n\
+ * this function will polyfill globalThis\n\
+ */\n\
+    "use strict";\n\
+    window.globalThis = window.globalThis || globalThis;\n\
+}());\n\
+\n\
+\n\
 // init domOnEventWindowOnloadTimeElapsed\n\
 (function () {\n\
 /*\n\
@@ -1153,7 +1175,7 @@ require("http").createServer(function (req, res) {
     "engines": {
         "node": ">=12.0"
     },
-    "fileCount": 25,
+    "fileCount": 30,
     "homepage": "https://github.com/kaizhu256/node-utility2",
     "keywords": [
         "continuous-integration",
@@ -1189,9 +1211,9 @@ require("http").createServer(function (req, res) {
         "2020.08.01 istanbul-lite",
         "2020.08.19 jslint-lite",
         "2020.08.19 sqlite3-lite",
-        "2020.08.01 utility2"
+        "2020.08.19 utility2"
     ],
-    "version": "2020.8.19"
+    "version": "2020.9.1"
 }
 ```
 
