@@ -1733,7 +1733,7 @@ shGitInfo () {(set -e
 shGitInitBase () {(set -e
 # this function will git init && git fetch utility2 base
     git init
-    if [ "$1" = dos2unix ]
+    if [ "$DOS2UNIX" ]
     then
         git config core.autocrlf input
     fi
