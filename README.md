@@ -54,6 +54,7 @@ this zero-dependency package will provide high-level functions to to build, test
 #### changelog 2020.9.1
 - jslint - update to v2020.9.9
 - experiment with github-actions
+- update shell-function shGitInitBase with option dos2unix
 - node v10.x - re-polyfill globalThis
 - node v10.x - re-polyfill TextDecoder and TextEncoder
 - remove blob-polyfill

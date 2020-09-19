@@ -1733,6 +1733,10 @@ shGitInfo () {(set -e
 shGitInitBase () {(set -e
 # this function will git init && git fetch utility2 base
     git init
+    if [ "$1" = dos2unix ]
+    then
+        git config core.autocrlf input
+    fi
     git remote add utility2 https://github.com/kaizhu256/node-utility2
     git fetch utility2 base
     git reset utility2/base
